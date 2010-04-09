@@ -10,9 +10,9 @@ namespace EricUtility
         private string m_TotalStr;
         private string[] m_SplittedStr;
         private int m_Index;
-        private string m_Delimitter;
+        private char m_Delimitter;
 
-        public StringTokenizer(string str, string delimitter)
+        public StringTokenizer(string str, char delimitter)
         {
             m_TotalStr = str;
             m_Delimitter = delimitter;
