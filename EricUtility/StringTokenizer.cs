@@ -35,7 +35,7 @@ namespace EricUtility
             return m_SplittedStr.Length;
         }
 
-        public string nextToken()
+        public string NextToken()
         {
             m_Index++;
             if (HasMoreTokens())
