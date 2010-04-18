@@ -39,9 +39,14 @@ namespace EricUtility
         {
             m_Index++;
             if (HasMoreTokens())
-                return m_SplittedStr[m_Index];
+            {
+                string s = m_SplittedStr[m_Index];
+                if (s == "")
+                    return NextToken();
+                return s;
+            }
             else
-                return "";
+                return null;
         }
     }
 }
