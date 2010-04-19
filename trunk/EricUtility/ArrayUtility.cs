@@ -8,7 +8,7 @@ namespace EricUtility
     public class ArrayUtility
     {
         /// <summary>
-        /// Choisis un élément dans la liste parmis tous les minimums
+        /// Choisis un élément dans la liste parmis tous les minimums !!
         /// </summary>
         /// <typeparam name="T">Le type d'objet du Array</typeparam>
         /// <param name="values">L'array</param>
