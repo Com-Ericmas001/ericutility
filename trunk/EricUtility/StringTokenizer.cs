@@ -16,7 +16,10 @@ namespace EricUtility
         {
             m_TotalStr = str;
             m_Delimitter = delimitter;
-            m_SplittedStr = str.Split(delimitter);
+            if (str == null)
+                m_SplittedStr = new string[0];
+            else
+                m_SplittedStr = str.Split(delimitter);
             m_Index = -1;
         }
 
