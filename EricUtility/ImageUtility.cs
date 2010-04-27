@@ -1,26 +1,20 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Media;
 using System.IO;
-using System.Windows.Media.Imaging;
+using System.Drawing;
 
 namespace EricUtility
 {
     public class ImageUtility
     {
-        public static ImageSource ConvertFromImage(System.Drawing.Image img)
+        public static Bitmap ResizedImage(Image src, int newWidth, int newHeight)
         {
-            BitmapImage bi = new BitmapImage();
-            bi.BeginInit();
-            MemoryStream ms = new MemoryStream();
-            img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-            ms.Seek(0, SeekOrigin.Begin);
-            bi.StreamSource = ms;
-            bi.EndInit();
-            return bi;
+            Bitmap nimg = new Bitmap(newWidth, newHeight);
+            Graphics g = Graphics.FromImage(nimg);
+            g.DrawImage(src, 0, 0, newWidth, newHeight);
+            return nimg;
         }
     }
 }
-*/
