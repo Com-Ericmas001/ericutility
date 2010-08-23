@@ -8,10 +8,11 @@
     <ProjectGuid>{5CE81EA0-A5B0-4877-A37F-33897BD58642}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EricUtilityGames_4._0</RootNamespace>
-    <AssemblyName>EricUtilityGames_4.0</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>EricUtilityGames</RootNamespace>
+    <AssemblyName>EricUtilityGames</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
