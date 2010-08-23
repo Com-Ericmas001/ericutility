@@ -8,8 +8,8 @@
     <ProjectGuid>{455F649D-B01B-4B20-B648-805461BF3142}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EricUtilityNetworking_4._0</RootNamespace>
-    <AssemblyName>EricUtilityNetworking_4.0</AssemblyName>
+    <RootNamespace>EricUtilityNetworking</RootNamespace>
+    <AssemblyName>EricUtilityNetworking</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

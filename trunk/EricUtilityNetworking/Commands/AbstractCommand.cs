@@ -12,17 +12,17 @@ namespace EricUtility.Networking.Commands
         public virtual void Encode(StringBuilder sb) { }
 
 
-        protected void Append(StringBuilder sb, string s)
+        protected virtual void Append(StringBuilder sb, string s)
         {
             sb.Append(s);
             sb.Append(AbstractCommand.Delimitter);
         }
-        protected void Append(StringBuilder sb, bool b)
+        protected virtual void Append(StringBuilder sb, bool b)
         {
             sb.Append(b);
             sb.Append(AbstractCommand.Delimitter);
         }
-        protected void Append(StringBuilder sb, int i)
+        protected virtual void Append(StringBuilder sb, int i)
         {
             sb.Append(i);
             sb.Append(AbstractCommand.Delimitter);
