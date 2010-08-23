@@ -8,8 +8,8 @@
     <ProjectGuid>{31541BBE-B408-4719-BFCE-03947BB7AB0E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EricUtility_4._0</RootNamespace>
-    <AssemblyName>EricUtility_4.0</AssemblyName>
+    <RootNamespace>EricUtility</RootNamespace>
+    <AssemblyName>EricUtility</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
