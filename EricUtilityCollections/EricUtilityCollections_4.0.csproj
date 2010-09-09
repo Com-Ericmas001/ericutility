@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AbstractTree.cs" />
     <Compile Include="BinaryTree.cs" />
+    <Compile Include="BlockingQueue.cs" />
     <Compile Include="NTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
