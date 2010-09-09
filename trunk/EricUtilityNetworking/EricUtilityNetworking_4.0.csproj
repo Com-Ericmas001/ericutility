@@ -42,6 +42,7 @@
     <Compile Include="Commands\AbstractCommandResponse.cs" />
     <Compile Include="Commands\CommandObserver.cs" />
     <Compile Include="Commands\CommandTCPCommunicator.cs" />
+    <Compile Include="Commands\CommandQueueCommunicator.cs" />
     <Compile Include="Commands\DisconnectCommand.cs" />
     <Compile Include="Commands\EventArgs.cs" />
     <Compile Include="QueueCommunicator.cs" />
