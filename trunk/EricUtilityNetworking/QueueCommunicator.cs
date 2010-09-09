@@ -43,6 +43,7 @@ namespace EricUtility.Networking
         }
         public void Start()
         {
+            m_IsConnected = true;
             new Thread(new ThreadStart(Run)).Start();
         }
         public void Incoming(string message)
