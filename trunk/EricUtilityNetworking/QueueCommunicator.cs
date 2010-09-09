@@ -45,6 +45,9 @@ namespace EricUtility.Networking
         {
             new Thread(new ThreadStart(Run)).Start();
         }
-
+        public void Incoming(string message)
+        {
+            m_Incoming.Enqueue(message);
+        }
     }
 }
