@@ -44,11 +44,16 @@
     <Compile Include="Commands\CommandTCPCommunicator.cs" />
     <Compile Include="Commands\DisconnectCommand.cs" />
     <Compile Include="Commands\EventArgs.cs" />
+    <Compile Include="QueueCommunicator.cs" />
     <Compile Include="Gathering\GatheringUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TCPCommunicator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EricUtilityCollections\EricUtilityCollections_4.0.csproj">
+      <Project>{B8B8FC45-F16D-4380-91FD-F08B365C74A7}</Project>
+      <Name>EricUtilityCollections_4.0</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EricUtility\EricUtility_4.0.csproj">
       <Project>{31541BBE-B408-4719-BFCE-03947BB7AB0E}</Project>
       <Name>EricUtility_4.0</Name>
