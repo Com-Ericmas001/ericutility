@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace EricUtility.Collections
@@ -61,8 +60,12 @@ namespace EricUtility.Collections
         public bool RemoveAllChildren(T val)
         {
             int count = m_Children.Count;
-            m_Children = (List<AbstractTreeNode<T>>)from child in m_Children where !child.Value.Equals(val) select child;
-            return m_Children.Count == count;
+            
+            List<AbstractTreeNode<T>> oks = new List<AbstractTreeNode<T>>();
+            foreach (AbstractTreeNode<T> child in m_Children)
+                if (!child.Value.Equals(val))
+                    oks.Add(child);
+            return m_Children.Count != count;
         }
         /// <summary>
         /// Enleve tous les enfants
@@ -72,7 +75,7 @@ namespace EricUtility.Collections
         {
             int count = m_Children.Count;
             m_Children.Clear();
-            return m_Children.Count == count;
+            return m_Children.Count != count;
         }
     }
 
