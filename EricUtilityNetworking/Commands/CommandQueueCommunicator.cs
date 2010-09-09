@@ -9,7 +9,7 @@ namespace EricUtility.Networking.Commands
     {
         protected T m_CommandObserver = new T();
 
-        public CommandQueueCommunicator(TcpClient socket)
+        public CommandQueueCommunicator()
         {
             InitializeCommandObserver();
             base.ReceivedSomething += new EventHandler<KeyEventArgs<string>>(CommandQueueCommunicator_ReceivedSomething);
