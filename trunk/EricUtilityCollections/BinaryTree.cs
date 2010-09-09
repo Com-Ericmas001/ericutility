@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace EricUtility.Collections
@@ -72,11 +71,11 @@ namespace EricUtility.Collections
         {
             get
             {
-                IEnumerable<T> vals = new List<T> { m_Value };
+                List<T> vals = new List<T> { m_Value };
                 if (LeftNode != null)
-                    vals = LeftNode.FamilyLeftToRight.Concat(vals);
+                    vals.AddRange(LeftNode.FamilyLeftToRight);
                 if (RightNode != null)
-                    vals = vals.Concat(RightNode.FamilyLeftToRight);
+                    vals.AddRange(RightNode.FamilyLeftToRight);
                 return vals;
             }
         }
@@ -88,11 +87,11 @@ namespace EricUtility.Collections
         {
             get
             {
-                IEnumerable<T> vals = new List<T> { m_Value };
+                List<T> vals = new List<T> { m_Value };
                 if (RightNode != null)
-                    vals = RightNode.FamilyRightToLeft.Concat(vals);
+                    vals.AddRange(RightNode.FamilyRightToLeft);
                 if (LeftNode != null)
-                    vals = vals.Concat(LeftNode.FamilyRightToLeft);
+                    vals.AddRange(LeftNode.FamilyRightToLeft);
                 return vals;
             }
         }

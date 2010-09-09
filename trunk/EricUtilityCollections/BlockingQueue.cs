@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
+using System.Collections;
 
 namespace EricUtility.Collections
 {
@@ -33,6 +32,11 @@ namespace EricUtility.Collections
         }
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            while (true) yield return Dequeue();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
         {
             while (true) yield return Dequeue();
         }
