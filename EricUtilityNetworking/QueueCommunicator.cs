@@ -10,7 +10,6 @@ namespace EricUtility.Networking
     {
         protected bool m_IsConnected;
         protected BlockingQueue<String> m_Incoming = new BlockingQueue<String>();
-        protected BlockingQueue<String> m_Outcoming = new BlockingQueue<String>();
         public event EventHandler<KeyEventArgs<string>> ReceivedSomething = delegate { };
         public event EventHandler<KeyEventArgs<string>> SendedSomething = delegate { };
         public QueueCommunicator()
@@ -26,12 +25,14 @@ namespace EricUtility.Networking
 
         protected string Receive()
         {
-            return m_Incoming.Dequeue();
+            string line = m_Incoming.Dequeue();
+            ReceivedSomething(this, new KeyEventArgs<string>(line));
+            return line;
         }
 
         public void Send(string line)
         {
-            m_Outcoming.Enqueue(line);
+            SendedSomething(this, new KeyEventArgs<string>(line));
         }
         protected virtual void Run()
         {
