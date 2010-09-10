@@ -35,17 +35,21 @@
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayUtility.cs" />
     <Compile Include="BitUtility.cs" />
+    <Compile Include="GenericDelegates.cs" />
     <Compile Include="GenericEventArgs.cs" />
     <Compile Include="Hasard.cs" />
     <Compile Include="ImageUtility.cs" />
+    <Compile Include="IOUtility.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringTokenizer.cs" />
+    <Compile Include="StringUtility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
