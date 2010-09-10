@@ -56,10 +56,17 @@ namespace EricUtility.Networking
             }
         }
 
-        protected virtual string Receive()
+        protected virtual string Receive() 
         {
-            string line = m_Input.ReadLine();
-            return line;
+            try
+            {
+                string line = m_Input.ReadLine();
+                return line;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         protected virtual void Send(string line)
@@ -83,7 +90,8 @@ namespace EricUtility.Networking
             {
                 while (IsConnected)
                 {
-                    Receive();
+                    if (Receive() == null)
+                        return;
                 }
             }
             catch(Exception e)
