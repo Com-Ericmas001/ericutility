@@ -41,6 +41,9 @@
   <ItemGroup>
     <Compile Include="ArrayUtility.cs" />
     <Compile Include="BitUtility.cs" />
+    <Compile Include="Data\AbstractConnector.cs" />
+    <Compile Include="Data\AbstractGestionnaire.cs" />
+    <Compile Include="Data\AccessConnector.cs" />
     <Compile Include="GenericDelegates.cs" />
     <Compile Include="GenericEventArgs.cs" />
     <Compile Include="Hasard.cs" />
@@ -51,6 +54,7 @@
     <Compile Include="StringTokenizer.cs" />
     <Compile Include="StringUtility.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
