@@ -13,7 +13,7 @@ namespace EricUtility.Windows.Forms
         Bad,
         Ok
     }
-    class StatePictureBox : PictureBox
+    public class StatePictureBox : PictureBox
     {
         private Timer waitingTimer;
         private int waitingCounter = 0;
