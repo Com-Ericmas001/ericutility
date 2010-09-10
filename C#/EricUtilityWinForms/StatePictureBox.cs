@@ -15,7 +15,6 @@ namespace EricUtility.Windows.Forms
     }
     class StatePictureBox : PictureBox
     {
-        private delegate void EmptyHandler();
         private Timer waitingTimer;
         private int waitingCounter = 0;
         private StatePictureBoxStates m_Etat = StatePictureBoxStates.None;
