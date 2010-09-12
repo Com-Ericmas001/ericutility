@@ -14,7 +14,7 @@ namespace EricUtility.Networking.Commands
         {
             m_Command = command;
         }
-        protected T Command
+        public T Command
         {
             get { return m_Command; }
         } 
