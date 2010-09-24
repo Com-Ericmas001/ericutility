@@ -38,9 +38,9 @@ namespace EricUtility.Windows.Forms
         {
             this.BackgroundImageLayout = ImageLayout.Stretch;
         }
-        protected virtual void ChooseImage()
+        protected virtual void ChooseImage(StatePictureBoxStates state)
         {
-            switch (m_Etat)
+            switch (state)
             {
                 case StatePictureBoxStates.None:
                     BackgroundImage = null;
@@ -67,7 +67,7 @@ namespace EricUtility.Windows.Forms
                 this.Invoke(new EmptyHandler(UpdateBackgroundImage), new object[] { });
                 return;
             }
-            ChooseImage();
+            ChooseImage(m_Etat);
             Invalidate();
         }
         private void waitingTimer_Tick(object sender, EventArgs e)
