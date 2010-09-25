@@ -91,7 +91,9 @@
     <Compile Include="TabControl\TabStyleProviders\TabStyleDefaultProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TabControl\TabStyleProviders\TabStyleIE8Provider.cs" />
+    <Compile Include="TabControl\TabStyleProviders\TabStyleIE8Provider.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="TabControl\TabStyleProviders\TabStyleNoneProvider.cs">
       <SubType>Component</SubType>
     </Compile>
