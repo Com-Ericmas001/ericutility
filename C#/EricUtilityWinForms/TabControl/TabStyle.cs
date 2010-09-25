@@ -15,7 +15,8 @@ namespace EricUtility.Windows.Forms
 		Angled = 4,
 		Chrome = 5,
 		IE8 = 6,
-		VS2010 = 7
+		VS2010 = 7,
+        ChromeFristPinned = 101
 	}
 
 }
