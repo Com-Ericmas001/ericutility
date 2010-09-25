@@ -74,7 +74,11 @@ namespace EricUtility.Windows.Forms
 
 				case TabStyle.VS2010:
 					provider = new TabStyleVS2010Provider(tabControl);
-					break;
+                    break;
+
+                case TabStyle.ChromeFristPinned:
+                    provider = new TabStyleChromeFirstPinnedProvider(tabControl);
+                    break;
 
 				default:
 					provider = new TabStyleDefaultProvider(tabControl);
