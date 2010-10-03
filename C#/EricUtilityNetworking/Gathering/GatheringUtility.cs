@@ -48,6 +48,30 @@ namespace EricUtility.Networking.Gathering
             request.CookieContainer = cookies;
             return (HttpWebResponse)request.GetResponse();
         }
+        public static String GetPageSource(string url, string postArgs)
+        {
+            return GetPageSource(url, new CookieContainer(), postArgs);
+        }
+        public static String GetPageSource(string url, CookieContainer cookies, string postArgs)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "POST";
+            UTF8Encoding encoding = new UTF8Encoding();
+            byte[] bytes = encoding.GetBytes(postArgs);
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = bytes.Length;
+            using (Stream writeStream = request.GetRequestStream())
+            {
+                writeStream.Write(bytes, 0, bytes.Length);
+            }
+            request.CookieContainer = cookies;
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream s = response.GetResponseStream();
+            string res = new StreamReader(s).ReadToEnd();
+            s.Close();
+            response.Close();
+            return res;
+        }
         public static String GetPageSource(string url, CookieContainer cookies)
         {
             HttpWebResponse response = GetResponse(url,cookies);
