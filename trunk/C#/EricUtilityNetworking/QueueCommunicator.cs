@@ -32,7 +32,8 @@ namespace EricUtility.Networking
 
         public void Send(string line)
         {
-            SendedSomething(this, new KeyEventArgs<string>(line));
+            if( m_IsConnected )
+                SendedSomething(this, new KeyEventArgs<string>(line));
         }
         protected virtual void Run()
         {
