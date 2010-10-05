@@ -50,7 +50,7 @@ namespace EricUtility.Networking
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error on connect: " + e.Message);
+                LogManager.Log(LogLevel.Error, "TCPCommunicator.Connect", "Error on connect: {0}", e.Message);
                 m_Socket = null;
                 return false;
             }
@@ -101,23 +101,13 @@ namespace EricUtility.Networking
         }
         public virtual void OnReceiveCrashed(Exception e)
         {
-            ConsoleColor c = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(e.GetType());
-            Console.WriteLine(e.Message);
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine(e.StackTrace);
-            Console.ForegroundColor = c;
+            LogManager.Log(LogLevel.Error, "TCPCommunicator.OnReceiveCrashed", "{0}: {1}", e.GetType(), e.Message);
+            LogManager.Log(LogLevel.ErrorLow, "TCPCommunicator.OnReceiveCrashed", e.StackTrace); 
         }
         public virtual void OnSendCrashed(Exception e)
         {
-            ConsoleColor c = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(e.GetType());
-            Console.WriteLine(e.Message);
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine(e.StackTrace);
-            Console.ForegroundColor = c;
+            LogManager.Log(LogLevel.Error, "TCPCommunicator.OnSendCrashed", "{0}: {1}", e.GetType(), e.Message);
+            LogManager.Log(LogLevel.ErrorLow, "TCPCommunicator.OnSendCrashed", e.StackTrace); 
         }
         public void Start()
         {

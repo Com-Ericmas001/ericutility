@@ -17,6 +17,10 @@ namespace EricUtility.Networking.Commands
         public DisconnectCommand(StringTokenizer argsToken)
         {
         }
+        protected override void Append<T>(StringBuilder sb, T thing)
+        {
+            sb.Append(thing);
+        }
 
         public DisconnectCommand()
         {
