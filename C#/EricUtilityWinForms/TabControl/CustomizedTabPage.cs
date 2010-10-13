@@ -12,6 +12,7 @@ namespace EricUtility.Windows.Forms
         public CustomizedTabPage(TabPageContent content) : 
             base()
         {
+            UseVisualStyleBackColor = true;
             content.Dock = DockStyle.Fill;
             Controls.Add(content);
         }
