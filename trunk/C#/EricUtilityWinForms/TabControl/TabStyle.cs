@@ -16,7 +16,7 @@ namespace EricUtility.Windows.Forms
 		Chrome = 5,
 		IE8 = 6,
 		VS2010 = 7,
-        ChromeFristPinned = 101
+        ChromeWithPinned = 101
 	}
 
 }
