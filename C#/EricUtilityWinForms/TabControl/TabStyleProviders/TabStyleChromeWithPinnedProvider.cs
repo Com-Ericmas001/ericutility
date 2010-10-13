@@ -18,7 +18,7 @@ namespace EricUtility.Windows.Forms
         {
 		}
 		protected override void DrawTabCloser(int index, Graphics graphics){
-            if (this._ShowTabCloser && index != 0)
+            if (this._ShowTabCloser && !(this._TabControl.TabPages[index] is INonCloseableTabPage))
                 base.DrawTabCloser(index, graphics);
 		}	
 	}

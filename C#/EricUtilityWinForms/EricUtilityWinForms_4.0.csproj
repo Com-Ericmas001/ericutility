@@ -77,12 +77,16 @@
     <Compile Include="TabControl\CustomTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TabControl\FixedTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="TabControl\NativeMethods.cs" />
+    <Compile Include="TabControl\INonCloseableTabPage.cs" />
     <Compile Include="TabControl\TabStyle.cs" />
     <Compile Include="TabControl\TabStyleProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TabControl\TabStyleProviders\TabStyleChromeFirstPinnedProvider.cs">
+    <Compile Include="TabControl\TabStyleProviders\TabStyleChromeWithPinnedProvider.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="TabControl\TabStyleProviders\TabStyleAngledProvider.cs">
