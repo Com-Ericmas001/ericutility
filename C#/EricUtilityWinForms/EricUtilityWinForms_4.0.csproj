@@ -39,6 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TabControl\FixedCustomizedTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\CustomizedTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="NumberedTextBoxUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -114,6 +120,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="TabControl\ThemedColors.cs" />
+    <Compile Include="TabControl\TabPageContent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabPageContent.Designer.cs">
+      <DependentUpon>TabPageContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowsConsole.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -137,6 +149,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControl\TabPageContent.resx">
+      <DependentUpon>TabPageContent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
