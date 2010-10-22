@@ -46,11 +46,14 @@ namespace EricUtility.Windows.Forms
                     BackgroundImage = null;
                     break;
                 case StatePictureBoxStates.Waiting:
-                    waitingTimer = new Timer();
-                    waitingTimer.Interval = 100;
-                    waitingTimer.Tick += new EventHandler(waitingTimer_Tick);
-                    waitingTimer.Start();
-                    BackgroundImage = Properties.Resources.waiting0;
+                    if (waitingTimer == null)
+                    {
+                        waitingTimer = new Timer();
+                        waitingTimer.Interval = 100;
+                        waitingTimer.Tick += new EventHandler(waitingTimer_Tick);
+                        waitingTimer.Start();
+                        BackgroundImage = Properties.Resources.waiting0;
+                    }
                     break;
                 case StatePictureBoxStates.Bad:
                     BackgroundImage = Properties.Resources.bad;
@@ -110,7 +113,10 @@ namespace EricUtility.Windows.Forms
                 }
             }
             else
+            {
                 waitingTimer.Stop();
+                waitingTimer = null;
+            }
         }
     }
 }
