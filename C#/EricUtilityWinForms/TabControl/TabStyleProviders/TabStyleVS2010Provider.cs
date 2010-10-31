@@ -103,7 +103,8 @@ namespace EricUtility.Windows.Forms
 		}
 		
 		protected override void DrawTabCloser(int index, Graphics graphics){
-			if (this._ShowTabCloser){
+            if (this._ShowTabCloser && !IsTabPinned(index))
+            {
 				Rectangle closerRect = this._TabControl.GetTabCloserRect(index);
 				graphics.SmoothingMode = SmoothingMode.AntiAlias;
 				if (closerRect.Contains(this._TabControl.MousePosition)){

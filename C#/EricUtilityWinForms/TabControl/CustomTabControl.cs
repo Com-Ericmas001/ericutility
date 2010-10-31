@@ -610,8 +610,10 @@ namespace EricUtility.Windows.Forms
 				
 				//	Fire the base event
 				base.OnMouseClick(e);
-				
-			} else if (!this.DesignMode && index > -1 && this._StyleProvider.ShowTabCloser && this.GetTabCloserRect(index).Contains(this.MousePosition)){
+
+                }
+            else if (!this.DesignMode && index > -1 && this._StyleProvider.ShowTabCloser && !this._StyleProvider.IsTabPinned(index) && this.GetTabCloserRect(index).Contains(this.MousePosition))
+            {
 				
 				//	If we are clicking on a closer then remove the tab instead of raising the standard mouse click event
 				//	But raise the tab closing event first
@@ -1009,7 +1011,8 @@ namespace EricUtility.Windows.Forms
 							textRect.Height -= (textRect.Bottom - (int)tabBounds.Bottom);
 						}
 						//	If there is a closer allow for it
-						if (this._StyleProvider.ShowTabCloser) {
+                        if (this._StyleProvider.ShowTabCloser && !this._StyleProvider.IsTabPinned(index))
+                        {
 							Rectangle closerRect = this.GetTabCloserRect(index);
 							if (this.Alignment <= TabAlignment.Bottom) {
 								if (this.RightToLeftLayout){

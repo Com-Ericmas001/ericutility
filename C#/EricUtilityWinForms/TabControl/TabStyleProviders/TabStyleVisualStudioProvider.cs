@@ -21,6 +21,12 @@ namespace EricUtility.Windows.Forms
 			//	Must set after the _Radius as this is used in the calculations of the actual padding
 			this.Padding = new Point(14, 1);
 		}
+
+        protected override void DrawTabCloser(int index, Graphics graphics)
+        {
+            if (this._ShowTabCloser && !IsTabPinned(index))
+                base.DrawTabCloser(index, graphics);
+        }
 		
 		public override void AddTabBorder(System.Drawing.Drawing2D.GraphicsPath path, System.Drawing.Rectangle tabBounds){
 			switch (this._TabControl.Alignment) {

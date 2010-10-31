@@ -47,6 +47,11 @@ namespace EricUtility.Windows.Forms
 					break;
 			}
 		}
+        protected override void DrawTabCloser(int index, Graphics graphics)
+        {
+            if (this._ShowTabCloser && !IsTabPinned(index))
+                base.DrawTabCloser(index, graphics);
+        }	
 
 	}
 }

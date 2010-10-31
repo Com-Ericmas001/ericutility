@@ -77,7 +77,7 @@ namespace EricUtility.Windows.Forms
                     break;
 
                 case TabStyle.ChromeWithPinned:
-                    provider = new TabStyleChromeFirstPinnedProvider(tabControl);
+                    provider = new TabStyleChromeWithPinnedProvider(tabControl);
                     break;
 
 				default:
@@ -548,7 +548,12 @@ namespace EricUtility.Windows.Forms
 		#endregion
 
 		#region Painting
-		
+
+        public bool IsTabPinned(int index)
+        {
+            return this._TabControl.TabPages[index] is INonCloseableTabPage;
+        }
+
 		public void PaintTab(int index, Graphics graphics){
 			using (GraphicsPath tabpath = this.GetTabBorder(index)) {
 				using (Brush fillBrush = this.GetTabBackgroundBrush(index)) {

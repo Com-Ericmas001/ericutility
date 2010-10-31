@@ -128,5 +128,11 @@ namespace EricUtility.Windows.Forms
 
 			return tabBounds;
 		}
+
+        protected override void DrawTabCloser(int index, Graphics graphics)
+        {
+            if (this._ShowTabCloser && !IsTabPinned(index))
+                base.DrawTabCloser(index, graphics);
+        }	
 	}
 }

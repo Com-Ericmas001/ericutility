@@ -92,9 +92,6 @@
     <Compile Include="TabControl\TabStyleProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TabControl\TabStyleProviders\TabStyleChromeWithPinnedProvider.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="TabControl\TabStyleProviders\TabStyleAngledProvider.cs">
       <SubType>Component</SubType>
     </Compile>
