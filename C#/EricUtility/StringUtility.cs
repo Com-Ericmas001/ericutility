@@ -27,9 +27,31 @@ namespace EricUtility
         {
             return HtmlEncode(text);
         }
+        public static string EncodeUrl(string text)
+        {
+            return HttpUtility.UrlEncode(text);
+        }
         public static string DecodeString(string text)
         {
             return HttpUtility.HtmlDecode(text);
+        }
+        public static string DecodeURL(string text)
+        {
+            return HttpUtility.UrlDecode(text);
+        }
+        public static string Extract(string text, string before, string after)
+        {
+            return Extract(text, before, after, 0);
+        }
+        public static string Extract(string text, string before, string after, int startindex)
+        {
+            int ideb = text.IndexOf(before, startindex) + before.Length;
+            if (ideb < before.Length)
+                return null;
+            int ifin = text.IndexOf(after, ideb);
+            if (ifin < 0)
+                return null;
+            return text.Substring(ideb, ifin - ideb);
         }
     }
 }
