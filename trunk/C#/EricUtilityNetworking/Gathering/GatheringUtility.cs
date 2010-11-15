@@ -19,6 +19,7 @@ namespace EricUtility.Networking.Gathering
                 request.Method = "POST";
                 UTF8Encoding encoding = new UTF8Encoding();
                 byte[] bytes = encoding.GetBytes(args);
+                request.UserAgent = "Opera/9.80 (Windows NT 5.1; U; Edition Campaign 21; fr) Presto/2.6.30 Version/10.63";
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.ContentLength = bytes.Length;
                 using (Stream writeStream = request.GetRequestStream())
@@ -32,6 +33,7 @@ namespace EricUtility.Networking.Gathering
                 request.Method = "GET";
 
                 request.AllowAutoRedirect = true;
+                request.UserAgent = "Opera/9.80 (Windows NT 5.1; U; Edition Campaign 21; fr) Presto/2.6.30 Version/10.63";
                 request.CookieContainer = new CookieContainer();
             }
             request.CookieContainer = new CookieContainer();
@@ -45,6 +47,7 @@ namespace EricUtility.Networking.Gathering
             HttpWebRequest request;
             request = (HttpWebRequest)WebRequest.Create(url);
             request.AllowAutoRedirect = true;
+            request.UserAgent = "Opera/9.80 (Windows NT 5.1; U; Edition Campaign 21; fr) Presto/2.6.30 Version/10.63";
             request.CookieContainer = cookies;
             return (HttpWebResponse)request.GetResponse();
         }
@@ -59,6 +62,7 @@ namespace EricUtility.Networking.Gathering
             UTF8Encoding encoding = new UTF8Encoding();
             byte[] bytes = encoding.GetBytes(postArgs);
             request.ContentType = "application/x-www-form-urlencoded";
+            request.UserAgent = "Opera/9.80 (Windows NT 5.1; U; Edition Campaign 21; fr) Presto/2.6.30 Version/10.63";
             request.ContentLength = bytes.Length;
             using (Stream writeStream = request.GetRequestStream())
             {
