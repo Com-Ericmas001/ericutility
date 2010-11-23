@@ -22,7 +22,7 @@ namespace EricUtility.Windows.Forms.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace EricUtility.Windows.Forms.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EricUtility.Windows.Forms.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace EricUtility.Windows.Forms.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -60,133 +60,133 @@ namespace EricUtility.Windows.Forms.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap bad {
+        public static System.Drawing.Bitmap bad {
             get {
                 object obj = ResourceManager.GetObject("bad", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap closesmall {
+        public static System.Drawing.Bitmap closesmall {
             get {
                 object obj = ResourceManager.GetObject("closesmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap current {
+        public static System.Drawing.Bitmap current {
             get {
                 object obj = ResourceManager.GetObject("current", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap download {
+        public static System.Drawing.Bitmap download {
             get {
                 object obj = ResourceManager.GetObject("download", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap file_back {
+        public static System.Drawing.Bitmap file_back {
             get {
                 object obj = ResourceManager.GetObject("file_back", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap file_file {
+        public static System.Drawing.Bitmap file_file {
             get {
                 object obj = ResourceManager.GetObject("file_file", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap file_folder {
+        public static System.Drawing.Bitmap file_folder {
             get {
                 object obj = ResourceManager.GetObject("file_folder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap file_unknown {
+        public static System.Drawing.Bitmap file_unknown {
             get {
                 object obj = ResourceManager.GetObject("file_unknown", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap OK {
+        public static System.Drawing.Bitmap OK {
             get {
                 object obj = ResourceManager.GetObject("OK", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Open_Folder_Small {
+        public static System.Drawing.Bitmap Open_Folder_Small {
             get {
                 object obj = ResourceManager.GetObject("Open_Folder_Small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap upload {
+        public static System.Drawing.Bitmap upload {
             get {
                 object obj = ResourceManager.GetObject("upload", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap waiting0 {
+        public static System.Drawing.Bitmap waiting0 {
             get {
                 object obj = ResourceManager.GetObject("waiting0", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap waiting1 {
+        public static System.Drawing.Bitmap waiting1 {
             get {
                 object obj = ResourceManager.GetObject("waiting1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap waiting2 {
+        public static System.Drawing.Bitmap waiting2 {
             get {
                 object obj = ResourceManager.GetObject("waiting2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap waiting3 {
+        public static System.Drawing.Bitmap waiting3 {
             get {
                 object obj = ResourceManager.GetObject("waiting3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap waiting4 {
+        public static System.Drawing.Bitmap waiting4 {
             get {
                 object obj = ResourceManager.GetObject("waiting4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap waiting5 {
+        public static System.Drawing.Bitmap waiting5 {
             get {
                 object obj = ResourceManager.GetObject("waiting5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap waiting6 {
+        public static System.Drawing.Bitmap waiting6 {
             get {
                 object obj = ResourceManager.GetObject("waiting6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap waiting7 {
+        public static System.Drawing.Bitmap waiting7 {
             get {
                 object obj = ResourceManager.GetObject("waiting7", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
