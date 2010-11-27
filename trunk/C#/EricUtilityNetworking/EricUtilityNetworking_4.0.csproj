@@ -45,6 +45,9 @@
     <Compile Include="Commands\CommandQueueCommunicator.cs" />
     <Compile Include="Commands\DisconnectCommand.cs" />
     <Compile Include="Commands\EventArgs.cs" />
+    <Compile Include="Gathering\SearchEngineType.cs" />
+    <Compile Include="Gathering\SearchingUtility.cs" />
+    <Compile Include="Gathering\SearchResultEntry.cs" />
     <Compile Include="QueueCommunicator.cs" />
     <Compile Include="Gathering\GatheringUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
