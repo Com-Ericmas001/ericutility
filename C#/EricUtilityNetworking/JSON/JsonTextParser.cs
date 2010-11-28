@@ -186,14 +186,16 @@ namespace EricUtility.Networking.JSON
 
         private JsonNumericValue ParseNumericValue()
         {
-            Match mnum = _regexNumber.Match(s, c);
-            if (!mnum.Success)
-            {
-                throw new FormatException("Cannot parse a number value.");
-            }
-
-            string captured = mnum.Captures[0].Value;
-            c += captured.Length;
+            //Match mnum = _regexNumber.Match(s, c);
+            //if (!mnum.Success)
+            //{
+            //    throw new FormatException("Cannot parse a number value.");
+            //}
+            int deb = c;
+            for (; !",]}".Contains("" + s[c]); ++c) ;
+            string captured = s.Substring(deb, c - deb);
+            //string captured = mnum.Captures[0].Value;
+            //c += captured.Length;
 
             double value = double.Parse(captured,
                 NumberStyles.AllowDecimalPoint | NumberStyles.AllowExponent | NumberStyles.AllowLeadingSign,
