@@ -228,44 +228,47 @@ namespace EricUtility.Networking.JSON
             c++;
             SkipWhiteSpace();
 
-            // parse collection items
-            for (; ; )
+            if (s[c] != '}' && s[c] != ']')
             {
-                string name = string.Empty;
-                if (!is_array)
+
+                // parse collection items
+                for (; ; )
                 {
-                    name = ParseName();
-                }
+                    string name = string.Empty;
+                    if (!is_array)
+                    {
+                        name = ParseName();
+                    }
 
-                JsonObject obj = ParseSomethingWithoutName();
+                    JsonObject obj = ParseSomethingWithoutName();
 
-                if (obj == null)
-                {
-                    throw new Exception();
-                }
+                    if (obj == null)
+                    {
+                        throw new Exception();
+                    }
 
-                // add name to item, if object.
-                if (!is_array)
-                {
-                    obj.Name = name;
-                }
+                    // add name to item, if object.
+                    if (!is_array)
+                    {
+                        obj.Name = name;
+                    }
 
-                result.Add(obj);
-
-                SkipWhiteSpace();
-
-                if (s[c] == ',')
-                {
-                    c++;
+                    result.Add(obj);
 
                     SkipWhiteSpace();
-                }
-                else
-                {
-                    break;
+
+                    if (s[c] == ',')
+                    {
+                        c++;
+
+                        SkipWhiteSpace();
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
-
             SkipWhiteSpace();
             
             if (is_array)
