@@ -48,6 +48,17 @@
     <Compile Include="Gathering\SearchEngineType.cs" />
     <Compile Include="Gathering\SearchingUtility.cs" />
     <Compile Include="Gathering\SearchResultEntry.cs" />
+    <Compile Include="JSON\JsonArrayCollection.cs" />
+    <Compile Include="JSON\JsonBooleanValue.cs" />
+    <Compile Include="JSON\JsonCollection.cs" />
+    <Compile Include="JSON\JsonGenerator.cs" />
+    <Compile Include="JSON\JsonNumericValue.cs" />
+    <Compile Include="JSON\JsonObject.cs" />
+    <Compile Include="JSON\JsonObjectCollection.cs" />
+    <Compile Include="JSON\JsonStringValue.cs" />
+    <Compile Include="JSON\JsonTextParser.cs" />
+    <Compile Include="JSON\JsonUtility.cs" />
+    <Compile Include="JSON\SAMPLE_JSON.cs" />
     <Compile Include="QueueCommunicator.cs" />
     <Compile Include="Gathering\GatheringUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
