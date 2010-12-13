@@ -82,5 +82,34 @@ namespace EricUtility
             }
             return new string(array, 0, arrayIndex);
         }
+        public static string RemoveBBCodeTags(string s)
+        {
+            // Faster than regex: http://dotnetperls.com/remove-html-tags
+
+            char[] array = new char[s.Length];
+            int arrayIndex = 0;
+            bool inside = false;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                char let = s[i];
+                if (let == '[')
+                {
+                    inside = true;
+                    continue;
+                }
+                if (let == ']')
+                {
+                    inside = false;
+                    continue;
+                }
+                if (!inside)
+                {
+                    array[arrayIndex] = let;
+                    arrayIndex++;
+                }
+            }
+            return new string(array, 0, arrayIndex);
+        }
     }
 }
