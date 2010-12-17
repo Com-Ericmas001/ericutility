@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractLoadingTuple.cs" />
     <Compile Include="ArrayUtility.cs" />
     <Compile Include="BitUtility.cs" />
     <Compile Include="Data\AbstractConnector.cs" />
