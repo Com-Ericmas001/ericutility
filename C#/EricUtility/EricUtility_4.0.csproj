@@ -51,6 +51,7 @@
     <Compile Include="ImageUtility.cs" />
     <Compile Include="IOUtility.cs" />
     <Compile Include="LogManager.cs" />
+    <Compile Include="FlagGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringTokenizer.cs" />
     <Compile Include="StringUtility.cs" />
