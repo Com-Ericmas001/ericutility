@@ -49,6 +49,7 @@ namespace EricUtility.Networking.Gathering
             request.AllowAutoRedirect = true;
             request.UserAgent = "Opera/9.80 (Windows NT 5.1; U; Edition Campaign 21; fr) Presto/2.6.30 Version/10.63";
             request.CookieContainer = cookies;
+            request.Timeout = 300000;
             return (HttpWebResponse)request.GetResponse();
         }
         public static String GetPageSource(string url, string postArgs)
