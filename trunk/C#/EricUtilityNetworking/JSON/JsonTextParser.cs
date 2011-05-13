@@ -37,13 +37,15 @@ namespace EricUtility.Networking.JSON
 
                 if (text == null)
                 {
-                    throw new FormatException();
+                    return null;
+                    //throw new FormatException();
                 }
 
                 s = text.Trim();
                 if (s == string.Empty)
                 {
-                    throw new FormatException();
+                    return null;
+                    //throw new FormatException();
                 }
 #if !DEBUG
                 try
