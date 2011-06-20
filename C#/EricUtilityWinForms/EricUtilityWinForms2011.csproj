@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ABF7D9DE-3646-4737-8EFC-5C3D5FD1CFA5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EricUtilityWinForms2011</RootNamespace>
+    <AssemblyName>EricUtilityWinForms2011</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NumberedTextBoxUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NumberedTextBoxUC.designer.cs">
+      <DependentUpon>NumberedTextBoxUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCRTableau.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OCRWhiteBoard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OpenFileTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OpenFileTextBox.designer.cs">
+      <DependentUpon>OpenFileTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenFolderTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="StatePictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\CustomizedTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\CustomTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\FixedCustomizedTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\FixedTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\INonCloseableTabPage.cs" />
+    <Compile Include="TabControl\NativeMethods.cs" />
+    <Compile Include="TabControl\TabPageContent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabPageContent.Designer.cs">
+      <DependentUpon>TabPageContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControl\TabStyle.cs" />
+    <Compile Include="TabControl\TabStyleProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleAngledProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleChromeProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleDefaultProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleIE8Provider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleNoneProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleRoundedProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleVisualStudioProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleVS2010Provider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\ThemedColors.cs" />
+    <Compile Include="WindowsConsole.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NumberedTextBoxUC.resx">
+      <DependentUpon>NumberedTextBoxUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenFileTextBox.resx">
+      <DependentUpon>OpenFileTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenFolderTextBox.resx">
+      <DependentUpon>OpenFolderTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="TabControl\TabPageContent.resx">
+      <DependentUpon>TabPageContent.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\bad.jpg" />
+    <Content Include="Resources\closesmall.png" />
+    <Content Include="Resources\current.jpg" />
+    <Content Include="Resources\download.jpg" />
+    <Content Include="Resources\file_back.jpg" />
+    <Content Include="Resources\file_file.jpg" />
+    <Content Include="Resources\file_folder.jpg" />
+    <Content Include="Resources\file_unknown.jpg" />
+    <Content Include="Resources\OK.jpg" />
+    <Content Include="Resources\Open_Folder_Small.gif" />
+    <Content Include="Resources\upload.jpg" />
+    <Content Include="Resources\waiting0.jpg" />
+    <Content Include="Resources\waiting1.jpg" />
+    <Content Include="Resources\waiting2.jpg" />
+    <Content Include="Resources\waiting3.jpg" />
+    <Content Include="Resources\waiting4.jpg" />
+    <Content Include="Resources\waiting5.jpg" />
+    <Content Include="Resources\waiting6.jpg" />
+    <Content Include="Resources\waiting7.jpg" />
+    <Content Include="UpgradeLog.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EricUtility\EricUtility2011.csproj">
+      <Project>{E88C4AEF-1B0B-45C0-A08D-CBCDA35C1E62}</Project>
+      <Name>EricUtility2011</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
