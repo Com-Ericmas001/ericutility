@@ -19,7 +19,7 @@ namespace EricUtility.Networking.Gathering
                 while ((i = res.IndexOf("GsearchResultClass", i+1))>=0)
                 {
                     string url = StringUtility.Extract(res, "\"url\":\"", "\"", i);
-                    string title = StringUtility.DecodeString(StringUtility.Extract(res, "\"titleNoFormatting\":\"", "\"", i).Replace("\\u0026", "&"));
+                    string title = WebStringUtility.DecodeString(StringUtility.Extract(res, "\"titleNoFormatting\":\"", "\"", i).Replace("\\u0026", "&"));
                     string content = StringUtility.Extract(res, "\"content\":\"", "\"", i);
                     resultsList.Add(new SearchResultEntry(url,title,content,SearchEngineType.Google));
                 }
