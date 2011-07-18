@@ -38,6 +38,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DownloadProgressInfoEventArgs.cs" />
+    <Compile Include="DownloadItem.cs" />
     <Compile Include="Commands\AbstractCommand.cs" />
     <Compile Include="Commands\AbstractCommandResponse.cs" />
     <Compile Include="Commands\CommandObserver.cs" />
