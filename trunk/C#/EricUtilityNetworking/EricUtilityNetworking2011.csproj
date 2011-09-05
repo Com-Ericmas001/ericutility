@@ -48,6 +48,8 @@
     <Compile Include="Commands\CommandTCPCommunicator.cs" />
     <Compile Include="Commands\DisconnectCommand.cs" />
     <Compile Include="Commands\EventArgs.cs" />
+    <Compile Include="DownloadItem.cs" />
+    <Compile Include="DownloadProgressInfoEventArgs.cs" />
     <Compile Include="Gathering\GatheringUtility.cs" />
     <Compile Include="Gathering\SearchEngineType.cs" />
     <Compile Include="Gathering\SearchResultEntry.cs" />
