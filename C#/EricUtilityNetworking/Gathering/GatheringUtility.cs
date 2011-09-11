@@ -81,6 +81,27 @@ namespace EricUtility.Networking.Gathering
             response.Close();
             return res;
         }
+        public static String GetPageUrl(string url, CookieContainer cookies, string postArgs, string contentType)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "POST";
+            UTF8Encoding encoding = new UTF8Encoding();
+            byte[] bytes = encoding.GetBytes(postArgs);
+            request.ContentType = contentType;
+            request.UserAgent = "Opera/9.80 (Windows NT 5.1; U; Edition Campaign 21; fr) Presto/2.6.30 Version/10.63";
+            request.ContentLength = bytes.Length;
+            using (Stream writeStream = request.GetRequestStream())
+            {
+                writeStream.Write(bytes, 0, bytes.Length);
+            }
+            request.CookieContainer = cookies;
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream s = response.GetResponseStream();
+            string res = response.ResponseUri.AbsolutePath;
+            s.Close();
+            response.Close();
+            return res;
+        }
         public static String GetPageSource(string url, CookieContainer cookies, string postArgs)
         {
             return GetPageSource(url, cookies, postArgs, "application/x-www-form-urlencoded");
