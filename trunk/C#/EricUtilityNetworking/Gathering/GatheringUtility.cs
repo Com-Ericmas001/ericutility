@@ -19,7 +19,7 @@ namespace EricUtility.Networking.Gathering
                 request.Method = "POST";
                 UTF8Encoding encoding = new UTF8Encoding();
                 byte[] bytes = encoding.GetBytes(args);
-                request.UserAgent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.864.0 Safari/535.2";
+                request.UserAgent = "Opera/9.80 (Windows NT 6.1; U; Edition Next; en) Presto/2.10.229 Version/12.00";
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.ContentLength = bytes.Length;
                 using (Stream writeStream = request.GetRequestStream())
@@ -33,7 +33,7 @@ namespace EricUtility.Networking.Gathering
                 request.Method = "GET";
 
                 request.AllowAutoRedirect = true;
-                request.UserAgent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.864.0 Safari/535.2";
+                request.UserAgent = "Opera/9.80 (Windows NT 6.1; U; Edition Next; en) Presto/2.10.229 Version/12.00";
                 request.CookieContainer = new CookieContainer();
             }
             request.CookieContainer = new CookieContainer();
@@ -47,7 +47,7 @@ namespace EricUtility.Networking.Gathering
             HttpWebRequest request;
             request = (HttpWebRequest)WebRequest.Create(url);
             request.AllowAutoRedirect = true;
-            request.UserAgent = "Opera/9.80 (Windows NT 5.1; U; Edition Campaign 21; fr) Presto/2.6.30 Version/10.63";
+            request.UserAgent = "Opera/9.80 (Windows NT 6.1; U; Edition Next; en) Presto/2.10.229 Version/12.00";
             request.CookieContainer = cookies;
             request.Timeout = 300000;
             return (HttpWebResponse)request.GetResponse();
@@ -67,7 +67,7 @@ namespace EricUtility.Networking.Gathering
             UTF8Encoding encoding = new UTF8Encoding();
             byte[] bytes = encoding.GetBytes(postArgs);
             request.ContentType = contentType;
-            request.UserAgent = "Opera/9.80 (Windows NT 5.1; U; Edition Campaign 21; fr) Presto/2.6.30 Version/10.63";
+            request.UserAgent = "Opera/9.80 (Windows NT 6.1; U; Edition Next; en) Presto/2.10.229 Version/12.00";
             request.ContentLength = bytes.Length;
             using (Stream writeStream = request.GetRequestStream())
             {
