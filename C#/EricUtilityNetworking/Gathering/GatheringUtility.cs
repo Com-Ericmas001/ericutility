@@ -97,7 +97,7 @@ namespace EricUtility.Networking.Gathering
             request.CookieContainer = cookies;
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             Stream s = response.GetResponseStream();
-            string res = response.ResponseUri.AbsolutePath;
+            string res = response.ResponseUri.ToString();
             s.Close();
             response.Close();
             return res;
