@@ -74,12 +74,19 @@ namespace EricUtility.Networking.Gathering
                 writeStream.Write(bytes, 0, bytes.Length);
             }
             request.CookieContainer = cookies;
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream s = response.GetResponseStream();
-            string res = new StreamReader(s).ReadToEnd();
-            s.Close();
-            response.Close();
-            return res;
+            try
+            {
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream s = response.GetResponseStream();
+                string res = new StreamReader(s).ReadToEnd();
+                s.Close();
+                response.Close();
+                return res;
+            }
+            catch
+            {
+                return "";
+            }
         }
         public static String GetPageUrl(string url, CookieContainer cookies, string postArgs, string contentType)
         {
