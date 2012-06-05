@@ -78,7 +78,13 @@ namespace EricUtility.Networking.Gathering
             {
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream s = response.GetResponseStream();
-                string res = new StreamReader(s).ReadToEnd();
+                string charSet = response.CharacterSet;
+                Encoding coding;
+                if (String.IsNullOrEmpty(charSet))
+                    coding = Encoding.Default;
+                else
+                    coding = Encoding.GetEncoding(charSet);
+                string res = new StreamReader(s,coding).ReadToEnd();
                 s.Close();
                 response.Close();
                 return res;
@@ -111,13 +117,19 @@ namespace EricUtility.Networking.Gathering
         }
         public static String GetPageSource(string url, CookieContainer cookies, string postArgs)
         {
-            return GetPageSource(url, cookies, postArgs, "application/x-www-form-urlencoded");
+            return GetPageSource(url, cookies, postArgs, "application/x-www-form-urlencoded ; charset=UTF-8");
         }
         public static String GetPageSource(string url, CookieContainer cookies)
         {
             HttpWebResponse response = GetResponse(url,cookies);
             Stream s = response.GetResponseStream();
-            string res = new StreamReader(s).ReadToEnd();
+            string charSet = response.CharacterSet;
+            Encoding coding;
+            if (String.IsNullOrEmpty(charSet))
+                coding = Encoding.Default;
+            else
+                coding = Encoding.GetEncoding(charSet);
+            string res = new StreamReader(s, coding).ReadToEnd();
             s.Close();
             response.Close();
             return res;
