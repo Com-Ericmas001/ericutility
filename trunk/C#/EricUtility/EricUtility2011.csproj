@@ -47,6 +47,7 @@
     <Compile Include="Data\AbstractConnector.cs" />
     <Compile Include="Data\AbstractGestionnaire.cs" />
     <Compile Include="Data\AccessConnector.cs" />
+    <Compile Include="Data\SqlServerConnector.cs" />
     <Compile Include="DateTimeWithZone.cs" />
     <Compile Include="Entities\CountryInfo.cs" />
     <Compile Include="GenericDelegates.cs" />
