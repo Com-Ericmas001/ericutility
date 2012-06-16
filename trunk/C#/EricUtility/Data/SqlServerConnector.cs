@@ -100,6 +100,57 @@ namespace EricUtility2011.Data
             return results;
         }
 
+        public List<Dictionary<string, object>> SelectRows(string query, Dictionary<string, object> pars)
+        {
+            SqlConnection myConnection = null;
+            try
+            {
+                myConnection = GetConnection();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("SqlServerConnector.SelectRows: Connection Error: " + e.ToString());
+            }
+            List<Dictionary<string, object>> results = SelectRows(myConnection, query, pars);
+            if (myConnection != null)
+                myConnection.Close();
+            return results;
+        }
+        public List<Dictionary<string, object>> SelectRows(SqlConnection connection, string query, Dictionary<string, object> pars)
+        {
+            List<Dictionary<string, object>> results = new List<Dictionary<string, object>>();
+
+            SqlConnection myConnection = connection;
+
+            if (myConnection != null)
+            {
+                try
+                {
+                    SqlDataReader myReader = null;
+                    SqlCommand myCommand = new SqlCommand(query, myConnection);
+                    foreach (string s in pars.Keys)
+                        myCommand.Parameters.Add(new SqlParameter(s, pars[s]));
+                    myReader = myCommand.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        Dictionary<string, object> result = new Dictionary<string, object>();
+                        for (int i = 0; i < myReader.FieldCount; ++i)
+                            result.Add(myReader.GetName(i), myReader[i]);
+                        results.Add(result);
+                    }
+
+                    myReader.Close();
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("SqlServerConnector.SelectRows: Read Error: " + e.ToString());
+                }
+            }
+
+            return results;
+        }
+
+
         public void Execute(string nonQuery, Dictionary<string, object> pars)
         {
             SqlConnection myConnection = null;
