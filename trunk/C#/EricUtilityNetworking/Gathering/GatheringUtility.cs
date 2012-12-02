@@ -44,13 +44,23 @@ namespace EricUtility.Networking.Gathering
         }
         private static HttpWebResponse GetResponse(string url, CookieContainer cookies)
         {
-            HttpWebRequest request;
-            request = (HttpWebRequest)WebRequest.Create(url);
-            request.AllowAutoRedirect = true;
-            request.UserAgent = "Opera/9.80 (Windows NT 6.1; U; Edition Next; en) Presto/2.10.229 Version/12.00";
-            request.CookieContainer = cookies;
-            request.Timeout = 300000;
-            return (HttpWebResponse)request.GetResponse();
+            HttpWebResponse res = null;
+            for (int i = 0; i < 10; ++i)
+            {
+                try
+                {
+                    HttpWebRequest request;
+                    request = (HttpWebRequest)WebRequest.Create(url);
+                    request.AllowAutoRedirect = true;
+                    request.UserAgent = "Opera/9.80 (Windows NT 6.1; U; Edition Next; en) Presto/2.10.229 Version/12.00";
+                    request.CookieContainer = cookies;
+                    request.Timeout = 10000;
+                    res = (HttpWebResponse)request.GetResponse();
+                    return res;
+                }
+                catch { }
+            }
+            return res;
         }
         public static String GetPageSource(string url, string postArgs)
         {
