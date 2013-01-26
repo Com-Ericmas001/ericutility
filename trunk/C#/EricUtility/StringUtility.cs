@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace EricUtility
 {
@@ -99,6 +101,11 @@ namespace EricUtility
 
             // Return the hexadecimal string.
             return sBuilder.ToString();
+        }
+
+        public bool IsValidEmail(string strIn)
+        {
+            return new Regex(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$").Match(strIn).Success;
         }
     }
 }
