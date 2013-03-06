@@ -132,17 +132,22 @@ namespace EricUtility.Networking.Gathering
         public static String GetPageSource(string url, CookieContainer cookies)
         {
             HttpWebResponse response = GetResponse(url,cookies);
-            Stream s = response.GetResponseStream();
-            string charSet = response.CharacterSet;
-            Encoding coding;
-            if (String.IsNullOrEmpty(charSet))
-                coding = Encoding.Default;
+            if (response != null)
+            {
+                Stream s = response.GetResponseStream();
+                string charSet = response.CharacterSet;
+                Encoding coding;
+                if (String.IsNullOrEmpty(charSet))
+                    coding = Encoding.Default;
+                else
+                    coding = Encoding.GetEncoding(charSet);
+                string res = new StreamReader(s, coding).ReadToEnd();
+                s.Close();
+                response.Close();
+                return res;
+            }
             else
-                coding = Encoding.GetEncoding(charSet);
-            string res = new StreamReader(s, coding).ReadToEnd();
-            s.Close();
-            response.Close();
-            return res;
+                return null;
         }
 
         public static String GetPageSource(string url)
