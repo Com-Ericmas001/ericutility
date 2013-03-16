@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace EricUtility.Windows.Forms
 {
@@ -13,11 +10,13 @@ namespace EricUtility.Windows.Forms
         Bad,
         Ok
     }
+
     public class StatePictureBox : PictureBox
     {
         private Timer waitingTimer;
         private int waitingCounter = 0;
         private StatePictureBoxStates m_Etat = StatePictureBoxStates.None;
+
         public StatePictureBoxStates Etat
         {
             get
@@ -33,11 +32,13 @@ namespace EricUtility.Windows.Forms
                 }
             }
         }
+
         public StatePictureBox()
             : base()
         {
             this.BackgroundImageLayout = ImageLayout.Stretch;
         }
+
         protected virtual void ChooseImage(StatePictureBoxStates state)
         {
             switch (state)
@@ -45,6 +46,7 @@ namespace EricUtility.Windows.Forms
                 case StatePictureBoxStates.None:
                     BackgroundImage = null;
                     break;
+
                 case StatePictureBoxStates.Waiting:
                     if (waitingTimer == null)
                     {
@@ -55,14 +57,17 @@ namespace EricUtility.Windows.Forms
                         BackgroundImage = Properties.Resources.waiting0;
                     }
                     break;
+
                 case StatePictureBoxStates.Bad:
                     BackgroundImage = Properties.Resources.bad;
                     break;
+
                 case StatePictureBoxStates.Ok:
                     BackgroundImage = Properties.Resources.OK;
                     break;
             }
         }
+
         private void UpdateBackgroundImage()
         {
             if (this.InvokeRequired)
@@ -73,6 +78,7 @@ namespace EricUtility.Windows.Forms
             ChooseImage(m_Etat);
             Invalidate();
         }
+
         private void waitingTimer_Tick(object sender, EventArgs e)
         {
             if (m_Etat == StatePictureBoxStates.Waiting)
@@ -89,24 +95,31 @@ namespace EricUtility.Windows.Forms
                     case 0:
                         BackgroundImage = Properties.Resources.waiting0;
                         break;
+
                     case 1:
                         BackgroundImage = Properties.Resources.waiting1;
                         break;
+
                     case 2:
                         BackgroundImage = Properties.Resources.waiting2;
                         break;
+
                     case 3:
                         BackgroundImage = Properties.Resources.waiting3;
                         break;
+
                     case 4:
                         BackgroundImage = Properties.Resources.waiting4;
                         break;
+
                     case 5:
                         BackgroundImage = Properties.Resources.waiting5;
                         break;
+
                     case 6:
                         BackgroundImage = Properties.Resources.waiting6;
                         break;
+
                     case 7:
                         BackgroundImage = Properties.Resources.waiting7;
                         break;
@@ -120,4 +133,3 @@ namespace EricUtility.Windows.Forms
         }
     }
 }
-

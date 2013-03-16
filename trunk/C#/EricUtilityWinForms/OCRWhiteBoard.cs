@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace EricUtility.Windows.Forms
 {
@@ -17,11 +15,13 @@ namespace EricUtility.Windows.Forms
             get { return m_Pen.Width; }
             set { m_Pen = new Pen(m_Pen.Color, value); }
         }
+
         public Color PenColor
         {
             get { return m_Pen.Color; }
             set { m_Pen = new Pen(value, m_Pen.Width); }
         }
+
         public OCRWhiteBoard()
             : base()
         {
@@ -30,6 +30,7 @@ namespace EricUtility.Windows.Forms
             grfx.Clear(Color.White);
             Cursor = Cursors.Cross;
         }
+
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
@@ -39,6 +40,7 @@ namespace EricUtility.Windows.Forms
                 Invalidate();
             }
         }
+
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -53,6 +55,7 @@ namespace EricUtility.Windows.Forms
             else
                 lastPoint = Point.Empty;
         }
+
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -62,6 +65,7 @@ namespace EricUtility.Windows.Forms
             grfx.Clear(Color.White);
             grfx.DrawImage(lastOne, Point.Empty);
         }
+
         public Bitmap GetChargeUtile()
         {
             Bitmap bmp = (Bitmap)Image;
