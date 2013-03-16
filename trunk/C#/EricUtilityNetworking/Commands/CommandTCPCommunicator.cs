@@ -1,6 +1,4 @@
 ﻿using System.Net.Sockets;
-using System.IO;
-using System.Threading;
 
 namespace EricUtility.Networking.Commands
 {
@@ -8,7 +6,8 @@ namespace EricUtility.Networking.Commands
     {
         protected T m_CommandObserver = new T();
 
-        public CommandTCPCommunicator(TcpClient socket) : base(socket)
+        public CommandTCPCommunicator(TcpClient socket)
+            : base(socket)
         {
             InitializeCommandObserver();
         }

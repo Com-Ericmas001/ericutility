@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net;
 using System.ComponentModel;
 using System.IO;
+using System.Net;
 
 namespace EricUtilityNetworking
 {
     public delegate void DownloadProgressInfoEventHandler(object sender, DownloadProgressInfoEventArgs e);
+
     public class DownloadItem
     {
         private string m_Url;
@@ -20,12 +19,14 @@ namespace EricUtilityNetworking
         private long m_LastDelta;
 
         public event DownloadProgressInfoEventHandler DownloadProgressChanged = delegate { };
+
         public event AsyncCompletedEventHandler DownloadFileCompleted = delegate { };
 
         public DownloadItem(string url, string destinationPath) :
             this(url, destinationPath, null)
         {
         }
+
         public DownloadItem(string url, string destinationPath, string overridedFileName)
         {
             m_Url = url;
@@ -36,6 +37,7 @@ namespace EricUtilityNetworking
             m_WebClient.DownloadFileCompleted += new AsyncCompletedEventHandler(m_WebClient_DownloadFileCompleted);
             m_WebClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(m_WebClient_DownloadProgressChanged);
         }
+
         public void StartDownload()
         {
             Uri src = new Uri(m_Url);
@@ -43,7 +45,7 @@ namespace EricUtilityNetworking
             m_WebClient.DownloadFileAsync(src, Path.Combine(m_DestinationPath, filename));
         }
 
-        void m_WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        private void m_WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             DateTime now = DateTime.Now;
             if (m_LastCheck == null)
@@ -65,11 +67,9 @@ namespace EricUtilityNetworking
             DownloadProgressChanged(sender, new DownloadProgressInfoEventArgs(e.BytesReceived, e.TotalBytesToReceive, e.ProgressPercentage, m_LastDelta));
         }
 
-        void m_WebClient_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        private void m_WebClient_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             DownloadFileCompleted(sender, e);
         }
-
     }
 }
-

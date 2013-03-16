@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace EricUtility.Networking.Commands
 {
     public abstract class AbstractCommand
     {
         public static char Delimitter { get { return ';'; } }
+
         protected abstract string CommandName { get; }
 
-        public virtual void Encode(StringBuilder sb) { }
-
+        public virtual void Encode(StringBuilder sb)
+        {
+        }
 
         protected virtual void Append<T>(StringBuilder sb, T thing)
         {

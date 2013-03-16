@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EricUtility.Networking.JSON
 {
     public class JsonBooleanValue : JsonObject
     {
         private bool? _value = new bool?();
+
         public bool? Value
         {
             get
@@ -21,7 +20,6 @@ namespace EricUtility.Networking.JSON
 
         public JsonBooleanValue()
         {
-
         }
 
         public JsonBooleanValue(string name)
@@ -59,8 +57,6 @@ namespace EricUtility.Networking.JSON
                 }
             }
         }
-
-
 
         public JsonBooleanValue(string name, bool? value)
         {

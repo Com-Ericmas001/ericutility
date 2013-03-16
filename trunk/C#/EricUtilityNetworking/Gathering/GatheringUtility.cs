@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net;
-using System.IO;
 using System.Drawing;
+using System.IO;
+using System.Net;
+using System.Text;
 
 namespace EricUtility.Networking.Gathering
 {
     public class GatheringUtility
     {
-
         public static CookieContainer SignInWebsite(string loginUrl, string args, bool usePOST)
         {
             HttpWebRequest request;
@@ -42,6 +40,7 @@ namespace EricUtility.Networking.Gathering
             response.Close();
             return container;
         }
+
         private static HttpWebResponse GetResponse(string url, CookieContainer cookies)
         {
             HttpWebResponse res = null;
@@ -62,14 +61,17 @@ namespace EricUtility.Networking.Gathering
             }
             return res;
         }
+
         public static String GetPageSource(string url, string postArgs)
         {
             return GetPageSource(url, new CookieContainer(), postArgs);
         }
+
         public static String GetPageSource(string url, string postArgs, string contentType)
         {
             return GetPageSource(url, new CookieContainer(), postArgs, contentType);
         }
+
         public static String GetPageSource(string url, CookieContainer cookies, string postArgs, string contentType)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -94,7 +96,7 @@ namespace EricUtility.Networking.Gathering
                     coding = Encoding.Default;
                 else
                     coding = Encoding.GetEncoding(charSet);
-                string res = new StreamReader(s,coding).ReadToEnd();
+                string res = new StreamReader(s, coding).ReadToEnd();
                 s.Close();
                 response.Close();
                 return res;
@@ -104,10 +106,12 @@ namespace EricUtility.Networking.Gathering
                 return "";
             }
         }
+
         public static String GetPageUrl(string url, CookieContainer cookies)
         {
             return GetPageUrl(url, cookies, "", "application/x-www-form-urlencoded ; charset=UTF-8");
         }
+
         public static String GetPageUrl(string url, CookieContainer cookies, string postArgs, string contentType)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -129,13 +133,15 @@ namespace EricUtility.Networking.Gathering
             response.Close();
             return res;
         }
+
         public static String GetPageSource(string url, CookieContainer cookies, string postArgs)
         {
             return GetPageSource(url, cookies, postArgs, "application/x-www-form-urlencoded ; charset=UTF-8");
         }
+
         public static String GetPageSource(string url, CookieContainer cookies)
         {
-            HttpWebResponse response = GetResponse(url,cookies);
+            HttpWebResponse response = GetResponse(url, cookies);
             if (response != null)
             {
                 Stream s = response.GetResponseStream();
@@ -156,8 +162,9 @@ namespace EricUtility.Networking.Gathering
 
         public static String GetPageSource(string url)
         {
-            return GetPageSource(url,new CookieContainer());
+            return GetPageSource(url, new CookieContainer());
         }
+
         public static Image GetImage(string url, CookieContainer cookies)
         {
             HttpWebResponse response = GetResponse(url, cookies);

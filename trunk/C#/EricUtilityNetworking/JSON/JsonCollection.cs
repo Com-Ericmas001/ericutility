@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-
 
 using System.IO;
 
@@ -14,6 +12,7 @@ namespace EricUtility.Networking.JSON
     public abstract class JsonCollection : JsonObject, IList<JsonObject>
     {
         private bool? _isArray = new bool?();
+
         private bool IsArray
         {
             get
@@ -34,7 +33,6 @@ namespace EricUtility.Networking.JSON
         /// </summary>
         public JsonCollection()
         {
-
         }
 
         /// <summary>
@@ -171,7 +169,7 @@ namespace EricUtility.Networking.JSON
             }
         }
 
-        #endregion
+        #endregion IList<JsonObject> Members
 
         #region ICollection<JsonObject> Members
 
@@ -210,7 +208,7 @@ namespace EricUtility.Networking.JSON
             return _list.Remove(item);
         }
 
-        #endregion
+        #endregion ICollection<JsonObject> Members
 
         #region IEnumerable<JsonObject> Members
 
@@ -219,7 +217,7 @@ namespace EricUtility.Networking.JSON
             return _list.GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable<JsonObject> Members
 
         #region IEnumerable Members
 
@@ -228,6 +226,6 @@ namespace EricUtility.Networking.JSON
             return _list.GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable Members
     }
 }
