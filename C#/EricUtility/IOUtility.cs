@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace EricUtility
@@ -39,7 +38,7 @@ namespace EricUtility
                 }
                 catch
                 {
-                    LogManager.Log(LogLevel.Error, "IOUtility.CopyFolderAndContent",String.Format("Impossible de copier {0}.", file.Name));
+                    LogManager.Log(LogLevel.Error, "IOUtility.CopyFolderAndContent", String.Format("Impossible de copier {0}.", file.Name));
                 }
             }
         }
@@ -53,6 +52,7 @@ namespace EricUtility
             Directory.CreateDirectory(tempFolderRoot);
             return tempFolderRoot;
         }
+
         public static string CreateHierarchicFolder(string rootPath, string path)
         {
             string tempFolderPath = rootPath;
@@ -65,6 +65,7 @@ namespace EricUtility
             }
             return tempFolderPath;
         }
+
         public static void RemoveHierarchicFolder(string rootPath, string path)
         {
             string fullPath = Path.Combine(rootPath, path);

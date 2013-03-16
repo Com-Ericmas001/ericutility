@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 // ISO 3166 country code
 // Maintenance Agency for ISO 3166 country codes > Lists of country names and code elements > English country names and code elements
@@ -22,6 +20,7 @@ namespace EricUtility2011.Entities
                 return CountryInfo.m_AllCountry;
             }
         }
+
         private static void Load()
         {
             if (m_Loaded)
@@ -277,6 +276,5 @@ namespace EricUtility2011.Entities
             m_AllCountry.Add("ZW", "ZIMBABWE");
             m_Loaded = true;
         }
-
     }
 }

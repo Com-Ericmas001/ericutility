@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Data.OleDb;
 
 namespace EricUtility.Data
@@ -11,6 +9,7 @@ namespace EricUtility.Data
             : base(path)
         {
         }
+
         protected override void Connect()
         {
             string Provider = "Microsoft.ACE.OLEDB.12.0";

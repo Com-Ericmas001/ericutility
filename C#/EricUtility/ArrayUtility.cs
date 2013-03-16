@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace EricUtility
 {
@@ -29,6 +28,7 @@ namespace EricUtility
             }
             return possibles[Hasard.RandomWithMax(possibles.Count - 1)];
         }
+
         /// <summary>
         /// Choisis un élément dans la liste parmis tous les maximums
         /// </summary>
