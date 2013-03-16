@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Web;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
-using System.Globalization;
 
 namespace EricUtility
 {
@@ -14,6 +10,7 @@ namespace EricUtility
         {
             return Extract(text, before, after, 0);
         }
+
         public static string Extract(string text, string before, string after, int startindex)
         {
             int ideb = text.IndexOf(before, startindex) + before.Length;
@@ -24,6 +21,7 @@ namespace EricUtility
                 return null;
             return text.Substring(ideb, ifin - ideb);
         }
+
         public static string RemoveHTMLTags(string s)
         {
             // Faster than regex: http://dotnetperls.com/remove-html-tags
@@ -53,6 +51,7 @@ namespace EricUtility
             }
             return new string(array, 0, arrayIndex);
         }
+
         public static string RemoveBBCodeTags(string s)
         {
             // Faster than regex: http://dotnetperls.com/remove-html-tags
@@ -82,9 +81,9 @@ namespace EricUtility
             }
             return new string(array, 0, arrayIndex);
         }
+
         public static string GetMd5Hash(string input)
         {
-
             // Convert the input string to a byte array and compute the hash.
             byte[] data = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(input));
 
@@ -92,7 +91,7 @@ namespace EricUtility
             // and create a string.
             StringBuilder sBuilder = new StringBuilder();
 
-            // Loop through each byte of the hashed data 
+            // Loop through each byte of the hashed data
             // and format each one as a hexadecimal string.
             for (int i = 0; i < data.Length; i++)
             {

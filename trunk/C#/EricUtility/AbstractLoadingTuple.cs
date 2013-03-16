@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EricUtility;
-
-namespace EricUtility
+﻿namespace EricUtility
 {
     public abstract class AbstractLoadingTuple
     {
         protected bool m_Loaded = false;
         private bool m_Loading = false;
+
         public bool Loaded { get { return m_Loaded; } }
 
         protected abstract void OnLoad();
@@ -21,7 +17,7 @@ namespace EricUtility
 
         public void NeedToReload()
         {
-            if( !m_Loading )
+            if (!m_Loading)
                 m_Loaded = false;
         }
 

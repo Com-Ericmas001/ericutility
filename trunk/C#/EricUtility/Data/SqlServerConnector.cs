@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data.SqlClient;
 
 namespace EricUtility2011.Data
@@ -15,6 +13,7 @@ namespace EricUtility2011.Data
             get { return m_Database; }
             set { m_Database = value; }
         }
+
         private string m_Server;
 
         public string Server
@@ -22,6 +21,7 @@ namespace EricUtility2011.Data
             get { return m_Server; }
             set { m_Server = value; }
         }
+
         private string m_Username;
 
         public string Username
@@ -29,6 +29,7 @@ namespace EricUtility2011.Data
             get { return m_Username; }
             set { m_Username = value; }
         }
+
         private string m_Password;
 
         public string Password
@@ -68,12 +69,13 @@ namespace EricUtility2011.Data
                 myConnection.Close();
             return results;
         }
+
         public Dictionary<string, object> SelectOneRow(SqlConnection connection, string query, Dictionary<string, object> pars)
         {
             Dictionary<string, object> results = new Dictionary<string, object>();
 
             SqlConnection myConnection = connection;
-            
+
             if (myConnection != null)
             {
                 try
@@ -116,6 +118,7 @@ namespace EricUtility2011.Data
                 myConnection.Close();
             return results;
         }
+
         public List<Dictionary<string, object>> SelectRows(SqlConnection connection, string query, Dictionary<string, object> pars)
         {
             List<Dictionary<string, object>> results = new List<Dictionary<string, object>>();
@@ -150,7 +153,6 @@ namespace EricUtility2011.Data
             return results;
         }
 
-
         public void Execute(string nonQuery, Dictionary<string, object> pars)
         {
             SqlConnection myConnection = null;
@@ -166,6 +168,7 @@ namespace EricUtility2011.Data
             if (myConnection != null)
                 myConnection.Close();
         }
+
         public void Execute(SqlConnection connection, string query, Dictionary<string, object> pars)
         {
             SqlConnection myConnection = connection;
