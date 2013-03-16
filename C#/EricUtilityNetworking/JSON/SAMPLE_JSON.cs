@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EricUtility.Networking.JSON
 {
-
-    class Program
+    internal class Program
     {
-        const string jsonText =
-            "{"+
-            " \"FirstValue\": 1.1,"+
+        private const string jsonText =
+            "{" +
+            " \"FirstValue\": 1.1," +
             " \"SecondValue\": \"some text\"," +
             " \"TrueValue\": true" +
             "}";
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             // 1. parse sample
 
@@ -31,14 +28,12 @@ namespace EricUtility.Networking.JSON
             Console.WriteLine(obj.ToString());
             Console.WriteLine();
 
-
             JsonUtility.GenerateIndentedJsonText = false;
 
             Console.WriteLine();
             Console.WriteLine("Parsed data without indentation in JSON data format:");
             Console.WriteLine(obj.ToString());
             Console.WriteLine();
-
 
             // enumerate values in json object
             Console.WriteLine();
@@ -50,7 +45,7 @@ namespace EricUtility.Networking.JSON
                 string type = field.GetValue().GetType().Name;
 
                 // try to get value.
-                switch(type)
+                switch (type)
                 {
                     case "String":
                         value = (string)field.GetValue();
@@ -65,6 +60,7 @@ namespace EricUtility.Networking.JSON
                         break;
 
                     default:
+
                         // in this sample we'll not parse nested arrays or objects.
                         throw new NotSupportedException();
                 }
@@ -74,7 +70,6 @@ namespace EricUtility.Networking.JSON
             }
 
             Console.WriteLine();
-
 
             // 2. generate sample
             Console.WriteLine();
@@ -96,7 +91,7 @@ namespace EricUtility.Networking.JSON
             Console.WriteLine();
 
             // 3. generate own library for working with own custom json objects
-            /// 
+            ///
             /// Note that generator in this pre-release version of library supports
             /// only JsonObjectCollection in root level ({...}) and only simple
             /// value types can be nested. Not arrays or other objects.

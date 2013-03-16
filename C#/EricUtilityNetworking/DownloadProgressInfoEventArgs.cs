@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EricUtilityNetworking
+﻿namespace EricUtilityNetworking
 {
     public class DownloadProgressInfoEventArgs
     {
@@ -14,12 +10,14 @@ namespace EricUtilityNetworking
         {
             get { return m_SpeedBytes; }
         }
+
         private double m_SpeedValue;
 
         public double SpeedValue
         {
             get { return m_SpeedValue; }
         }
+
         private char m_SpeedUnit;
 
         public char SpeedUnit
@@ -31,42 +29,49 @@ namespace EricUtilityNetworking
         {
             get { return m_CurrentBytes; }
         }
+
         private double m_CurrentValue;
 
         public double CurrentValue
         {
             get { return m_CurrentValue; }
         }
+
         private char m_CurrentUnit;
 
         public char CurrentUnit
         {
             get { return m_CurrentUnit; }
         }
+
         private long m_TotalBytes;
 
         public long TotalBytes
         {
             get { return m_TotalBytes; }
         }
+
         private double m_TotalValue;
 
         public double TotalValue
         {
             get { return m_TotalValue; }
         }
+
         private char m_TotalUnit;
 
         public char TotalUnit
         {
             get { return m_TotalUnit; }
         }
+
         private int m_Pourcent;
 
         public int Pourcent
         {
             get { return m_Pourcent; }
         }
+
         public DownloadProgressInfoEventArgs(long received, long total, int progress, long speed)
         {
             const int magic = 950;
@@ -99,4 +104,3 @@ namespace EricUtilityNetworking
         }
     }
 }
-

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EricUtility;
+﻿using System.Text;
 
 namespace EricUtility.Networking.Commands
 {
@@ -11,12 +8,13 @@ namespace EricUtility.Networking.Commands
         {
             get { return DisconnectCommand.COMMAND_NAME; }
         }
-        public static string COMMAND_NAME = "DISCONNECT";
 
+        public static string COMMAND_NAME = "DISCONNECT";
 
         public DisconnectCommand(StringTokenizer argsToken)
         {
         }
+
         protected override void Append<T>(StringBuilder sb, T thing)
         {
             sb.Append(thing);

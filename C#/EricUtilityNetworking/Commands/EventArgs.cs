@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EricUtility.Networking.Commands
 {
     public class StringEventArgs : EventArgs
     {
         private readonly string m_Str;
+
         public string Str { get { return m_Str; } }
 
         public StringEventArgs(string s)
@@ -14,10 +13,12 @@ namespace EricUtility.Networking.Commands
             m_Str = s;
         }
     }
+
     public class CommandEventArgs<T> : EventArgs
         where T : AbstractCommand
     {
         private readonly T m_Command;
+
         public T Command { get { return m_Command; } }
 
         public CommandEventArgs(T c)

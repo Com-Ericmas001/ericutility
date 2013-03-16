@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EricUtility.Networking.Gathering
+﻿namespace EricUtility.Networking.Gathering
 {
     public class SearchResultEntry
     {
@@ -37,10 +33,10 @@ namespace EricUtility.Networking.Gathering
 
         public SearchResultEntry(string url, string title, string content, SearchEngineType engine)
         {
-          m_Url = url;
-          m_Title = title;
-          m_Content = content;
-          m_Engine = engine;
+            m_Url = url;
+            m_Title = title;
+            m_Content = content;
+            m_Engine = engine;
         }
     }
 }

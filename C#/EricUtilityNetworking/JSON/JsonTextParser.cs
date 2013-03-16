@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using System.Text.RegularExpressions;
 using System.Globalization;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace EricUtility.Networking.JSON
 {
@@ -38,6 +36,7 @@ namespace EricUtility.Networking.JSON
                 if (text == null)
                 {
                     return null;
+
                     //throw new FormatException();
                 }
 
@@ -45,6 +44,7 @@ namespace EricUtility.Networking.JSON
                 if (s == string.Empty)
                 {
                     return null;
+
                     //throw new FormatException();
                 }
 #if !DEBUG
@@ -63,6 +63,7 @@ namespace EricUtility.Networking.JSON
         }
 
         private bool IsEOS { get { return c >= s.Length; } }
+
         private char cur { get { return s[c]; } }
 
         private void SkipWhiteSpace()
@@ -152,7 +153,7 @@ namespace EricUtility.Networking.JSON
                         break;
                     }
                 }
-                
+
                 value.Append(s[c]);
             }
 
@@ -196,6 +197,7 @@ namespace EricUtility.Networking.JSON
             int deb = c;
             for (; !",]}".Contains("" + s[c]); ++c) ;
             string captured = s.Substring(deb, c - deb);
+
             //string captured = mnum.Captures[0].Value;
             //c += captured.Length;
 
@@ -234,7 +236,6 @@ namespace EricUtility.Networking.JSON
 
             if (s[c] != '}' && s[c] != ']')
             {
-
                 // parse collection items
                 for (; ; )
                 {
@@ -274,7 +275,7 @@ namespace EricUtility.Networking.JSON
                 }
             }
             SkipWhiteSpace();
-            
+
             if (is_array)
             {
                 if (s[c] != ']')
@@ -295,7 +296,7 @@ namespace EricUtility.Networking.JSON
             return result;
         }
 
-        string ParseName()
+        private string ParseName()
         {
             if (IsEOS)
             {
@@ -311,7 +312,7 @@ namespace EricUtility.Networking.JSON
             c++;
 
             StringBuilder name = new StringBuilder();
-            
+
             for (; ; c++)
             {
                 if (IsEOS)
@@ -321,7 +322,7 @@ namespace EricUtility.Networking.JSON
 
                 if (s[c] == '"')
                 {
-                    if (s[c-1] != '\\')
+                    if (s[c - 1] != '\\')
                     {
                         break;
                     }
@@ -329,7 +330,7 @@ namespace EricUtility.Networking.JSON
 
                 name.Append(s[c]);
             }
-            c ++;
+            c++;
 
             SkipWhiteSpace();
             if (IsEOS)

@@ -1,7 +1,4 @@
-﻿using System.Net.Sockets;
-using System.IO;
-using System.Threading;
-using System;
+﻿using System;
 
 namespace EricUtility.Networking.Commands
 {
@@ -15,7 +12,7 @@ namespace EricUtility.Networking.Commands
             base.ReceivedSomething += new EventHandler<KeyEventArgs<string>>(CommandQueueCommunicator_ReceivedSomething);
         }
 
-        void CommandQueueCommunicator_ReceivedSomething(object sender, KeyEventArgs<string> e)
+        private void CommandQueueCommunicator_ReceivedSomething(object sender, KeyEventArgs<string> e)
         {
             m_CommandObserver.messageReceived(e.Key);
         }

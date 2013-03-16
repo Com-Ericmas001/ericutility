@@ -1,7 +1,7 @@
-﻿using System.Net.Sockets;
+﻿using System;
 using System.IO;
+using System.Net.Sockets;
 using System.Threading;
-using System;
 
 namespace EricUtility.Networking
 {
@@ -20,6 +20,7 @@ namespace EricUtility.Networking
             m_Input = new StreamReader(m_Socket.GetStream());
             m_IsConnected = false;
         }
+
         public TCPCommunicator()
         {
             m_IsConnected = false;
@@ -32,11 +33,13 @@ namespace EricUtility.Networking
                 return m_Socket != null && m_Socket.Connected;
             }
         }
+
         public virtual void SetIsConnected()
         {
-            if( m_Socket != null )
+            if (m_Socket != null)
                 m_IsConnected = true;
         }
+
         public virtual bool Connect(string addr, int port)
         {
             m_Socket = new TcpClient();
@@ -56,7 +59,7 @@ namespace EricUtility.Networking
             }
         }
 
-        protected virtual string Receive() 
+        protected virtual string Receive()
         {
             try
             {
@@ -84,6 +87,7 @@ namespace EricUtility.Networking
                 OnSendCrashed(e);
             }
         }
+
         protected virtual void Run()
         {
             try
@@ -94,21 +98,24 @@ namespace EricUtility.Networking
                         return;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                OnReceiveCrashed( e );
+                OnReceiveCrashed(e);
             }
         }
+
         public virtual void OnReceiveCrashed(Exception e)
         {
             LogManager.Log(LogLevel.Error, "TCPCommunicator.OnReceiveCrashed", "{0}: {1}", e.GetType(), e.Message);
-            LogManager.Log(LogLevel.ErrorLow, "TCPCommunicator.OnReceiveCrashed", e.StackTrace); 
+            LogManager.Log(LogLevel.ErrorLow, "TCPCommunicator.OnReceiveCrashed", e.StackTrace);
         }
+
         public virtual void OnSendCrashed(Exception e)
         {
             LogManager.Log(LogLevel.Error, "TCPCommunicator.OnSendCrashed", "{0}: {1}", e.GetType(), e.Message);
-            LogManager.Log(LogLevel.ErrorLow, "TCPCommunicator.OnSendCrashed", e.StackTrace); 
+            LogManager.Log(LogLevel.ErrorLow, "TCPCommunicator.OnSendCrashed", e.StackTrace);
         }
+
         public void Start()
         {
             new Thread(new ThreadStart(Run)).Start();

@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using System.Reflection;
-using SR = System.Reflection;
-
-using System.Reflection.Emit;
-using SRE = System.Reflection.Emit;
-
 using System.CodeDom;
 using System.CodeDom.Compiler;
+using System.Reflection;
 
 namespace EricUtility.Networking.JSON
 {
-
-
     [global::System.Serializable]
     public class GeneratorException : Exception
     {
@@ -26,6 +16,7 @@ namespace EricUtility.Networking.JSON
         //
 
         private CompilerResults _results;
+
         public CompilerResults CompilerResults { get { return _results; } }
 
         public GeneratorException(string message, CompilerResults results)
@@ -34,15 +25,25 @@ namespace EricUtility.Networking.JSON
             _results = results;
         }
 
-        public GeneratorException() { }
-        public GeneratorException(string message) : base(message) { }
-        public GeneratorException(string message, Exception inner) : base(message, inner) { }
+        public GeneratorException()
+        {
+        }
+
+        public GeneratorException(string message)
+            : base(message)
+        {
+        }
+
+        public GeneratorException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+
         protected GeneratorException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)
             : base(info, context) { }
     }
-
 
     /// <summary>
     /// Generates small library for interoperation with json text.
@@ -55,7 +56,6 @@ namespace EricUtility.Networking.JSON
             classObject.Members.Add(ctor);
             ctor.Attributes = MemberAttributes.Public;
 
-
             //RootObject = new JsonObjectCollection();
             CodeAssignStatement assignRootObject = new CodeAssignStatement(
                 new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), "RootObject"),
@@ -63,8 +63,6 @@ namespace EricUtility.Networking.JSON
 
             ctor.Statements.Add(assignRootObject);
 
-
-            
             //JsonStringValue name = new JsonStringValue("Name");
             //JsonStringValue surName = new JsonStringValue("SurName");
             //RootObject.Add(name);
@@ -77,15 +75,18 @@ namespace EricUtility.Networking.JSON
             classObject.Members.Add(ctor);
             ctor.Attributes = MemberAttributes.Public;
             ctor.Parameters.Add(new CodeParameterDeclarationExpression(new CodeTypeReference(typeof(string)), "text"));
+
             // declare parser variable
             CodeVariableDeclarationStatement parserCreate = new CodeVariableDeclarationStatement(
                 typeof(JsonTextParser), "parser",
                 new CodeObjectCreateExpression(new CodeTypeReference(typeof(JsonTextParser))));
             ctor.Statements.Add(parserCreate);
+
             // invoke Parse method on parser object
             CodeMethodInvokeExpression invokeParse = new CodeMethodInvokeExpression(
                 new CodeMethodReferenceExpression(new CodeVariableReferenceExpression("parser"), "Parse"),
                 new CodeVariableReferenceExpression("text"));
+
             // assign result of Parse method to RootObject
             CodeAssignStatement assignObject = new CodeAssignStatement(
                 new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), "RootObject"),
@@ -122,7 +123,6 @@ namespace EricUtility.Networking.JSON
             parse.Statements.Add(new CodeMethodReturnStatement(new CodeObjectCreateExpression(new CodeTypeReference("Person"), new CodeArgumentReferenceExpression("text"))));
         }
 
-
         public void GenerateLibrary(string objectName, JsonObject jsonObject)
         {
             GenerateLibrary(objectName, jsonObject);
@@ -146,7 +146,6 @@ namespace EricUtility.Networking.JSON
             ns.Types.Add(rootClass);
             rootClass.TypeAttributes = TypeAttributes.Class | TypeAttributes.Public;
 
-
             // root object
             CodeMemberField rootObject = new CodeMemberField(jsonObject.GetType(), "RootObject");
             rootObject.Attributes = MemberAttributes.Family;
@@ -161,12 +160,8 @@ namespace EricUtility.Networking.JSON
             // .ctor(string text)
             GenerateConstructorWithTextParameter(rootClass, jsonObject);
 
-
             // static Parse(string text)
             GenerateParseStaticMethod(rootClass);
-
-
-            
 
             // generate nested data.
             if (typeof(JsonObjectCollection) == jsonObject.GetType())
@@ -177,8 +172,6 @@ namespace EricUtility.Networking.JSON
             {
                 throw new NotImplementedException("Only objects supported in root level, not arrays or other variables.");
             }
-
-
 
             // prepare for compile
             CodeDomProvider cdp = CodeDomProvider.CreateProvider("cs");
@@ -193,8 +186,6 @@ namespace EricUtility.Networking.JSON
                 cp.OutputAssembly = System.IO.Path.ChangeExtension(objectName, ".dll");
             }
             cp.IncludeDebugInformation = false;
-
-
 
             // compile code
             CompilerResults cr = cdp.CompileAssemblyFromDom(cp, ccu);
@@ -211,7 +202,7 @@ namespace EricUtility.Networking.JSON
             //Console.WriteLine("Path: " + cr.PathToAssembly);
             //foreach (CompilerError e in cr.Errors)
             //{
-                //Console.WriteLine(e);
+            //Console.WriteLine(e);
             //}
         }
 
@@ -242,7 +233,6 @@ namespace EricUtility.Networking.JSON
             // enumerate nested data fields
             foreach (JsonObject obj in jsonObject)
             {
-
                 // generate property
                 CodeMemberProperty prop = new CodeMemberProperty();
                 prop.Name = obj.Name;
@@ -261,16 +251,17 @@ namespace EricUtility.Networking.JSON
                 prop.SetStatements.Add(new CodeAssignStatement(rootItemValue, new CodePropertySetValueReferenceExpression()));
                 rootClass.Members.Add(prop);
 
-
                 // generate constructor's part
                 CodeVariableDeclarationStatement createVar = new CodeVariableDeclarationStatement(obj.GetType(), obj.Name.ToLower(),
                     new CodeObjectCreateExpression(obj.GetType(), new CodePrimitiveExpression(obj.Name)));
+
                 //CodeAssignStatement assignVar = new CodeAssignStatement(codevariable
                 ctor.Statements.Add(createVar);
 
                 CodeMethodInvokeExpression invokeAdd = new CodeMethodInvokeExpression(new CodeMethodReferenceExpression(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), "RootObject"), "Add"),
                     new CodeVariableReferenceExpression(obj.Name.ToLower()));
                 ctor.Statements.Add(invokeAdd);
+
                 //JsonStringValue name = new JsonStringValue("Name");
                 //RootObject.Add(name);
             }

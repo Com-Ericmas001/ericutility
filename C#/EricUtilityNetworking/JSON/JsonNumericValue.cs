@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EricUtility.Networking.JSON
+﻿namespace EricUtility.Networking.JSON
 {
     public class JsonNumericValue : JsonObject
     {
@@ -12,6 +8,7 @@ namespace EricUtility.Networking.JSON
         }
 
         private double _value;
+
         public double Value
         {
             get
@@ -26,8 +23,8 @@ namespace EricUtility.Networking.JSON
 
         public JsonNumericValue()
         {
-
         }
+
         public JsonNumericValue(string name)
         {
             Name = name;
@@ -38,6 +35,7 @@ namespace EricUtility.Networking.JSON
             Name = name;
             Value = value;
         }
+
         public JsonNumericValue(double value)
         {
             Value = value;

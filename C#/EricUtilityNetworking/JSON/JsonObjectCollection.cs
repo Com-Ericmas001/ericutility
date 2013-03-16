@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-
-using System.IO;
+﻿using System.Collections.Generic;
 
 namespace EricUtility.Networking.JSON
 {
     public class JsonObjectCollection : JsonCollection
     {
-
         public JsonObjectCollection()
             : base()
         {

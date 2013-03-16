@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-
 using System.Globalization;
+using System.Text;
 
 namespace EricUtility.Networking.JSON
 {
@@ -14,30 +13,24 @@ namespace EricUtility.Networking.JSON
         public static int MaxDepthNesting = -1;
         public static int MaxStringLength = 1024;
 
-
-        internal const char begin_array =       '[';
-        internal const char end_array =         ']';
-        internal const char begin_object =      '{';
-        internal const char end_object =        '}';
-        internal const char name_separator =    ':';
-        internal const char value_separator =   ',';
-        internal const char quote =             '"';
+        internal const char begin_array = '[';
+        internal const char end_array = ']';
+        internal const char begin_object = '{';
+        internal const char end_object = '}';
+        internal const char name_separator = ':';
+        internal const char value_separator = ',';
+        internal const char quote = '"';
 
         internal static readonly CultureInfo CultureInfo = new CultureInfo("en-US", false);
 
-
-        
-
         internal static string EscapeNonPrintCharacter(char c)
         {
-            
             const string start = "\\u";
             return start + ((int)c).ToString("x4");
         }
 
         internal static string EscapeString(string text)
         {
-
             StringBuilder sb = new StringBuilder();
             sb.Append('"');
             foreach (char c in text)
@@ -60,6 +53,7 @@ namespace EricUtility.Networking.JSON
                 {
                     sb.Append(EscapeNonPrintCharacter(c));
                 }
+
                 //else if (c >= 0x0020 && c <= 0x0021) hex = true;
                 //else if (c >= 0x0023 && c <= 0x005b) hex = true;
                 //else if (c >= 0x005d) hex = true;
@@ -165,15 +159,17 @@ namespace EricUtility.Networking.JSON
             return sb.ToString();
         }
 
-
         #region Indentation
 
         public static bool GenerateIndentedJsonText = true;
 
         internal const char indent = '\t';
         internal const char space = ' ';
+
         internal static int ThreadId { get { return System.Threading.Thread.CurrentThread.ManagedThreadId; } }
+
         internal static readonly SortedDictionary<int, int> IndentDepthCollection = new SortedDictionary<int, int>();
+
         internal static int IndentDepth
         {
             get
@@ -231,6 +227,6 @@ namespace EricUtility.Networking.JSON
             }
         }
 
-        #endregion
+        #endregion Indentation
     }
 }

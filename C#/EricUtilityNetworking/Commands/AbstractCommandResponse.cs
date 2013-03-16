@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EricUtility;
+﻿using System.Text;
 
 namespace EricUtility.Networking.Commands
 {
-    public abstract class AbstractCommandResponse<T>: AbstractCommand
+    public abstract class AbstractCommandResponse<T> : AbstractCommand
         where T : AbstractCommand
     {
         private readonly T m_Command;
@@ -14,16 +11,15 @@ namespace EricUtility.Networking.Commands
         {
             m_Command = command;
         }
+
         public T Command
         {
             get { return m_Command; }
-        } 
+        }
 
-
-        public override void Encode(StringBuilder sb) 
+        public override void Encode(StringBuilder sb)
         {
             m_Command.Encode(sb);
         }
-
     }
 }
