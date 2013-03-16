@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace EricUtility.Windows.Forms
 {
@@ -11,6 +9,7 @@ namespace EricUtility.Windows.Forms
         private int m_M = 5;
         private int m_N = 5;
         private bool[,] values;
+
         public int M
         {
             get { return m_M; }
@@ -24,6 +23,7 @@ namespace EricUtility.Windows.Forms
                 }
             }
         }
+
         public int N
         {
             get { return m_N; }
@@ -37,6 +37,7 @@ namespace EricUtility.Windows.Forms
                 }
             }
         }
+
         public OCRTableau()
             : base()
         {
@@ -45,11 +46,13 @@ namespace EricUtility.Windows.Forms
             values = new bool[m_N, m_M];
             Clear();
         }
+
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
             Clear();
         }
+
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
@@ -69,6 +72,7 @@ namespace EricUtility.Windows.Forms
                             grfx.FillRectangle(Brushes.Black, i * width, j * height, width, height);
             }
         }
+
         private void Clear()
         {
             Image = new Bitmap(Width, Height);
@@ -76,11 +80,13 @@ namespace EricUtility.Windows.Forms
             grfx.Clear(BackColor);
             Invalidate();
         }
+
         public void Reset()
         {
             values = new bool[m_N, m_M];
             Clear();
         }
+
         public void SetValue(int i, int j, bool trueOrFalse)
         {
             if (i >= m_N || j >= m_M || i < 0 || j < 0)
@@ -88,6 +94,7 @@ namespace EricUtility.Windows.Forms
             values[i, j] = trueOrFalse;
             Invalidate();
         }
+
         public void ConvertImage(Bitmap newBmp)
         {
             Reset();
