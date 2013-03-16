@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace EricUtility.Collections
 {
@@ -60,13 +58,14 @@ namespace EricUtility.Collections
         public bool RemoveAllChildren(T val)
         {
             int count = m_Children.Count;
-            
+
             List<AbstractTreeNode<T>> oks = new List<AbstractTreeNode<T>>();
             foreach (AbstractTreeNode<T> child in m_Children)
                 if (!child.Value.Equals(val))
                     oks.Add(child);
             return m_Children.Count != count;
         }
+
         /// <summary>
         /// Enleve tous les enfants
         /// </summary>
@@ -92,6 +91,7 @@ namespace EricUtility.Collections
         {
             get { return (NTreeNode<T>)m_Root; }
         }
+
         /// <summary>
         /// Arbre à plusieurs enfants
         /// </summary>
@@ -102,4 +102,3 @@ namespace EricUtility.Collections
         }
     }
 }
-

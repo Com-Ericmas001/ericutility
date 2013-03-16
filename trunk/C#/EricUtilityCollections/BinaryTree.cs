@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace EricUtility.Collections
 {
@@ -23,6 +21,7 @@ namespace EricUtility.Collections
                     value.m_Parent = this;
             }
         }
+
         /// <summary>
         /// Valeur de l'enfant de gauche
         /// </summary>
@@ -45,6 +44,7 @@ namespace EricUtility.Collections
                     value.m_Parent = this;
             }
         }
+
         /// <summary>
         /// Valeur de l'enfant de gauche
         /// </summary>
@@ -110,6 +110,7 @@ namespace EricUtility.Collections
         {
             get { return (BinaryTreeNode<T>)m_Root; }
         }
+
         /// <summary>
         /// Arbre binaire (possédant toujours que 2 enfants)
         /// </summary>
