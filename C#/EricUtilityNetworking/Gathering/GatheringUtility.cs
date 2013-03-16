@@ -104,6 +104,10 @@ namespace EricUtility.Networking.Gathering
                 return "";
             }
         }
+        public static String GetPageUrl(string url, CookieContainer cookies)
+        {
+            return GetPageUrl(url, cookies, "", "application/x-www-form-urlencoded ; charset=UTF-8");
+        }
         public static String GetPageUrl(string url, CookieContainer cookies, string postArgs, string contentType)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
