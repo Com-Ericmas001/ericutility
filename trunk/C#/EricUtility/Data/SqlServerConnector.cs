@@ -48,7 +48,7 @@ namespace EricUtility2011.Data
 
         public SqlConnection GetConnection()
         {
-            SqlConnection myConnection = new SqlConnection("user id=" + m_Username + ";password=" + m_Password + ";server=" + m_Server + ";Trusted_Connection=no;database=" + m_Database + "; connection timeout=30");
+            SqlConnection myConnection = new SqlConnection("user id=" + m_Username + ";password=" + m_Password + ";server=" + m_Server + ";Trusted_Connection=no;MultipleActiveResultSets=True;database=" + m_Database + "; connection timeout=30");
             myConnection.Open();
             return myConnection;
         }
