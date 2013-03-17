@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 
 namespace EricUtility2011.Data
 {
@@ -169,7 +171,7 @@ namespace EricUtility2011.Data
                 myConnection.Close();
         }
 
-        public void Execute(SqlConnection connection, string query, Dictionary<string, object> pars)
+        public void Execute(SqlConnection connection, string nonQuery, Dictionary<string, object> pars)
         {
             SqlConnection myConnection = connection;
 
@@ -177,7 +179,7 @@ namespace EricUtility2011.Data
             {
                 try
                 {
-                    SqlCommand myCommand = new SqlCommand(query, myConnection);
+                    SqlCommand myCommand = new SqlCommand(nonQuery, myConnection);
                     foreach (string s in pars.Keys)
                         myCommand.Parameters.Add(new SqlParameter(s, pars[s]));
                     myCommand.ExecuteNonQuery();
@@ -187,6 +189,115 @@ namespace EricUtility2011.Data
                     throw new Exception("SqlServerConnector.Execute: ExecuteNonQuery Error: " + e.ToString());
                 }
             }
+        }
+
+        public SPResult ExecuteSP(string spName)
+        {
+            return ExecuteSP(spName, new List<SPParam>());
+        }
+        public SPResult ExecuteSP(string spName, List<SPParam> pars)
+        {
+            SqlConnection myConnection = null;
+            try
+            {
+                myConnection = GetConnection();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("SqlServerConnector.ExecuteSP: Connection Error: " + e.ToString());
+            }
+            SPResult res = ExecuteSP(myConnection, spName, pars);
+            if (myConnection != null)
+                myConnection.Close();
+            return res;
+        }
+
+        public SPResult ExecuteSP(SqlConnection connection, string spName)
+        {
+            return ExecuteSP(connection, spName, new List<SPParam>());
+        }
+        public SPResult ExecuteSP(SqlConnection connection, string spName, List<SPParam> pars)
+        {
+            SqlConnection myConnection = connection;
+            SPResult res = new SPResult();
+            if (myConnection != null)
+            {
+                try
+                {
+                    SqlCommand myCommand = new SqlCommand(spName, myConnection);
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    foreach (SPParam s in pars)
+                        myCommand.Parameters.Add(s.Parm);
+                    myCommand.ExecuteNonQuery();
+                    foreach (SPParam s in pars)
+                        res.Parameters.Add(s.Parm.ParameterName, s.Parm.Value);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("SqlServerConnector.ExecuteSP: ExecuteNonQuery Error: " + e.ToString());
+                }
+            }
+            return res;
+        }
+        public SPResult SelectRowsSP(string spName)
+        {
+            return SelectRowsSP(spName, new List<SPParam>());
+        }
+        public SPResult SelectRowsSP(string spName, List<SPParam> pars)
+        {
+            SqlConnection myConnection = null;
+            try
+            {
+                myConnection = GetConnection();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("SqlServerConnector.SelectRowsSP: Connection Error: " + e.ToString());
+            }
+            SPResult res = SelectRowsSP(myConnection, spName, pars);
+            if (myConnection != null)
+                myConnection.Close();
+            return res;
+        }
+
+        public SPResult SelectRowsSP(SqlConnection connection, string spName)
+        {
+            return SelectRowsSP(connection, spName, new List<SPParam>());
+        }
+        public SPResult SelectRowsSP(SqlConnection connection, string spName, List<SPParam> pars)
+        {
+            SPResult res = new SPResult();
+
+            SqlConnection myConnection = connection;
+
+            if (myConnection != null)
+            {
+                try
+                {
+                    SqlDataReader myReader = null;
+                    SqlCommand myCommand = new SqlCommand(spName, myConnection);
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    foreach (SPParam s in pars)
+                        myCommand.Parameters.Add(s.Parm);
+                    myReader = myCommand.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        Dictionary<string, object> result = new Dictionary<string, object>();
+                        for (int i = 0; i < myReader.FieldCount; ++i)
+                            result.Add(myReader.GetName(i), myReader[i]);
+                        res.QueryResults.Add(result);
+                    }
+                    myReader.Close();
+                    foreach (SPParam s in pars)
+                        res.Parameters.Add(s.Parm.ParameterName, s.Parm.Value);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("SqlServerConnector.SelectRowsSP: Read Error: " + e.ToString());
+                }
+            }
+
+            return res;
         }
     }
 }
