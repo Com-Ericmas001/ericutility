@@ -1,4 +1,4 @@
-namespace MyDownloader.App.UI
+namespace EricUtility.Windows.Forms.Downloader
 {
     partial class Location
     {
