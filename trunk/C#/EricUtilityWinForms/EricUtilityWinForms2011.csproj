@@ -52,6 +52,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Downloader\ClipboardHelper.cs" />
+    <Compile Include="Downloader\Connection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Downloader\Connection.Designer.cs">
+      <DependentUpon>Connection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Downloader\DownloadFolder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Downloader\DownloadFolder.Designer.cs">
+      <DependentUpon>DownloadFolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Downloader\Location.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Downloader\Location.Designer.cs">
+      <DependentUpon>Location.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Downloader\WaitControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Downloader\WaitControl.Designer.cs">
+      <DependentUpon>WaitControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="NumberedTextBoxUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,6 +163,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Downloader\Connection.resx">
+      <DependentUpon>Connection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Downloader\DownloadFolder.resx">
+      <DependentUpon>DownloadFolder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Downloader\Location.resx">
+      <DependentUpon>Location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Downloader\WaitControl.resx">
+      <DependentUpon>WaitControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NumberedTextBoxUC.resx">
       <DependentUpon>NumberedTextBoxUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,6 +218,10 @@
     <Content Include="UpgradeLog.XML" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EricUtilityNetworking\EricUtilityNetworking2011.csproj">
+      <Project>{980f8de9-2f6e-4a96-849d-23754b364271}</Project>
+      <Name>EricUtilityNetworking2011</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EricUtility\EricUtility2011.csproj">
       <Project>{E88C4AEF-1B0B-45C0-A08D-CBCDA35C1E62}</Project>
       <Name>EricUtility2011</Name>
