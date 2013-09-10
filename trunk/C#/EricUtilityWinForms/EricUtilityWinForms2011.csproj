@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,6 +53,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Downloader\Block.cs" />
+    <Compile Include="Downloader\BlockedProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Downloader\BlockedProgressBar.designer.cs">
+      <DependentUpon>BlockedProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Downloader\BlockList.cs" />
+    <Compile Include="Downloader\CheckableTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Downloader\ClipboardHelper.cs" />
     <Compile Include="Downloader\Connection.cs">
       <SubType>UserControl</SubType>
@@ -65,11 +77,31 @@
     <Compile Include="Downloader\DownloadFolder.Designer.cs">
       <DependentUpon>DownloadFolder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Downloader\DownloadList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Downloader\DownloadList.Designer.cs">
+      <DependentUpon>DownloadList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Downloader\FileTypeImageList.cs" />
+    <Compile Include="Downloader\IconReader.cs" />
+    <Compile Include="Downloader\ImportFromFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Downloader\ImportFromFileForm.Designer.cs">
+      <DependentUpon>ImportFromFileForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Downloader\Location.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Downloader\Location.Designer.cs">
       <DependentUpon>Location.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Downloader\NewDownloadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Downloader\NewDownloadForm.Designer.cs">
+      <DependentUpon>NewDownloadForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Downloader\WaitControl.cs">
       <SubType>UserControl</SubType>
@@ -169,8 +201,17 @@
     <EmbeddedResource Include="Downloader\DownloadFolder.resx">
       <DependentUpon>DownloadFolder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Downloader\DownloadList.resx">
+      <DependentUpon>DownloadList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Downloader\ImportFromFileForm.resx">
+      <DependentUpon>ImportFromFileForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Downloader\Location.resx">
       <DependentUpon>Location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Downloader\NewDownloadForm.resx">
+      <DependentUpon>NewDownloadForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Downloader\WaitControl.resx">
       <DependentUpon>WaitControl.cs</DependentUpon>
@@ -196,6 +237,7 @@
     <None Include="Properties\Settings.settings" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Downloader\BlockedProgressBar.bmp" />
     <Content Include="Resources\bad.jpg" />
     <Content Include="Resources\closesmall.png" />
     <Content Include="Resources\current.jpg" />

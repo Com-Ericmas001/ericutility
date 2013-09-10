@@ -9,7 +9,7 @@ using EricUtility.Windows.Forms.Downloader;
 using EricUtility;
 using EricUtilityNetworking.Downloader;
 
-namespace MyDownloader.App.UI
+namespace EricUtility.Windows.Forms.Downloader
 {
     public partial class Location : UserControl
     {
