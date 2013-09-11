@@ -68,6 +68,10 @@
     <Compile Include="Downloader\ISegmentCalculator.cs" />
     <Compile Include="Downloader\MinSizeSegmentCalculator.cs" />
     <Compile Include="Downloader\ProtocolProviderFactory.cs" />
+    <Compile Include="Downloader\Protocols\BaseProtocolProvider.cs" />
+    <Compile Include="Downloader\Protocols\FtpProtocolProvider.cs" />
+    <Compile Include="Downloader\Protocols\HttpProtocolProvider.cs" />
+    <Compile Include="Downloader\Protocols\IHttpFtpProtocolParameters.cs" />
     <Compile Include="Downloader\RemoteFileInfo.cs" />
     <Compile Include="Downloader\ResourceLocation.cs" />
     <Compile Include="Downloader\Segment.cs" />
