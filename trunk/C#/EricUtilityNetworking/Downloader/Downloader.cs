@@ -8,6 +8,7 @@ using System.Collections;
 using System.Net;
 using EricUtility.Concurrency;
 using EricUtility;
+using EricUtilityNetworking.Downloader.Protocols;
 
 namespace EricUtilityNetworking.Downloader
 {
@@ -37,6 +38,11 @@ namespace EricUtilityNetworking.Downloader
             ResourceLocation[] mirrors, 
             string localFile)
         {
+
+            ProtocolProviderFactory.RegisterProtocolHandler("http", typeof(HttpProtocolProvider));
+            ProtocolProviderFactory.RegisterProtocolHandler("https", typeof(HttpProtocolProvider));
+            ProtocolProviderFactory.RegisterProtocolHandler("ftp", typeof(FtpProtocolProvider));
+
             this.threads = new List<Thread>();
             this.resourceLocation = rl;
             if (mirrors == null)
