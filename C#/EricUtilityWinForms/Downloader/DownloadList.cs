@@ -155,6 +155,12 @@ namespace EricUtility.Windows.Forms.Downloader
             }
         }
 
+
+        private void tmrRefresh_Tick(object sender, EventArgs e)
+        {
+            string strRate = String.Format("{0:0.##} kbps", DownloadManager.Instance.TotalDownloadRate / 1024.0);
+            UpdateList();
+        }
         public void SelectAll()
         {
             using (DownloadManager.Instance.LockDownloadList(false))
@@ -192,7 +198,10 @@ namespace EricUtility.Windows.Forms.Downloader
                 lvwDownloads.EndUpdate();
             }
         }
-
+        public void AddDownload(string src, string dest,int nbSegments=1)
+        {
+            DownloadManager.Instance.Add(ResourceLocation.FromURL(src), null, dest, nbSegments, true);
+        }
         public void AddDownloadURLs(
             ResourceLocation[] args,
             int segments,
@@ -254,7 +263,7 @@ namespace EricUtility.Windows.Forms.Downloader
             copyURLToClipboardToolStripMenuItem.Enabled = isSelected;
 
             showInExplorerToolStripMenuItem.Enabled = isSelected;
-            openFileToolStripMenuItem.Enabled = isSelected && SelectedDownloaders[0].State == DownloaderState.Ended;
+            openFileToolStripMenuItem.Enabled = isSelected;
 
             OnSelectionChange();
         }

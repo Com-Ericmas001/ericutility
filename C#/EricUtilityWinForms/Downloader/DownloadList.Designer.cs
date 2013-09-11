@@ -28,7 +28,8 @@ namespace EricUtility.Windows.Forms.Downloader
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.components = new System.ComponentModel.Container(); 
+            this.tmrRefresh = new System.Windows.Forms.Timer(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.lvwDownloads = new System.Windows.Forms.ListView();
             this.columnFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -79,6 +80,12 @@ namespace EricUtility.Windows.Forms.Downloader
             this.tabLog.SuspendLayout();
             this.logContextMenu.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tmrRefresh
+            // 
+            this.tmrRefresh.Enabled = true;
+            this.tmrRefresh.Interval = 1500;
+            this.tmrRefresh.Tick += new System.EventHandler(this.tmrRefresh_Tick);
             // 
             // splitContainer2
             // 
@@ -483,5 +490,6 @@ namespace EricUtility.Windows.Forms.Downloader
         private System.Windows.Forms.ToolStripMenuItem showInExplorerToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader columnResume;
         private BlockedProgressBar blockedProgressBar1;
+        private System.Windows.Forms.Timer tmrRefresh;
     }
 }
