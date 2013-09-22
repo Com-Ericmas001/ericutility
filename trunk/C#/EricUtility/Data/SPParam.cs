@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
+﻿using System.Data.SqlClient;
 
 namespace EricUtility2011.Data
 {
@@ -11,6 +7,7 @@ namespace EricUtility2011.Data
         Input,
         Output
     }
+
     public class SPParam
     {
         private SqlParameter m_Parm;
@@ -20,18 +17,18 @@ namespace EricUtility2011.Data
         public SPParam(SqlParameter parm)
             : this(parm, ParamDir.Input, null)
         {
-
         }
+
         public SPParam(SqlParameter parm, ParamDir dir)
             : this(parm, dir, null)
         {
-
         }
+
         public SPParam(SqlParameter parm, object val)
             : this(parm, ParamDir.Input, val)
         {
-
         }
+
         public SPParam(SqlParameter parm, ParamDir dir, object val)
         {
             m_Parm = parm;
