@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net;
 using System.IO;
+using System.Net;
 
 namespace EricUtilityNetworking.Downloader.Protocols
 {
-    public class FtpProtocolProvider: BaseProtocolProvider, IProtocolProvider
+    public class FtpProtocolProvider : BaseProtocolProvider, IProtocolProvider
     {
         private void FillCredentials(FtpWebRequest request, ResourceLocation rl)
         {
@@ -80,6 +77,6 @@ namespace EricUtilityNetworking.Downloader.Protocols
             return result;
         }
 
-        #endregion
+        #endregion IProtocolProvider Members
     }
 }

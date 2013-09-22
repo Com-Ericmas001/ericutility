@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace EricUtilityNetworking.Downloader
@@ -9,7 +8,7 @@ namespace EricUtilityNetworking.Downloader
     public class ResourceLocation
     {
         #region Fields
-        
+
         private string url;
         private bool authenticate;
         private string login;
@@ -17,9 +16,10 @@ namespace EricUtilityNetworking.Downloader
         private Type protocolProviderType;
         private IProtocolProvider provider;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
+
         public ResourceLocation()
         {
         }
@@ -58,16 +58,17 @@ namespace EricUtilityNetworking.Downloader
             rl.Login = login;
             rl.Password = password;
             return rl;
-        } 
-        #endregion
+        }
+
+        #endregion Constructor
 
         #region Properties
 
         public string URL
         {
             get { return url; }
-            set 
-            { 
+            set
+            {
                 url = value;
                 BindProtocolProviderType();
             }
@@ -114,7 +115,7 @@ namespace EricUtilityNetworking.Downloader
             }
         }
 
-        #endregion
+        #endregion Properties
 
         #region Methods
 
@@ -127,10 +128,10 @@ namespace EricUtilityNetworking.Downloader
         {
             provider = null;
 
-            if (! String.IsNullOrEmpty(this.URL))
+            if (!String.IsNullOrEmpty(this.URL))
             {
-                protocolProviderType = ProtocolProviderFactory.GetProviderType(this.URL);                
-            }            
+                protocolProviderType = ProtocolProviderFactory.GetProviderType(this.URL);
+            }
         }
 
         public IProtocolProvider BindProtocolProviderInstance(Downloader downloader)
@@ -168,6 +169,6 @@ namespace EricUtilityNetworking.Downloader
             return false;
         }
 
-        #endregion
+        #endregion Methods
     }
 }

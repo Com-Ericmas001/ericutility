@@ -1,14 +1,11 @@
+using EricUtility;
+using EricUtility.Concurrency;
+using EricUtilityNetworking.Downloader.Protocols;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
-using System.Diagnostics;
-using System.Collections;
-using System.Net;
-using EricUtility.Concurrency;
-using EricUtility;
-using EricUtilityNetworking.Downloader.Protocols;
 
 namespace EricUtilityNetworking.Downloader
 {
@@ -26,7 +23,7 @@ namespace EricUtilityNetworking.Downloader
         private DateTime createdDateTime;
         private Exception lastError;
         private Dictionary<string, object> extentedProperties = new Dictionary<string, object>();
-        
+
         private IProtocolProvider defaultDownloadProvider;
         private ISegmentCalculator segmentCalculator;
         private IMirrorSelector mirrorSelector;
@@ -35,10 +32,9 @@ namespace EricUtilityNetworking.Downloader
 
         private Downloader(
             ResourceLocation rl,
-            ResourceLocation[] mirrors, 
+            ResourceLocation[] mirrors,
             string localFile)
         {
-
             ProtocolProviderFactory.RegisterProtocolHandler("http", typeof(HttpProtocolProvider));
             ProtocolProviderFactory.RegisterProtocolHandler("https", typeof(HttpProtocolProvider));
             ProtocolProviderFactory.RegisterProtocolHandler("ftp", typeof(FtpProtocolProvider));
@@ -65,9 +61,9 @@ namespace EricUtilityNetworking.Downloader
 
         public Downloader(
             ResourceLocation rl,
-            ResourceLocation[] mirrors, 
-            string localFile, 
-            int segmentCount):
+            ResourceLocation[] mirrors,
+            string localFile,
+            int segmentCount) :
             this(rl, mirrors, localFile)
         {
             SetState(DownloaderState.NeedToPrepare);
@@ -79,12 +75,12 @@ namespace EricUtilityNetworking.Downloader
 
         public Downloader(
             ResourceLocation rl,
-            ResourceLocation[] mirrors, 
-            string localFile, 
+            ResourceLocation[] mirrors,
+            string localFile,
             List<Segment> segments,
             RemoteFileInfo remoteInfo,
             int requestedSegmentCount,
-            DateTime createdDateTime):
+            DateTime createdDateTime) :
             this(rl, mirrors, localFile)
         {
             if (segments.Count > 0)
@@ -249,7 +245,7 @@ namespace EricUtilityNetworking.Downloader
 
                 return TimeSpan.FromSeconds(missingTransfer / this.Rate);
             }
-        } 
+        }
 
         public List<Segment> Segments
         {
@@ -292,14 +288,14 @@ namespace EricUtilityNetworking.Downloader
         public ISegmentCalculator SegmentCalculator
         {
             get { return segmentCalculator; }
-            set 
+            set
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException("value");
                 }
 
-                segmentCalculator = value; 
+                segmentCalculator = value;
             }
         }
 
@@ -314,11 +310,11 @@ namespace EricUtilityNetworking.Downloader
                 }
 
                 mirrorSelector = value;
-                mirrorSelector.Init(this);                
+                mirrorSelector.Init(this);
             }
         }
 
-        #endregion
+        #endregion Properties
 
         private void SetState(DownloaderState value)
         {
@@ -410,7 +406,7 @@ namespace EricUtilityNetworking.Downloader
 
         public void WaitForConclusion()
         {
-            if (! IsWorking())
+            if (!IsWorking())
             {
                 if (mainThread != null && mainThread.IsAlive)
                 {
@@ -507,7 +503,7 @@ namespace EricUtilityNetworking.Downloader
                         + fileExitWithoutExt + String.Format("({0})", count++) + ext;
                 }
                 while (File.Exists(newFileName));
-                
+
                 this.localFile = newFileName;
             }
 
@@ -708,7 +704,7 @@ namespace EricUtilityNetworking.Downloader
                 {
                     Segments[i].OutputStream = fs;
                     StartSegment(Segments[i]);
-                }                
+                }
 
                 do
                 {
@@ -732,7 +728,7 @@ namespace EricUtilityNetworking.Downloader
                 OnEnding();
             }
 
-            SetState(DownloaderState.Ended); 
+            SetState(DownloaderState.Ended);
         }
 
         private bool RestartFailedSegments()
@@ -747,7 +743,7 @@ namespace EricUtilityNetworking.Downloader
                     Segments[i].CurrentTry < 10)
                 {
                     hasErrors = true;
-                    TimeSpan ts =  DateTime.Now - Segments[i].LastErrorDateTime;
+                    TimeSpan ts = DateTime.Now - Segments[i].LastErrorDateTime;
 
                     if (ts.TotalSeconds >= 5000)
                     {
@@ -829,11 +825,11 @@ namespace EricUtilityNetworking.Downloader
 
                 segment.State = SegmentState.Connecting;
 
-                // raise the event 
+                // raise the event
                 OnSegmentStarting(segment);
 
                 if (segment.InputStream == null)
-                {                    
+                {
                     // get the next URL (It can the the main url or some mirror)
                     ResourceLocation location = this.MirrorSelector.GetNextResourceLocation();
                     // get the protocol provider for that mirror
@@ -941,12 +937,12 @@ namespace EricUtilityNetworking.Downloader
                     {
                         segment.State = SegmentState.Finished;
 
-                        // try to create other segment, 
+                        // try to create other segment,
                         // spliting the missing bytes from one existing segment
                         AddNewSegmentIfNeeded();
                     }
                 }
-                
+
                 // raise the event
                 OnSegmentStoped(segment);
             }

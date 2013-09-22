@@ -1,11 +1,7 @@
+using EricUtility.Concurrency;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Collections.ObjectModel;
-using System.Collections;
-using System.Threading;
-using EricUtility.Concurrency;
-using EricUtility;
 
 namespace EricUtilityNetworking.Downloader
 {
@@ -21,17 +17,17 @@ namespace EricUtilityNetworking.Downloader
             {
                 return instance;
             }
-        } 
+        }
 
-        #endregion
+        #endregion Singleton
 
         #region Fields
-        
+
         private List<Downloader> downloads = new List<Downloader>();
         private int addBatchCount;
         private ReaderWriterObjectLocker downloadListSync = new ReaderWriterObjectLocker();
 
-        #endregion
+        #endregion Fields
 
         #region Properties
 
@@ -55,7 +51,7 @@ namespace EricUtilityNetworking.Downloader
 
         public double TotalDownloadRate
         {
-            get 
+            get
             {
                 double total = 0;
 
@@ -70,7 +66,7 @@ namespace EricUtilityNetworking.Downloader
                     }
                 }
 
-                return total; 
+                return total;
             }
         }
 
@@ -82,11 +78,11 @@ namespace EricUtilityNetworking.Downloader
             }
         }
 
-        #endregion 
+        #endregion Properties
 
         #region Methods
 
-        void downloader_StateChanged(object sender, EventArgs e)
+        private void downloader_StateChanged(object sender, EventArgs e)
         {
             Downloader downloader = (Downloader)sender;
 
@@ -267,8 +263,6 @@ namespace EricUtilityNetworking.Downloader
             this.downloads.Insert(idx, it2);
         }
 
-        #endregion
-
-
+        #endregion Methods
     }
 }

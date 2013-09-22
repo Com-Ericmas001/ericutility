@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace EricUtilityNetworking.Downloader
 {
-    public class MinSizeSegmentCalculator: ISegmentCalculator
+    public class MinSizeSegmentCalculator : ISegmentCalculator
     {
         #region ISegmentCalculator Members
 
@@ -40,6 +38,6 @@ namespace EricUtilityNetworking.Downloader
             return segments.ToArray();
         }
 
-        #endregion
+        #endregion ISegmentCalculator Members
     }
 }

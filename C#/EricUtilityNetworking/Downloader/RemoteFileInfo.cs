@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EricUtilityNetworking.Downloader
 {
@@ -29,13 +27,12 @@ namespace EricUtilityNetworking.Downloader
         {
             get { return fileSize; }
             set { fileSize = value; }
-        }       
+        }
 
         public DateTime LastModified
         {
             get { return lastModified; }
             set { lastModified = value; }
         }
-
     }
 }
