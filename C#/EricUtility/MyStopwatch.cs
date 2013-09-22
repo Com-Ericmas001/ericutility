@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
 
 namespace EricUtility
@@ -15,7 +13,7 @@ namespace EricUtility
         private Stopwatch internalStopwatch;
         private string name;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
@@ -32,7 +30,7 @@ namespace EricUtility
 #endif
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Methods
 
@@ -47,6 +45,6 @@ namespace EricUtility
 #endif
         }
 
-        #endregion
+        #endregion Methods
     }
 }

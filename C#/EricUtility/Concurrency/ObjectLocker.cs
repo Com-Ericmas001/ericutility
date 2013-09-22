@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace EricUtility.Concurrency
@@ -9,9 +7,9 @@ namespace EricUtility.Concurrency
     {
         #region Fields
 
-        private object obj; 
+        private object obj;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
@@ -21,7 +19,7 @@ namespace EricUtility.Concurrency
             Monitor.Enter(this.obj);
         }
 
-        #endregion
+        #endregion Constructor
 
         #region IDisposable Members
 
@@ -30,6 +28,6 @@ namespace EricUtility.Concurrency
             Monitor.Exit(this.obj);
         }
 
-        #endregion
-    } 
+        #endregion IDisposable Members
+    }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Reflection;
 
 namespace EricUtility2011.Data
 {
@@ -195,6 +194,7 @@ namespace EricUtility2011.Data
         {
             return ExecuteSP(spName, new List<SPParam>());
         }
+
         public SPResult ExecuteSP(string spName, List<SPParam> pars)
         {
             SqlConnection myConnection = null;
@@ -216,6 +216,7 @@ namespace EricUtility2011.Data
         {
             return ExecuteSP(connection, spName, new List<SPParam>());
         }
+
         public SPResult ExecuteSP(SqlConnection connection, string spName, List<SPParam> pars)
         {
             SqlConnection myConnection = connection;
@@ -239,10 +240,12 @@ namespace EricUtility2011.Data
             }
             return res;
         }
+
         public SPResult SelectRowsSP(string spName)
         {
             return SelectRowsSP(spName, new List<SPParam>());
         }
+
         public SPResult SelectRowsSP(string spName, List<SPParam> pars)
         {
             SqlConnection myConnection = null;
@@ -264,6 +267,7 @@ namespace EricUtility2011.Data
         {
             return SelectRowsSP(connection, spName, new List<SPParam>());
         }
+
         public SPResult SelectRowsSP(SqlConnection connection, string spName, List<SPParam> pars)
         {
             SPResult res = new SPResult();
