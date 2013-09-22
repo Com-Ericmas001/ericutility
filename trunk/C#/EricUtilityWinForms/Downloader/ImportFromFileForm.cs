@@ -1,13 +1,8 @@
+using EricUtilityNetworking.Downloader;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
-using System.Text.RegularExpressions;
-using EricUtilityNetworking.Downloader;
+using System.Windows.Forms;
 
 namespace EricUtility.Windows.Forms.Downloader
 {
@@ -34,7 +29,7 @@ namespace EricUtility.Windows.Forms.Downloader
 
                 if (rdoTextFile.Checked)
                 {
-                    FillListFromTextFile(urls);               
+                    FillListFromTextFile(urls);
                 }
 
                 return urls.ToArray();
@@ -61,7 +56,7 @@ namespace EricUtility.Windows.Forms.Downloader
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 txtFileName.Text = openFileDialog1.FileName;
-            }            
+            }
         }
 
         private void rdoDownloadMode_Changed(object sender, EventArgs e)
@@ -86,7 +81,7 @@ namespace EricUtility.Windows.Forms.Downloader
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (! IsValid())
+            if (!IsValid())
             {
                 DialogResult = DialogResult.None;
                 return;

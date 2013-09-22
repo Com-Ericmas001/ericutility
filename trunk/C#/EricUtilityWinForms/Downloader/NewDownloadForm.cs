@@ -1,19 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
-using System.Threading;
 using EricUtilityNetworking.Downloader;
+using System;
+using System.Windows.Forms;
 
 namespace EricUtility.Windows.Forms.Downloader
 {
     public partial class NewDownloadForm : Form
     {
-
         public NewDownloadForm()
         {
             InitializeComponent();
@@ -21,7 +13,7 @@ namespace EricUtility.Windows.Forms.Downloader
             locationMain.UrlChanged += new EventHandler(locationMain_UrlChanged);
         }
 
-        void locationMain_UrlChanged(object sender, EventArgs e)
+        private void locationMain_UrlChanged(object sender, EventArgs e)
         {
             try
             {
@@ -56,9 +48,9 @@ namespace EricUtility.Windows.Forms.Downloader
                 {
                     ListViewItem item = lvwLocations.Items[i];
                     mirrors[i] = ResourceLocation.FromURL(
-                            item.SubItems[0].Text, 
-                            BoolFormatter.FromString(item.SubItems[1].Text), 
-                            item.SubItems[2].Text, 
+                            item.SubItems[0].Text,
+                            BoolFormatter.FromString(item.SubItems[1].Text),
+                            item.SubItems[2].Text,
                             item.SubItems[3].Text);
                 }
 
@@ -168,8 +160,8 @@ namespace EricUtility.Windows.Forms.Downloader
                         if (mirrorRl.ProtocolProviderType == null)
                         {
                             MessageBox.Show("Invalid mirror URL format, please check the mirror URLs.",
-                                "Error", 
-                                MessageBoxButtons.OK, 
+                                "Error",
+                                MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
 
                             DialogResult = DialogResult.None;
@@ -178,12 +170,12 @@ namespace EricUtility.Windows.Forms.Downloader
                     }
                 }
 
-                    EricUtilityNetworking.Downloader.Downloader download = DownloadManager.Instance.Add(
-                        rl,
-                        mirrors,
-                        this.LocalFile,
-                        this.Segments,
-                        this.StartNow);
+                EricUtilityNetworking.Downloader.Downloader download = DownloadManager.Instance.Add(
+                    rl,
+                    mirrors,
+                    this.LocalFile,
+                    this.Segments,
+                    this.StartNow);
 
                 Close();
             }
@@ -192,8 +184,8 @@ namespace EricUtility.Windows.Forms.Downloader
                 DialogResult = DialogResult.None;
 
                 MessageBox.Show("Unknow error, please check your input data.",
-                    "Error", 
-                    MessageBoxButtons.OK, 
+                    "Error",
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
         }
@@ -238,7 +230,7 @@ namespace EricUtility.Windows.Forms.Downloader
                     result = new TreeNode(subPaths[j]);
                     result.ImageIndex = FileTypeImageList.GetImageIndexFromFolder(false);
                     result.SelectedImageIndex = FileTypeImageList.GetImageIndexFromFolder(true);
-                    nodes.Add(result);                    
+                    nodes.Add(result);
                 }
                 else
                 {

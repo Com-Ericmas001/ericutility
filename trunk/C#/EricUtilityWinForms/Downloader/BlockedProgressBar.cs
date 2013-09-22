@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Text;
 using System.Windows.Forms;
 
 namespace EricUtility.Windows.Forms.Downloader
@@ -12,7 +10,7 @@ namespace EricUtility.Windows.Forms.Downloader
     [ToolboxBitmap(typeof(BlockedProgressBar), "BlockedProgressBar.bmp")] //without namespace
     public partial class BlockedProgressBar : Control
     {
-        BlockList _blockList;
+        private BlockList _blockList;
 
         /// <summary>
         /// MyProgressBar Constructor
@@ -24,6 +22,7 @@ namespace EricUtility.Windows.Forms.Downloader
             _direction = DirectionMode.Horizontal;
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.ResizeRedraw | ControlStyles.DoubleBuffer, true);
         }
+
         /// <summary>
         /// Update mode of segments
         /// </summary>
@@ -47,8 +46,9 @@ namespace EricUtility.Windows.Forms.Downloader
             get { return _blockList.Length; }
             set { _blockList.Length = value; this.Refresh(); }
         }
+
         /// <summary>
-        /// Get or set filled segments 
+        /// Get or set filled segments
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -57,6 +57,7 @@ namespace EricUtility.Windows.Forms.Downloader
             get { return _blockList.FilledSegments; }
             set { _blockList.FilledSegments = value; this.Refresh(); }
         }
+
         /// <summary>
         /// Get or sets the full list of segments
         /// </summary>
@@ -67,6 +68,7 @@ namespace EricUtility.Windows.Forms.Downloader
             get { return _blockList.FullListSegment; }
             set { _blockList.FullListSegment = value; this.Refresh(); }
         }
+
         /// <summary>
         /// Get or set the block list of segments
         /// </summary>
@@ -77,6 +79,7 @@ namespace EricUtility.Windows.Forms.Downloader
             get { return _blockList.List; }
             set { _blockList.List = value; this.Refresh(); }
         }
+
         /// <summary>
         /// DirectionMode of bar
         /// </summary>
@@ -85,7 +88,9 @@ namespace EricUtility.Windows.Forms.Downloader
             Horizontal = 0,
             Vertical = 1
         }
+
         private DirectionMode _direction = DirectionMode.Horizontal;
+
         /// <summary>
         /// Horizontal or Vertical
         /// </summary>
@@ -97,6 +102,7 @@ namespace EricUtility.Windows.Forms.Downloader
             get { return _direction; }
             set { _direction = value; this.Refresh(); }
         }
+
         /// <summary>
         /// OnPaint event
         /// </summary>
@@ -130,6 +136,7 @@ namespace EricUtility.Windows.Forms.Downloader
             pe.Graphics.DrawRectangle(new Pen(Color.Black), ClientRectangle);
             base.OnPaint(pe);
         }
+
         private void DrawRectangleH(PaintEventArgs pe, int top, int height, Color fromColor, Color toColor)
         {
             Rectangle rect = new Rectangle(ClientRectangle.Left, top, ClientRectangle.Width, height);
@@ -140,6 +147,7 @@ namespace EricUtility.Windows.Forms.Downloader
                 if (rects.Length > 0) pe.Graphics.FillRectangles(brush, rects); //SystemBrushes.Control
             }
         }
+
         private void DrawRectangleV(PaintEventArgs pe, int left, int width, Color fromColor, Color toColor)
         {
             Rectangle rect = new Rectangle(left, ClientRectangle.Top, width, ClientRectangle.Height);
@@ -150,6 +158,7 @@ namespace EricUtility.Windows.Forms.Downloader
                 if (rects.Length > 0) pe.Graphics.FillRectangles(brush, rects); //SystemBrushes.Control
             }
         }
+
         private Rectangle[] GetRectanglesH(int top, int height)
         {
             List<Rectangle> rects = new List<Rectangle>();

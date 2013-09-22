@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace EricUtility.Windows.Forms.Downloader
 {
@@ -41,7 +38,7 @@ namespace EricUtility.Windows.Forms.Downloader
                 instance.Images.Add(ext, iconForFile);
             }
 
-            return instance.Images.IndexOfKey(ext); 
+            return instance.Images.IndexOfKey(ext);
         }
 
         public static int GetImageIndexFromFolder(bool open)
@@ -64,7 +61,7 @@ namespace EricUtility.Windows.Forms.Downloader
                 Icon iconForFile = IconReader.GetFolderIcon(
                     IconReader.EnumIconSize.Small,
                     (open ? IconReader.EnumFolderType.Open : IconReader.EnumFolderType.Closed));
-                
+
                 instance.Images.Add(key, iconForFile);
             }
 

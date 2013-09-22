@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace EricUtility.Windows.Forms.Downloader
 {
-
     public class IconReader
     {
         ///
@@ -17,38 +14,55 @@ namespace EricUtility.Windows.Forms.Downloader
         {
             /// get large icon
             LARGEICON = 0x000000000,
+
             /// get small icon
             SMALLICON = 0x000000001,
+
             /// get open icon
             OPENICON = 0x000000002,
+
             /// get shell size icon
             SHELLICONSIZE = 0x000000004,
+
             /// pszPath is a pidl
             PIDL = 0x000000008,
+
             /// use passed dwFileAttribute
             USEFILEATTRIBUTES = 0x000000010,
+
             /// apply the appropriate overlays
             ADDOVERLAYS = 0x000000020,
+
             /// get the index of the overlay
             OVERLAYINDEX = 0x000000040,
+
             /// get icon
             ICON = 0x000000100,
+
             /// get display name
             DISPLAYNAME = 0x000000200,
+
             /// get type name
             TYPENAME = 0x000000400,
+
             /// get attributes
             ATTRIBUTES = 0x000000800,
+
             /// get icon location
             ICONLOCATION = 0x000001000,
+
             /// return exe type
             EXETYPE = 0x000002000,
+
             /// get system icon index
             SYSICONINDEX = 0x000004000,
+
             /// put a link overlay on icon
             LINKOVERLAY = 0x000008000,
+
             /// show icon in selected state
             SELECTED = 0x000010000,
+
             /// get only specified attributes
             ATTR_SPECIFIED = 0x000020000
         }
@@ -75,6 +89,7 @@ namespace EricUtility.Windows.Forms.Downloader
         {
             /// 32x32
             Large = 0,
+
             /// 16x16
             Small = 1
         }
@@ -86,6 +101,7 @@ namespace EricUtility.Windows.Forms.Downloader
         {
             /// open folder
             Open = 0,
+
             /// closed folder
             Closed = 1
         }
@@ -101,7 +117,6 @@ namespace EricUtility.Windows.Forms.Downloader
            System.Runtime.InteropServices.LayoutKind.Sequential)]
         private struct ShellFileInfo
         {
-
             public const int conNameSize = 80;
             public System.IntPtr hIcon;  // note to call DestroyIcon
             public int iIndex;
@@ -172,12 +187,13 @@ namespace EricUtility.Windows.Forms.Downloader
             // deep copy
             System.Drawing.Icon icon =
             (System.Drawing.Icon)System.Drawing.Icon.FromHandle(shellFileInfo.hIcon).Clone();
-            
+
             // release handle
             DestroyIcon(shellFileInfo.hIcon);
 
             return icon;
         }
+
         ///
         /// lookup and return an icon from windows shell
         ///
@@ -207,7 +223,7 @@ namespace EricUtility.Windows.Forms.Downloader
                 catch (Exception)
                 {
                 }
-            }            
+            }
         }
 
         ///
@@ -226,7 +242,7 @@ namespace EricUtility.Windows.Forms.Downloader
         ///
         /// lookup and return an icon from windows shell
         ///
-        /// "folderPath">path to folder    
+        /// "folderPath">path to folder
         /// "size">large or small
         /// "folderType">open or closed
         /// requested icon
@@ -235,7 +251,6 @@ namespace EricUtility.Windows.Forms.Downloader
           EnumIconSize size,
           EnumFolderType folderType)
         {
-
             EnumFileInfoFlags flags =
               EnumFileInfoFlags.ICON | EnumFileInfoFlags.USEFILEATTRIBUTES;
 
