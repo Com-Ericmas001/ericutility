@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace EricUtility.Windows.Forms.Downloader
 {
@@ -46,8 +45,9 @@ namespace EricUtility.Windows.Forms.Downloader
                 }
             }
         }
+
         /// <summary>
-        /// Get or set filled segments 
+        /// Get or set filled segments
         /// </summary>
         public int[] FilledSegments
         {
@@ -73,6 +73,7 @@ namespace EricUtility.Windows.Forms.Downloader
                     }
             }
         }
+
         /// <summary>
         /// Get or sets the full list of segments
         /// </summary>
@@ -138,6 +139,7 @@ namespace EricUtility.Windows.Forms.Downloader
                 }
             }
         }
+
         /// <summary>
         /// Get or set the block list of segments
         /// </summary>

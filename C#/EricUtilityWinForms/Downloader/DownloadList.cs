@@ -1,28 +1,25 @@
+using EricUtilityNetworking.Downloader;
+using Microsoft.WindowsAPICodePack.Taskbar;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using System.Collections;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Web;
-using EricUtilityNetworking.Downloader;
-using Microsoft.WindowsAPICodePack.Taskbar; 
-using Microsoft.WindowsAPICodePack.Shell;
+using System.Windows.Forms;
 
 namespace EricUtility.Windows.Forms.Downloader
 {
     public partial class DownloadList : UserControl
     {
-        delegate void ActionDownloader(EricUtilityNetworking.Downloader.Downloader d, ListViewItem item);
+        private delegate void ActionDownloader(EricUtilityNetworking.Downloader.Downloader d, ListViewItem item);
 
-        Hashtable mapItemToDownload = new Hashtable();
-        Hashtable mapDownloadToItem = new Hashtable();
+        private Hashtable mapItemToDownload = new Hashtable();
+        private Hashtable mapDownloadToItem = new Hashtable();
 
-        ListViewItem lastSelection = null;
+        private ListViewItem lastSelection = null;
 
         public DownloadList()
         {
@@ -46,12 +43,12 @@ namespace EricUtility.Windows.Forms.Downloader
             DownloadManager.Instance.EndAddBatchDownloads += new EventHandler(Instance_EndAddBatchDownloads);
         }
 
-        void Instance_EndAddBatchDownloads(object sender, EventArgs e)
+        private void Instance_EndAddBatchDownloads(object sender, EventArgs e)
         {
             this.BeginInvoke((MethodInvoker)lvwDownloads.EndUpdate);
         }
 
-        void Instance_BeginAddBatchDownloads(object sender, EventArgs e)
+        private void Instance_BeginAddBatchDownloads(object sender, EventArgs e)
         {
             this.BeginInvoke((MethodInvoker)lvwDownloads.BeginUpdate);
         }
@@ -67,7 +64,6 @@ namespace EricUtility.Windows.Forms.Downloader
                         1,
                         importFile.DownloadPath,
                         0);
-
                 }
             }
         }
@@ -157,12 +153,12 @@ namespace EricUtility.Windows.Forms.Downloader
             }
         }
 
-
         private void tmrRefresh_Tick(object sender, EventArgs e)
         {
             string strRate = String.Format("{0:0.##} kbps", DownloadManager.Instance.TotalDownloadRate / 1024.0);
             UpdateList();
         }
+
         public void SelectAll()
         {
             using (DownloadManager.Instance.LockDownloadList(false))
@@ -171,7 +167,7 @@ namespace EricUtility.Windows.Forms.Downloader
                 try
                 {
                     lvwDownloads.ItemSelectionChanged -= new ListViewItemSelectionChangedEventHandler(lvwDownloads_ItemSelectionChanged);
-                    
+
                     for (int i = 0; i < lvwDownloads.Items.Count; i++)
                     {
                         lvwDownloads.Items[i].Selected = true;
@@ -200,11 +196,13 @@ namespace EricUtility.Windows.Forms.Downloader
                 lvwDownloads.EndUpdate();
             }
         }
-        public void AddDownload(string src, string dest,int nbSegments=1)
+
+        public void AddDownload(string src, string dest, int nbSegments = 1)
         {
             tmrRefresh.Start();
             DownloadManager.Instance.Add(ResourceLocation.FromURL(src), null, dest, nbSegments, true);
         }
+
         public void AddDownloadURLs(
             ResourceLocation[] args,
             int segments,
@@ -329,7 +327,7 @@ namespace EricUtility.Windows.Forms.Downloader
             }
         }
 
-        void Instance_DownloadRemoved(object sender, DownloaderEventArgs e)
+        private void Instance_DownloadRemoved(object sender, DownloaderEventArgs e)
         {
             this.BeginInvoke((MethodInvoker)delegate()
                 {
@@ -354,7 +352,7 @@ namespace EricUtility.Windows.Forms.Downloader
             );
         }
 
-        void Instance_DownloadAdded(object sender, DownloaderEventArgs e)
+        private void Instance_DownloadAdded(object sender, DownloaderEventArgs e)
         {
             if (IsHandleCreated)
             {
@@ -465,7 +463,7 @@ namespace EricUtility.Windows.Forms.Downloader
             if (TaskbarManager.IsPlatformSupported)
             {
                 TaskbarManager tbManager = TaskbarManager.Instance;
-                tbManager.SetProgressValue(currentpercent, maxpercent); 
+                tbManager.SetProgressValue(currentpercent, maxpercent);
             }
             UpdateSegments();
             if (maxpercent == 0)
@@ -513,7 +511,7 @@ namespace EricUtility.Windows.Forms.Downloader
             {
                 lvwSegments.EndUpdate();
             }
-        }        
+        }
 
         private void DownloadsAction(ActionDownloader action)
         {
@@ -539,7 +537,7 @@ namespace EricUtility.Windows.Forms.Downloader
                     lvwDownloads.EndUpdate();
                     UpdateSegments();
                 }
-            }            
+            }
         }
 
         private void UpdateSegmentsWithoutInsert(EricUtilityNetworking.Downloader.Downloader d)
@@ -602,7 +600,7 @@ namespace EricUtility.Windows.Forms.Downloader
             this.blockedProgressBar1.BlockList = blocks;
         }
 
-        void download_InfoReceived(object sender, EventArgs e)
+        private void download_InfoReceived(object sender, EventArgs e)
         {
             EricUtilityNetworking.Downloader.Downloader d = (EricUtilityNetworking.Downloader.Downloader)sender;
 
@@ -616,7 +614,7 @@ namespace EricUtility.Windows.Forms.Downloader
                 LogMode.Information);
         }
 
-        void Downloader_SegmentStarting(object sender, SegmentEventArgs e)
+        private void Downloader_SegmentStarting(object sender, SegmentEventArgs e)
         {
             Log(
                 e.Downloader,
@@ -629,7 +627,7 @@ namespace EricUtility.Windows.Forms.Downloader
                 LogMode.Information);
         }
 
-        void download_SegmentStarted(object sender, SegmentEventArgs e)
+        private void download_SegmentStarted(object sender, SegmentEventArgs e)
         {
             Log(
                 e.Downloader,
@@ -642,7 +640,7 @@ namespace EricUtility.Windows.Forms.Downloader
                 LogMode.Information);
         }
 
-        void download_SegmentFailed(object sender, SegmentEventArgs e)
+        private void download_SegmentFailed(object sender, SegmentEventArgs e)
         {
             Log(
                 e.Downloader,
@@ -654,7 +652,7 @@ namespace EricUtility.Windows.Forms.Downloader
                 LogMode.Error);
         }
 
-        void download_SegmentEnded(object sender, SegmentEventArgs e)
+        private void download_SegmentEnded(object sender, SegmentEventArgs e)
         {
             Log(
                 e.Downloader,
@@ -665,7 +663,7 @@ namespace EricUtility.Windows.Forms.Downloader
                 LogMode.Information);
         }
 
-        void download_RestartingSegment(object sender, SegmentEventArgs e)
+        private void download_RestartingSegment(object sender, SegmentEventArgs e)
         {
             Log(
                 e.Downloader,
@@ -676,7 +674,7 @@ namespace EricUtility.Windows.Forms.Downloader
                 LogMode.Information);
         }
 
-        void Instance_DownloadEnded(object sender, DownloaderEventArgs e)
+        private void Instance_DownloadEnded(object sender, DownloaderEventArgs e)
         {
             Log(
                 e.Downloader,
@@ -686,13 +684,13 @@ namespace EricUtility.Windows.Forms.Downloader
                 LogMode.Information);
         }
 
-        enum LogMode
+        private enum LogMode
         {
             Error,
             Information
         }
 
-        void Log(EricUtilityNetworking.Downloader.Downloader downloader, string msg, LogMode m)
+        private void Log(EricUtilityNetworking.Downloader.Downloader downloader, string msg, LogMode m)
         {
             try
             {

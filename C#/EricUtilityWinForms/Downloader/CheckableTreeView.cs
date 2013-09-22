@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace EricUtility.Windows.Forms.Downloader
 {
-    public class CheckableTreeView: TreeView
+    public class CheckableTreeView : TreeView
     {
         private static bool IsSomeChildNodeChecked(TreeNode node)
         {
@@ -46,9 +43,9 @@ namespace EricUtility.Windows.Forms.Downloader
             {
                 this.BeginUpdate();
 
-                // the node if checked... 
+                // the node if checked...
                 if (e.Node.Checked)
-                {                    
+                {
                     // check all child nodes...
                     CheckAllChildren(e.Node, true);
 
@@ -59,13 +56,13 @@ namespace EricUtility.Windows.Forms.Downloader
                     {
                         if (!parent.Checked) parent.Checked = true;
                         parent = parent.Parent;
-                    }                    
+                    }
                 }
                 else
                 {
                     // check all child nodes...
                     CheckAllChildren(e.Node, false);
-                    
+
                     // uncheck the parent node if all child nodes are unchecked...
                     TreeNode parent = e.Node.Parent;
                     while (parent != null)
@@ -78,9 +75,7 @@ namespace EricUtility.Windows.Forms.Downloader
             finally
             {
                 this.EndUpdate();
-            }            
+            }
         }
-
-    
     }
 }
