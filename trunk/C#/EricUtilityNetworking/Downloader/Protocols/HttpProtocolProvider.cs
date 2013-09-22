@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using System.Net;
 using System.Net.Security;
@@ -15,7 +13,7 @@ namespace EricUtilityNetworking.Downloader.Protocols
             ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(certificateCallBack);
         }
 
-        static bool certificateCallBack(
+        private static bool certificateCallBack(
             object sender,
             X509Certificate certificate,
             X509Chain chain,
@@ -35,7 +33,7 @@ namespace EricUtilityNetworking.Downloader.Protocols
 
                 if (slashIndex >= 0)
                 {
-                    domain = login.Substring(0, slashIndex );
+                    domain = login.Substring(0, slashIndex);
                     login = login.Substring(slashIndex + 1);
                 }
 
@@ -71,7 +69,7 @@ namespace EricUtilityNetworking.Downloader.Protocols
             }
 
             WebResponse response = request.GetResponse();
-            
+
             return response.GetResponseStream();
         }
 
@@ -93,6 +91,6 @@ namespace EricUtilityNetworking.Downloader.Protocols
             return result;
         }
 
-        #endregion
+        #endregion IProtocolProvider Members
     }
 }

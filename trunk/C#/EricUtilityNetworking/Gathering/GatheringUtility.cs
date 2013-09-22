@@ -40,6 +40,7 @@ namespace EricUtility.Networking.Gathering
             response.Close();
             return container;
         }
+
         private static HttpWebResponse GetResponse(string url, CookieContainer cookies, string contentType)
         {
             HttpWebResponse res = null;
@@ -144,12 +145,12 @@ namespace EricUtility.Networking.Gathering
         {
             return GetPageSource(url, null, cookies, Encoding.Default);
         }
+
         public static String GetPageSource(string url, string contentType, CookieContainer cookies, Encoding encoding)
         {
             HttpWebResponse response = GetResponse(url, cookies, contentType);
             if (response != null)
             {
-
                 Stream s = response.GetResponseStream();
                 string charSet = response.CharacterSet;
                 Encoding coding;

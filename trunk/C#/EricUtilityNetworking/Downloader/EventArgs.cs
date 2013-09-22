@@ -1,10 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EricUtilityNetworking.Downloader
 {
     #region ResolvingProtocolProviderEventArgs
+
     public class ResolvingProtocolProviderEventArgs : EventArgs
     {
         #region Fields
@@ -12,7 +11,7 @@ namespace EricUtilityNetworking.Downloader
         private IProtocolProvider provider;
         private string url;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
@@ -23,7 +22,7 @@ namespace EricUtilityNetworking.Downloader
             this.provider = provider;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Properties
 
@@ -38,11 +37,13 @@ namespace EricUtilityNetworking.Downloader
             set { provider = value; }
         }
 
-        #endregion
-    } 
-    #endregion
+        #endregion Properties
+    }
+
+    #endregion ResolvingProtocolProviderEventArgs
 
     #region DownloaderEventArgs
+
     public class DownloaderEventArgs : EventArgs
     {
         #region Fields
@@ -50,7 +51,7 @@ namespace EricUtilityNetworking.Downloader
         private Downloader downloader;
         private bool willStart;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
@@ -59,12 +60,13 @@ namespace EricUtilityNetworking.Downloader
             this.downloader = download;
         }
 
-        public DownloaderEventArgs(Downloader download, bool willStart): this(download)
+        public DownloaderEventArgs(Downloader download, bool willStart)
+            : this(download)
         {
             this.willStart = willStart;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Properties
 
@@ -76,20 +78,22 @@ namespace EricUtilityNetworking.Downloader
         public bool WillStart
         {
             get { return willStart; }
-        }	
+        }
 
-        #endregion
-    } 
-    #endregion
+        #endregion Properties
+    }
+
+    #endregion DownloaderEventArgs
 
     #region SegmentEventArgs
+
     public class SegmentEventArgs : DownloaderEventArgs
     {
         #region Fields
 
         private Segment segment;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
@@ -99,7 +103,7 @@ namespace EricUtilityNetworking.Downloader
             this.segment = segment;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Properties
 
@@ -109,7 +113,8 @@ namespace EricUtilityNetworking.Downloader
             set { segment = value; }
         }
 
-        #endregion
-    } 
-    #endregion
+        #endregion Properties
+    }
+
+    #endregion SegmentEventArgs
 }
