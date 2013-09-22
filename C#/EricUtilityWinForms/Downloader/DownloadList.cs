@@ -10,6 +10,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Web;
 using EricUtilityNetworking.Downloader;
+using Microsoft.WindowsAPICodePack.Taskbar; 
+using Microsoft.WindowsAPICodePack.Shell;
 
 namespace EricUtility.Windows.Forms.Downloader
 {
@@ -200,6 +202,7 @@ namespace EricUtility.Windows.Forms.Downloader
         }
         public void AddDownload(string src, string dest,int nbSegments=1)
         {
+            tmrRefresh.Start();
             DownloadManager.Instance.Add(ResourceLocation.FromURL(src), null, dest, nbSegments, true);
         }
         public void AddDownloadURLs(
@@ -208,6 +211,7 @@ namespace EricUtility.Windows.Forms.Downloader
             string path,
             int nrOfSubfolders)
         {
+            tmrRefresh.Start();
             if (args == null) return;
 
             if (path == null)
@@ -364,6 +368,7 @@ namespace EricUtility.Windows.Forms.Downloader
 
         private void AddDownload(EricUtilityNetworking.Downloader.Downloader d)
         {
+            tmrRefresh.Start();
             d.RestartingSegment += new EventHandler<SegmentEventArgs>(download_RestartingSegment);
             d.SegmentStoped += new EventHandler<SegmentEventArgs>(download_SegmentEnded);
             d.SegmentFailed += new EventHandler<SegmentEventArgs>(download_SegmentFailed);
@@ -410,6 +415,8 @@ namespace EricUtility.Windows.Forms.Downloader
 
         public void UpdateList()
         {
+            int maxpercent = 0;
+            int currentpercent = 0;
             for (int i = 0; i < lvwDownloads.Items.Count; i++)
             {
                 ListViewItem item = lvwDownloads.Items[i];
@@ -426,6 +433,8 @@ namespace EricUtility.Windows.Forms.Downloader
                     state == DownloaderState.Working ||
                     state == DownloaderState.WaitingForReconnect)
                 {
+                    maxpercent += 100;
+                    currentpercent += (int)d.Progress;
                     item.SubItems[1].Text = ByteFormatter.ToString(d.FileSize);
                     item.SubItems[2].Text = ByteFormatter.ToString(d.Transfered);
                     item.SubItems[3].Text = String.Format("{0:0.##}%", d.Progress);
@@ -453,8 +462,14 @@ namespace EricUtility.Windows.Forms.Downloader
                     item.Tag = d.State;
                 }
             }
-
+            if (TaskbarManager.IsPlatformSupported)
+            {
+                TaskbarManager tbManager = TaskbarManager.Instance;
+                tbManager.SetProgressValue(currentpercent, maxpercent); 
+            }
             UpdateSegments();
+            if (maxpercent == 0)
+                tmrRefresh.Stop();
         }
 
         private void UpdateSegments()
