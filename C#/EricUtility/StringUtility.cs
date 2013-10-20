@@ -4,14 +4,17 @@ using System.Text.RegularExpressions;
 
 namespace EricUtility
 {
-    public class StringUtility
+    public static class StringUtility
     {
-        public static string Extract(string text, string before, string after)
+
+
+
+        public static string Extract(this string text, string before, string after)
         {
             return Extract(text, before, after, 0);
         }
 
-        public static string Extract(string text, string before, string after, int startindex)
+        public static string Extract(this string text, string before, string after, int startindex)
         {
             int ideb = text.IndexOf(before, startindex) + before.Length;
             if (ideb < before.Length)
@@ -22,7 +25,7 @@ namespace EricUtility
             return text.Substring(ideb, ifin - ideb);
         }
 
-        public static string RemoveHTMLTags(string s)
+        public static string RemoveHTMLTags(this string s)
         {
             // Faster than regex: http://dotnetperls.com/remove-html-tags
 
@@ -52,7 +55,7 @@ namespace EricUtility
             return new string(array, 0, arrayIndex);
         }
 
-        public static string RemoveBBCodeTags(string s)
+        public static string RemoveBBCodeTags(this string s)
         {
             // Faster than regex: http://dotnetperls.com/remove-html-tags
 
@@ -82,7 +85,7 @@ namespace EricUtility
             return new string(array, 0, arrayIndex);
         }
 
-        public static string GetMd5Hash(string input)
+        public static string GetMd5Hash(this string input)
         {
             // Convert the input string to a byte array and compute the hash.
             byte[] data = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(input));
@@ -102,7 +105,7 @@ namespace EricUtility
             return sBuilder.ToString();
         }
 
-        public static bool IsValidEmail(string strIn)
+        public static bool IsValidEmail(this string strIn)
         {
             return Regex.IsMatch(strIn, @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$");
         }
