@@ -1,12 +1,15 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace EricUtility.Networking.Commands
 {
     public abstract class AbstractCommand
     {
+        public static string CommandNameField { get { return "COMMAND_NAME"; } }
+
         public static char Delimitter { get { return ';'; } }
 
-        protected abstract string CommandName { get; }
+        protected string CommandName { get { return (string)this.GetType().GetField(CommandNameField).GetValue(null); } }
 
         public virtual void Encode(StringBuilder sb)
         {
@@ -24,6 +27,12 @@ namespace EricUtility.Networking.Commands
             Append(sb, CommandName);
             Encode(sb);
             return sb.ToString();
+        }
+
+        public AbstractCommand()
+        {
+            if (this.GetType().GetField(CommandNameField) == null)
+                throw new Exception("You need a public static field named '" + CommandNameField + "' that gives the name of the command!");
         }
     }
 }
