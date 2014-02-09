@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{980F8DE9-2F6E-4A96-849D-23754B364271}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EricUtilityNetworking</RootNamespace>
+    <AssemblyName>EricUtilityNetworking</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestLive|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\TestLive\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\AbstractCommand.cs" />
+    <Compile Include="Commands\AbstractCommandResponse.cs" />
+    <Compile Include="Commands\CommandObserver.cs" />
+    <Compile Include="Commands\CommandQueueCommunicator.cs" />
+    <Compile Include="Commands\CommandTCPCommunicator.cs" />
+    <Compile Include="Commands\DisconnectCommand.cs" />
+    <Compile Include="Commands\EventArgs.cs" />
+    <Compile Include="Downloader\CalculatedSegment.cs" />
+    <Compile Include="Downloader\Downloader.cs" />
+    <Compile Include="Downloader\DownloaderState.cs" />
+    <Compile Include="Downloader\DownloadManager.cs" />
+    <Compile Include="Downloader\EventArgs.cs" />
+    <Compile Include="Downloader\IMirrorSelector.cs" />
+    <Compile Include="Downloader\IProtocolProvider.cs" />
+    <Compile Include="Downloader\ISegmentCalculator.cs" />
+    <Compile Include="Downloader\MinSizeSegmentCalculator.cs" />
+    <Compile Include="Downloader\ProtocolProviderFactory.cs" />
+    <Compile Include="Downloader\Protocols\BaseProtocolProvider.cs" />
+    <Compile Include="Downloader\Protocols\FtpProtocolProvider.cs" />
+    <Compile Include="Downloader\Protocols\HttpProtocolProvider.cs" />
+    <Compile Include="Downloader\Protocols\IHttpFtpProtocolParameters.cs" />
+    <Compile Include="Downloader\RemoteFileInfo.cs" />
+    <Compile Include="Downloader\ResourceLocation.cs" />
+    <Compile Include="Downloader\Segment.cs" />
+    <Compile Include="Downloader\SegmentState.cs" />
+    <Compile Include="Downloader\SequentialMirrorSelector.cs" />
+    <Compile Include="DownloadItem.cs" />
+    <Compile Include="DownloadProgressInfoEventArgs.cs" />
+    <Compile Include="Gathering\GatheringUtility.cs" />
+    <Compile Include="Gathering\SearchEngineType.cs" />
+    <Compile Include="Gathering\SearchResultEntry.cs" />
+    <Compile Include="JSON\JsonArrayCollection.cs" />
+    <Compile Include="JSON\JsonBooleanValue.cs" />
+    <Compile Include="JSON\JsonCollection.cs" />
+    <Compile Include="JSON\JsonGenerator.cs" />
+    <Compile Include="JSON\JsonNumericValue.cs" />
+    <Compile Include="JSON\JsonObject.cs" />
+    <Compile Include="JSON\JsonObjectCollection.cs" />
+    <Compile Include="JSON\JsonStringValue.cs" />
+    <Compile Include="JSON\JsonTextParser.cs" />
+    <Compile Include="JSON\JsonUtility.cs" />
+    <Compile Include="JSON\SAMPLE_JSON.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueueCommunicator.cs" />
+    <Compile Include="TCPCommunicator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EricUtilityCollections\EricUtilityCollections_2013.csproj">
+      <Project>{e6120916-9399-4bf5-8f95-19d79df74067}</Project>
+      <Name>EricUtilityCollections_2013</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EricUtility\EricUtility_2013.csproj">
+      <Project>{e88c4aef-1b0b-45c0-a08d-cbcda35c1e62}</Project>
+      <Name>EricUtility_2013</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
