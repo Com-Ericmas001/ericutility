@@ -68,7 +68,7 @@ namespace EricUtility
         public static void Log(int level, string from, string format, params object[] args)
         {
             if (MessageLogged != null)
-                MessageLogged(from, String.Format(format, args), level);
+                MessageLogged(String.Format(from, args), String.Format(format, args), level);
         }
     }
 }
