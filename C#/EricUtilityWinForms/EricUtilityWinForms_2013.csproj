@@ -147,12 +147,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs" />
-    <Compile Include="StatePictureBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="StepSplashForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="StepSplashForm.Designer.cs">
+      <DependentUpon>StepSplashForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatePictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StepSplashInfo.cs" />
     <Compile Include="TabControl\CustomizedTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -240,6 +244,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StepSplashForm.resx">
+      <DependentUpon>StepSplashForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TabControl\TabPageContent.resx">
       <DependentUpon>TabPageContent.cs</DependentUpon>
