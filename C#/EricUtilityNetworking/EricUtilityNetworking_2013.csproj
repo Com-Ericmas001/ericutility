@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Commands\AbstractCommand.cs" />
     <Compile Include="Commands\AbstractCommandResponse.cs" />
+    <Compile Include="Commands\AbstractCommandObserver.cs" />
     <Compile Include="Commands\CommandObserver.cs" />
     <Compile Include="Commands\CommandQueueCommunicator.cs" />
     <Compile Include="Commands\CommandTCPCommunicator.cs" />

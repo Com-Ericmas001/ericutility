@@ -2,7 +2,7 @@
 
 namespace EricUtility.Networking.Commands
 {
-    public abstract class CommandTCPCommunicator<T> : TCPCommunicator where T : CommandObserver, new()
+    public abstract class CommandTCPCommunicator<T> : TCPCommunicator where T : AbstractCommandObserver, new()
     {
         protected T m_CommandObserver = new T();
 

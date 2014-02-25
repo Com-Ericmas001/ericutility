@@ -3,9 +3,8 @@ using System.Reflection;
 
 namespace EricUtility.Networking.Commands
 {
-    public abstract class CommandObserver
+    public abstract class TextCommandObserver: AbstractCommandObserver
     {
-        public event EventHandler<StringEventArgs> CommandReceived = delegate { };
 
         protected abstract char Delimitter { get; }
 
@@ -14,7 +13,7 @@ namespace EricUtility.Networking.Commands
         /// </summary>
         /// <param name="line">ligne de commande</param>
         /// <remarks>La méthode s'occupe de faire un RaiseEvent pour chaque evenemement EventHandler(Of CommandEventArgs(Of T)) où T.COMMAND_NAME est égal au premier token de la ligne reçu</remarks>
-        protected virtual void receiveSomething(string line)
+        protected override void receiveSomething(string line)
         {
 
             StringTokenizer token = new StringTokenizer(line, Delimitter);
@@ -39,16 +38,6 @@ namespace EricUtility.Networking.Commands
                     }
                 }
             }
-        }
-
-        public virtual void messageReceived(string line)
-        {
-            if (line == null)
-            {
-                return;
-            }
-            CommandReceived(this, new StringEventArgs(line));
-            receiveSomething(line);
         }
     }
 }
