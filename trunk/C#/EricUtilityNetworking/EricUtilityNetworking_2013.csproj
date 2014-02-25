@@ -45,6 +45,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -56,12 +60,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AbstractCommand.cs" />
-    <Compile Include="Commands\AbstractCommandResponse.cs" />
+    <Compile Include="Commands\Json\AbstractJsonCommand.cs" />
+    <Compile Include="Commands\Json\AbstractJsonCommandResponse.cs" />
+    <Compile Include="Commands\Json\DisconnectJsonCommand.cs" />
+    <Compile Include="Commands\Text\AbstractTextCommand.cs" />
+    <Compile Include="Commands\Text\AbstractTextCommandResponse.cs" />
     <Compile Include="Commands\AbstractCommandObserver.cs" />
-    <Compile Include="Commands\CommandObserver.cs" />
+    <Compile Include="Commands\Json\JsonCommandObserver.cs" />
+    <Compile Include="Commands\Text\TextCommandObserver.cs" />
     <Compile Include="Commands\CommandQueueCommunicator.cs" />
     <Compile Include="Commands\CommandTCPCommunicator.cs" />
-    <Compile Include="Commands\DisconnectCommand.cs" />
+    <Compile Include="Commands\Text\DisconnectTextCommand.cs" />
     <Compile Include="Commands\EventArgs.cs" />
     <Compile Include="Downloader\CalculatedSegment.cs" />
     <Compile Include="Downloader\Downloader.cs" />
