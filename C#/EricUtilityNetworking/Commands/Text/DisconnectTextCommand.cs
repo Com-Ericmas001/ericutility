@@ -2,11 +2,11 @@
 
 namespace EricUtility.Networking.Commands
 {
-    public class DisconnectCommand : AbstractCommand
+    public class DisconnectTextCommand : AbstractTextCommand
     {
         public static string COMMAND_NAME = "DISCONNECT";
 
-        public DisconnectCommand(StringTokenizer argsToken)
+        public DisconnectTextCommand(StringTokenizer argsToken)
         {
         }
 
@@ -15,7 +15,7 @@ namespace EricUtility.Networking.Commands
             sb.Append(thing);
         }
 
-        public DisconnectCommand()
+        public DisconnectTextCommand()
         {
         }
     }

@@ -2,12 +2,12 @@
 
 namespace EricUtility.Networking.Commands
 {
-    public abstract class AbstractCommandResponse<T> : AbstractCommand
-        where T : AbstractCommand
+    public abstract class AbstractTextCommandResponse<T> : AbstractTextCommand
+        where T : AbstractTextCommand
     {
         private readonly T m_Command;
 
-        public AbstractCommandResponse(T command)
+        public AbstractTextCommandResponse(T command)
         {
             m_Command = command;
         }
