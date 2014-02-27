@@ -26,7 +26,7 @@ namespace EricUtility.Networking.Commands
                     if (eventType.Name == typeof(CommandEventArgs<>).Name)
                     {
                         Type commType = eventType.GenericTypeArguments[0];
-                        if (commandName == (string)commType.GetField(AbstractCommand.CommandNameField).GetValue(null))
+                        if (commandName == (string)commType.GetField(AbstractCommand.CommandNameField, (BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public)).GetValue(null))
                         {
                             object command = Activator.CreateInstance(commType, jObj);
                             object commandEventArgs = Activator.CreateInstance(eventType, command);
