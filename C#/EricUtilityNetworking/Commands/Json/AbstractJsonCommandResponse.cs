@@ -5,16 +5,15 @@ namespace EricUtility.Networking.Commands
     public abstract class AbstractJsonCommandResponse<T> : AbstractJsonCommand
         where T : AbstractJsonCommand
     {
-        private readonly T m_Command;
+        public T Command { get; set; }
+
+        public AbstractJsonCommandResponse()
+        {
+        }
 
         public AbstractJsonCommandResponse(T command)
         {
-            m_Command = command;
-        }
-
-        public T Command
-        {
-            get { return m_Command; }
+            Command = command;
         }
     }
 }
