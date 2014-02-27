@@ -7,10 +7,6 @@ namespace EricUtility.Networking.Commands
     {
         public static string COMMAND_NAME = "DISCONNECT";
 
-        public DisconnectJsonCommand(JObject obj)
-        {
-        }
-
         public DisconnectJsonCommand()
         {
         }
