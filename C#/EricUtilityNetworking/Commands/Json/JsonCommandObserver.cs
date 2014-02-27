@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
+using System.Linq;
 
 namespace EricUtility.Networking.Commands
 {
@@ -28,7 +29,9 @@ namespace EricUtility.Networking.Commands
                         Type commType = eventType.GenericTypeArguments[0];
                         if (commandName == (string)commType.GetField(AbstractCommand.CommandNameField, (BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public)).GetValue(null))
                         {
-                            object command = Activator.CreateInstance(commType, jObj);
+                            MethodInfo method = typeof(JsonConvert).GetMethods().Where(m => m.Name == "DeserializeObject" && m.IsGenericMethod).First().MakeGenericMethod(new Type[] { commType });
+
+                            object command = method.Invoke(null, new object[] { line });
                             object commandEventArgs = Activator.CreateInstance(eventType, command);
                             MulticastDelegate del = (MulticastDelegate)this.GetType().GetField(e.Name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(this);
                             if (del != null)
