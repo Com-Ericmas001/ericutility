@@ -3,7 +3,7 @@ using System.Text;
 
 namespace EricUtility.Networking.Commands
 {
-    public class DisconnectJsonCommand : AbstractTextCommand
+    public class DisconnectJsonCommand : AbstractJsonCommand
     {
         public static string COMMAND_NAME = "DISCONNECT";
 
