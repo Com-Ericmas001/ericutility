@@ -8,7 +8,7 @@ namespace EricUtility.Networking.Commands
     {
         public override string Encode()
         {
-            return JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All });
         }
     }
 }
