@@ -16,8 +16,7 @@ namespace EricUtility.Networking.Commands
         /// <remarks>La méthode s'occupe de faire un RaiseEvent pour chaque evenemement EventHandler(Of CommandEventArgs(Of T)) où T.COMMAND_NAME est égal au premier token de la ligne reçu</remarks>
         protected override void receiveSomething(string line)
         {
-            JObject jObj = JsonConvert.DeserializeObject<dynamic>(line);
-            string commandName = (string)jObj["CommandName"];
+            AbstractJsonCommand command = JsonConvert.DeserializeObject(line, null, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All }) as AbstractJsonCommand;
 
             foreach (EventInfo e in this.GetType().GetEvents())
             {
@@ -27,11 +26,9 @@ namespace EricUtility.Networking.Commands
                     if (eventType.Name == typeof(CommandEventArgs<>).Name)
                     {
                         Type commType = eventType.GenericTypeArguments[0];
-                        if (commandName == (string)commType.GetField(AbstractCommand.CommandNameField, (BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public)).GetValue(null))
+                        if (command.CommandName == (string)commType.GetField(AbstractCommand.CommandNameField, (BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public)).GetValue(null))
                         {
                             MethodInfo method = typeof(JsonConvert).GetMethods().Where(m => m.Name == "DeserializeObject" && m.IsGenericMethod).First().MakeGenericMethod(new Type[] { commType });
-
-                            object command = method.Invoke(null, new object[] { line });
                             object commandEventArgs = Activator.CreateInstance(eventType, command);
                             MulticastDelegate del = (MulticastDelegate)this.GetType().GetField(e.Name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(this);
                             if (del != null)
