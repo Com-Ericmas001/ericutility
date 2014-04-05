@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 
 namespace EricUtility.Networking.Commands
 {
@@ -16,7 +17,7 @@ namespace EricUtility.Networking.Commands
         /// <remarks>La méthode s'occupe de faire un RaiseEvent pour chaque evenemement EventHandler(Of CommandEventArgs(Of T)) où T.COMMAND_NAME est égal au premier token de la ligne reçu</remarks>
         protected override void receiveSomething(string line)
         {
-            AbstractJsonCommand command = JsonConvert.DeserializeObject(line, null, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All }) as AbstractJsonCommand;
+            AbstractJsonCommand command = JsonConvert.DeserializeObject<AbstractJsonCommand>(line, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All, TypeNameAssemblyFormat = FormatterAssemblyStyle.Simple });
 
             foreach (EventInfo e in this.GetType().GetEvents())
             {
