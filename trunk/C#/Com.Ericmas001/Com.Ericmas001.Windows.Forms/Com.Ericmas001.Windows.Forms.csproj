@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{47E11091-F60C-4263-90B4-B4107A27057F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Com.Ericmas001.Windows.Forms</RootNamespace>
+    <AssemblyName>Com.Ericmas001.Windows.Forms</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>..\..\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
+      <HintPath>..\..\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Downloader\Block.cs" />
+    <Compile Include="Downloader\BlockedProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Downloader\BlockedProgressBar.designer.cs">
+      <DependentUpon>BlockedProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Downloader\BlockList.cs" />
+    <Compile Include="Downloader\CheckableTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Downloader\ClipboardHelper.cs" />
+    <Compile Include="Downloader\Connection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Downloader\Connection.Designer.cs">
+      <DependentUpon>Connection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Downloader\DownloadFolder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Downloader\DownloadFolder.Designer.cs">
+      <DependentUpon>DownloadFolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Downloader\DownloadList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Downloader\DownloadList.Designer.cs">
+      <DependentUpon>DownloadList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Downloader\FileTypeImageList.cs" />
+    <Compile Include="Downloader\IconReader.cs" />
+    <Compile Include="Downloader\ImportFromFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Downloader\ImportFromFileForm.Designer.cs">
+      <DependentUpon>ImportFromFileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Downloader\Location.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Downloader\Location.Designer.cs">
+      <DependentUpon>Location.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Downloader\NewDownloadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Downloader\NewDownloadForm.Designer.cs">
+      <DependentUpon>NewDownloadForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Downloader\WaitControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Downloader\WaitControl.Designer.cs">
+      <DependentUpon>WaitControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NumberedTextBoxUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NumberedTextBoxUC.designer.cs">
+      <DependentUpon>NumberedTextBoxUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCRTableau.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OCRWhiteBoard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OpenFileTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OpenFileTextBox.designer.cs">
+      <DependentUpon>OpenFileTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenFolderTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StatePictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StepSplashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StepSplashForm.Designer.cs">
+      <DependentUpon>StepSplashForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StepSplashInfo.cs" />
+    <Compile Include="TabControl\CustomizedTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\CustomTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\FixedCustomizedTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\FixedTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\INonCloseableTabPage.cs" />
+    <Compile Include="TabControl\NativeMethods.cs" />
+    <Compile Include="TabControl\TabPageContent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabPageContent.Designer.cs">
+      <DependentUpon>TabPageContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControl\TabStyle.cs" />
+    <Compile Include="TabControl\TabStyleProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleAngledProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleChromeProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleDefaultProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleIE8Provider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleNoneProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleRoundedProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleVisualStudioProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabStyleProviders\TabStyleVS2010Provider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\ThemedColors.cs" />
+    <Compile Include="WindowsConsole.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Downloader\BlockedProgressBar.bmp" />
+    <Content Include="EricUtilityWinForms.csproj" />
+    <Content Include="EricUtilityWinForms2011.csproj" />
+    <Content Include="EricUtilityWinForms_2013.csproj" />
+    <Content Include="EricUtilityWinForms_4.0.csproj" />
+    <Content Include="Resources\bad.jpg" />
+    <Content Include="Resources\closesmall.png" />
+    <Content Include="Resources\current.jpg" />
+    <Content Include="Resources\download.jpg" />
+    <Content Include="Resources\file_back.jpg" />
+    <Content Include="Resources\file_file.jpg" />
+    <Content Include="Resources\file_folder.jpg" />
+    <Content Include="Resources\file_unknown.jpg" />
+    <Content Include="Resources\OK.jpg" />
+    <Content Include="Resources\Open_Folder_Small.gif" />
+    <Content Include="Resources\upload.jpg" />
+    <Content Include="Resources\waiting0.jpg" />
+    <Content Include="Resources\waiting1.jpg" />
+    <Content Include="Resources\waiting2.jpg" />
+    <Content Include="Resources\waiting3.jpg" />
+    <Content Include="Resources\waiting4.jpg" />
+    <Content Include="Resources\waiting5.jpg" />
+    <Content Include="Resources\waiting6.jpg" />
+    <Content Include="Resources\waiting7.jpg" />
+    <Content Include="UpgradeLog.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Downloader\Connection.resx">
+      <DependentUpon>Connection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Downloader\DownloadFolder.resx">
+      <DependentUpon>DownloadFolder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Downloader\DownloadList.resx">
+      <DependentUpon>DownloadList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Downloader\ImportFromFileForm.resx">
+      <DependentUpon>ImportFromFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Downloader\Location.resx">
+      <DependentUpon>Location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Downloader\NewDownloadForm.resx">
+      <DependentUpon>NewDownloadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Downloader\WaitControl.resx">
+      <DependentUpon>WaitControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NumberedTextBoxUC.resx">
+      <DependentUpon>NumberedTextBoxUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenFileTextBox.resx">
+      <DependentUpon>OpenFileTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenFolderTextBox.resx">
+      <DependentUpon>OpenFolderTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StepSplashForm.resx">
+      <DependentUpon>StepSplashForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControl\TabPageContent.resx">
+      <DependentUpon>TabPageContent.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Com.Ericmas001.Net\Com.Ericmas001.Net.csproj">
+      <Project>{51054dbd-fa2e-4617-bc78-f5caabe926f2}</Project>
+      <Name>Com.Ericmas001.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Ericmas001.Util\Com.Ericmas001.Util.csproj">
+      <Project>{473a461c-a3ef-49a1-b4ef-0fdbe2304717}</Project>
+      <Name>Com.Ericmas001.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
