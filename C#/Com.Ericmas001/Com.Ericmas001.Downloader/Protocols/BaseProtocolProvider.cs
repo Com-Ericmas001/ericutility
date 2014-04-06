@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace Com.Ericmas001.Net.Downloader.Protocols
+namespace Com.Ericmas001.Downloader.Protocols
 {
     public class BaseProtocolProvider
     {

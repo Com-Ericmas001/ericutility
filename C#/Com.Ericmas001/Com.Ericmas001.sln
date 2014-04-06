@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Games", "Com
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Games.Windows.Forms", "Com.Ericmas001.Games.Windows.Forms\Com.Ericmas001.Games.Windows.Forms.csproj", "{44296C72-756A-4304-B975-660C80F8D2ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Net.JSON", "Com.Ericmas001.Net.JSON\Com.Ericmas001.Net.JSON.csproj", "{50FDAD8F-01C6-4B41-9547-8E212BBEB9B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Downloader", "Com.Ericmas001.Downloader\Com.Ericmas001.Downloader.csproj", "{C4CB53D6-CE1A-4814-BC0A-36D8FF792E6F}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -67,6 +71,14 @@ Global
 		{44296C72-756A-4304-B975-660C80F8D2ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44296C72-756A-4304-B975-660C80F8D2ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44296C72-756A-4304-B975-660C80F8D2ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50FDAD8F-01C6-4B41-9547-8E212BBEB9B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50FDAD8F-01C6-4B41-9547-8E212BBEB9B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50FDAD8F-01C6-4B41-9547-8E212BBEB9B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50FDAD8F-01C6-4B41-9547-8E212BBEB9B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4CB53D6-CE1A-4814-BC0A-36D8FF792E6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4CB53D6-CE1A-4814-BC0A-36D8FF792E6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4CB53D6-CE1A-4814-BC0A-36D8FF792E6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4CB53D6-CE1A-4814-BC0A-36D8FF792E6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

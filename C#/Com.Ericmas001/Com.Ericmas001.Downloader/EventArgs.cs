@@ -1,6 +1,6 @@
 using System;
 
-namespace Com.Ericmas001.Net.Downloader
+namespace Com.Ericmas001.Downloader
 {
     #region ResolvingProtocolProviderEventArgs
 
