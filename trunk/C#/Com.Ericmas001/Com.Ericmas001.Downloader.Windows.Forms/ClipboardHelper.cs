@@ -1,4 +1,4 @@
-using Com.Ericmas001.Net.Downloader;
+using Com.Ericmas001.Downloader;
 using System.Windows.Forms;
 
 namespace Com.Ericmas001.Windows.Forms.Downloader

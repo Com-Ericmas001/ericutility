@@ -1,4 +1,4 @@
-using Com.Ericmas001.Net.Downloader;
+using Com.Ericmas001.Downloader;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.IO;
 using System;
@@ -172,7 +172,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
                     }
                 }
 
-                Com.Ericmas001.Net.Downloader.Downloader download = DownloadManager.Instance.Add(
+                Com.Ericmas001.Downloader.Downloader download = DownloadManager.Instance.Add(
                     rl,
                     mirrors,
                     this.LocalFile,

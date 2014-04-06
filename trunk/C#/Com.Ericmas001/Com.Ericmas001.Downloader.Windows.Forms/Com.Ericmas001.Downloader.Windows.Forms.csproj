@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7FD7F2D1-1AD9-4373-B28E-4B55938CC19F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Com.Ericmas001.Downloader.Windows.Forms</RootNamespace>
+    <AssemblyName>Com.Ericmas001.Downloader.Windows.Forms</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>..\..\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
+      <HintPath>..\..\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Block.cs" />
+    <Compile Include="BlockedProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BlockedProgressBar.designer.cs">
+      <DependentUpon>BlockedProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BlockList.cs" />
+    <Compile Include="CheckableTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ClipboardHelper.cs" />
+    <Compile Include="Connection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Connection.Designer.cs">
+      <DependentUpon>Connection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadFolder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DownloadFolder.Designer.cs">
+      <DependentUpon>DownloadFolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DownloadList.Designer.cs">
+      <DependentUpon>DownloadList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileTypeImageList.cs" />
+    <Compile Include="IconReader.cs" />
+    <Compile Include="ImportFromFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportFromFileForm.Designer.cs">
+      <DependentUpon>ImportFromFileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Location.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Location.Designer.cs">
+      <DependentUpon>Location.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewDownloadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewDownloadForm.Designer.cs">
+      <DependentUpon>NewDownloadForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WaitControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WaitControl.Designer.cs">
+      <DependentUpon>WaitControl.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Com.Ericmas001.Downloader\Com.Ericmas001.Downloader.csproj">
+      <Project>{c4cb53d6-ce1a-4814-bc0a-36d8ff792e6f}</Project>
+      <Name>Com.Ericmas001.Downloader</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Ericmas001.Util\Com.Ericmas001.Util.csproj">
+      <Project>{473a461c-a3ef-49a1-b4ef-0fdbe2304717}</Project>
+      <Name>Com.Ericmas001.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BlockedProgressBar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Connection.resx">
+      <DependentUpon>Connection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DownloadFolder.resx">
+      <DependentUpon>DownloadFolder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DownloadList.resx">
+      <DependentUpon>DownloadList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportFromFileForm.resx">
+      <DependentUpon>ImportFromFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Location.resx">
+      <DependentUpon>Location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDownloadForm.resx">
+      <DependentUpon>NewDownloadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitControl.resx">
+      <DependentUpon>WaitControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
