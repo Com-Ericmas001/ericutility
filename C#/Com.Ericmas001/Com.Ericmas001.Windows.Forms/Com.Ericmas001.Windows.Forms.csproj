@@ -133,10 +133,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EricUtilityWinForms.csproj" />
-    <Content Include="EricUtilityWinForms2011.csproj" />
-    <Content Include="EricUtilityWinForms_2013.csproj" />
-    <Content Include="EricUtilityWinForms_4.0.csproj" />
     <Content Include="Resources\bad.jpg" />
     <Content Include="Resources\closesmall.png" />
     <Content Include="Resources\current.jpg" />
