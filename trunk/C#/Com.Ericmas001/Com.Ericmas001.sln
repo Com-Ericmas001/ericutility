@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Windows.Form
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Wpf", "Com.Ericmas001.Wpf\Com.Ericmas001.Wpf.csproj", "{FD30CD4E-ACDB-420C-8C1F-5C4B64DD3210}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Games", "Com.Ericmas001.Games\Com.Ericmas001.Games.csproj", "{64D407D1-1119-42A6-86F2-A98A31FDB3B2}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -55,6 +57,10 @@ Global
 		{FD30CD4E-ACDB-420C-8C1F-5C4B64DD3210}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD30CD4E-ACDB-420C-8C1F-5C4B64DD3210}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD30CD4E-ACDB-420C-8C1F-5C4B64DD3210}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64D407D1-1119-42A6-86F2-A98A31FDB3B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64D407D1-1119-42A6-86F2-A98A31FDB3B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64D407D1-1119-42A6-86F2-A98A31FDB3B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64D407D1-1119-42A6-86F2-A98A31FDB3B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
