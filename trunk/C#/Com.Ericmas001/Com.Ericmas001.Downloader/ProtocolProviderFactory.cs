@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-namespace Com.Ericmas001.Net.Downloader
+namespace Com.Ericmas001.Downloader
 {
     public static class ProtocolProviderFactory
     {

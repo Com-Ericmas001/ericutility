@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Com.Ericmas001.Net.Downloader.Protocols
+namespace Com.Ericmas001.Downloader.Protocols
 {
     public class HttpProtocolProvider : BaseProtocolProvider, IProtocolProvider
     {

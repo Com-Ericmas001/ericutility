@@ -1,6 +1,6 @@
 using Com.Ericmas001;
 using Com.Ericmas001.Util.Concurrency;
-using Com.Ericmas001.Net.Downloader.Protocols;
+using Com.Ericmas001.Downloader.Protocols;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +8,7 @@ using System.IO;
 using System.Threading;
 using Com.Ericmas001.Util.IO;
 
-namespace Com.Ericmas001.Net.Downloader
+namespace Com.Ericmas001.Downloader
 {
     public class Downloader
     {

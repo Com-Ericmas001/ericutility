@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Com.Ericmas001.Net.Downloader
+namespace Com.Ericmas001.Downloader
 {
     [Serializable]
     public class ResourceLocation
