@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Com.Ericmas001.Util;
+using System;
 using System.Collections.Generic;
 
-namespace Com.Ericmas001.Util
+namespace Com.Ericmas001.Collections
 {
     public class ArrayUtility
     {
