@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Text;
 
-namespace Com.Ericmas001.Net.Commands
+namespace Com.Ericmas001.Net.Protocol.JSON
 {
     public class DisconnectJsonCommand : AbstractJsonCommand
     {

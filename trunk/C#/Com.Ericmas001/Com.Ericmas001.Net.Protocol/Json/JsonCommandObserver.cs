@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Linq;
 using System.Runtime.Serialization.Formatters;
 
-namespace Com.Ericmas001.Net.Commands
+namespace Com.Ericmas001.Net.Protocol.JSON
 {
     public abstract class JsonCommandObserver: AbstractCommandObserver
     {

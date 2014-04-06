@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace Com.Ericmas001.Net.Commands
+namespace Com.Ericmas001.Net.Protocol.Text
 {
     public abstract class TextCommandObserver: AbstractCommandObserver
     {

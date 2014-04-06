@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Com.Ericmas001.Net.Commands
+namespace Com.Ericmas001.Net.Protocol
 {
     public class StringEventArgs : EventArgs
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Com.Ericmas001.Net.Commands
+namespace Com.Ericmas001.Net.Protocol
 {
     public abstract class AbstractCommandObserver
     {
