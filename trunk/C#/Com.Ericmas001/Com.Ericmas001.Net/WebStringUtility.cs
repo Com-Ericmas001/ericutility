@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web;
 
-namespace EricUtility
+namespace Com.Ericmas001.Net
 {
     public class WebStringUtility
     {
