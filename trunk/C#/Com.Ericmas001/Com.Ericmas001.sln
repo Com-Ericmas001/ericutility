@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Collections"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Windows.Forms", "Com.Ericmas001.Windows.Forms\Com.Ericmas001.Windows.Forms.csproj", "{47E11091-F60C-4263-90B4-B4107A27057F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Wpf", "Com.Ericmas001.Wpf\Com.Ericmas001.Wpf.csproj", "{FD30CD4E-ACDB-420C-8C1F-5C4B64DD3210}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -49,6 +51,10 @@ Global
 		{47E11091-F60C-4263-90B4-B4107A27057F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47E11091-F60C-4263-90B4-B4107A27057F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47E11091-F60C-4263-90B4-B4107A27057F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD30CD4E-ACDB-420C-8C1F-5C4B64DD3210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD30CD4E-ACDB-420C-8C1F-5C4B64DD3210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD30CD4E-ACDB-420C-8C1F-5C4B64DD3210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD30CD4E-ACDB-420C-8C1F-5C4B64DD3210}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
