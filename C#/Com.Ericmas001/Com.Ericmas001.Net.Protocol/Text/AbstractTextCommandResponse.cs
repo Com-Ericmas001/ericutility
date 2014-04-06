@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Com.Ericmas001.Net.Commands
+namespace Com.Ericmas001.Net.Protocol.Text
 {
     public abstract class AbstractTextCommandResponse<T> : AbstractTextCommand
         where T : AbstractTextCommand

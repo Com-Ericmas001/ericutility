@@ -1,7 +1,7 @@
 ﻿using Com.Ericmas001.Util;
 using System.Text;
 
-namespace Com.Ericmas001.Net.Commands
+namespace Com.Ericmas001.Net.Protocol.Text
 {
     public class DisconnectTextCommand : AbstractTextCommand
     {

@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Text;
 
-namespace Com.Ericmas001.Net.Commands
+namespace Com.Ericmas001.Net.Protocol
 {
     public abstract class AbstractCommand
     {

@@ -1,6 +1,6 @@
 ﻿using System.Net.Sockets;
 
-namespace Com.Ericmas001.Net.Commands
+namespace Com.Ericmas001.Net.Protocol
 {
     public abstract class CommandTCPCommunicator<T> : TCPCommunicator where T : AbstractCommandObserver, new()
     {

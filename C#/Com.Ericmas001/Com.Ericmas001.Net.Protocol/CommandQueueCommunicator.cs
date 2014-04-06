@@ -1,7 +1,7 @@
 ﻿using Com.Ericmas001.Util;
 using System;
 
-namespace Com.Ericmas001.Net.Commands
+namespace Com.Ericmas001.Net.Protocol
 {
     public abstract class CommandQueueCommunicator<T> : QueueCommunicator where T : AbstractCommandObserver, new()
     {
