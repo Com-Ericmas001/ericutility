@@ -1,4 +1,4 @@
-using Com.Ericmas001.Net.Downloader;
+using Com.Ericmas001.Downloader;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.IO;
 using Microsoft.WindowsAPICodePack.Taskbar;
@@ -16,7 +16,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
 {
     public partial class DownloadList : UserControl
     {
-        private delegate void ActionDownloader(Com.Ericmas001.Net.Downloader.Downloader d, ListViewItem item);
+        private delegate void ActionDownloader(Com.Ericmas001.Downloader.Downloader d, ListViewItem item);
 
         private Hashtable mapItemToDownload = new Hashtable();
         private Hashtable mapDownloadToItem = new Hashtable();
@@ -104,7 +104,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
         public void StartSelections()
         {
             DownloadsAction(
-                delegate(Com.Ericmas001.Net.Downloader.Downloader d, ListViewItem item)
+                delegate(Com.Ericmas001.Downloader.Downloader d, ListViewItem item)
                 {
                     d.Start();
                 }
@@ -114,7 +114,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
         public void Pause()
         {
             DownloadsAction(
-                delegate(Com.Ericmas001.Net.Downloader.Downloader d, ListViewItem item)
+                delegate(Com.Ericmas001.Downloader.Downloader d, ListViewItem item)
                 {
                     d.Pause();
                 }
@@ -138,7 +138,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
                     DownloadManager.Instance.DownloadRemoved -= new EventHandler<DownloaderEventArgs>(Instance_DownloadRemoved);
 
                     DownloadsAction(
-                        delegate(Com.Ericmas001.Net.Downloader.Downloader d, ListViewItem item)
+                        delegate(Com.Ericmas001.Downloader.Downloader d, ListViewItem item)
                         {
                             lvwDownloads.Items.RemoveAt(item.Index);
                             DownloadManager.Instance.RemoveDownload(d);
@@ -311,16 +311,16 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
             }
         }
 
-        public Com.Ericmas001.Net.Downloader.Downloader[] SelectedDownloaders
+        public Com.Ericmas001.Downloader.Downloader[] SelectedDownloaders
         {
             get
             {
                 if (lvwDownloads.SelectedItems.Count > 0)
                 {
-                    Com.Ericmas001.Net.Downloader.Downloader[] downloaders = new Com.Ericmas001.Net.Downloader.Downloader[lvwDownloads.SelectedItems.Count];
+                    Com.Ericmas001.Downloader.Downloader[] downloaders = new Com.Ericmas001.Downloader.Downloader[lvwDownloads.SelectedItems.Count];
                     for (int i = 0; i < downloaders.Length; i++)
                     {
-                        downloaders[i] = mapItemToDownload[lvwDownloads.SelectedItems[i]] as Com.Ericmas001.Net.Downloader.Downloader;
+                        downloaders[i] = mapItemToDownload[lvwDownloads.SelectedItems[i]] as Com.Ericmas001.Downloader.Downloader;
                     }
                     return downloaders;
                 }
@@ -366,7 +366,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
             }
         }
 
-        private void AddDownload(Com.Ericmas001.Net.Downloader.Downloader d)
+        private void AddDownload(Com.Ericmas001.Downloader.Downloader d)
         {
             tmrRefresh.Start();
             d.RestartingSegment += new EventHandler<SegmentEventArgs>(download_RestartingSegment);
@@ -408,7 +408,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
             lvwDownloads.Items.Add(item);
         }
 
-        private static string GetResumeStr(Com.Ericmas001.Net.Downloader.Downloader d)
+        private static string GetResumeStr(Com.Ericmas001.Downloader.Downloader d)
         {
             return (d.RemoteFileInfo != null && d.RemoteFileInfo.AcceptRanges ? "Yes" : "No");
         }
@@ -421,7 +421,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
             {
                 ListViewItem item = lvwDownloads.Items[i];
                 if (item == null) return;
-                Com.Ericmas001.Net.Downloader.Downloader d = mapItemToDownload[item] as Com.Ericmas001.Net.Downloader.Downloader;
+                Com.Ericmas001.Downloader.Downloader d = mapItemToDownload[item] as Com.Ericmas001.Downloader.Downloader;
                 if (d == null) return;
 
                 DownloaderState state;
@@ -481,7 +481,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
                 if (lvwDownloads.SelectedItems.Count == 1)
                 {
                     ListViewItem newSelection = lvwDownloads.SelectedItems[0];
-                    Com.Ericmas001.Net.Downloader.Downloader d = mapItemToDownload[newSelection] as Com.Ericmas001.Net.Downloader.Downloader;
+                    Com.Ericmas001.Downloader.Downloader d = mapItemToDownload[newSelection] as Com.Ericmas001.Downloader.Downloader;
 
                     if (lastSelection == newSelection)
                     {
@@ -528,7 +528,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
                     for (int i = lvwDownloads.SelectedItems.Count - 1; i >= 0; i--)
                     {
                         ListViewItem item = lvwDownloads.SelectedItems[i];
-                        action((Com.Ericmas001.Net.Downloader.Downloader)mapItemToDownload[item], item);
+                        action((Com.Ericmas001.Downloader.Downloader)mapItemToDownload[item], item);
                     }
 
                     lvwDownloads.ItemSelectionChanged += new ListViewItemSelectionChangedEventHandler(lvwDownloads_ItemSelectionChanged);
@@ -542,7 +542,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
             }
         }
 
-        private void UpdateSegmentsWithoutInsert(Com.Ericmas001.Net.Downloader.Downloader d)
+        private void UpdateSegmentsWithoutInsert(Com.Ericmas001.Downloader.Downloader d)
         {
             for (int i = 0; i < d.Segments.Count; i++)
             {
@@ -571,7 +571,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
             this.blockedProgressBar1.Refresh();
         }
 
-        private void UpdateSegmentsInserting(Com.Ericmas001.Net.Downloader.Downloader d, ListViewItem newSelection)
+        private void UpdateSegmentsInserting(Com.Ericmas001.Downloader.Downloader d, ListViewItem newSelection)
         {
             lastSelection = newSelection;
 
@@ -604,7 +604,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
 
         private void download_InfoReceived(object sender, EventArgs e)
         {
-            Com.Ericmas001.Net.Downloader.Downloader d = (Com.Ericmas001.Net.Downloader.Downloader)sender;
+            Com.Ericmas001.Downloader.Downloader d = (Com.Ericmas001.Downloader.Downloader)sender;
 
             Log(
                 d,
@@ -692,7 +692,7 @@ namespace Com.Ericmas001.Windows.Forms.Downloader
             Information
         }
 
-        private void Log(Com.Ericmas001.Net.Downloader.Downloader downloader, string msg, LogMode m)
+        private void Log(Com.Ericmas001.Downloader.Downloader downloader, string msg, LogMode m)
         {
             try
             {

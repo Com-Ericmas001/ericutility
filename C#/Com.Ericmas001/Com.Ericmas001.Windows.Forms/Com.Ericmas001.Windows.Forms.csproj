@@ -31,16 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.WindowsAPICodePack">
-      <HintPath>..\..\Microsoft.WindowsAPICodePack.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
-      <HintPath>..\..\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,62 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Downloader\Block.cs" />
-    <Compile Include="Downloader\BlockedProgressBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Downloader\BlockedProgressBar.designer.cs">
-      <DependentUpon>BlockedProgressBar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Downloader\BlockList.cs" />
-    <Compile Include="Downloader\CheckableTreeView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Downloader\ClipboardHelper.cs" />
-    <Compile Include="Downloader\Connection.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Downloader\Connection.Designer.cs">
-      <DependentUpon>Connection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Downloader\DownloadFolder.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Downloader\DownloadFolder.Designer.cs">
-      <DependentUpon>DownloadFolder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Downloader\DownloadList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Downloader\DownloadList.Designer.cs">
-      <DependentUpon>DownloadList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Downloader\FileTypeImageList.cs" />
-    <Compile Include="Downloader\IconReader.cs" />
-    <Compile Include="Downloader\ImportFromFileForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Downloader\ImportFromFileForm.Designer.cs">
-      <DependentUpon>ImportFromFileForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Downloader\Location.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Downloader\Location.Designer.cs">
-      <DependentUpon>Location.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Downloader\NewDownloadForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Downloader\NewDownloadForm.Designer.cs">
-      <DependentUpon>NewDownloadForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Downloader\WaitControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Downloader\WaitControl.Designer.cs">
-      <DependentUpon>WaitControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="NumberedTextBoxUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -196,7 +133,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Downloader\BlockedProgressBar.bmp" />
     <Content Include="EricUtilityWinForms.csproj" />
     <Content Include="EricUtilityWinForms2011.csproj" />
     <Content Include="EricUtilityWinForms_2013.csproj" />
@@ -223,27 +159,6 @@
     <Content Include="UpgradeLog.XML" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Downloader\Connection.resx">
-      <DependentUpon>Connection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Downloader\DownloadFolder.resx">
-      <DependentUpon>DownloadFolder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Downloader\DownloadList.resx">
-      <DependentUpon>DownloadList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Downloader\ImportFromFileForm.resx">
-      <DependentUpon>ImportFromFileForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Downloader\Location.resx">
-      <DependentUpon>Location.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Downloader\NewDownloadForm.resx">
-      <DependentUpon>NewDownloadForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Downloader\WaitControl.resx">
-      <DependentUpon>WaitControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="NumberedTextBoxUC.resx">
       <DependentUpon>NumberedTextBoxUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -265,15 +180,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Com.Ericmas001.Net\Com.Ericmas001.Net.csproj">
-      <Project>{51054dbd-fa2e-4617-bc78-f5caabe926f2}</Project>
-      <Name>Com.Ericmas001.Net</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Com.Ericmas001.Util\Com.Ericmas001.Util.csproj">
       <Project>{473a461c-a3ef-49a1-b4ef-0fdbe2304717}</Project>
       <Name>Com.Ericmas001.Util</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
