@@ -54,8 +54,6 @@
     <Compile Include="Gathering\SearchingUtility.cs" />
     <Compile Include="Gathering\SearchResultEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueueCommunicator.cs" />
-    <Compile Include="TCPCommunicator.cs" />
     <Compile Include="WebStringUtility.cs" />
   </ItemGroup>
   <ItemGroup>
