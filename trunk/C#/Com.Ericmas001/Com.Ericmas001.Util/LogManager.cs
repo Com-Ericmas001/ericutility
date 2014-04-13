@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Com.Ericmas001.Util
 {
@@ -135,6 +136,32 @@ namespace Com.Ericmas001.Util
 
             Console.ForegroundColor = fc;
             Console.BackgroundColor = bc;
+        }
+
+        public static void LogInFile(StreamWriter sw, string from, string message, int level, LogLevel minLevelToLog)
+        {
+
+            if (level >= (int)LogLevel.Error)
+            {
+                message = "ERROR: " + message;
+            }
+            else if (level >= (int)LogLevel.Warning)
+            {
+                message = "WARNING: " + message;
+            }
+            else if (level >= (int)LogLevel.MessageVeryHigh)
+            {
+                message = "IMPORTANT: " + message;
+            }
+            else if (level <= (int)LogLevel.MessageLow)
+            {
+                message = "DEBUG: " + message;
+            }
+
+
+            //Let's Log!
+            if (level >= (int)minLevelToLog)
+                sw.WriteLine(message);
         }
     }
 }
