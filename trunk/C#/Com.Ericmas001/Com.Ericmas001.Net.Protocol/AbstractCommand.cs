@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Reflection;
 using System.Text;
 
@@ -8,6 +9,7 @@ namespace Com.Ericmas001.Net.Protocol
     {
         public static string CommandNameField { get { return "COMMAND_NAME"; } }
 
+        [JsonProperty(Order = -2)]
         public string CommandName { get { return (string)this.GetType().GetField(CommandNameField, (BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public)).GetValue(null); } }
 
         public abstract string Encode();
