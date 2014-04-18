@@ -9,7 +9,7 @@ namespace Com.Ericmas001.Net.Protocol.JSON
     {
         public override string Encode()
         {
-            return JsonConvert.SerializeObject(this, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All, TypeNameAssemblyFormat = FormatterAssemblyStyle.Simple });
+            return JsonConvert.SerializeObject(this);
         }
     }
 }
