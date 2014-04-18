@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Com.Ericmas001.Net.JSON
+namespace Com.Ericmas001.Net.JSON.Custom
 {
     public sealed class JsonTextParser
     {

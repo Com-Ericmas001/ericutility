@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Com.Ericmas001.Net.JSON
+namespace Com.Ericmas001.Net.JSON.Custom
 {
     internal class Program
     {

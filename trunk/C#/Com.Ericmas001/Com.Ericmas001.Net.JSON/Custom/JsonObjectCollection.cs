@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Com.Ericmas001.Net.JSON
+namespace Com.Ericmas001.Net.JSON.Custom
 {
     public class JsonObjectCollection : JsonCollection
     {
