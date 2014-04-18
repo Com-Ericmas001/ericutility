@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Com.Ericmas001.Net.Protocol.Json
+namespace Com.Ericmas001.Net.JSON
 {
     public abstract class AbstractCustomJsonConverter<T> : JsonConverter
     {
