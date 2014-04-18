@@ -17,8 +17,9 @@ namespace Com.Ericmas001.Net.Protocol.JSON
         /// <remarks>La méthode s'occupe de faire un RaiseEvent pour chaque evenemement EventHandler(Of CommandEventArgs(Of T)) où T.COMMAND_NAME est égal au premier token de la ligne reçu</remarks>
         protected override void receiveSomething(string line)
         {
-            AbstractJsonCommand command = JsonConvert.DeserializeObject<AbstractJsonCommand>(line, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All, TypeNameAssemblyFormat = FormatterAssemblyStyle.Simple });
-
+            //AbstractJsonCommand command = JsonConvert.DeserializeObject<AbstractJsonCommand>(line);
+            JObject jObj = JsonConvert.DeserializeObject<dynamic>(line);
+            string commandName = (string)jObj["CommandName"];
             foreach (EventInfo e in this.GetType().GetEvents())
             {
                 if (e.EventHandlerType.Name == typeof(EventHandler<>).Name)
@@ -27,9 +28,10 @@ namespace Com.Ericmas001.Net.Protocol.JSON
                     if (eventType.Name == typeof(CommandEventArgs<>).Name)
                     {
                         Type commType = eventType.GenericTypeArguments[0];
-                        if (command.CommandName == (string)commType.GetField(AbstractCommand.CommandNameField, (BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public)).GetValue(null))
+                        if (commandName == (string)commType.GetField(AbstractCommand.CommandNameField, (BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public)).GetValue(null))
                         {
                             MethodInfo method = typeof(JsonConvert).GetMethods().Where(m => m.Name == "DeserializeObject" && m.IsGenericMethod).First().MakeGenericMethod(new Type[] { commType });
+                            object command = method.Invoke(null, new object[] { line });
                             object commandEventArgs = Activator.CreateInstance(eventType, command);
                             MulticastDelegate del = (MulticastDelegate)this.GetType().GetField(e.Name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(this);
                             if (del != null)
