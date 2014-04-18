@@ -3,7 +3,7 @@ using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Reflection;
 
-namespace Com.Ericmas001.Net.JSON
+namespace Com.Ericmas001.Net.JSON.Custom
 {
     [global::System.Serializable]
     public class GeneratorException : Exception

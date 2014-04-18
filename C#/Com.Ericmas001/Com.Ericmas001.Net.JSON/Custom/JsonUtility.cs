@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace Com.Ericmas001.Net.JSON
+namespace Com.Ericmas001.Net.JSON.Custom
 {
     public static class JsonUtility
     {

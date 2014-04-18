@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using System.IO;
 
-namespace Com.Ericmas001.Net.JSON
+namespace Com.Ericmas001.Net.JSON.Custom
 {
     /// <summary>
     /// Implements a collection object.

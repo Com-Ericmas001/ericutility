@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Com.Ericmas001.Net.JSON
+namespace Com.Ericmas001.Net.JSON.Custom
 {
     /// <summary>
     /// Common object for all JSON data structures.
