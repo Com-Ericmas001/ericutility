@@ -49,7 +49,6 @@
     <Compile Include="CommandQueueCommunicator.cs" />
     <Compile Include="CommandTCPCommunicator.cs" />
     <Compile Include="EventArgs.cs" />
-    <Compile Include="Json\AbstractCustomJsonConverter.cs" />
     <Compile Include="Json\AbstractJsonCommand.cs" />
     <Compile Include="Json\AbstractJsonCommandResponse.cs" />
     <Compile Include="Json\DisconnectJsonCommand.cs" />
