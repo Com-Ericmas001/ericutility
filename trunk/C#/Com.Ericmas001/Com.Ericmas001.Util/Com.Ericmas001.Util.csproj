@@ -56,6 +56,8 @@
     <Compile Include="IO\PathHelper.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="MyStopwatch.cs" />
+    <Compile Include="Options\FactoryOption.cs" />
+    <Compile Include="Options\IOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringTokenizer.cs" />
     <Compile Include="StringUtility.cs" />
