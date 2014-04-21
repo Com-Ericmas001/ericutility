@@ -48,6 +48,7 @@
     <Compile Include="Concurrency\ReaderWriterObjectLocker.cs" />
     <Compile Include="CountryInfo.cs" />
     <Compile Include="DateTimeWithZone.cs" />
+    <Compile Include="EnumFactory.cs" />
     <Compile Include="FlagGroup.cs" />
     <Compile Include="GenericDelegates.cs" />
     <Compile Include="GenericEventArgs.cs" />
