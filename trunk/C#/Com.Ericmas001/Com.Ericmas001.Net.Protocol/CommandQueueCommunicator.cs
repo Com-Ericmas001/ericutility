@@ -1,5 +1,4 @@
 ﻿using Com.Ericmas001.Util;
-using System;
 
 namespace Com.Ericmas001.Net.Protocol
 {
@@ -7,22 +6,22 @@ namespace Com.Ericmas001.Net.Protocol
     {
         protected T m_CommandObserver = new T();
 
-        public CommandQueueCommunicator()
+        protected CommandQueueCommunicator()
         {
             InitializeCommandObserver();
-            base.ReceivedSomething += new EventHandler<KeyEventArgs<string>>(CommandQueueCommunicator_ReceivedSomething);
+            ReceivedSomething += CommandQueueCommunicator_ReceivedSomething;
         }
 
         private void CommandQueueCommunicator_ReceivedSomething(object sender, KeyEventArgs<string> e)
         {
-            m_CommandObserver.messageReceived(e.Key);
+            m_CommandObserver.MessageReceived(e.Key);
         }
 
         protected abstract void InitializeCommandObserver();
 
         public virtual void Send(AbstractCommand command)
         {
-            base.Send(command.Encode());
+            Send(command.Encode());
         }
     }
 }
