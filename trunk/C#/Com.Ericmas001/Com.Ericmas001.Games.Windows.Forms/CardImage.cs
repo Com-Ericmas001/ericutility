@@ -43,12 +43,8 @@
  * Petite source très simple, mais qui pourra sauver du temps a certains
  */
 
-using System;
-using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using Com.Ericmas001.Games;
+using Com.Ericmas001.Games.Windows.Forms.Properties;
 
 namespace Com.Ericmas001.Games.Windows.Forms
 {
@@ -60,7 +56,7 @@ namespace Com.Ericmas001.Games.Windows.Forms
         {
             get
             {
-                return Properties.Resources.deck2;
+                return Resources.deck2;
             }
         }
 
@@ -70,19 +66,19 @@ namespace Com.Ericmas001.Games.Windows.Forms
         public static Image GetImage(int x, int y, double size)
         {
             // On va chercher l'image de base
-            Image imgSource = ImageDeck;
+            var imgSource = ImageDeck;
 
             // On crée une nouvelle image sur laquel on va dessiner
             Image img = new Bitmap((int)(40 * size), (int)(56 * size));
 
             // On prends en main notre "crayon" pour dessiner
-            Graphics g = Graphics.FromImage(img);
+            var g = Graphics.FromImage(img);
             g.Clear(Color.Transparent);
             // On note la position et la grosseur de l'image de la carte
-            Rectangle rect = new Rectangle(0, 0, (int)(40 * size), (int)(56 * size));
+            var rect = new Rectangle(0, 0, (int)(40 * size), (int)(56 * size));
 
             // On dessine la carte
-            g.DrawImage(imgSource, rect, x, y, (int)40, (int)56, GraphicsUnit.Pixel);
+            g.DrawImage(imgSource, rect, x, y, 40, 56, GraphicsUnit.Pixel);
 
             // On rajoute une toute petite bordure autour de la carte
             //g.DrawRectangle(new Pen(Brushes.Black), 0, 0, (int)(41 * size), (int)(57 * size));
@@ -95,8 +91,8 @@ namespace Com.Ericmas001.Games.Windows.Forms
         // Ordre Club Heart Diamond Spade / Pokus ColorJoker Muffin DarkJoker
         public static Image GetImage(GameCardKind sorte, GameCardValue valeur, double size)
         {
-            int v = (int)valeur;
-            int k = 0;
+            var v = (int)valeur;
+            var k = 0;
             switch (sorte)
             {
                 case GameCardKind.Heart: k = 1; break;
@@ -119,7 +115,7 @@ namespace Com.Ericmas001.Games.Windows.Forms
         }
         public static Image GetJokerImage(bool colored, double size)
         {
-            int offset = (colored ? 0 : 2*56);
+            var offset = (colored ? 0 : 2*56);
             return GetImage(13 * 40, 56 + offset, size);
         }
         public static Image GetBackSideImage(double size)
