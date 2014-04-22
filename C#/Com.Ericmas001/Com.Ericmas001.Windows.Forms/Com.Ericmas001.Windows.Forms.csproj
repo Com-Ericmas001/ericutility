@@ -43,16 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Annotations\Annotations.cs" />
-    <Compile Include="NumberedTextBoxUc1.cs">
+    <Compile Include="NumberedTextBoxUc.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NumberedTextBoxUc1.designer.cs">
-      <DependentUpon>NumberedTextBoxUc1.cs</DependentUpon>
+    <Compile Include="NumberedTextBoxUc.designer.cs">
+      <DependentUpon>NumberedTextBoxUc.cs</DependentUpon>
     </Compile>
     <Compile Include="OcrTableau.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="OcrWhiteBoard1.cs">
+    <Compile Include="OcrWhiteBoard.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="OpenFileTextBox.cs">
@@ -156,8 +156,8 @@
     <Content Include="UpgradeLog.XML" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="NumberedTextBoxUc1.resx">
-      <DependentUpon>NumberedTextBoxUc1.cs</DependentUpon>
+    <EmbeddedResource Include="NumberedTextBoxUc.resx">
+      <DependentUpon>NumberedTextBoxUc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OpenFileTextBox.resx">
       <DependentUpon>OpenFileTextBox.cs</DependentUpon>
