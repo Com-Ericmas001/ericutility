@@ -1,4 +1,6 @@
-﻿namespace Com.Ericmas001.Net.JSON.Custom
+﻿using System.IO;
+
+namespace Com.Ericmas001.Net.JSON.Custom
 {
     public class JsonNumericValue : JsonObject
     {
@@ -7,17 +9,17 @@
             return Value;
         }
 
-        private double _value;
+        private double m_Value;
 
         public double Value
         {
             get
             {
-                return _value;
+                return m_Value;
             }
             set
             {
-                _value = value;
+                m_Value = value;
             }
         }
 
@@ -43,51 +45,46 @@
 
         public JsonNumericValue(int value)
         {
-            Value = (double)value;
+            Value = value;
         }
 
         public JsonNumericValue(string name, int value)
         {
             Name = name;
-            Value = (double)value;
+            Value = value;
         }
 
         public JsonNumericValue(float value)
         {
-            Value = (double)value;
+            Value = value;
         }
 
         public JsonNumericValue(string name, float value)
         {
             Name = name;
-            Value = (double)value;
+            Value = value;
         }
 
         public JsonNumericValue(long value)
         {
-            Value = (double)value;
+            Value = value;
         }
 
         public JsonNumericValue(string name, long value)
         {
             Name = name;
-            Value = (double)value;
-        }
-
-        public override string ToString()
-        {
-            return base.ToString();
+            Value = value;
         }
 
         public override bool Equals(object obj)
         {
-            JsonNumericValue other = obj as JsonNumericValue;
+            var other = obj as JsonNumericValue;
             if (other == null)
             {
                 return false;
             }
 
-            return (this.Value == other.Value);
+            return (Value == other.Value);
         }
 
         public override int GetHashCode()
@@ -95,14 +92,14 @@
             return Value.GetHashCode();
         }
 
-        public override void WriteTo(System.IO.TextWriter writer)
+        public override void WriteTo(TextWriter writer)
         {
             if (Name != string.Empty)
             {
-                writer.Write(JsonUtility.quote);
+                writer.Write(JsonUtility.QUOTE);
                 writer.Write(Name);
-                writer.Write(JsonUtility.quote);
-                writer.Write(JsonUtility.name_separator);
+                writer.Write(JsonUtility.QUOTE);
+                writer.Write(JsonUtility.NAME_SEPARATOR);
                 JsonUtility.WriteSpace(writer);
             }
 

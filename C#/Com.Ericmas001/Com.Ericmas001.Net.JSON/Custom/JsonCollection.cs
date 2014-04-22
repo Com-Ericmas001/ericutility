@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using System.IO;
@@ -11,22 +12,7 @@ namespace Com.Ericmas001.Net.JSON.Custom
     /// </summary>
     public abstract class JsonCollection : JsonObject, IList<JsonObject>
     {
-        private bool? _isArray = new bool?();
-
-        private bool IsArray
-        {
-            get
-            {
-                if (!_isArray.HasValue)
-                {
-                    _isArray = this.GetType() == typeof(JsonArrayCollection);
-                }
-
-                return _isArray.Value;
-            }
-        }
-
-        private List<JsonObject> _list = new List<JsonObject>();
+        private readonly List<JsonObject> m_List = new List<JsonObject>();
 
         /// <summary>
         /// Initializes a new instance of the JsonCollection class.
@@ -51,7 +37,7 @@ namespace Com.Ericmas001.Net.JSON.Custom
         /// <param name="collection">Collection of nested objects.</param>
         public JsonCollection(IEnumerable<JsonObject> collection)
         {
-            _list.AddRange(collection);
+            m_List.AddRange(collection);
         }
 
         /// <summary>
@@ -63,16 +49,7 @@ namespace Com.Ericmas001.Net.JSON.Custom
         public JsonCollection(string name, IEnumerable<JsonObject> collection)
         {
             Name = name;
-            _list.AddRange(collection);
-        }
-
-        /// <summary>
-        /// Returns string that represents object is json format.
-        /// </summary>
-        /// <returns>String that represents object is json format.</returns>
-        public override string ToString()
-        {
-            return base.ToString();
+            m_List.AddRange(collection);
         }
 
         /// <summary>
@@ -93,10 +70,10 @@ namespace Com.Ericmas001.Net.JSON.Custom
         {
             if (Name != string.Empty)
             {
-                writer.Write(JsonUtility.quote);
+                writer.Write(JsonUtility.QUOTE);
                 writer.Write(Name);
-                writer.Write(JsonUtility.quote);
-                writer.Write(JsonUtility.name_separator);
+                writer.Write(JsonUtility.QUOTE);
+                writer.Write(JsonUtility.NAME_SEPARATOR);
                 JsonUtility.WriteSpace(writer);
             }
 
@@ -106,11 +83,11 @@ namespace Com.Ericmas001.Net.JSON.Custom
             JsonUtility.IndentDepth++;
             JsonUtility.WriteIndent(writer);
 
-            for (int i = 0; i < this.Count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 if (i > 0)
                 {
-                    writer.Write(JsonUtility.value_separator);
+                    writer.Write(JsonUtility.VALUE_SEPARATOR);
                     JsonUtility.WriteLine(writer);
                     JsonUtility.WriteIndent(writer);
                 }
@@ -137,35 +114,35 @@ namespace Com.Ericmas001.Net.JSON.Custom
 
         public override object GetValue()
         {
-            return _list;
+            return m_List;
         }
 
         #region IList<JsonObject> Members
 
         public int IndexOf(JsonObject item)
         {
-            return _list.IndexOf(item);
+            return m_List.IndexOf(item);
         }
 
         public void Insert(int index, JsonObject item)
         {
-            _list.Insert(index, item);
+            m_List.Insert(index, item);
         }
 
         public void RemoveAt(int index)
         {
-            _list.RemoveAt(index);
+            m_List.RemoveAt(index);
         }
 
         public JsonObject this[int index]
         {
             get
             {
-                return _list[index];
+                return m_List[index];
             }
             set
             {
-                _list[index] = value;
+                m_List[index] = value;
             }
         }
 
@@ -175,27 +152,27 @@ namespace Com.Ericmas001.Net.JSON.Custom
 
         public void Add(JsonObject item)
         {
-            _list.Add(item);
+            m_List.Add(item);
         }
 
         public void Clear()
         {
-            _list.Clear();
+            m_List.Clear();
         }
 
         public bool Contains(JsonObject item)
         {
-            return _list.Contains(item);
+            return m_List.Contains(item);
         }
 
         public void CopyTo(JsonObject[] array, int arrayIndex)
         {
-            _list.CopyTo(array, arrayIndex);
+            m_List.CopyTo(array, arrayIndex);
         }
 
         public int Count
         {
-            get { return _list.Count; }
+            get { return m_List.Count; }
         }
 
         public bool IsReadOnly
@@ -205,7 +182,7 @@ namespace Com.Ericmas001.Net.JSON.Custom
 
         public bool Remove(JsonObject item)
         {
-            return _list.Remove(item);
+            return m_List.Remove(item);
         }
 
         #endregion ICollection<JsonObject> Members
@@ -214,16 +191,16 @@ namespace Com.Ericmas001.Net.JSON.Custom
 
         public IEnumerator<JsonObject> GetEnumerator()
         {
-            return _list.GetEnumerator();
+            return m_List.GetEnumerator();
         }
 
         #endregion IEnumerable<JsonObject> Members
 
         #region IEnumerable Members
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            return _list.GetEnumerator();
+            return m_List.GetEnumerator();
         }
 
         #endregion IEnumerable Members

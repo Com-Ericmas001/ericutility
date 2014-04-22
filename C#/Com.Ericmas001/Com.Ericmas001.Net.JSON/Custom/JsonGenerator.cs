@@ -1,11 +1,13 @@
 ﻿using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
+using System.IO;
 using System.Reflection;
+using System.Runtime.Serialization;
 
 namespace Com.Ericmas001.Net.JSON.Custom
 {
-    [global::System.Serializable]
+    [Serializable]
     public class GeneratorException : Exception
     {
         //
@@ -15,14 +17,14 @@ namespace Com.Ericmas001.Net.JSON.Custom
         //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dncscol/html/csharp07192001.asp
         //
 
-        private CompilerResults _results;
+        private readonly CompilerResults m_Results;
 
-        public CompilerResults CompilerResults { get { return _results; } }
+        public CompilerResults CompilerResults { get { return m_Results; } }
 
         public GeneratorException(string message, CompilerResults results)
             : base(message)
         {
-            _results = results;
+            m_Results = results;
         }
 
         public GeneratorException()
@@ -40,8 +42,8 @@ namespace Com.Ericmas001.Net.JSON.Custom
         }
 
         protected GeneratorException(
-          System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context)
+          SerializationInfo info,
+          StreamingContext context)
             : base(info, context) { }
     }
 
@@ -52,12 +54,12 @@ namespace Com.Ericmas001.Net.JSON.Custom
     {
         private void GenerateDefaultConstructor(CodeTypeDeclaration classObject, JsonObject jsonObject)
         {
-            CodeConstructor ctor = new CodeConstructor();
+            var ctor = new CodeConstructor();
             classObject.Members.Add(ctor);
             ctor.Attributes = MemberAttributes.Public;
 
             //RootObject = new JsonObjectCollection();
-            CodeAssignStatement assignRootObject = new CodeAssignStatement(
+            var assignRootObject = new CodeAssignStatement(
                 new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), "RootObject"),
                 new CodeObjectCreateExpression(jsonObject.GetType()));
 
@@ -71,24 +73,24 @@ namespace Com.Ericmas001.Net.JSON.Custom
 
         private void GenerateConstructorWithTextParameter(CodeTypeDeclaration classObject, JsonObject jsonObject)
         {
-            CodeConstructor ctor = new CodeConstructor();
+            var ctor = new CodeConstructor();
             classObject.Members.Add(ctor);
             ctor.Attributes = MemberAttributes.Public;
             ctor.Parameters.Add(new CodeParameterDeclarationExpression(new CodeTypeReference(typeof(string)), "text"));
 
             // declare parser variable
-            CodeVariableDeclarationStatement parserCreate = new CodeVariableDeclarationStatement(
+            var parserCreate = new CodeVariableDeclarationStatement(
                 typeof(JsonTextParser), "parser",
                 new CodeObjectCreateExpression(new CodeTypeReference(typeof(JsonTextParser))));
             ctor.Statements.Add(parserCreate);
 
             // invoke Parse method on parser object
-            CodeMethodInvokeExpression invokeParse = new CodeMethodInvokeExpression(
+            var invokeParse = new CodeMethodInvokeExpression(
                 new CodeMethodReferenceExpression(new CodeVariableReferenceExpression("parser"), "Parse"),
                 new CodeVariableReferenceExpression("text"));
 
             // assign result of Parse method to RootObject
-            CodeAssignStatement assignObject = new CodeAssignStatement(
+            var assignObject = new CodeAssignStatement(
                 new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), "RootObject"),
                 new CodeCastExpression(new CodeTypeReference(jsonObject.GetType()), invokeParse));
 
@@ -98,13 +100,15 @@ namespace Com.Ericmas001.Net.JSON.Custom
 
         private void GenerateToStringDefaultMethod(CodeTypeDeclaration classObject)
         {
-            CodeMemberMethod tostring = new CodeMemberMethod();
+            var tostring = new CodeMemberMethod();
             classObject.Members.Add(tostring);
             tostring.Name = "ToString";
+// ReSharper disable BitwiseOperatorOnEnumWithoutFlags
             tostring.Attributes = MemberAttributes.Override | MemberAttributes.Public | MemberAttributes.Overloaded;
+// ReSharper restore BitwiseOperatorOnEnumWithoutFlags
             tostring.ReturnType = new CodeTypeReference(typeof(string));
 
-            CodeMethodReturnStatement invokeToString = new CodeMethodReturnStatement(
+            var invokeToString = new CodeMethodReturnStatement(
                 new CodeMethodInvokeExpression(
                     new CodeMethodReferenceExpression(
                             new CodeThisReferenceExpression(), "RootObject"),
@@ -114,40 +118,35 @@ namespace Com.Ericmas001.Net.JSON.Custom
 
         private void GenerateParseStaticMethod(CodeTypeDeclaration classObject)
         {
-            CodeMemberMethod parse = new CodeMemberMethod();
+            var parse = new CodeMemberMethod();
             classObject.Members.Add(parse);
             parse.Name = "Parse";
+// ReSharper disable BitwiseOperatorOnEnumWithoutFlags
             parse.Attributes = MemberAttributes.Static | MemberAttributes.Public;
+// ReSharper restore BitwiseOperatorOnEnumWithoutFlags
             parse.ReturnType = new CodeTypeReference(classObject.Name);
             parse.Parameters.Add(new CodeParameterDeclarationExpression(new CodeTypeReference(typeof(string)), "text"));
             parse.Statements.Add(new CodeMethodReturnStatement(new CodeObjectCreateExpression(new CodeTypeReference("Person"), new CodeArgumentReferenceExpression("text"))));
         }
 
-        public void GenerateLibrary(string objectName, JsonObject jsonObject)
-        {
-            GenerateLibrary(objectName, jsonObject);
-        }
-
         /// <summary>
         /// Only his method is public
         /// </summary>
-        /// <param name="objectName"></param>
-        /// <param name="jsonObject"></param>
         public void GenerateLibrary(string objectName, JsonObject jsonObject, string path)
         {
-            CodeCompileUnit ccu = new CodeCompileUnit();
-            CodeNamespace ns = new CodeNamespace("System.Net.Json.Generated");
+            var ccu = new CodeCompileUnit();
+            var ns = new CodeNamespace("System.Net.Json.Generated");
             ns.Imports.Add(new CodeNamespaceImport("System.Net.Json"));
             ccu.ReferencedAssemblies.Add(@"System.Net.Json.dll");
             ccu.Namespaces.Add(ns);
 
             // root class
-            CodeTypeDeclaration rootClass = new CodeTypeDeclaration(objectName);
+            var rootClass = new CodeTypeDeclaration(objectName);
             ns.Types.Add(rootClass);
             rootClass.TypeAttributes = TypeAttributes.Class | TypeAttributes.Public;
 
             // root object
-            CodeMemberField rootObject = new CodeMemberField(jsonObject.GetType(), "RootObject");
+            var rootObject = new CodeMemberField(jsonObject.GetType(), "RootObject");
             rootObject.Attributes = MemberAttributes.Family;
             rootClass.Members.Add(rootObject);
 
@@ -174,21 +173,21 @@ namespace Com.Ericmas001.Net.JSON.Custom
             }
 
             // prepare for compile
-            CodeDomProvider cdp = CodeDomProvider.CreateProvider("cs");
-            CompilerParameters cp = new CompilerParameters();
+            var cdp = CodeDomProvider.CreateProvider("cs");
+            var cp = new CompilerParameters();
             cp.GenerateExecutable = false;
             if (!string.IsNullOrEmpty(path))
             {
-                cp.OutputAssembly = System.IO.Path.ChangeExtension(System.IO.Path.Combine(path, objectName), ".dll");
+                cp.OutputAssembly = Path.ChangeExtension(Path.Combine(path, objectName), ".dll");
             }
             else
             {
-                cp.OutputAssembly = System.IO.Path.ChangeExtension(objectName, ".dll");
+                cp.OutputAssembly = Path.ChangeExtension(objectName, ".dll");
             }
             cp.IncludeDebugInformation = false;
 
             // compile code
-            CompilerResults cr = cdp.CompileAssemblyFromDom(cp, ccu);
+            var cr = cdp.CompileAssemblyFromDom(cp, ccu);
 
             if (cr.NativeCompilerReturnValue != 0)
             {
@@ -213,7 +212,7 @@ namespace Com.Ericmas001.Net.JSON.Custom
             CodeConstructor ctor = null;
             foreach (CodeTypeMember m in rootClass.Members)
             {
-                CodeConstructor c = m as CodeConstructor;
+                var c = m as CodeConstructor;
 
                 if (c != null)
                 {
@@ -231,13 +230,13 @@ namespace Com.Ericmas001.Net.JSON.Custom
             }
 
             // enumerate nested data fields
-            foreach (JsonObject obj in jsonObject)
+            foreach (var obj in jsonObject)
             {
                 // generate property
-                CodeMemberProperty prop = new CodeMemberProperty();
+                var prop = new CodeMemberProperty();
                 prop.Name = obj.Name;
                 prop.Attributes = MemberAttributes.Public;
-                PropertyInfo valueInfo = obj.GetType().GetProperty("Value");
+                var valueInfo = obj.GetType().GetProperty("Value");
                 if (valueInfo == null)
                 {
                     throw new GeneratorException("Cannot generate nested arrays or objects. Wait for release :)");
@@ -252,13 +251,13 @@ namespace Com.Ericmas001.Net.JSON.Custom
                 rootClass.Members.Add(prop);
 
                 // generate constructor's part
-                CodeVariableDeclarationStatement createVar = new CodeVariableDeclarationStatement(obj.GetType(), obj.Name.ToLower(),
+                var createVar = new CodeVariableDeclarationStatement(obj.GetType(), obj.Name.ToLower(),
                     new CodeObjectCreateExpression(obj.GetType(), new CodePrimitiveExpression(obj.Name)));
 
                 //CodeAssignStatement assignVar = new CodeAssignStatement(codevariable
                 ctor.Statements.Add(createVar);
 
-                CodeMethodInvokeExpression invokeAdd = new CodeMethodInvokeExpression(new CodeMethodReferenceExpression(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), "RootObject"), "Add"),
+                var invokeAdd = new CodeMethodInvokeExpression(new CodeMethodReferenceExpression(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), "RootObject"), "Add"),
                     new CodeVariableReferenceExpression(obj.Name.ToLower()));
                 ctor.Statements.Add(invokeAdd);
 

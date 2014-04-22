@@ -5,7 +5,6 @@ namespace Com.Ericmas001.Net.JSON.Custom
     public class JsonObjectCollection : JsonCollection
     {
         public JsonObjectCollection()
-            : base()
         {
         }
 
@@ -38,7 +37,7 @@ namespace Com.Ericmas001.Net.JSON.Custom
         {
             get
             {
-                for (int i = 0; i < this.Count; i++)
+                for (var i = 0; i < Count; i++)
                 {
                     if (this[i].Name == name)
                     {

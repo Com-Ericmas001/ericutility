@@ -10,17 +10,17 @@ namespace Com.Ericmas001.Net.JSON.Custom
         /// <summary>
         /// current position.
         /// </summary>
-        private int c = 0;
+        private int m_CurrentPos;
 
         /// <summary>
         /// json text to parse
         /// </summary>
-        private string s = string.Empty;
+        private string m_JsonToParse = string.Empty;
 
         /// <summary>
         /// sync object for thread locking.
         /// </summary>
-        private object SyncObject = new object();
+        private readonly object m_SyncObject = new object();
 
         /// <summary>
         /// Parses JSON text into JSonObject.
@@ -29,9 +29,9 @@ namespace Com.Ericmas001.Net.JSON.Custom
         /// <returns>Json object parsed from text.</returns>
         public JsonObject Parse(string text)
         {
-            lock (SyncObject)
+            lock (m_SyncObject)
             {
-                c = 0;
+                m_CurrentPos = 0;
 
                 if (text == null)
                 {
@@ -40,8 +40,8 @@ namespace Com.Ericmas001.Net.JSON.Custom
                     //throw new FormatException();
                 }
 
-                s = text.Trim();
-                if (s == string.Empty)
+                m_JsonToParse = text.Trim();
+                if (m_JsonToParse == string.Empty)
                 {
                     return null;
 
@@ -62,23 +62,20 @@ namespace Com.Ericmas001.Net.JSON.Custom
             }
         }
 
-        private bool IsEOS { get { return c >= s.Length; } }
-
-        private char cur { get { return s[c]; } }
+        private bool IsEos { get { return m_CurrentPos >= m_JsonToParse.Length; } }
 
         private void SkipWhiteSpace()
         {
             for (; ; )
             {
-                if (IsEOS)
+                if (IsEos)
                 {
                     break;
                 }
 
-                if (char.IsWhiteSpace(s[c]))
+                if (char.IsWhiteSpace(m_JsonToParse[m_CurrentPos]))
                 {
-                    c++;
-                    continue;
+                    m_CurrentPos++;
                 }
                 else
                 {
@@ -86,40 +83,36 @@ namespace Com.Ericmas001.Net.JSON.Custom
                 }
             }
 
-            if (IsEOS)
+            if (IsEos)
             {
                 throw new FormatException();
             }
         }
-
-        private static readonly Regex _regexNumber = new Regex(
-                @"(?<minus>[-])?(?<int>(0)|([1-9])[0-9]*)(?<frac>.[0-9]+)?(?<exp>(e|E)([-]|[+])[0-9]+)?",
-                RegexOptions.Compiled);
 
         private JsonObject ParseSomethingWithoutName()
         {
             SkipWhiteSpace();
 
             // collection?
-            if (s[c] == '{' | s[c] == '[')
+            if (m_JsonToParse[m_CurrentPos] == '{' | m_JsonToParse[m_CurrentPos] == '[')
             {
                 return ParseCollection();
             }
 
             // string?
-            if (s[c] == '"')
+            if (m_JsonToParse[m_CurrentPos] == '"')
             {
                 return ParseStringValue();
             }
 
             // number?
-            if (char.IsDigit(s[c]) || s[c] == '-')
+            if (char.IsDigit(m_JsonToParse[m_CurrentPos]) || m_JsonToParse[m_CurrentPos] == '-')
             {
                 return ParseNumericValue();
             }
 
             // literal?
-            if (s[c] == 't' || s[c] == 'f' || s[c] == 'n')
+            if (m_JsonToParse[m_CurrentPos] == 't' || m_JsonToParse[m_CurrentPos] == 'f' || m_JsonToParse[m_CurrentPos] == 'n')
             {
                 return ParseLiteralValue();
             }
@@ -129,79 +122,80 @@ namespace Com.Ericmas001.Net.JSON.Custom
 
         private JsonStringValue ParseStringValue()
         {
-            if (s[c] != '"')
+            if (m_JsonToParse[m_CurrentPos] != '"')
             {
                 throw new FormatException();
             }
 
             // skip open quote
-            c++;
+            m_CurrentPos++;
 
-            StringBuilder value = new StringBuilder();
+            var value = new StringBuilder();
 
-            for (; ; c++)
+            for (; ; m_CurrentPos++)
             {
-                if (IsEOS)
+                if (IsEos)
                 {
                     throw new FormatException();
                 }
 
-                if (s[c] == '"')
+                if (m_JsonToParse[m_CurrentPos] == '"')
                 {
-                    if (s[c - 1] != '\\')
+                    if (m_JsonToParse[m_CurrentPos - 1] != '\\')
                     {
                         break;
                     }
                 }
 
-                value.Append(s[c]);
+                value.Append(m_JsonToParse[m_CurrentPos]);
             }
 
-            if (s[c] != '"')
+            if (m_JsonToParse[m_CurrentPos] != '"')
             {
                 throw new FormatException();
             }
 
-            c++;
+            m_CurrentPos++;
 
-            JsonStringValue result = new JsonStringValue();
-            result.Value = JsonUtility.UnEscapeString(value.ToString());
+            var result = new JsonStringValue {Value = JsonUtility.UnEscapeString(value.ToString())};
             return result;
         }
 
-        private static readonly Regex _regexLiteral = new Regex(
+        private static readonly Regex m_RegexLiteral = new Regex(
                 @"(?<value>false|true|null)",
                 RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         private JsonBooleanValue ParseLiteralValue()
         {
-            Match m = _regexLiteral.Match(s, c);
+            var m = m_RegexLiteral.Match(m_JsonToParse, m_CurrentPos);
             if (!m.Success)
             {
                 throw new FormatException("Cannot parse a literal value.");
             }
 
-            string captured = m.Captures[0].Value;
-            c += captured.Length;
+            var captured = m.Captures[0].Value;
+            m_CurrentPos += captured.Length;
 
             return new JsonBooleanValue(null, captured);
         }
 
         private JsonNumericValue ParseNumericValue()
         {
-            //Match mnum = _regexNumber.Match(s, c);
+            //Match mnum = _regexNumber.Match(m_JsonToParse, m_CurrentPos);
             //if (!mnum.Success)
             //{
             //    throw new FormatException("Cannot parse a number value.");
             //}
-            int deb = c;
-            for (; !",]}".Contains("" + s[c]); ++c) ;
-            string captured = s.Substring(deb, c - deb);
+            var deb = m_CurrentPos;
+            for (; !",]}".Contains("" + m_JsonToParse[m_CurrentPos]); ++m_CurrentPos)
+            {
+            }
+            var captured = m_JsonToParse.Substring(deb, m_CurrentPos - deb);
 
             //string captured = mnum.Captures[0].Value;
-            //c += captured.Length;
+            //m_CurrentPos += captured.Length;
 
-            double value = double.Parse(captured,
+            var value = double.Parse(captured,
                 NumberStyles.AllowDecimalPoint | NumberStyles.AllowExponent | NumberStyles.AllowLeadingSign,
                 JsonUtility.CultureInfo);
 
@@ -213,39 +207,37 @@ namespace Com.Ericmas001.Net.JSON.Custom
             SkipWhiteSpace();
 
             JsonCollection result;
-            bool is_array = false;
+            bool isArray;
 
-            if (s[c] == '{')
+            if (m_JsonToParse[m_CurrentPos] == '{')
             {
-                is_array = false;
+                isArray = false;
                 result = new JsonObjectCollection();
             }
-            else if (s[c] == '[')
+            else if (m_JsonToParse[m_CurrentPos] == '[')
             {
-                is_array = true;
+                isArray = true;
                 result = new JsonArrayCollection();
             }
             else
-            {
                 throw new FormatException();
-            }
 
             // skip open bracket
-            c++;
+            m_CurrentPos++;
             SkipWhiteSpace();
 
-            if (s[c] != '}' && s[c] != ']')
+            if (m_JsonToParse[m_CurrentPos] != '}' && m_JsonToParse[m_CurrentPos] != ']')
             {
                 // parse collection items
                 for (; ; )
                 {
-                    string name = string.Empty;
-                    if (!is_array)
+                    var name = string.Empty;
+                    if (!isArray)
                     {
                         name = ParseName();
                     }
 
-                    JsonObject obj = ParseSomethingWithoutName();
+                    var obj = ParseSomethingWithoutName();
 
                     if (obj == null)
                     {
@@ -253,7 +245,7 @@ namespace Com.Ericmas001.Net.JSON.Custom
                     }
 
                     // add name to item, if object.
-                    if (!is_array)
+                    if (!isArray)
                     {
                         obj.Name = name;
                     }
@@ -262,9 +254,9 @@ namespace Com.Ericmas001.Net.JSON.Custom
 
                     SkipWhiteSpace();
 
-                    if (s[c] == ',')
+                    if (m_JsonToParse[m_CurrentPos] == ',')
                     {
-                        c++;
+                        m_CurrentPos++;
 
                         SkipWhiteSpace();
                     }
@@ -276,72 +268,72 @@ namespace Com.Ericmas001.Net.JSON.Custom
             }
             SkipWhiteSpace();
 
-            if (is_array)
+            if (isArray)
             {
-                if (s[c] != ']')
+                if (m_JsonToParse[m_CurrentPos] != ']')
                 {
                     throw new FormatException();
                 }
             }
             else
             {
-                if (s[c] != '}')
+                if (m_JsonToParse[m_CurrentPos] != '}')
                 {
                     throw new FormatException();
                 }
             }
 
-            c++;
+            m_CurrentPos++;
 
             return result;
         }
 
         private string ParseName()
         {
-            if (IsEOS)
+            if (IsEos)
             {
-                throw new FormatException("Cannot find object item's name.");
+                throw new FormatException("Cannot find object item'm_JsonToParse name.");
             }
 
-            if (s[c] != '"')
+            if (m_JsonToParse[m_CurrentPos] != '"')
             {
                 throw new FormatException();
             }
 
             // skip open quote
-            c++;
+            m_CurrentPos++;
 
-            StringBuilder name = new StringBuilder();
+            var name = new StringBuilder();
 
-            for (; ; c++)
+            for (; ; m_CurrentPos++)
             {
-                if (IsEOS)
+                if (IsEos)
                 {
                     throw new FormatException();
                 }
 
-                if (s[c] == '"')
+                if (m_JsonToParse[m_CurrentPos] == '"')
                 {
-                    if (s[c - 1] != '\\')
+                    if (m_JsonToParse[m_CurrentPos - 1] != '\\')
                     {
                         break;
                     }
                 }
 
-                name.Append(s[c]);
+                name.Append(m_JsonToParse[m_CurrentPos]);
             }
-            c++;
+            m_CurrentPos++;
 
             SkipWhiteSpace();
-            if (IsEOS)
+            if (IsEos)
             {
                 throw new FormatException();
             }
-            if (s[c] != ':')
+            if (m_JsonToParse[m_CurrentPos] != ':')
             {
                 throw new FormatException();
             }
-            c++;
+            m_CurrentPos++;
             return name.ToString();
         }
     }
