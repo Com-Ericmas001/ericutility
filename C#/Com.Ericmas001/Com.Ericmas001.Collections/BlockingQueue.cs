@@ -7,27 +7,27 @@ namespace Com.Ericmas001.Collections
 {
     public class BlockingQueue<T> : IEnumerable<T>
     {
-        private int _count = 0;
-        private Queue<T> _queue = new Queue<T>();
+        private int m_Count;
+        private readonly Queue<T> m_Queue = new Queue<T>();
 
         public T Dequeue()
         {
-            lock (_queue)
+            lock (m_Queue)
             {
-                while (_count <= 0) Monitor.Wait(_queue);
-                _count--;
-                return _queue.Dequeue();
+                while (m_Count <= 0) Monitor.Wait(m_Queue);
+                m_Count--;
+                return m_Queue.Dequeue();
             }
         }
 
         public void Enqueue(T data)
         {
             if (data == null) throw new ArgumentNullException("data");
-            lock (_queue)
+            lock (m_Queue)
             {
-                _queue.Enqueue(data);
-                _count++;
-                Monitor.Pulse(_queue);
+                m_Queue.Enqueue(data);
+                m_Count++;
+                Monitor.Pulse(m_Queue);
             }
         }
 

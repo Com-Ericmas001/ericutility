@@ -24,7 +24,7 @@ namespace Com.Ericmas001.Collections
         /// <param name="val">Élément</param>
         public void AddChildren(T val)
         {
-            m_Children.Add(new NTreeNode<T>(val, this));
+            Children.Add(new NTreeNode<T>(val, this));
         }
 
         /// <summary>
@@ -34,9 +34,9 @@ namespace Com.Ericmas001.Collections
         /// <returns>Vrai si l'on a enlevé l'enfant</returns>
         public bool RemoveChildAt(int i)
         {
-            if (i < 0 || i > m_Children.Count)
+            if (i < 0 || i > Children.Count)
                 return false;
-            m_Children.RemoveAt(i);
+            Children.RemoveAt(i);
             return true;
         }
 
@@ -47,7 +47,7 @@ namespace Com.Ericmas001.Collections
         /// <returns>Vrai si l'on a enlevé l'enfant</returns>
         public bool RemoveChild(NTreeNode<T> node)
         {
-            return m_Children.Remove(node);
+            return Children.Remove(node);
         }
 
         /// <summary>
@@ -57,13 +57,13 @@ namespace Com.Ericmas001.Collections
         /// <returns>Vrai si l'on a enlevé au moins un enfant</returns>
         public bool RemoveAllChildren(T val)
         {
-            int count = m_Children.Count;
+            var count = Children.Count;
 
-            List<AbstractTreeNode<T>> oks = new List<AbstractTreeNode<T>>();
-            foreach (AbstractTreeNode<T> child in m_Children)
+            var oks = new List<AbstractTreeNode<T>>();
+            foreach (var child in Children)
                 if (!child.Value.Equals(val))
                     oks.Add(child);
-            return m_Children.Count != count;
+            return Children.Count != count;
         }
 
         /// <summary>
@@ -72,9 +72,9 @@ namespace Com.Ericmas001.Collections
         /// <returns>Vrai si l'on a enlevé au moins un enfant</returns>
         public bool RemoveAllChildren()
         {
-            int count = m_Children.Count;
-            m_Children.Clear();
-            return m_Children.Count != count;
+            var count = Children.Count;
+            Children.Clear();
+            return Children.Count != count;
         }
     }
 
@@ -82,16 +82,8 @@ namespace Com.Ericmas001.Collections
     /// Arbre à plusieurs enfants
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class NTree<T> : AbstractTree<T>
+    public class NTree<T> : AbstractTree<NTreeNode<T>>
     {
-        /// <summary>
-        /// Racine de l'arbre
-        /// </summary>
-        public NTreeNode<T> Root
-        {
-            get { return (NTreeNode<T>)m_Root; }
-        }
-
         /// <summary>
         /// Arbre à plusieurs enfants
         /// </summary>
