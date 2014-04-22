@@ -8,7 +8,7 @@ namespace Com.Ericmas001.Util
     /// <typeparam name="TKey"></typeparam>
     public class KeyEventArgs<TKey> : EventArgs
     {
-        private TKey m_Key;
+        private readonly TKey m_Key;
 
         public TKey Key { get { return m_Key; } }
 
@@ -25,8 +25,8 @@ namespace Com.Ericmas001.Util
     /// <typeparam name="TValue"></typeparam>
     public class KeyValueEventArgs<TKey, TValue> : EventArgs
     {
-        private TKey m_Key;
-        private TValue m_Value;
+        private readonly TKey m_Key;
+        private readonly TValue m_Value;
 
         public TKey Key { get { return m_Key; } }
 
@@ -46,8 +46,8 @@ namespace Com.Ericmas001.Util
     /// <typeparam name="TValue"></typeparam>
     public class KeyValuesEventArgs<TKey, TValue> : EventArgs
     {
-        private TKey m_Key;
-        private TValue[] m_Values;
+        private readonly TKey m_Key;
+        private readonly TValue[] m_Values;
 
         public TKey Key { get { return m_Key; } }
 

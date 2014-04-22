@@ -11,16 +11,13 @@ namespace Com.Ericmas001.Util
                 return "?";
             }
 
-            string str = ts.ToString();
-            int index = str.LastIndexOf('.');
+            var str = ts.ToString();
+            var index = str.LastIndexOf('.');
             if (index > 0)
             {
                 return str.Remove(index);
             }
-            else
-            {
-                return str;
-            }
+            return str;
         }
     }
 }

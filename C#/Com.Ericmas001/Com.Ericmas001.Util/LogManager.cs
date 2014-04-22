@@ -74,8 +74,8 @@ namespace Com.Ericmas001.Util
 
         public static void LogInConsole(string from, string message, int level, LogLevel minLevelToLog)
         {
-            ConsoleColor fc = Console.ForegroundColor;
-            ConsoleColor bc = Console.BackgroundColor;
+            var fc = Console.ForegroundColor;
+            var bc = Console.BackgroundColor;
 
 
             //Errors

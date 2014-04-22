@@ -7,7 +7,7 @@ namespace Com.Ericmas001.Util.Concurrency
     {
         #region Fields
 
-        private object obj;
+        private readonly object m_Obj;
 
         #endregion Fields
 
@@ -15,8 +15,8 @@ namespace Com.Ericmas001.Util.Concurrency
 
         public ObjectLocker(object obj)
         {
-            this.obj = obj;
-            Monitor.Enter(this.obj);
+            m_Obj = obj;
+            Monitor.Enter(m_Obj);
         }
 
         #endregion Constructor
@@ -25,7 +25,7 @@ namespace Com.Ericmas001.Util.Concurrency
 
         public void Dispose()
         {
-            Monitor.Exit(this.obj);
+            Monitor.Exit(m_Obj);
         }
 
         #endregion IDisposable Members
