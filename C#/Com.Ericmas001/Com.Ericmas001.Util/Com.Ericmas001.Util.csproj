@@ -53,7 +53,7 @@
     <Compile Include="GenericDelegates.cs" />
     <Compile Include="GenericEventArgs.cs" />
     <Compile Include="Hasard.cs" />
-    <Compile Include="IO\IoUtility1.cs" />
+    <Compile Include="IO\IoUtility.cs" />
     <Compile Include="IO\PathHelper.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="MyStopwatch.cs" />
