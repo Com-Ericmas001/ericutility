@@ -48,7 +48,7 @@
     <Compile Include="AbstractCommandObserver.cs" />
     <Compile Include="Annotations\Annotations1.cs" />
     <Compile Include="CommandQueueCommunicator.cs" />
-    <Compile Include="CommandTcpCommunicator.cs" />
+    <Compile Include="CommandTcpCommunicator1.cs" />
     <Compile Include="EventArgs.cs" />
     <Compile Include="Json\AbstractJsonCommand.cs" />
     <Compile Include="Json\AbstractJsonCommandResponse.cs" />
@@ -57,7 +57,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueueCommunicator.cs" />
-    <Compile Include="TcpCommunicator.cs" />
+    <Compile Include="TcpCommunicator1.cs" />
     <Compile Include="Text\AbstractTextCommand.cs" />
     <Compile Include="Text\AbstractTextCommandResponse.cs" />
     <Compile Include="Text\DisconnectTextCommand.cs" />
