@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace Com.Ericmas001.Net.JSON.Custom
 {
     public static class JsonUtility
     {
-        public const string MimeType = "application/json";
+        public const string MIME_TYPE = "application/json";
 
-        public static int MaxTextLength = -1;
-        public static int MaxDepthNesting = -1;
-        public static int MaxStringLength = 1024;
-
-        internal const char begin_array = '[';
-        internal const char end_array = ']';
-        internal const char begin_object = '{';
-        internal const char end_object = '}';
-        internal const char name_separator = ':';
-        internal const char value_separator = ',';
-        internal const char quote = '"';
+        internal const char BEGIN_ARRAY = '[';
+        internal const char END_ARRAY = ']';
+        internal const char BEGIN_OBJECT = '{';
+        internal const char END_OBJECT = '}';
+        internal const char NAME_SEPARATOR = ':';
+        internal const char VALUE_SEPARATOR = ',';
+        internal const char QUOTE = '"';
 
         internal static readonly CultureInfo CultureInfo = new CultureInfo("en-US", false);
 
@@ -31,9 +29,9 @@ namespace Com.Ericmas001.Net.JSON.Custom
 
         internal static string EscapeString(string text)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append('"');
-            foreach (char c in text)
+            foreach (var c in text)
             {
                 //bool hex = false;
 
@@ -70,90 +68,83 @@ namespace Com.Ericmas001.Net.JSON.Custom
             if (text.StartsWith("\"")) text = text.Remove(0, 1);
             if (text.EndsWith("\"")) text = text.Remove(text.Length - 1, 1);
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
-            try
+            for (var i = 0; i < text.Length; i++)
             {
-                for (int i = 0; i < text.Length; i++)
+                var c = text[i];
+
+                switch (c)
                 {
-                    char c = text[i];
-
-                    switch (c)
+                    case '\\':
                     {
-                        case '\\':
-                            {
-                                i++;
-                                if (text[i] == 'u' || text[i] == 'U')
-                                {
-                                    string hex = text.Substring(i + 1, 4);
-                                    char u = (char)int.Parse(hex, System.Globalization.NumberStyles.HexNumber);
+                        i++;
+                        if (text[i] == 'u' || text[i] == 'U')
+                        {
+                            var hex = text.Substring(i + 1, 4);
+                            var u = (char)int.Parse(hex, NumberStyles.HexNumber);
 
-                                    i += 4;
-                                    sb.Append(u);
-                                    continue;
-                                }
+                            i += 4;
+                            sb.Append(u);
+                            continue;
+                        }
 
-                                if (text[i] == 'n')
-                                {
-                                    sb.Append('\n');
-                                    continue;
-                                }
+                        if (text[i] == 'n')
+                        {
+                            sb.Append('\n');
+                            continue;
+                        }
 
-                                if (text[i] == 'r')
-                                {
-                                    sb.Append('\r');
-                                    continue;
-                                }
+                        if (text[i] == 'r')
+                        {
+                            sb.Append('\r');
+                            continue;
+                        }
 
-                                if (text[i] == 't')
-                                {
-                                    sb.Append('\t');
-                                    continue;
-                                }
+                        if (text[i] == 't')
+                        {
+                            sb.Append('\t');
+                            continue;
+                        }
 
-                                if (text[i] == 'f')
-                                {
-                                    sb.Append('\f');
-                                    continue;
-                                }
+                        if (text[i] == 'f')
+                        {
+                            sb.Append('\f');
+                            continue;
+                        }
 
-                                if (text[i] == 'b')
-                                {
-                                    sb.Append('\b');
-                                    continue;
-                                }
+                        if (text[i] == 'b')
+                        {
+                            sb.Append('\b');
+                            continue;
+                        }
 
-                                if (text[i] == '\\')
-                                {
-                                    sb.Append('\\');
-                                    continue;
-                                }
+                        if (text[i] == '\\')
+                        {
+                            sb.Append('\\');
+                            continue;
+                        }
 
-                                if (text[i] == '/')
-                                {
-                                    sb.Append('/');
-                                    continue;
-                                }
+                        if (text[i] == '/')
+                        {
+                            sb.Append('/');
+                            continue;
+                        }
 
-                                if (text[i] == '"')
-                                {
-                                    sb.Append('"');
-                                    continue;
-                                }
+                        if (text[i] == '"')
+                        {
+                            sb.Append('"');
+                            continue;
+                        }
 
-                                throw new FormatException("Unrecognized escape sequence '\\" + text[i] +
-                                    "' in position: " + i + ".");
-                            }
-
-                        default:
-                            sb.Append(c);
-                            break;
+                        throw new FormatException("Unrecognized escape sequence '\\" + text[i] +
+                                                  "' in position: " + i + ".");
                     }
+
+                    default:
+                        sb.Append(c);
+                        break;
                 }
-            }
-            catch (Exception)
-            {
-                throw;
             }
 
             return sb.ToString();
@@ -161,12 +152,12 @@ namespace Com.Ericmas001.Net.JSON.Custom
 
         #region Indentation
 
-        public static bool GenerateIndentedJsonText = true;
+        private static bool m_GenerateIndentedJsonText = true;
 
-        internal const char indent = '\t';
-        internal const char space = ' ';
+        internal const char INDENT = '\t';
+        internal const char SPACE = ' ';
 
-        internal static int ThreadId { get { return System.Threading.Thread.CurrentThread.ManagedThreadId; } }
+        internal static int ThreadId { get { return Thread.CurrentThread.ManagedThreadId; } }
 
         internal static readonly SortedDictionary<int, int> IndentDepthCollection = new SortedDictionary<int, int>();
 
@@ -174,7 +165,7 @@ namespace Com.Ericmas001.Net.JSON.Custom
         {
             get
             {
-                int tid = ThreadId;
+                var tid = ThreadId;
                 try
                 {
                     return IndentDepthCollection[tid];
@@ -190,20 +181,23 @@ namespace Com.Ericmas001.Net.JSON.Custom
             }
         }
 
+        public static bool GenerateIndentedJsonText
+        {
+            get { return m_GenerateIndentedJsonText; }
+            set { m_GenerateIndentedJsonText = value; }
+        }
+
         internal static string GetIndentString()
         {
-            int len = IndentDepth;
+            var len = IndentDepth;
             if (len <= 0)
             {
                 return string.Empty;
             }
-            else
-            {
-                return new string(indent, len);
-            }
+            return new string(INDENT, len);
         }
 
-        internal static void WriteIndent(System.IO.TextWriter writer)
+        internal static void WriteIndent(TextWriter writer)
         {
             if (GenerateIndentedJsonText)
             {
@@ -211,15 +205,15 @@ namespace Com.Ericmas001.Net.JSON.Custom
             }
         }
 
-        internal static void WriteSpace(System.IO.TextWriter writer)
+        internal static void WriteSpace(TextWriter writer)
         {
             if (GenerateIndentedJsonText)
             {
-                writer.Write(space);
+                writer.Write(SPACE);
             }
         }
 
-        internal static void WriteLine(System.IO.TextWriter writer)
+        internal static void WriteLine(TextWriter writer)
         {
             if (GenerateIndentedJsonText)
             {

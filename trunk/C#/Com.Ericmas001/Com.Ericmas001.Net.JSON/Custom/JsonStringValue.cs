@@ -1,4 +1,6 @@
-﻿namespace Com.Ericmas001.Net.JSON.Custom
+﻿using System.IO;
+
+namespace Com.Ericmas001.Net.JSON.Custom
 {
     public class JsonStringValue : JsonObject
     {
@@ -7,24 +9,21 @@
             return Value;
         }
 
-        private string _value;
+        private string m_Value;
 
         public string Value
         {
             get
             {
-                if (_value != null)
+                if (m_Value != null)
                 {
-                    return _value;
+                    return m_Value;
                 }
-                else
-                {
-                    return string.Empty;
-                }
+                return string.Empty;
             }
             set
             {
-                _value = value;
+                m_Value = value;
             }
         }
 
@@ -43,20 +42,15 @@
             Value = value;
         }
 
-        public override string ToString()
-        {
-            return base.ToString();
-        }
-
         public override bool Equals(object obj)
         {
-            JsonStringValue other = obj as JsonStringValue;
+            var other = obj as JsonStringValue;
             if (other == null)
             {
                 return false;
             }
 
-            return (this.Value == other.Value);
+            return (Value == other.Value);
         }
 
         public override int GetHashCode()
@@ -64,14 +58,14 @@
             return Value.GetHashCode();
         }
 
-        public override void WriteTo(System.IO.TextWriter writer)
+        public override void WriteTo(TextWriter writer)
         {
             if (Name != string.Empty)
             {
-                writer.Write(JsonUtility.quote);
+                writer.Write(JsonUtility.QUOTE);
                 writer.Write(Name);
-                writer.Write(JsonUtility.quote);
-                writer.Write(JsonUtility.name_separator);
+                writer.Write(JsonUtility.QUOTE);
+                writer.Write(JsonUtility.NAME_SEPARATOR);
                 JsonUtility.WriteSpace(writer);
             }
 

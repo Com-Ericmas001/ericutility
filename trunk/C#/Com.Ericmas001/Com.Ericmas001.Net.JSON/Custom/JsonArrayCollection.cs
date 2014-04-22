@@ -5,7 +5,6 @@ namespace Com.Ericmas001.Net.JSON.Custom
     public class JsonArrayCollection : JsonCollection
     {
         public JsonArrayCollection()
-            : base()
         {
         }
 

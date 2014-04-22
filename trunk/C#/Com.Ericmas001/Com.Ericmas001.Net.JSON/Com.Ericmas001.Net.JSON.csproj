@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractCustomJsonConverter.cs" />
+    <Compile Include="Annotations\Annotations.cs" />
     <Compile Include="Custom\JsonArrayCollection.cs" />
     <Compile Include="Custom\JsonBooleanValue.cs" />
     <Compile Include="Custom\JsonCollection.cs" />

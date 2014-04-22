@@ -1,20 +1,21 @@
 ﻿using System;
+using System.IO;
 
 namespace Com.Ericmas001.Net.JSON.Custom
 {
     public class JsonBooleanValue : JsonObject
     {
-        private bool? _value = new bool?();
+        private bool? m_Value = new bool?();
 
         public bool? Value
         {
             get
             {
-                return _value;
+                return m_Value;
             }
             set
             {
-                _value = value;
+                m_Value = value;
             }
         }
 
@@ -22,15 +23,11 @@ namespace Com.Ericmas001.Net.JSON.Custom
         {
         }
 
-        public JsonBooleanValue(string name)
-        {
-        }
-
         public JsonBooleanValue(string name, string value)
         {
-            this.Name = name;
+            Name = name;
 
-            _value = null;
+            m_Value = null;
 
             if (value != null)
             {
@@ -40,15 +37,15 @@ namespace Com.Ericmas001.Net.JSON.Custom
                     switch (value.Trim().ToLower())
                     {
                         case "null":
-                            _value = null;
+                            m_Value = null;
                             break;
 
                         case "true":
-                            _value = true;
+                            m_Value = true;
                             break;
 
                         case "false":
-                            _value = false;
+                            m_Value = false;
                             break;
 
                         default:
@@ -60,29 +57,24 @@ namespace Com.Ericmas001.Net.JSON.Custom
 
         public JsonBooleanValue(string name, bool? value)
         {
-            this.Name = name;
-            this.Value = value;
+            Name = name;
+            Value = value;
         }
 
         public JsonBooleanValue(bool? value)
         {
-            this.Value = value;
-        }
-
-        public override string ToString()
-        {
-            return base.ToString();
+            Value = value;
         }
 
         public override bool Equals(object obj)
         {
-            JsonBooleanValue other = obj as JsonBooleanValue;
+            var other = obj as JsonBooleanValue;
             if (other == null)
             {
                 return false;
             }
 
-            return (this.Value == other.Value);
+            return (Value == other.Value);
         }
 
         public override int GetHashCode()
@@ -90,14 +82,14 @@ namespace Com.Ericmas001.Net.JSON.Custom
             return Value.GetHashCode();
         }
 
-        public override void WriteTo(System.IO.TextWriter writer)
+        public override void WriteTo(TextWriter writer)
         {
             if (Name != string.Empty)
             {
-                writer.Write(JsonUtility.quote);
+                writer.Write(JsonUtility.QUOTE);
                 writer.Write(Name);
-                writer.Write(JsonUtility.quote);
-                writer.Write(JsonUtility.name_separator);
+                writer.Write(JsonUtility.QUOTE);
+                writer.Write(JsonUtility.NAME_SEPARATOR);
 
                 JsonUtility.WriteSpace(writer);
             }

@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Com.Ericmas001.Net.JSON
 {
@@ -17,8 +13,8 @@ namespace Com.Ericmas001.Net.JSON
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            JObject jObject = JObject.Load(reader);
-            T instance = ObtainCustomObject(jObject);
+            var jObject = JObject.Load(reader);
+            var instance = ObtainCustomObject(jObject);
             if (instance != null)
                 serializer.Populate(jObject.CreateReader(), instance);
             return instance;

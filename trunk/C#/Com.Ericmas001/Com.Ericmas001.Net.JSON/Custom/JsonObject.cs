@@ -7,7 +7,7 @@ namespace Com.Ericmas001.Net.JSON.Custom
     /// </summary>
     public abstract class JsonObject
     {
-        private string _name;
+        private string m_Name;
 
         /// <summary>
         /// Name of json object.
@@ -23,23 +23,20 @@ namespace Com.Ericmas001.Net.JSON.Custom
             {
                 if (value == null)
                 {
-                    _name = string.Empty;
+                    m_Name = string.Empty;
                 }
                 else
                 {
-                    _name = value.Trim();
+                    m_Name = value.Trim();
                 }
             }
             get
             {
-                if (_name == null)
+                if (m_Name == null)
                 {
                     return string.Empty;
                 }
-                else
-                {
-                    return _name;
-                }
+                return m_Name;
             }
         }
 
@@ -51,8 +48,8 @@ namespace Com.Ericmas001.Net.JSON.Custom
         /// <returns>String that represents object is json format.</returns>
         public override string ToString()
         {
-            StringWriter sw = new StringWriter();
-            this.WriteTo(sw);
+            var sw = new StringWriter();
+            WriteTo(sw);
             return sw.ToString();
         }
 
