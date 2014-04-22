@@ -2,11 +2,11 @@
 
 namespace Com.Ericmas001.Net.Protocol
 {
-    public abstract class CommandTcpCommunicator1<T> : TcpCommunicator1 where T : AbstractCommandObserver, new()
+    public abstract class CommandTcpCommunicator<T> : TcpCommunicator where T : AbstractCommandObserver, new()
     {
         protected T m_CommandObserver = new T();
 
-        public CommandTcpCommunicator1(TcpClient socket)
+        public CommandTcpCommunicator(TcpClient socket)
             : base(socket)
         {
             InitializeCommandObserver();
