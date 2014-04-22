@@ -1,11 +1,11 @@
-﻿using System.Text;
+﻿using Com.Ericmas001.Net.Protocol.Annotations;
 
 namespace Com.Ericmas001.Net.Protocol.JSON
 {
     public abstract class AbstractJsonCommandResponse<T> : AbstractJsonCommand
         where T : AbstractJsonCommand
     {
-        public T Command { get; set; }
+        private T Command { [UsedImplicitly] get; set; }
 
         public AbstractJsonCommandResponse()
         {

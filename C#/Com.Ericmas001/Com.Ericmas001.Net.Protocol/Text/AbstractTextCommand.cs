@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace Com.Ericmas001.Net.Protocol.Text
 {
@@ -14,12 +13,12 @@ namespace Com.Ericmas001.Net.Protocol.Text
         protected virtual void Append<T>(StringBuilder sb, T thing)
         {
             sb.Append(thing);
-            sb.Append(AbstractTextCommand.Delimitter);
+            sb.Append(Delimitter);
         }
 
         public override string Encode()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             Append(sb, CommandName);
             Encode(sb);
             return sb.ToString();

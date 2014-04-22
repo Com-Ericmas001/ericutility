@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 
 namespace Com.Ericmas001.Net.Protocol
 {
@@ -7,16 +6,16 @@ namespace Com.Ericmas001.Net.Protocol
     {
         public event EventHandler<StringEventArgs> CommandReceived = delegate { };
 
-        protected abstract void receiveSomething(string line);
+        protected abstract void ReceiveSomething(string line);
 
-        public virtual void messageReceived(string line)
+        public virtual void MessageReceived(string line)
         {
             if (line == null)
             {
                 return;
             }
             CommandReceived(this, new StringEventArgs(line));
-            receiveSomething(line);
+            ReceiveSomething(line);
         }
     }
 }

@@ -1,7 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Runtime.Serialization.Formatters;
-using System.Text;
 
 namespace Com.Ericmas001.Net.Protocol.JSON
 {

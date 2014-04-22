@@ -27,7 +27,7 @@ namespace Com.Ericmas001.Net.Protocol
 
         protected string Receive()
         {
-            string line = m_Incoming.Dequeue();
+            var line = m_Incoming.Dequeue();
             ReceivedSomething(this, new KeyEventArgs<string>(line));
             return line;
         }
@@ -49,7 +49,7 @@ namespace Com.Ericmas001.Net.Protocol
         public void Start()
         {
             m_IsConnected = true;
-            new Thread(new ThreadStart(Run)).Start();
+            new Thread(Run).Start();
         }
 
         public void Incoming(string message)

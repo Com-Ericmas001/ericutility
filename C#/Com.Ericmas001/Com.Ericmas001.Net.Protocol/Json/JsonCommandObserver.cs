@@ -3,7 +3,6 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
 using System.Linq;
-using System.Runtime.Serialization.Formatters;
 
 namespace Com.Ericmas001.Net.Protocol.JSON
 {
@@ -14,29 +13,29 @@ namespace Com.Ericmas001.Net.Protocol.JSON
         /// Méthode éxécutée lorsqu'on recoit une commande
         /// </summary>
         /// <param name="line">ligne de commande</param>
-        /// <remarks>La méthode s'occupe de faire un RaiseEvent pour chaque evenemement EventHandler(Of CommandEventArgs(Of T)) où T.COMMAND_NAME est égal au premier token de la ligne reçu</remarks>
-        protected override void receiveSomething(string line)
+        /// <remarks>La méthode s'occupe de faire un RaiseEvent pour chaque evenemement EventHandler(Of CommandEventArgs(Of T)) où le nom de la classe est égal au premier token de la ligne reçu</remarks>
+        protected override void ReceiveSomething(string line)
         {
             //AbstractJsonCommand command = JsonConvert.DeserializeObject<AbstractJsonCommand>(line);
             JObject jObj = JsonConvert.DeserializeObject<dynamic>(line);
-            string commandName = (string)jObj["CommandName"];
-            foreach (EventInfo e in this.GetType().GetEvents())
+            var commandName = (string)jObj["CommandName"];
+            foreach (var e in GetType().GetEvents())
             {
                 if (e.EventHandlerType.Name == typeof(EventHandler<>).Name)
                 {
-                    Type eventType = e.EventHandlerType.GenericTypeArguments[0];
+                    var eventType = e.EventHandlerType.GenericTypeArguments[0];
                     if (eventType.Name == typeof(CommandEventArgs<>).Name)
                     {
-                        Type commType = eventType.GenericTypeArguments[0];
-                        if (commandName == (string)commType.GetField(AbstractCommand.CommandNameField, (BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public)).GetValue(null))
+                        var commType = eventType.GenericTypeArguments[0];
+                        if (commandName == commType.Name)
                         {
-                            MethodInfo method = typeof(JsonConvert).GetMethods().Where(m => m.Name == "DeserializeObject" && m.IsGenericMethod).First().MakeGenericMethod(new Type[] { commType });
-                            object command = method.Invoke(null, new object[] { line });
-                            object commandEventArgs = Activator.CreateInstance(eventType, command);
-                            MulticastDelegate del = (MulticastDelegate)this.GetType().GetField(e.Name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(this);
+                            var method = typeof(JsonConvert).GetMethods().First(m => m.Name == "DeserializeObject" && m.IsGenericMethod).MakeGenericMethod(new[] { commType });
+                            var command = method.Invoke(null, new object[] { line });
+                            var commandEventArgs = Activator.CreateInstance(eventType, command);
+                            var del = (MulticastDelegate)GetType().GetField(e.Name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(this);
                             if (del != null)
-                                foreach (Delegate hdl in del.GetInvocationList())
-                                    hdl.Method.Invoke(hdl.Target, new object[] { this, commandEventArgs });
+                                foreach (var hdl in del.GetInvocationList())
+                                    hdl.Method.Invoke(hdl.Target, new[] { this, commandEventArgs });
                         }
                     }
                 }
