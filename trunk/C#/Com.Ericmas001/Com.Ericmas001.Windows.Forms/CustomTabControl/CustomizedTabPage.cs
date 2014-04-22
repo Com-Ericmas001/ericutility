@@ -1,11 +1,10 @@
 ﻿using System.Windows.Forms;
 
-namespace Com.Ericmas001.Windows.Forms
+namespace Com.Ericmas001.Windows.Forms.CustomTabControl
 {
-    public partial class CustomizedTabPage : TabPage
+    public class CustomizedTabPage : TabPage
     {
-        public CustomizedTabPage(TabPageContent content) :
-            base()
+        public CustomizedTabPage(TabPageContent content)
         {
             UseVisualStyleBackColor = true;
             content.Dock = DockStyle.Fill;

@@ -3,7 +3,7 @@
  * See http://www.codeproject.com/info/cpol10.aspx for details
  */
 
-namespace Com.Ericmas001.Windows.Forms
+namespace Com.Ericmas001.Windows.Forms.CustomTabControl
 {
     public enum TabStyle
     {
@@ -13,7 +13,7 @@ namespace Com.Ericmas001.Windows.Forms
         Rounded = 3,
         Angled = 4,
         Chrome = 5,
-        IE8 = 6,
-        VS2010 = 7
+        Ie8 = 6,
+        Vs2010 = 7
     }
 }

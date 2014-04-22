@@ -1,6 +1,6 @@
 namespace Com.Ericmas001.Windows.Forms
 {
-    partial class NumberedTextBoxUC
+    partial class NumberedTextBoxUc
     {
         /// <summary> 
         /// Required designer variable.
@@ -114,7 +114,7 @@ namespace Com.Ericmas001.Windows.Forms
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add( this.splitContainer1 );
-			this.Name = "NumberedTextBoxUC";
+			this.Name = "NumberedTextBoxUc";
 			this.Size = new System.Drawing.Size( 403, 229 );
 			this.splitContainer1.Panel1.ResumeLayout( false );
 			this.splitContainer1.Panel2.ResumeLayout( false );

@@ -3,24 +3,26 @@
  * See http://www.codeproject.com/info/cpol10.aspx for details
  */
 
+using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace Com.Ericmas001.Windows.Forms
+namespace Com.Ericmas001.Windows.Forms.CustomTabControl.TabStyleProviders
 {
-    [System.ComponentModel.ToolboxItem(false)]
+    [ToolboxItem(false)]
     public class TabStyleDefaultProvider : TabStyleProvider
     {
         public TabStyleDefaultProvider(CustomTabControl tabControl)
             : base(tabControl)
         {
-            this._FocusTrack = true;
-            this._Radius = 2;
+            m_FocusTrack = true;
+            m_Radius = 2;
         }
 
-        public override void AddTabBorder(System.Drawing.Drawing2D.GraphicsPath path, System.Drawing.Rectangle tabBounds)
+        public override void AddTabBorder(GraphicsPath path, Rectangle tabBounds)
         {
-            switch (this._TabControl.Alignment)
+            switch (m_TabControl.Alignment)
             {
                 case TabAlignment.Top:
                     path.AddLine(tabBounds.X, tabBounds.Bottom, tabBounds.X, tabBounds.Y);
@@ -55,13 +57,13 @@ namespace Com.Ericmas001.Windows.Forms
                 return new Rectangle();
             }
 
-            Rectangle tabBounds = base.GetTabRect(index);
-            bool firstTabinRow = this._TabControl.IsFirstTabInRow(index);
+            var tabBounds = base.GetTabRect(index);
+            var firstTabinRow = m_TabControl.IsFirstTabInRow(index);
 
             //	Make non-SelectedTabs smaller and selected tab bigger
-            if (index != this._TabControl.SelectedIndex)
+            if (index != m_TabControl.SelectedIndex)
             {
-                switch (this._TabControl.Alignment)
+                switch (m_TabControl.Alignment)
                 {
                     case TabAlignment.Top:
                         tabBounds.Y += 1;
@@ -84,7 +86,7 @@ namespace Com.Ericmas001.Windows.Forms
             }
             else
             {
-                switch (this._TabControl.Alignment)
+                switch (m_TabControl.Alignment)
                 {
                     case TabAlignment.Top:
                         if (tabBounds.Y > 0)
@@ -105,7 +107,7 @@ namespace Com.Ericmas001.Windows.Forms
                         break;
 
                     case TabAlignment.Bottom:
-                        if (tabBounds.Bottom < this._TabControl.Bottom)
+                        if (tabBounds.Bottom < m_TabControl.Bottom)
                         {
                             tabBounds.Height += 1;
                         }
@@ -139,7 +141,7 @@ namespace Com.Ericmas001.Windows.Forms
                         break;
 
                     case TabAlignment.Right:
-                        if (tabBounds.Right < this._TabControl.Right)
+                        if (tabBounds.Right < m_TabControl.Right)
                         {
                             tabBounds.Width += 1;
                         }
@@ -157,14 +159,14 @@ namespace Com.Ericmas001.Windows.Forms
             }
 
             //	Adjust first tab in the row to align with tabpage
-            this.EnsureFirstTabIsInView(ref tabBounds, index);
+            EnsureFirstTabIsInView(ref tabBounds, index);
 
             return tabBounds;
         }
 
         protected override void DrawTabCloser(int index, Graphics graphics)
         {
-            if (this._ShowTabCloser && !IsTabPinned(index))
+            if (m_ShowTabCloser && !IsTabPinned(index))
                 base.DrawTabCloser(index, graphics);
         }
     }

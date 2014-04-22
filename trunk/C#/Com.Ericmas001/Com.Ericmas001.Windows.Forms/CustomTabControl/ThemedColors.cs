@@ -3,47 +3,47 @@
  * See http://www.codeproject.com/info/cpol10.aspx for details
 */
 
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
-namespace Com.Ericmas001.Windows.Forms
+namespace Com.Ericmas001.Windows.Forms.CustomTabControl
 {
     internal sealed class ThemedColors
     {
         #region "    Variables and Constants "
 
-        private const string NormalColor = "NormalColor";
-        private const string HomeStead = "HomeStead";
-        private const string Metallic = "Metallic";
-        private const string NoTheme = "NoTheme";
+        private const string NORMAL_COLOR = "NormalColor";
+        private const string HOME_STEAD = "HomeStead";
+        private const string METALLIC = "Metallic";
 
-        private static Color[] _toolBorder;
+        private static readonly Color[] m_ToolBorder;
 
         #endregion "    Variables and Constants "
 
         #region "    Properties "
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         public static ColorScheme CurrentThemeIndex
         {
-            get { return ThemedColors.GetCurrentThemeIndex(); }
+            get { return GetCurrentThemeIndex(); }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         public static Color ToolBorder
         {
-            get { return ThemedColors._toolBorder[(int)ThemedColors.CurrentThemeIndex]; }
+            get { return m_ToolBorder[(int)CurrentThemeIndex]; }
         }
 
         #endregion "    Properties "
 
         #region "    Constructors "
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline")]
+        [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline")]
         static ThemedColors()
         {
-            ThemedColors._toolBorder = new Color[] { Color.FromArgb(127, 157, 185), Color.FromArgb(164, 185, 127), Color.FromArgb(165, 172, 178), Color.FromArgb(132, 130, 132) };
+            m_ToolBorder = new[] { Color.FromArgb(127, 157, 185), Color.FromArgb(164, 185, 127), Color.FromArgb(165, 172, 178), Color.FromArgb(132, 130, 132) };
         }
 
         private ThemedColors()
@@ -54,21 +54,21 @@ namespace Com.Ericmas001.Windows.Forms
 
         private static ColorScheme GetCurrentThemeIndex()
         {
-            ColorScheme theme = ColorScheme.NoTheme;
+            var theme = ColorScheme.NoTheme;
 
             if (VisualStyleInformation.IsSupportedByOS && VisualStyleInformation.IsEnabledByUser && Application.RenderWithVisualStyles)
             {
                 switch (VisualStyleInformation.ColorScheme)
                 {
-                    case NormalColor:
+                    case NORMAL_COLOR:
                         theme = ColorScheme.NormalColor;
                         break;
 
-                    case HomeStead:
+                    case HOME_STEAD:
                         theme = ColorScheme.HomeStead;
                         break;
 
-                    case Metallic:
+                    case METALLIC:
                         theme = ColorScheme.Metallic;
                         break;
 

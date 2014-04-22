@@ -3,24 +3,25 @@
  * See http://www.codeproject.com/info/cpol10.aspx for details
  */
 
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace Com.Ericmas001.Windows.Forms
+namespace Com.Ericmas001.Windows.Forms.CustomTabControl.TabStyleProviders
 {
-    [System.ComponentModel.ToolboxItem(false)]
-    public class TabStyleIE8Provider : TabStyleRoundedProvider
+    [ToolboxItem(false)]
+    public class TabStyleIe8Provider : TabStyleRoundedProvider
     {
-        public TabStyleIE8Provider(CustomTabControl tabControl)
+        public TabStyleIe8Provider(CustomTabControl tabControl)
             : base(tabControl)
         {
-            this._Radius = 3;
-            this._ShowTabCloser = true;
-            this._CloserColorActive = Color.Red;
+            m_Radius = 3;
+            m_ShowTabCloser = true;
+            m_CloserColorActive = Color.Red;
 
             //	Must set after the _Radius as this is used in the calculations of the actual padding
-            this.Padding = new Point(6, 5);
+            Padding = new Point(6, 5);
         }
 
         public override Rectangle GetTabRect(int index)
@@ -29,13 +30,13 @@ namespace Com.Ericmas001.Windows.Forms
             {
                 return new Rectangle();
             }
-            Rectangle tabBounds = base.GetTabRect(index);
-            bool firstTabinRow = this._TabControl.IsFirstTabInRow(index);
+            var tabBounds = base.GetTabRect(index);
+            var firstTabinRow = m_TabControl.IsFirstTabInRow(index);
 
             //	Make non-SelectedTabs smaller and selected tab bigger
-            if (index != this._TabControl.SelectedIndex)
+            if (index != m_TabControl.SelectedIndex)
             {
-                switch (this._TabControl.Alignment)
+                switch (m_TabControl.Alignment)
                 {
                     case TabAlignment.Top:
                         tabBounds.Y += 1;
@@ -58,7 +59,7 @@ namespace Com.Ericmas001.Windows.Forms
             }
             else
             {
-                switch (this._TabControl.Alignment)
+                switch (m_TabControl.Alignment)
                 {
                     case TabAlignment.Top:
                         tabBounds.Y -= 1;
@@ -120,7 +121,7 @@ namespace Com.Ericmas001.Windows.Forms
             }
 
             //	Adjust first tab in the row to align with tabpage
-            this.EnsureFirstTabIsInView(ref tabBounds, index);
+            EnsureFirstTabIsInView(ref tabBounds, index);
             return tabBounds;
         }
 
@@ -129,19 +130,19 @@ namespace Com.Ericmas001.Windows.Forms
             LinearGradientBrush fillBrush = null;
 
             //	Capture the colours dependant on selection state of the tab
-            Color dark = Color.FromArgb(227, 238, 251);
-            Color light = Color.FromArgb(227, 238, 251);
+            var dark = Color.FromArgb(227, 238, 251);
+            var light = Color.FromArgb(227, 238, 251);
 
-            if (this._TabControl.SelectedIndex == index)
+            if (m_TabControl.SelectedIndex == index)
             {
                 dark = Color.FromArgb(196, 222, 251);
                 light = SystemColors.Window;
             }
-            else if (!this._TabControl.TabPages[index].Enabled)
+            else if (!m_TabControl.TabPages[index].Enabled)
             {
                 light = dark;
             }
-            else if (this.HotTrack && index == this._TabControl.ActiveIndex)
+            else if (HotTrack && index == m_TabControl.ActiveIndex)
             {
                 //	Enable hot tracking
                 light = SystemColors.Window;
@@ -149,11 +150,11 @@ namespace Com.Ericmas001.Windows.Forms
             }
 
             //	Get the correctly aligned gradient
-            Rectangle tabBounds = this.GetTabRect(index);
+            var tabBounds = GetTabRect(index);
             tabBounds.Inflate(3, 3);
             tabBounds.X -= 1;
             tabBounds.Y -= 1;
-            switch (this._TabControl.Alignment)
+            switch (m_TabControl.Alignment)
             {
                 case TabAlignment.Top:
                     fillBrush = new LinearGradientBrush(tabBounds, dark, light, LinearGradientMode.Vertical);
@@ -173,23 +174,26 @@ namespace Com.Ericmas001.Windows.Forms
             }
 
             //	Add the blend
-            fillBrush.Blend = this.GetBackgroundBlend(index);
+            if (fillBrush != null)
+            {
+                fillBrush.Blend = GetBackgroundBlend(index);
 
+            }
             return fillBrush;
         }
 
         private Blend GetBackgroundBlend(int index)
         {
-            float[] relativeIntensities = new float[] { 0f, 0.7f, 1f };
-            float[] relativePositions = new float[] { 0f, 0.8f, 1f };
+            var relativeIntensities = new[] { 0f, 0.7f, 1f };
+            var relativePositions = new[] { 0f, 0.8f, 1f };
 
-            if (this._TabControl.SelectedIndex != index)
+            if (m_TabControl.SelectedIndex != index)
             {
-                relativeIntensities = new float[] { 0f, 0.3f, 1f };
-                relativePositions = new float[] { 0f, 0.2f, 1f };
+                relativeIntensities = new[] { 0f, 0.3f, 1f };
+                relativePositions = new[] { 0f, 0.2f, 1f };
             }
 
-            Blend blend = new Blend();
+            var blend = new Blend();
             blend.Factors = relativeIntensities;
             blend.Positions = relativePositions;
 
@@ -198,23 +202,23 @@ namespace Com.Ericmas001.Windows.Forms
 
         protected override void DrawTabCloser(int index, Graphics graphics)
         {
-            if (this._ShowTabCloser && !IsTabPinned(index))
+            if (m_ShowTabCloser && !IsTabPinned(index))
             {
-                Rectangle closerRect = this._TabControl.GetTabCloserRect(index);
+                var closerRect = m_TabControl.GetTabCloserRect(index);
                 graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                if (closerRect.Contains(this._TabControl.MousePosition))
+                if (closerRect.Contains(m_TabControl.MousePosition))
                 {
-                    using (GraphicsPath closerPath = GetCloserButtonPath(closerRect))
+                    using (var closerPath = GetCloserButtonPath(closerRect))
                     {
                         graphics.FillPath(Brushes.White, closerPath);
-                        using (Pen closerPen = new Pen(this.BorderColor))
+                        using (var closerPen = new Pen(BorderColor))
                         {
                             graphics.DrawPath(closerPen, closerPath);
                         }
                     }
-                    using (GraphicsPath closerPath = GetCloserPath(closerRect))
+                    using (var closerPath = GetCloserPath(closerRect))
                     {
-                        using (Pen closerPen = new Pen(this._CloserColorActive))
+                        using (var closerPen = new Pen(m_CloserColorActive))
                         {
                             closerPen.Width = 2;
                             graphics.DrawPath(closerPen, closerPath);
@@ -223,9 +227,9 @@ namespace Com.Ericmas001.Windows.Forms
                 }
                 else
                 {
-                    using (GraphicsPath closerPath = GetCloserPath(closerRect))
+                    using (var closerPath = GetCloserPath(closerRect))
                     {
-                        using (Pen closerPen = new Pen(this._CloserColor))
+                        using (var closerPen = new Pen(m_CloserColor))
                         {
                             closerPen.Width = 2;
                             graphics.DrawPath(closerPen, closerPath);
@@ -237,7 +241,7 @@ namespace Com.Ericmas001.Windows.Forms
 
         private static GraphicsPath GetCloserButtonPath(Rectangle closerRect)
         {
-            GraphicsPath closerPath = new GraphicsPath();
+            var closerPath = new GraphicsPath();
             closerPath.AddLine(closerRect.X - 1, closerRect.Y - 2, closerRect.Right + 1, closerRect.Y - 2);
             closerPath.AddLine(closerRect.Right + 2, closerRect.Y - 1, closerRect.Right + 2, closerRect.Bottom + 1);
             closerPath.AddLine(closerRect.Right + 1, closerRect.Bottom + 2, closerRect.X - 1, closerRect.Bottom + 2);
@@ -249,17 +253,17 @@ namespace Com.Ericmas001.Windows.Forms
         public override Brush GetPageBackgroundBrush(int index)
         {
             //	Capture the colours dependant on selection state of the tab
-            Color light = Color.FromArgb(227, 238, 251);
+            var light = Color.FromArgb(227, 238, 251);
 
-            if (this._TabControl.SelectedIndex == index)
+            if (m_TabControl.SelectedIndex == index)
             {
                 light = SystemColors.Window;
             }
-            else if (!this._TabControl.TabPages[index].Enabled)
+            else if (!m_TabControl.TabPages[index].Enabled)
             {
                 light = Color.FromArgb(207, 207, 207);
             }
-            else if (this._HotTrack && index == this._TabControl.ActiveIndex)
+            else if (m_HotTrack && index == m_TabControl.ActiveIndex)
             {
                 //	Enable hot tracking
                 light = Color.FromArgb(234, 246, 253);

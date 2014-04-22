@@ -19,12 +19,11 @@ namespace Com.Ericmas001.Windows.Forms
         }
 
         public WindowsConsole()
-            : base()
         {
-            this.ReadOnly = true;
-            this.BackColor = Color.Black;
-            this.Font = new Font("Courier New", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-            this.ForeColor = Color.White;
+            ReadOnly = true;
+            BackColor = Color.Black;
+            Font = new Font("Courier New", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ForeColor = Color.White;
         }
 
         private delegate void DelegateWrite(string s);
@@ -48,12 +47,12 @@ namespace Com.Ericmas001.Windows.Forms
         {
             try
             {
-                if (this.InvokeRequired)
+                if (InvokeRequired)
                 {
-                    this.Invoke(new DelegateWrite(Write), new object[] { s });
+                    Invoke(new DelegateWrite(Write), new object[] { s });
                     return;
                 }
-                string date = "";
+                var date = "";
                 if (heure)
                     date = String.Format("[{0}] ", DateTime.Now);
                 Text += date + s;
@@ -64,10 +63,6 @@ namespace Com.Ericmas001.Windows.Forms
             }
             catch (ObjectDisposedException)
             {
-            }
-            catch (Exception e)
-            {
-                throw (e);
             }
         }
 

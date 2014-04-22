@@ -3,33 +3,35 @@
  * See http://www.codeproject.com/info/cpol10.aspx for details
  */
 
+using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace Com.Ericmas001.Windows.Forms
+namespace Com.Ericmas001.Windows.Forms.CustomTabControl.TabStyleProviders
 {
-    [System.ComponentModel.ToolboxItem(false)]
+    [ToolboxItem(false)]
     public class TabStyleVisualStudioProvider : TabStyleProvider
     {
         public TabStyleVisualStudioProvider(CustomTabControl tabControl)
             : base(tabControl)
         {
-            this._ImageAlign = ContentAlignment.MiddleRight;
-            this._Overlap = 7;
+            m_ImageAlign = ContentAlignment.MiddleRight;
+            m_Overlap = 7;
 
             //	Must set after the _Radius as this is used in the calculations of the actual padding
-            this.Padding = new Point(14, 1);
+            Padding = new Point(14, 1);
         }
 
         protected override void DrawTabCloser(int index, Graphics graphics)
         {
-            if (this._ShowTabCloser && !IsTabPinned(index))
+            if (m_ShowTabCloser && !IsTabPinned(index))
                 base.DrawTabCloser(index, graphics);
         }
 
-        public override void AddTabBorder(System.Drawing.Drawing2D.GraphicsPath path, System.Drawing.Rectangle tabBounds)
+        public override void AddTabBorder(GraphicsPath path, Rectangle tabBounds)
         {
-            switch (this._TabControl.Alignment)
+            switch (m_TabControl.Alignment)
             {
                 case TabAlignment.Top:
                     path.AddLine(tabBounds.X, tabBounds.Bottom, tabBounds.X + tabBounds.Height - 4, tabBounds.Y + 2);
