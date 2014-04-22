@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Com.Ericmas001.Games
 {
     public class GameCard
     {
-        public static GameCard NO_CARD { get { return new GameCard(GameCardSpecial.Null); } }
-        public static GameCard HIDDEN { get { return new GameCard(GameCardSpecial.Hidden); } }
+        public static GameCard NoCard { get { return new GameCard(GameCardSpecial.Null); } }
+        public static GameCard Hidden { get { return new GameCard(GameCardSpecial.Hidden); } }
 
         private GameCardSpecial m_Special;
         private GameCardKind m_Kind;
@@ -61,16 +59,14 @@ namespace Com.Ericmas001.Games
             {
                 if (m_Special != GameCardSpecial.None)
                     return 0 - (int)m_Special;
-                else
-                    return ((int)m_Kind * 13) + (int)m_Value;
+                return ((int)m_Kind * 13) + (int)m_Value;
             }
         }
         public override string ToString()
         {
             if (m_Special != GameCardSpecial.None)
                 return GameCardUtility.SpecialStr(m_Special);
-            else
-                return String.Format("{0}{1}", GameCardUtility.ValueChar(m_Value), GameCardUtility.KindChar(m_Kind));
+            return String.Format("{0}{1}", GameCardUtility.ValueChar(m_Value), GameCardUtility.KindChar(m_Kind));
         }
     }
 }
