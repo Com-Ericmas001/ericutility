@@ -10,8 +10,8 @@ namespace Com.Ericmas001.Util
     {
         #region Fields
 
-        private Stopwatch internalStopwatch;
-        private string name;
+        private readonly Stopwatch m_InternalStopwatch;
+        private readonly string m_Name;
 
         #endregion Fields
 
@@ -24,9 +24,9 @@ namespace Com.Ericmas001.Util
         public MyStopwatch(string name)
         {
 #if DEBUG
-            this.name = name;
-            internalStopwatch = new Stopwatch();
-            internalStopwatch.Start();
+            m_Name = name;
+            m_InternalStopwatch = new Stopwatch();
+            m_InternalStopwatch.Start();
 #endif
         }
 
@@ -40,8 +40,8 @@ namespace Com.Ericmas001.Util
         public void Dispose()
         {
 #if DEBUG
-            internalStopwatch.Stop();
-            Debug.WriteLine(name + ": " + internalStopwatch.Elapsed);
+            m_InternalStopwatch.Stop();
+            Debug.WriteLine(m_Name + ": " + m_InternalStopwatch.Elapsed);
 #endif
         }
 

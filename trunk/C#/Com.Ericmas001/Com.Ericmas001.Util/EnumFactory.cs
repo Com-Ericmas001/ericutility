@@ -2,26 +2,23 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Com.Ericmas001.Util
 {
     public static class EnumFactory<T> where T : struct
     {
-        private static Dictionary<T, string> m_ToStringDic = null;
-        private static Dictionary<string, T> m_ParsingDic = null;
+        private static Dictionary<T, string> m_ToStringDic;
+        private static Dictionary<string, T> m_ParsingDic;
 
         private static void Init()
         {
             if (!typeof(T).IsEnum)
-                throw new ArgumentException("must be of Enum type", "enumerationValue");
+                throw new Exception("T must be of Enum type");
             m_ParsingDic = new Dictionary<string, T>();
             m_ToStringDic = new Dictionary<T, string>();
             foreach (T e in Enum.GetValues(typeof(T)))
             {
-                string desc = GetDescription(e);
+                var desc = GetDescription(e);
                 m_ParsingDic.Add(desc, e);
                 m_ToStringDic.Add(e, desc);
             }
@@ -31,28 +28,31 @@ namespace Com.Ericmas001.Util
         {
             if (m_ToStringDic == null)
                 Init();
-            return m_ToStringDic[enumValue];
+            if (m_ToStringDic != null) return m_ToStringDic[enumValue];
+            return "";
         }
+
         public static T Parse(string s)
         {
             if (m_ParsingDic == null)
                 Init();
 
-            if (!m_ParsingDic.ContainsKey(s))
+            if (m_ParsingDic != null && !m_ParsingDic.ContainsKey(s))
                 s = "";
 
-            if (!m_ParsingDic.ContainsKey(s))
+            if (m_ParsingDic != null && !m_ParsingDic.ContainsKey(s))
                 return m_ParsingDic.Values.FirstOrDefault();
 
-            return m_ParsingDic[s];
+            if (m_ParsingDic != null) return m_ParsingDic[s];
+            return default(T);
         }
 
         private static string GetDescription(T enumerationValue)
         {
-            MemberInfo[] memberInfo = typeof(T).GetMember(enumerationValue.ToString());
+            var memberInfo = typeof(T).GetMember(enumerationValue.ToString());
             if (memberInfo != null && memberInfo.Length > 0)
             {
-                object[] attrs = memberInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
+                var attrs = memberInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
 
                 if (attrs != null && attrs.Length > 0)
                 {

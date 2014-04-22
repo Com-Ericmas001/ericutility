@@ -9,11 +9,11 @@ namespace Com.Ericmas001.Util.Concurrency
 
         private class BaseReleaser
         {
-            protected ReaderWriterObjectLocker locker;
+            protected readonly ReaderWriterObjectLocker m_Locker;
 
-            public BaseReleaser(ReaderWriterObjectLocker locker)
+            protected BaseReleaser(ReaderWriterObjectLocker locker)
             {
-                this.locker = locker;
+                m_Locker = locker;
             }
         }
 
@@ -32,7 +32,7 @@ namespace Com.Ericmas001.Util.Concurrency
 
             public void Dispose()
             {
-                locker.locker.ReleaseReaderLock();
+                m_Locker.m_Locker.ReleaseReaderLock();
             }
 
             #endregion IDisposable Members
@@ -53,7 +53,7 @@ namespace Com.Ericmas001.Util.Concurrency
 
             public void Dispose()
             {
-                locker.locker.ReleaseWriterLock();
+                m_Locker.m_Locker.ReleaseWriterLock();
             }
 
             #endregion IDisposable Members
@@ -63,9 +63,9 @@ namespace Com.Ericmas001.Util.Concurrency
 
         #region Fields
 
-        private ReaderWriterLock locker;
-        private IDisposable writerReleaser;
-        private IDisposable readerReleaser;
+        private readonly ReaderWriterLock m_Locker;
+        private readonly IDisposable m_WriterReleaser;
+        private readonly IDisposable m_ReaderReleaser;
 
         #endregion Fields
 
@@ -74,10 +74,10 @@ namespace Com.Ericmas001.Util.Concurrency
         public ReaderWriterObjectLocker()
         {
             // TODO: update to ReaderWriterLockSlim on .net 3.5
-            locker = new ReaderWriterLock();
+            m_Locker = new ReaderWriterLock();
 
-            writerReleaser = new WriterReleaser(this);
-            readerReleaser = new ReaderReleaser(this);
+            m_WriterReleaser = new WriterReleaser(this);
+            m_ReaderReleaser = new ReaderReleaser(this);
         }
 
         #endregion Constructor
@@ -86,16 +86,16 @@ namespace Com.Ericmas001.Util.Concurrency
 
         public IDisposable LockForRead()
         {
-            locker.AcquireReaderLock(-1);
+            m_Locker.AcquireReaderLock(-1);
 
-            return readerReleaser;
+            return m_ReaderReleaser;
         }
 
         public IDisposable LockForWrite()
         {
-            locker.AcquireWriterLock(-1);
+            m_Locker.AcquireWriterLock(-1);
 
-            return writerReleaser;
+            return m_WriterReleaser;
         }
 
         #endregion Methods

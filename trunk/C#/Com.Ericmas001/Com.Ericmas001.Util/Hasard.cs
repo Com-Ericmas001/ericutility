@@ -8,7 +8,7 @@ namespace Com.Ericmas001.Util
     public static class Hasard
     {
         // Objet utilisé pour le random
-        private static Random m_Random = new Random();
+        private static readonly Random m_Random = new Random();
 
         /// <summary>
         /// Calcul un nombre aléatoire entre 0 et Max
@@ -23,7 +23,7 @@ namespace Com.Ericmas001.Util
         /// <summary>
         /// Calcul un nombre aléatoire entre Min et 0
         /// </summary>
-        /// <param name="max">Minimum que peut atteindre le random (negatif)</param>
+        /// <param name="min">Minimum que peut atteindre le random (negatif)</param>
         /// <returns>Retourne un nombre aléatoire entre Min et 0, ou bien Min si min n'est pas plus petit que 0</returns>
         public static int RandomWithMin(int min)
         {
@@ -40,8 +40,7 @@ namespace Com.Ericmas001.Util
         {
             if (etendue == 0)
                 return etendue;
-            else
-                return startVal + etendue > 0 ? m_Random.Next(etendue) : -m_Random.Next(-etendue);
+            return startVal + etendue > 0 ? m_Random.Next(etendue) : -m_Random.Next(-etendue);
         }
 
         /// <summary>
@@ -54,9 +53,9 @@ namespace Com.Ericmas001.Util
         {
             if (min == max)
                 return min;
-            int theMin = Math.Min(min, max);
-            int theMax = Math.Max(min, max);
-            return min + m_Random.Next((max - min) + 1);
+            var theMin = Math.Min(min, max);
+            var theMax = Math.Max(min, max);
+            return theMin + m_Random.Next((theMax - theMin) + 1);
         }
 
         /// <summary>

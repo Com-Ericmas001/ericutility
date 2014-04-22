@@ -8,7 +8,7 @@ namespace Com.Ericmas001.Util
 {
     public class CountryInfo
     {
-        private static bool m_Loaded = false;
+        private static bool m_Loaded;
         private static readonly Dictionary<string, string> m_AllCountry = new Dictionary<string, string>();
 
         public static Dictionary<string, string> AllCountry
@@ -17,7 +17,7 @@ namespace Com.Ericmas001.Util
             {
                 if (!m_Loaded)
                     Load();
-                return CountryInfo.m_AllCountry;
+                return m_AllCountry;
             }
         }
 

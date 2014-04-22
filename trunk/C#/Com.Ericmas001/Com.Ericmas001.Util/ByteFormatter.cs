@@ -8,29 +8,26 @@ namespace Com.Ericmas001.Util
         private const long MB = KB * 1024;
         private const long GB = MB * 1024;
 
-        private const string BFormatPattern = "{0} b";
-        private const string KBFormatPattern = "{0:0} KB";
-        private const string MBFormatPattern = "{0:0,###} MB";
-        private const string GBFormatPattern = "{0:0,###.###} GB";
+        private const string B_FORMAT_PATTERN = "{0} b";
+        private const string KB_FORMAT_PATTERN = "{0:0} KB";
+        private const string MB_FORMAT_PATTERN = "{0:0,###} MB";
+        private const string GB_FORMAT_PATTERN = "{0:0,###.###} GB";
 
         public static string ToString(long size)
         {
             if (size < KB)
             {
-                return String.Format(BFormatPattern, size);
+                return String.Format(B_FORMAT_PATTERN, size);
             }
-            else if (size >= KB && size < MB)
+            if (size >= KB && size < MB)
             {
-                return String.Format(KBFormatPattern, size / 1024.0f);
+                return String.Format(KB_FORMAT_PATTERN, size / 1024.0f);
             }
-            else if (size >= MB && size < GB)
+            if (size >= MB && size < GB)
             {
-                return String.Format(MBFormatPattern, size / 1024.0f);
+                return String.Format(MB_FORMAT_PATTERN, size / 1024.0f);
             }
-            else // size >= GB
-            {
-                return String.Format(GBFormatPattern, size / 1024.0f);
-            }
+            return String.Format(GB_FORMAT_PATTERN, size / 1024.0f);
         }
     }
 }

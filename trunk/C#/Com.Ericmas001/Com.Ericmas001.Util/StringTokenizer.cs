@@ -2,15 +2,11 @@
 {
     public class StringTokenizer
     {
-        private string m_TotalStr;
-        private string[] m_SplittedStr;
+        private readonly string[] m_SplittedStr;
         private int m_Index;
-        private char m_Delimitter;
 
         public StringTokenizer(string str, char delimitter)
         {
-            m_TotalStr = str;
-            m_Delimitter = delimitter;
             if (str == null)
                 m_SplittedStr = new string[0];
             else
@@ -38,13 +34,12 @@
             m_Index++;
             if (HasMoreTokens())
             {
-                string s = m_SplittedStr[m_Index];
+                var s = m_SplittedStr[m_Index];
                 if (s == "")
                     return NextToken();
                 return s;
             }
-            else
-                return null;
+            return null;
         }
     }
 }

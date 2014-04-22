@@ -2,8 +2,8 @@
 {
     public abstract class AbstractLoadingTuple
     {
-        protected bool m_Loaded = false;
-        private bool m_Loading = false;
+        protected bool m_Loaded;
+        private bool m_Loading;
 
         public bool Loaded { get { return m_Loaded; } }
 

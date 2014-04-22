@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Com.Ericmas001.Util
 {
@@ -13,23 +11,23 @@ namespace Com.Ericmas001.Util
                 throw new ArgumentException("T must be an enumerated type");
             }
         }
-        private T flag = (T)Enum.ToObject(typeof(T),0);
+        private T m_Flag = (T)Enum.ToObject(typeof(T),0);
 
         public bool Allow(T f)
         {
-            return (Convert.ToInt32(flag) & Convert.ToInt32(f)) != 0;
+            return (Convert.ToInt32(m_Flag) & Convert.ToInt32(f)) != 0;
         }
 
         public void SetFlag(T f, bool value)
         {
-            int val = Convert.ToInt32(flag);
+            var val = Convert.ToInt32(m_Flag);
             if (value)
                 val |= Convert.ToInt32(f);
             else
                 val &= ~Convert.ToInt32(f);
-            flag = (T)Enum.ToObject(typeof(T), val);
+            m_Flag = (T)Enum.ToObject(typeof(T), val);
         }
 
-        public T Flag { get { return flag; } }
+        public T Flag { get { return m_Flag; } }
     }
 }

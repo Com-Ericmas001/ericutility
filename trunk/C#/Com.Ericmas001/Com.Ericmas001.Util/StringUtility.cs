@@ -6,9 +6,6 @@ namespace Com.Ericmas001.Util
 {
     public static class StringUtility
     {
-
-
-
         public static string Extract(this string text, string before, string after)
         {
             return Extract(text, before, after, 0);
@@ -16,26 +13,26 @@ namespace Com.Ericmas001.Util
 
         public static string Extract(this string text, string before, string after, int startindex)
         {
-            int ideb = text.IndexOf(before, startindex) + before.Length;
+            var ideb = text.IndexOf(before, startindex) + before.Length;
             if (ideb < before.Length)
                 return null;
-            int ifin = text.IndexOf(after, ideb);
+            var ifin = text.IndexOf(after, ideb);
             if (ifin < 0)
                 return null;
             return text.Substring(ideb, ifin - ideb);
         }
 
-        public static string RemoveHTMLTags(this string s)
+        public static string RemoveHtmlTags(this string s)
         {
             // Faster than regex: http://dotnetperls.com/remove-html-tags
 
-            char[] array = new char[s.Length];
-            int arrayIndex = 0;
-            bool inside = false;
+            var array = new char[s.Length];
+            var arrayIndex = 0;
+            var inside = false;
 
-            for (int i = 0; i < s.Length; i++)
+            for (var i = 0; i < s.Length; i++)
             {
-                char let = s[i];
+                var let = s[i];
                 if (let == '<')
                 {
                     inside = true;
@@ -55,17 +52,17 @@ namespace Com.Ericmas001.Util
             return new string(array, 0, arrayIndex);
         }
 
-        public static string RemoveBBCodeTags(this string s)
+        public static string RemoveBbCodeTags(this string s)
         {
             // Faster than regex: http://dotnetperls.com/remove-html-tags
 
-            char[] array = new char[s.Length];
-            int arrayIndex = 0;
-            bool inside = false;
+            var array = new char[s.Length];
+            var arrayIndex = 0;
+            var inside = false;
 
-            for (int i = 0; i < s.Length; i++)
+            for (var i = 0; i < s.Length; i++)
             {
-                char let = s[i];
+                var let = s[i];
                 if (let == '[')
                 {
                     inside = true;
@@ -88,15 +85,15 @@ namespace Com.Ericmas001.Util
         public static string GetMd5Hash(this string input)
         {
             // Convert the input string to a byte array and compute the hash.
-            byte[] data = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(input));
+            var data = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(input));
 
             // Create a new Stringbuilder to collect the bytes
             // and create a string.
-            StringBuilder sBuilder = new StringBuilder();
+            var sBuilder = new StringBuilder();
 
             // Loop through each byte of the hashed data
             // and format each one as a hexadecimal string.
-            for (int i = 0; i < data.Length; i++)
+            for (var i = 0; i < data.Length; i++)
             {
                 sBuilder.Append(data[i].ToString("x2"));
             }
