@@ -43,11 +43,8 @@
  * Petite source très simple, mais qui pourra sauver du temps a certains
  */
 
-using System;
-using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
+using Com.Ericmas001.Games.Windows.Forms.Properties;
 
 namespace Com.Ericmas001.Games.Windows.Forms
 {
@@ -59,27 +56,27 @@ namespace Com.Ericmas001.Games.Windows.Forms
         {
             get
             {
-                return Properties.Resources.deck;
+                return Resources.deck;
             }
         }
 
         // Découpe et retourne la carte sur l'image de base
-        public static Image getCarteImage(int x, int y, double size)
+        public static Image GetCarteImage(int x, int y, double size)
         {
             // On va chercher l'image de base
-            Image imgSource = ImageDeck;
+            var imgSource = ImageDeck;
 
             // On crée une nouvelle image sur laquel on va dessiner
             Image img = new Bitmap((int)(150 * size), (int)(200 * size));
 
             // On prends en main notre "crayon" pour dessiner
-            Graphics g = Graphics.FromImage(img);
+            var g = Graphics.FromImage(img);
 
             // On note la position et la grosseur de l'image de la carte
-            Rectangle rect = new Rectangle(1, 1, (int)(147 * size), (int)(197 * size));
+            var rect = new Rectangle(1, 1, (int)(147 * size), (int)(197 * size));
 
             // On dessine la carte
-            g.DrawImage(imgSource, rect, x, y, (int)150, (int)200, GraphicsUnit.Pixel);
+            g.DrawImage(imgSource, rect, x, y, 150, 200, GraphicsUnit.Pixel);
 
             // On rajoute une toute petite bordure autour de la carte
             g.DrawRectangle(new Pen(Brushes.Black), 0, 0, (int)(149 * size), (int)(199 * size));
@@ -88,12 +85,12 @@ namespace Com.Ericmas001.Games.Windows.Forms
             return img;
         }
 
-        public static Image getCarte(GameCardKind sorte, GameCardValue valeur, double size)
+        public static Image GetCarte(GameCardKind sorte, GameCardValue valeur, double size)
         {
-            int v = (int)valeur+1;
+            var v = (int)valeur+1;
             if (valeur == GameCardValue.Ace)
                 v = 0;
-            int k = 0;
+            var k = 0;
             switch (sorte)
             {
                 case GameCardKind.Heart: k = 0; break;
@@ -101,27 +98,27 @@ namespace Com.Ericmas001.Games.Windows.Forms
                 case GameCardKind.Spade: k = 2; break;
                 case GameCardKind.Club: k = 3; break;
             }
-            return getCarteImage(v * 150, k * 200, size);
+            return GetCarteImage(v * 150, k * 200, size);
         }
 
-        public static Image getCarte(GameCardSpecial special, double size)
+        public static Image GetCarte(GameCardSpecial special, double size)
         {
             if (special == GameCardSpecial.Hidden)
-                return getDos(size);
+                return GetDos(size);
             if (special == GameCardSpecial.JokerColor)
-                return getJoker(true, size);
+                return GetJoker(true, size);
             if (special == GameCardSpecial.JokerDark)
-                return getJoker(false, size);
+                return GetJoker(false, size);
             return new Bitmap((int)(150 * size), (int)(200 * size));
         }
-        public static Image getJoker(bool colored, double size)
+        public static Image GetJoker(bool colored, double size)
         {
-            int coef = (colored ? 0 : 1);
-            return getCarteImage(1950, 200 * coef, size);
+            var coef = (colored ? 0 : 1);
+            return GetCarteImage(1950, 200 * coef, size);
         }
-        public static Image getDos(double size)
+        public static Image GetDos(double size)
         {
-            return getCarteImage(1950, 400, size);
+            return GetCarteImage(1950, 400, size);
         }
     }
 }
