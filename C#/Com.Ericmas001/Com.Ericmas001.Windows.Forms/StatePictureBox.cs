@@ -1,6 +1,7 @@
 ﻿using Com.Ericmas001.Util;
 using System;
 using System.Windows.Forms;
+using Com.Ericmas001.Windows.Forms.Properties;
 
 namespace Com.Ericmas001.Windows.Forms
 {
@@ -14,8 +15,8 @@ namespace Com.Ericmas001.Windows.Forms
 
     public class StatePictureBox : PictureBox
     {
-        private Timer waitingTimer;
-        private int waitingCounter = 0;
+        private Timer m_WaitingTimer;
+        private int m_WaitingCounter;
         private StatePictureBoxStates m_Etat = StatePictureBoxStates.None;
 
         public StatePictureBoxStates Etat
@@ -35,9 +36,8 @@ namespace Com.Ericmas001.Windows.Forms
         }
 
         public StatePictureBox()
-            : base()
         {
-            this.BackgroundImageLayout = ImageLayout.Stretch;
+            BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         protected virtual void ChooseImage(StatePictureBoxStates state)
@@ -49,31 +49,31 @@ namespace Com.Ericmas001.Windows.Forms
                     break;
 
                 case StatePictureBoxStates.Waiting:
-                    if (waitingTimer == null)
+                    if (m_WaitingTimer == null)
                     {
-                        waitingTimer = new Timer();
-                        waitingTimer.Interval = 100;
-                        waitingTimer.Tick += new EventHandler(waitingTimer_Tick);
-                        waitingTimer.Start();
-                        BackgroundImage = Properties.Resources.waiting0;
+                        m_WaitingTimer = new Timer();
+                        m_WaitingTimer.Interval = 100;
+                        m_WaitingTimer.Tick += waitingTimer_Tick;
+                        m_WaitingTimer.Start();
+                        BackgroundImage = Resources.waiting0;
                     }
                     break;
 
                 case StatePictureBoxStates.Bad:
-                    BackgroundImage = Properties.Resources.bad;
+                    BackgroundImage = Resources.bad;
                     break;
 
                 case StatePictureBoxStates.Ok:
-                    BackgroundImage = Properties.Resources.OK;
+                    BackgroundImage = Resources.OK;
                     break;
             }
         }
 
         private void UpdateBackgroundImage()
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                this.Invoke(new EmptyHandler(UpdateBackgroundImage), new object[] { });
+                Invoke(new EmptyHandler(UpdateBackgroundImage), new object[] { });
                 return;
             }
             ChooseImage(m_Etat);
@@ -84,52 +84,52 @@ namespace Com.Ericmas001.Windows.Forms
         {
             if (m_Etat == StatePictureBoxStates.Waiting)
             {
-                if (this.InvokeRequired)
+                if (InvokeRequired)
                 {
-                    this.Invoke(new EventHandler(waitingTimer_Tick), new object[] { sender, e });
+                    Invoke(new EventHandler(waitingTimer_Tick), new[] { sender, e });
                     return;
                 }
-                waitingCounter++;
-                waitingCounter %= 8;
-                switch (waitingCounter)
+                m_WaitingCounter++;
+                m_WaitingCounter %= 8;
+                switch (m_WaitingCounter)
                 {
                     case 0:
-                        BackgroundImage = Properties.Resources.waiting0;
+                        BackgroundImage = Resources.waiting0;
                         break;
 
                     case 1:
-                        BackgroundImage = Properties.Resources.waiting1;
+                        BackgroundImage = Resources.waiting1;
                         break;
 
                     case 2:
-                        BackgroundImage = Properties.Resources.waiting2;
+                        BackgroundImage = Resources.waiting2;
                         break;
 
                     case 3:
-                        BackgroundImage = Properties.Resources.waiting3;
+                        BackgroundImage = Resources.waiting3;
                         break;
 
                     case 4:
-                        BackgroundImage = Properties.Resources.waiting4;
+                        BackgroundImage = Resources.waiting4;
                         break;
 
                     case 5:
-                        BackgroundImage = Properties.Resources.waiting5;
+                        BackgroundImage = Resources.waiting5;
                         break;
 
                     case 6:
-                        BackgroundImage = Properties.Resources.waiting6;
+                        BackgroundImage = Resources.waiting6;
                         break;
 
                     case 7:
-                        BackgroundImage = Properties.Resources.waiting7;
+                        BackgroundImage = Resources.waiting7;
                         break;
                 }
             }
             else
             {
-                waitingTimer.Stop();
-                waitingTimer = null;
+                m_WaitingTimer.Stop();
+                m_WaitingTimer = null;
             }
         }
     }

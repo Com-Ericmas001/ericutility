@@ -1,4 +1,4 @@
-﻿namespace Com.Ericmas001.Windows.Forms
+﻿namespace Com.Ericmas001.Windows.Forms.CustomTabControl
 {
     partial class TabPageContent
     {

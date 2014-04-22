@@ -4,12 +4,13 @@
 */
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace Com.Ericmas001.Windows.Forms
+namespace Com.Ericmas001.Windows.Forms.CustomTabControl
 {
     /// <summary>
     /// Description of NativeMethods.
@@ -23,54 +24,40 @@ namespace Com.Ericmas001.Windows.Forms
 
         #region Windows Constants
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         public const int WM_GETTABRECT = 0x130a;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         public const int WS_EX_TRANSPARENT = 0x20;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         public const int WM_SETFONT = 0x30;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         public const int WM_FONTCHANGE = 0x1d;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         public const int WM_HSCROLL = 0x114;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         public const int TCM_HITTEST = 0x130D;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         public const int WM_PAINT = 0xf;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         public const int WS_EX_LAYOUTRTL = 0x400000;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         public const int WS_EX_NOINHERITLAYOUT = 0x100000;
 
         #endregion Windows Constants
 
         #region Content Alignment
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        public static readonly ContentAlignment AnyRightAlign = ContentAlignment.BottomRight | ContentAlignment.MiddleRight | ContentAlignment.TopRight;
+        public const ContentAlignment ANY_LEFT_ALIGN = ContentAlignment.BottomLeft | ContentAlignment.MiddleLeft | ContentAlignment.TopLeft;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        public static readonly ContentAlignment AnyLeftAlign = ContentAlignment.BottomLeft | ContentAlignment.MiddleLeft | ContentAlignment.TopLeft;
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        public static readonly ContentAlignment AnyTopAlign = ContentAlignment.TopRight | ContentAlignment.TopCenter | ContentAlignment.TopLeft;
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        public static readonly ContentAlignment AnyBottomAlign = ContentAlignment.BottomRight | ContentAlignment.BottomCenter | ContentAlignment.BottomLeft;
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        public static readonly ContentAlignment AnyMiddleAlign = ContentAlignment.MiddleRight | ContentAlignment.MiddleCenter | ContentAlignment.MiddleLeft;
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        public static readonly ContentAlignment AnyCenterAlign = ContentAlignment.BottomCenter | ContentAlignment.MiddleCenter | ContentAlignment.TopCenter;
+        public const ContentAlignment ANY_CENTER_ALIGN = ContentAlignment.BottomCenter | ContentAlignment.MiddleCenter | ContentAlignment.TopCenter;
 
         #endregion Content Alignment
 
@@ -83,26 +70,26 @@ namespace Com.Ericmas001.Windows.Forms
         {
             //	This Method replaces the User32 method SendMessage, but will only work for sending
             //	messages to Managed controls.
-            Control control = Control.FromHandle(hWnd);
+            var control = Control.FromHandle(hWnd);
             if (control == null)
             {
                 return IntPtr.Zero;
             }
 
-            Message message = new Message();
+            var message = new Message();
             message.HWnd = hWnd;
             message.LParam = lParam;
             message.WParam = wParam;
             message.Msg = msg;
 
-            MethodInfo wproc = control.GetType().GetMethod("WndProc"
+            var wproc = control.GetType().GetMethod("WndProc"
                                                            , BindingFlags.NonPublic
                                                             | BindingFlags.InvokeMethod
                                                             | BindingFlags.FlattenHierarchy
                                                             | BindingFlags.IgnoreCase
                                                             | BindingFlags.Instance);
 
-            object[] args = new object[] { message };
+            var args = new object[] { message };
             wproc.Invoke(control, args);
 
             return ((Message)args[0]).Result;
@@ -129,15 +116,14 @@ namespace Com.Ericmas001.Windows.Forms
         {
             if ((dWord.ToInt32() & 0x80000000) == 0x80000000)
                 return (dWord.ToInt32() >> 16);
-            else
-                return (dWord.ToInt32() >> 16) & 0xffff;
+            return (dWord.ToInt32() >> 16) & 0xffff;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2106:SecureAsserts")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands")]
+        [SuppressMessage("Microsoft.Security", "CA2106:SecureAsserts")]
+        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands")]
         public static IntPtr ToIntPtr(object structure)
         {
-            IntPtr lparam = IntPtr.Zero;
+            IntPtr lparam;
             lparam = Marshal.AllocCoTaskMem(Marshal.SizeOf(structure));
             Marshal.StructureToPtr(structure, lparam, false);
             return lparam;
@@ -147,34 +133,34 @@ namespace Com.Ericmas001.Windows.Forms
 
         #region Windows Structures and Enums
 
-        [Flags()]
-        public enum TCHITTESTFLAGS
+        [Flags]
+        public enum Tchittestflags
         {
-            TCHT_NOWHERE = 1,
-            TCHT_ONITEMICON = 2,
-            TCHT_ONITEMLABEL = 4,
-            TCHT_ONITEM = TCHT_ONITEMICON | TCHT_ONITEMLABEL
+            TchtNowhere = 1,
+            TchtOnitemicon = 2,
+            TchtOnitemlabel = 4,
+            TchtOnitem = TchtOnitemicon | TchtOnitemlabel
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct TCHITTESTINFO
+        public struct Tchittestinfo
         {
-            public TCHITTESTINFO(Point location)
+            public Tchittestinfo(Point location)
             {
                 pt = location;
-                flags = TCHITTESTFLAGS.TCHT_ONITEM;
+                flags = Tchittestflags.TchtOnitem;
             }
 
             public Point pt;
-            public TCHITTESTFLAGS flags;
+            public Tchittestflags flags;
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
-        public struct PAINTSTRUCT
+        public struct Paintstruct
         {
             public IntPtr hdc;
             public int fErase;
-            public RECT rcPaint;
+            public Rect rcPaint;
             public int fRestore;
             public int fIncUpdate;
 
@@ -183,14 +169,14 @@ namespace Com.Ericmas001.Windows.Forms
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct RECT
+        public struct Rect
         {
             public int left;
             public int top;
             public int right;
             public int bottom;
 
-            public RECT(int left, int top, int right, int bottom)
+            public Rect(int left, int top, int right, int bottom)
             {
                 this.left = left;
                 this.top = top;
@@ -198,22 +184,22 @@ namespace Com.Ericmas001.Windows.Forms
                 this.bottom = bottom;
             }
 
-            public RECT(Rectangle r)
+            public Rect(Rectangle r)
             {
-                this.left = r.Left;
-                this.top = r.Top;
-                this.right = r.Right;
-                this.bottom = r.Bottom;
+                left = r.Left;
+                top = r.Top;
+                right = r.Right;
+                bottom = r.Bottom;
             }
 
-            public static RECT FromXYWH(int x, int y, int width, int height)
+            public static Rect FromXywh(int x, int y, int width, int height)
             {
-                return new RECT(x, y, x + width, y + height);
+                return new Rect(x, y, x + width, y + height);
             }
 
-            public static RECT FromIntPtr(IntPtr ptr)
+            public static Rect FromIntPtr(IntPtr ptr)
             {
-                RECT rect = (RECT)Marshal.PtrToStructure(ptr, typeof(RECT));
+                var rect = (Rect)Marshal.PtrToStructure(ptr, typeof(Rect));
                 return rect;
             }
 
@@ -221,7 +207,7 @@ namespace Com.Ericmas001.Windows.Forms
             {
                 get
                 {
-                    return new Size(this.right - this.left, this.bottom - this.top);
+                    return new Size(right - left, bottom - top);
                 }
             }
         }

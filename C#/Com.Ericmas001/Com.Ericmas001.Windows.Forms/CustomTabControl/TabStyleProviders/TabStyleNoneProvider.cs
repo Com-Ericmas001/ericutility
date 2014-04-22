@@ -3,9 +3,13 @@
  * See http://www.codeproject.com/info/cpol10.aspx for details
  */
 
-namespace Com.Ericmas001.Windows.Forms
+using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+
+namespace Com.Ericmas001.Windows.Forms.CustomTabControl.TabStyleProviders
 {
-    [System.ComponentModel.ToolboxItem(false)]
+    [ToolboxItem(false)]
     public class TabStyleNoneProvider : TabStyleProvider
     {
         public TabStyleNoneProvider(CustomTabControl tabControl)
@@ -13,7 +17,7 @@ namespace Com.Ericmas001.Windows.Forms
         {
         }
 
-        public override void AddTabBorder(System.Drawing.Drawing2D.GraphicsPath path, System.Drawing.Rectangle tabBounds)
+        public override void AddTabBorder(GraphicsPath path, Rectangle tabBounds)
         {
         }
     }
