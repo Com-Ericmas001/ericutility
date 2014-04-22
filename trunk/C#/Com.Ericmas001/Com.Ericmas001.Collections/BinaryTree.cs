@@ -13,12 +13,12 @@ namespace Com.Ericmas001.Collections
         /// </summary>
         public BinaryTreeNode<T> LeftNode
         {
-            get { return (BinaryTreeNode<T>)m_Children[0]; }
+            get { return (BinaryTreeNode<T>)Children[0]; }
             set
             {
-                m_Children[0] = value;
+                Children[0] = value;
                 if (value != null)
-                    value.m_Parent = this;
+                    value.Parent = this;
             }
         }
 
@@ -36,12 +36,12 @@ namespace Com.Ericmas001.Collections
         /// </summary>
         public BinaryTreeNode<T> RightNode
         {
-            get { return (BinaryTreeNode<T>)m_Children[1]; }
+            get { return (BinaryTreeNode<T>)Children[1]; }
             set
             {
-                m_Children[1] = value;
+                Children[1] = value;
                 if (value != null)
-                    value.m_Parent = this;
+                    value.Parent = this;
             }
         }
 
@@ -61,7 +61,7 @@ namespace Com.Ericmas001.Collections
         public BinaryTreeNode(T val)
             : base(val, null)
         {
-            m_Children.AddRange(new BinaryTreeNode<T>[2]);
+            Children.AddRange(new BinaryTreeNode<T>[2]);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Com.Ericmas001.Collections
         {
             get
             {
-                List<T> vals = new List<T> { m_Value };
+                var vals = new List<T> { Value };
                 if (LeftNode != null)
                     vals.AddRange(LeftNode.FamilyLeftToRight);
                 if (RightNode != null)
@@ -87,7 +87,7 @@ namespace Com.Ericmas001.Collections
         {
             get
             {
-                List<T> vals = new List<T> { m_Value };
+                var vals = new List<T> { Value };
                 if (RightNode != null)
                     vals.AddRange(RightNode.FamilyRightToLeft);
                 if (LeftNode != null)
@@ -101,16 +101,8 @@ namespace Com.Ericmas001.Collections
     /// Arbre binaire (possédant toujours que 2 enfants)
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class BinaryTree<T> : AbstractTree<T>
+    public class BinaryTree<T> : AbstractTree<BinaryTreeNode<T>>
     {
-        /// <summary>
-        /// Racine de l'arbre
-        /// </summary>
-        public BinaryTreeNode<T> Root
-        {
-            get { return (BinaryTreeNode<T>)m_Root; }
-        }
-
         /// <summary>
         /// Arbre binaire (possédant toujours que 2 enfants)
         /// </summary>

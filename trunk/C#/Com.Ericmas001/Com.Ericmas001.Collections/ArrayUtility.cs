@@ -14,9 +14,9 @@ namespace Com.Ericmas001.Collections
         /// <returns>La position de la valeur choisie dans le array</returns>
         public static int GetRandomMin<T>(T[] values) where T : IComparable<T>
         {
-            T min = values[0];
-            List<int> possibles = new List<int>() { 0 };
-            for (int i = 1; i < 16; ++i)
+            var min = values[0];
+            var possibles = new List<int>() { 0 };
+            for (var i = 1; i < 16; ++i)
             {
                 if (values[i].CompareTo(min) < 0)
                 {
@@ -38,9 +38,9 @@ namespace Com.Ericmas001.Collections
         /// <returns>La position de la valeur choisie dans le array</returns>
         public static int GetRandomMax<T>(T[] values) where T : IComparable<T>
         {
-            T max = values[0];
-            List<int> possibles = new List<int>() { 0 };
-            for (int i = 1; i < 16; ++i)
+            var max = values[0];
+            var possibles = new List<int>() { 0 };
+            for (var i = 1; i < 16; ++i)
             {
                 if (values[i].CompareTo(max) > 0)
                 {
