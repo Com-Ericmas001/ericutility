@@ -50,11 +50,11 @@ namespace Com.Ericmas001.Util
         private static string GetDescription(T enumerationValue)
         {
             var memberInfo = typeof(T).GetMember(enumerationValue.ToString());
-            if (memberInfo != null && memberInfo.Length > 0)
+            if (memberInfo.Length > 0)
             {
                 var attrs = memberInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
 
-                if (attrs != null && attrs.Length > 0)
+                if (attrs.Length > 0)
                 {
                     return ((DescriptionAttribute)attrs[0]).Description;
                 }
