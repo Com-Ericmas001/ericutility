@@ -48,6 +48,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BgTaskManager.cs" />
     <Compile Include="Converters\EnumMatchToBooleanConverter.cs" />
     <Compile Include="CustomControls\CoolButton.cs" />
     <Compile Include="CustomControls\CoolRadioButton.cs" />
@@ -67,7 +68,9 @@
     </Compile>
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ScrollableTabPanel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\SingleBgTaskViewModel.cs" />
+    <Compile Include="WpfWindowManager.cs" />
     <Compile Include="XAML\SingleBgTaskWindow.xaml.cs">
       <DependentUpon>SingleBgTaskWindow.xaml</DependentUpon>
     </Compile>
