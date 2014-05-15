@@ -48,6 +48,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\EnumMatchToBooleanConverter.cs" />
+    <Compile Include="CustomControls\CoolButton.cs" />
+    <Compile Include="CustomControls\CoolRadioButton.cs" />
     <Compile Include="PinnedTabItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -64,6 +67,10 @@
     </Compile>
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ScrollableTabPanel.cs" />
+    <Compile Include="ViewModels\SingleBgTaskViewModel.cs" />
+    <Compile Include="XAML\SingleBgTaskWindow.xaml.cs">
+      <DependentUpon>SingleBgTaskWindow.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -73,6 +80,33 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\SpinnerResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\RadioButtonResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ButtonResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\SingleBgTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Com.Ericmas001.Util\Com.Ericmas001.Util.csproj">
+      <Project>{473a461c-a3ef-49a1-b4ef-0fdbe2304717}</Project>
+      <Name>Com.Ericmas001.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_order.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

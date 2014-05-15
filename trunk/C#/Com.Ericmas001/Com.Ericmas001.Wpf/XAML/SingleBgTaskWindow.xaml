@@ -1,0 +1,27 @@
+﻿<Window x:Class="Com.Ericmas001.Wpf.XAML.SingleBgTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Com.Ericmas001.Wpf.ViewModels"
+        Title="Waiting ..." Height="104" Width="73" Icon="/Com.Ericmas001.Wpf;component/Resources/icon_order.png" AllowsTransparency="True" WindowStyle="None" Opacity="1" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="ress" Source="/Com.Ericmas001.Wpf;component/Resources/SpinnerResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <vm:SingleBgTaskViewModel />
+    </Window.DataContext>
+
+    <StackPanel>
+        <ProgressBar Style="{StaticResource SpinnerProgress}" IsIndeterminate="True"/>
+    </StackPanel>
+    <Window.Background>
+        <SolidColorBrush />
+    </Window.Background>
+</Window>
