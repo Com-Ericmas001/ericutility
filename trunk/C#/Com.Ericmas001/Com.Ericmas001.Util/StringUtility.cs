@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -105,6 +107,15 @@ namespace Com.Ericmas001.Util
         public static bool IsValidEmail(this string strIn)
         {
             return Regex.IsMatch(strIn, @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$");
+        }
+
+        public static string CapitalizeFirstLetter(string s)
+        {
+            return s.First().ToString().ToUpper() + String.Join("", s.ToLower().Skip(1));
+        }
+        public static string RemoveExtraSpaces(string s)
+        {
+            return Regex.Replace(s, @"\s+", " ").Trim();
         }
     }
 }
