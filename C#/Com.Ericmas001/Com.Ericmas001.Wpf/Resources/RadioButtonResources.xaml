@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cc="clr-namespace:Com.Ericmas001.Wpf.CustomControls">
+
+    <Style TargetType="cc:CoolRadioButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="cc:CoolRadioButton">
+                    <BulletDecorator Background="Transparent" >
+                        <BulletDecorator.Bullet>
+                            <RadioButton VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            Margin="0,2.5,0,0" IsChecked="{Binding Path=IsChecked, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </BulletDecorator.Bullet>
+                        <StackPanel Orientation="Horizontal" Margin="2,0,0,0">
+                            <Image Source="{Binding Path=ImageSource, RelativeSource={RelativeSource TemplatedParent}}" Width="{Binding Path=ImageSize, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            RecognizesAccessKey="True" />
+                        </StackPanel>
+
+                    </BulletDecorator>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>
