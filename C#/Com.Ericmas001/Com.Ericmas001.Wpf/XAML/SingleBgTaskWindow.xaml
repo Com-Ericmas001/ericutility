@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Com.Ericmas001.Wpf.XAML.SingleBgTaskWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="clr-namespace:Com.Ericmas001.Wpf.ViewModels"
+        xmlns:vm="clr-namespace:Com.Ericmas001.Wpf.ViewModels" 
         Title="Waiting ..." Height="104" Width="73" Icon="/Com.Ericmas001.Wpf;component/Resources/icon_order.png" AllowsTransparency="True" WindowStyle="None" Opacity="1" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>

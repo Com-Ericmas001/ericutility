@@ -52,6 +52,7 @@
     <Compile Include="Converters\EnumMatchToBooleanConverter.cs" />
     <Compile Include="CustomControls\CoolButton.cs" />
     <Compile Include="CustomControls\CoolRadioButton.cs" />
+    <Compile Include="DisplayList.cs" />
     <Compile Include="PinnedTabItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -68,7 +69,14 @@
     </Compile>
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ScrollableTabPanel.cs" />
+    <Compile Include="Validations\CustomValidationAttribute.cs" />
+    <Compile Include="Validations\DigitValidationAttribute.cs" />
+    <Compile Include="Validations\LetterOrDigitValidationAttribute.cs" />
+    <Compile Include="Validations\MinDigitValidationAttribute.cs" />
+    <Compile Include="Validations\NullOrEmptyValidationAttribute.cs" />
+    <Compile Include="Validations\SimpleValidationAttribute.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CloseableTabViewModel.cs" />
     <Compile Include="ViewModels\SingleBgTaskViewModel.cs" />
     <Compile Include="WpfWindowManager.cs" />
     <Compile Include="XAML\SingleBgTaskWindow.xaml.cs">
@@ -85,6 +93,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\ExpanderResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\SpinnerResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -96,6 +108,14 @@
     <Page Include="Resources\ButtonResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\TabResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ValidationResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="XAML\SingleBgTaskWindow.xaml">
       <SubType>Designer</SubType>
@@ -110,6 +130,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\icon_order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
