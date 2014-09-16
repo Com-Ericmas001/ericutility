@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Com.Ericmas001.Util
+namespace Com.Ericmas001.Util //
 {
     /// <summary>
     /// Classe permettant de générer certaines valeurs de manière aléatoire
