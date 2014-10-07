@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- 
+    Ne pas oublier de Modifier ../SearchInputTemplate.xaml pour s'assurer qu'il contient ce XAML :) 
+    -->
+
+    <DataTemplate x:Key="SearchListTemplate">
+        <ListBox Width="250" Height="75" ItemsSource="{Binding ItemList.Items}" SelectedIndex="{Binding ItemList.SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" SelectedItem="{Binding ItemList.Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}">
+                            <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, Path=DataContext.SubmitValue}" />
+                            </TextBlock.InputBindings>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.InputBindings>
+                <KeyBinding Key="Enter" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, Path=DataContext.SubmitValue}" />
+            </ListBox.InputBindings>
+        </ListBox>
+    </DataTemplate>
+
+</ResourceDictionary>

@@ -108,12 +108,11 @@ namespace Com.Ericmas001.Util
         {
             return Regex.IsMatch(strIn, @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$");
         }
-
-        public static string CapitalizeFirstLetter(string s)
+        public static string CapitalizeFirstLetter(this string s)
         {
-            return s.First().ToString().ToUpper() + String.Join("", s.ToLower().Skip(1));
+            return char.ToUpper(s[0]) + s.Substring(1);
         }
-        public static string RemoveExtraSpaces(string s)
+        public static string RemoveExtraSpaces(this string s)
         {
             return Regex.Replace(s, @"\s+", " ").Trim();
         }

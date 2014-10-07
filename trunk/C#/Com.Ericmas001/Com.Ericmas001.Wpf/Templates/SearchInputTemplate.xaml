@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ts="clr-namespace:Com.Ericmas001.Wpf.TemplateSelectors">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="SearchInputTemplate/SearchTextTemplate.xaml"/>
+        <ResourceDictionary Source="SearchInputTemplate/SearchDateTemplate.xaml"/>
+        <ResourceDictionary Source="SearchInputTemplate/SearchListTemplate.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <ts:SearchInputTemplateSelector
+            TextTemplate="{StaticResource SearchTextTemplate}"
+            DateTemplate="{StaticResource SearchDateTemplate}"
+            ListTemplate="{StaticResource SearchListTemplate}"
+            x:Key="SearchInputContentTemplateSelector" />
+</ResourceDictionary>

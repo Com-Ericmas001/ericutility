@@ -6,10 +6,12 @@ using System.Reflection;
 using System.Windows;
 using System.Threading;
 using Com.Ericmas001.Wpf.Validations;
+using Com.Ericmas001.Wpf.ViewCommands;
+using System.Windows.Input;
 
 namespace Com.Ericmas001.Wpf.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged, IDataErrorInfo
+    public class BaseViewModel : INotifyPropertyChanged, IDataErrorInfo, IViewCommandSource
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public event EventHandler OnRequestClose = delegate { };
@@ -18,6 +20,14 @@ namespace Com.Ericmas001.Wpf.ViewModels
         {
             get { return null; }
         }
+
+
+        private ViewCommandManager viewCommandManager = new ViewCommandManager();
+
+        /// <summary>
+        /// Gets the ViewCommandManager instance.
+        /// </summary>
+        public ViewCommandManager ViewCommandManager { get { return viewCommandManager; } }
 
         public string this[string propertyName]
         {
@@ -28,6 +38,23 @@ namespace Com.Ericmas001.Wpf.ViewModels
                 IEnumerable<string> customs = prop.GetCustomAttributes(true).OfType<CustomValidationAttribute>().Select(att => att.Validate(this, prop.GetValue(this, null) as String));
 
                 return simples.Union(customs).FirstOrDefault(msg => !String.IsNullOrEmpty(msg));
+            }
+        }
+
+        private RelayCommand<string> m_CopyCommand;
+        public ICommand CopyCommand { get { return m_CopyCommand ?? (m_CopyCommand = new RelayCommand<string>(p => CopyToClipboard(p), p => !String.IsNullOrWhiteSpace(p))); } }
+
+        private static void CopyToClipboard(string str)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                try
+                {
+                    Clipboard.SetText(str);
+                    return;
+                }
+                catch { }
+                Thread.Sleep(100);
             }
         }
 
@@ -51,9 +78,9 @@ namespace Com.Ericmas001.Wpf.ViewModels
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected void CloseWindow()
+        protected void CloseView()
         {
-            OnRequestClose(this,new EventArgs());
+            OnRequestClose(this, new EventArgs());
         }
 
         public static TViewModel ShowDialog<TViewModel, TWindow>()

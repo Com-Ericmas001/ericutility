@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework.Classic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -48,12 +49,36 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DelegateCommand.cs" />
+    <Compile Include="BindingProxy.cs" />
     <Compile Include="BgTaskManager.cs" />
+    <Compile Include="Converters\TreeContextMenuVisibilityConverter.cs" />
+    <Compile Include="Converters\NullToBooleanConverter.cs" />
+    <Compile Include="Converters\MultiplyConverter.cs" />
     <Compile Include="Converters\EnumMatchToBooleanConverter.cs" />
+    <Compile Include="CustomControls\CircularProgressBar.xaml.cs">
+      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\CoolButton.cs" />
+    <Compile Include="CustomControls\CoolHtmlBrowserControl.xaml.cs">
+      <DependentUpon>CoolHtmlBrowserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\CoolRadioButton.cs" />
+    <Compile Include="CustomControls\CoolTabPanel.cs" />
+    <Compile Include="CustomControls\CoolXmlBrowserControl.xaml.cs">
+      <DependentUpon>CoolXmlBrowserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\LoadingPanel.xaml.cs">
+      <DependentUpon>LoadingPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ValidationResultControl.xaml.cs">
+      <DependentUpon>ValidationResultControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\XmlBrowserControl.xaml.cs">
+      <DependentUpon>XmlBrowserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\XmlValidator.cs" />
     <Compile Include="DisplayList.cs" />
-    <Compile Include="PinnedTabItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -67,17 +92,37 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="FastObservableCollection.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ScrollableTabPanel.cs" />
+    <Compile Include="TemplateSelectors\SearchInputTemplateSelector.cs" />
     <Compile Include="Validations\CustomValidationAttribute.cs" />
     <Compile Include="Validations\DigitValidationAttribute.cs" />
     <Compile Include="Validations\LetterOrDigitValidationAttribute.cs" />
     <Compile Include="Validations\MinDigitValidationAttribute.cs" />
     <Compile Include="Validations\NullOrEmptyValidationAttribute.cs" />
     <Compile Include="Validations\SimpleValidationAttribute.cs" />
+    <Compile Include="ViewCommands\ViewCommandManager.cs" />
+    <Compile Include="ViewCommands\ViewCommandAttribute.cs" />
+    <Compile Include="ViewCommands\IViewCommandSource.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\CloseableTabViewModel.cs" />
+    <Compile Include="ViewModels\SearchElements\BaseSearchElement.cs" />
+    <Compile Include="ViewModels\SearchElements\DateSearchElement.cs" />
+    <Compile Include="ViewModels\SearchElements\GuidSearchElement.cs" />
+    <Compile Include="ViewModels\SearchElements\IntSearchElement.cs" />
+    <Compile Include="ViewModels\SearchElements\ListSearchElement.cs" />
+    <Compile Include="ViewModels\SearchElements\TextSearchElement.cs" />
+    <Compile Include="ViewModels\SearchElements\UpperTextSearchElement.cs" />
     <Compile Include="ViewModels\SingleBgTaskViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\BaseTabViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\NewTabViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\TabControlViewModel.cs" />
+    <Compile Include="ViewModels\Trees\CollapseAllMenuItem.cs" />
+    <Compile Include="ViewModels\Trees\CollapseMenuItem.cs" />
+    <Compile Include="ViewModels\Trees\ExpandAllMenuItem.cs" />
+    <Compile Include="ViewModels\Trees\ExpandMenuItem.cs" />
+    <Compile Include="ViewModels\Trees\TreeContextMenuItemViewModel.cs" />
+    <Compile Include="ViewModels\Trees\TreeElementViewModel.cs" />
     <Compile Include="WpfWindowManager.cs" />
     <Compile Include="XAML\SingleBgTaskWindow.xaml.cs">
       <DependentUpon>SingleBgTaskWindow.xaml</DependentUpon>
@@ -93,29 +138,77 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Resources\ExpanderResources.xaml">
+    <Page Include="CustomControls\CircularProgressBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\SpinnerResources.xaml">
+    <Page Include="CustomControls\CoolHtmlBrowserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\RadioButtonResources.xaml">
+    <Page Include="CustomControls\CoolXmlBrowserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\ButtonResources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\TabResources.xaml">
+    <Page Include="CustomControls\LoadingPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\ValidationResources.xaml">
+    <Page Include="CustomControls\ValidationResultControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\XmlBrowserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ImageResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ExpanderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\SpinnerStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\RadioButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ButtonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\TreeItemStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ValidationStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\SearchInputTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\SearchInputTemplate\SearchDateTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\SearchInputTemplate\SearchListTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\SearchInputTemplate\SearchTextTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\TabTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="XAML\SingleBgTaskWindow.xaml">
       <SubType>Designer</SubType>
@@ -133,6 +226,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\collapse.png" />
+    <Resource Include="Resources\collapseAll.png" />
+    <Resource Include="Resources\expand.png" />
+    <Resource Include="Resources\expandAll.png" />
+    <Resource Include="Resources\login_icon.png" />
+    <Resource Include="Resources\openFolder.png" />
+    <Resource Include="Resources\secrecy-icon.png" />
+    <EmbeddedResource Include="Resources\xml-pretty-print.xsl" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Com.Ericmas001.Wpf.CustomControls.XmlBrowserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:converter="clr-namespace:Com.Ericmas001.Wpf.Converters" x:Name="thisControl">
+    <UserControl.Resources>
+        <converter:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+    </UserControl.Resources>
+    <DockPanel LastChildFill="True"  Margin="5">
+        <StackPanel DockPanel.Dock="Right" IsEnabled="{Binding ElementName=thisControl, Path=XmlDoc, Converter={StaticResource NullToBooleanConverter}}">
+            <Button Name="EditButton" Content="_edit" Click="EditButtonClick" Visibility="Collapsed" Margin="2" />
+            <Button Name="CopyClipButton" Content="_copy to clipboard" Visibility="Collapsed" Margin="2" Click="CopyClipButtonClick"/>
+            <Button Name="ValidateXmlButton" Content="_validate xml" Visibility="Collapsed" Margin="2" Click="ValidateXmlButtonClick"/>
+        </StackPanel>
+        <Grid DockPanel.Dock="Left">
+            <WebBrowser Name="WebBrowser" VerticalAlignment="Stretch" Margin="5"/>
+            <ScrollViewer Name="EditTextScrollViewer" Margin="5">
+                <TextBox AcceptsReturn="True" Name="EditText" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </ScrollViewer>
+        </Grid>
+
+    </DockPanel>
+</UserControl>
