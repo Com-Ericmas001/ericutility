@@ -1,0 +1,97 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cc="clr-namespace:Com.Ericmas001.Wpf.CustomControls">
+
+    <DataTemplate x:Key="TabHeaderDataTemplate">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="20">
+
+            <StackPanel.InputBindings>
+                <MouseBinding MouseAction="MiddleClick"  Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}, Path=DataContext.CloseTabCommand}" />
+            </StackPanel.InputBindings>
+
+            <!-- Image -->
+            <ContentControl Content="{Binding}">
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HasHeaderIcon}" Value="True">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <Image Source="{Binding TabIcon}" Height="12" Width="12" Stretch="UniformToFill" Margin="5,0,5,0"/>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding HasHeaderIcon}" Value="False">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate />
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
+
+            <!-- Text -->
+            <ContentControl Content="{Binding}">
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HasHeaderText}" Value="True">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding TabHeader}" VerticalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding HasHeaderText}" Value="False">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate />
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
+
+            <!-- Close Button -->
+            <ContentControl Content="{Binding}">
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CanCloseTab}" Value="True">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource MiniCrossButton}" VerticalAlignment="Center" Margin="5,0,0,0"  Command="{Binding Path=CloseTabCommand}"/>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding CanCloseTab}" Value="False">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate />
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
+        </StackPanel>
+    </DataTemplate>
+
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Com.Ericmas001.Wpf;component/Styles/ButtonStyles.xaml"/>
+        <ResourceDictionary Source="/Com.Ericmas001.Wpf;component/Resources/ImagesResources.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

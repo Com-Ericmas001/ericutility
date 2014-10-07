@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- 
+    Ne pas oublier de Modifier ../SearchInputTemplate.xaml pour s'assurer qu'il contient ce XAML :) 
+    -->
+
+    <DataTemplate x:Key="SearchTextTemplate">
+        <TextBox Width="150" Text="{Binding Valeur, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBox}}, Path=DataContext.SubmitValue}" Key="Enter" />
+            </TextBox.InputBindings>
+        </TextBox>
+    </DataTemplate>
+
+</ResourceDictionary>

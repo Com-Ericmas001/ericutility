@@ -8,7 +8,7 @@ namespace Com.Ericmas001.Wpf
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        private ObservableCollection<T> m_Items;
+        private ObservableCollection<T> m_Items = new ObservableCollection<T>();
         private int m_SelectedIndex;
         private T m_Selected;
 

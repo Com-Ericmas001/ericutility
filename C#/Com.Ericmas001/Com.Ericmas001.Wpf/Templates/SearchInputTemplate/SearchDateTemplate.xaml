@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- 
+    Ne pas oublier de Modifier ../SearchInputTemplate.xaml pour s'assurer qu'il contient ce XAML :) 
+    -->
+
+    <DataTemplate x:Key="SearchDateTemplate">
+        <DatePicker Width="150" Text="{Binding Valeur, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+    </DataTemplate>
+
+</ResourceDictionary>

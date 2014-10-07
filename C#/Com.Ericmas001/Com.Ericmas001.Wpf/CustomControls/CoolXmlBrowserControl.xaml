@@ -1,0 +1,6 @@
+﻿<UserControl x:Class="Com.Ericmas001.Wpf.CustomControls.CoolXmlBrowserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:converter="clr-namespace:Com.Ericmas001.Wpf.Converters" x:Name="thisControl">
+    <WebBrowser Name="WebBrowser" VerticalAlignment="Stretch" Margin="5" />
+</UserControl>

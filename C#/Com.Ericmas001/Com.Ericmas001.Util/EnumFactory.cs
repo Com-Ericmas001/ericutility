@@ -15,8 +15,8 @@ namespace Com.Ericmas001.Util
 
         private static void Init()
         {
-            if (!typeof (T).IsEnum)
-                throw new Exception("<T> must be of Enum type (" + typeof (T).Name + ")");
+            if (!typeof(T).IsEnum)
+                throw new Exception("<T> must be of Enum type (" + typeof(T).Name + ")");
             m_ParsingDic = new Dictionary<string, T>();
             m_ToStringDic = new Dictionary<T, string>();
             foreach (T e in Enum.GetValues(typeof(T)))
@@ -31,14 +31,16 @@ namespace Com.Ericmas001.Util
         {
             if (m_ToStringDic == null)
                 Init();
-            return m_ToStringDic[enumValue];
+            if (m_ToStringDic.ContainsKey(enumValue))
+                return m_ToStringDic[enumValue];
+            return enumValue.ToString();
         }
         public static T Parse(string s)
         {
             if (m_ParsingDic == null)
                 Init();
 
-            if (!m_ParsingDic.ContainsKey(s))
+            if (s == null)
                 s = "";
 
             if (!m_ParsingDic.ContainsKey(s))
@@ -50,10 +52,10 @@ namespace Com.Ericmas001.Util
         private static string GetDescription(T enumerationValue)
         {
             MemberInfo[] memberInfo = typeof(T).GetMember(enumerationValue.ToString());
-            if (memberInfo.Length > 0)
+            if (memberInfo != null && memberInfo.Length > 0)
             {
                 object[] attrs = memberInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
-                if (attrs.Length > 0)
+                if (attrs != null && attrs.Length > 0)
                     return ((DescriptionAttribute)attrs[0]).Description;
             }
             return enumerationValue.ToString();
