@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Net.Protocol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Wpf.ItemsFilter", "Com.Ericmas001.Wpf.ItemsFilter\Com.Ericmas001.Wpf.ItemsFilter.csproj", "{2BBB5268-A792-479C-8F3F-DA71E57EA0D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Wpf.HtmlEditor", "Com.Ericmas001.Wpf.HtmlEditor\Com.Ericmas001.Wpf.HtmlEditor.csproj", "{B655D1A9-9DDC-4C7D-8828-7E88FB6A3887}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -97,6 +99,10 @@ Global
 		{2BBB5268-A792-479C-8F3F-DA71E57EA0D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BBB5268-A792-479C-8F3F-DA71E57EA0D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BBB5268-A792-479C-8F3F-DA71E57EA0D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B655D1A9-9DDC-4C7D-8828-7E88FB6A3887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B655D1A9-9DDC-4C7D-8828-7E88FB6A3887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B655D1A9-9DDC-4C7D-8828-7E88FB6A3887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B655D1A9-9DDC-4C7D-8828-7E88FB6A3887}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
