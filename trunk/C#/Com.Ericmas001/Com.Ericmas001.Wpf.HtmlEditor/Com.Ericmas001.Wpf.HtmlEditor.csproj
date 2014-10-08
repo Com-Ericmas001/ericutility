@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B655D1A9-9DDC-4C7D-8828-7E88FB6A3887}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Com.Ericmas001.Wpf.HtmlEditor</RootNamespace>
+    <AssemblyName>Com.Ericmas001.Wpf.HtmlEditor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\ColorExtension.cs" />
+    <Compile Include="Extensions\FrameworkElementExtension.cs" />
+    <Compile Include="Extensions\HtmlEditingExtension.cs" />
+    <Compile Include="Extensions\HtmlExtension.cs" />
+    <Compile Include="Features\AttachedBehaviors.cs" />
+    <Compile Include="Features\HtmlEditingCommands.cs" />
+    <Compile Include="Features\ValueConverter.cs" />
+    <Compile Include="Models\Enum.cs" />
+    <Compile Include="Models\FontSize.cs" />
+    <Compile Include="Models\HtmlDocument.cs" />
+    <Compile Include="Models\HtmlObject.cs" />
+    <Compile Include="Models\OptionObject.cs" />
+    <Compile Include="Models\WordCounter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\UiText.Designer.cs" />
+    <Compile Include="Views\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HtmlEditor.xaml.cs">
+      <DependentUpon>HtmlEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HyperlinkDialog.xaml.cs">
+      <DependentUpon>HyperlinkDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ImageDialog.xaml.cs">
+      <DependentUpon>ImageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TableDialog.xaml.cs">
+      <DependentUpon>TableDialog.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\ColorPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HtmlEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HyperlinkDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ImageDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TableDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bold.png" />
+    <Resource Include="Resources\Images\browser.png" />
+    <Resource Include="Resources\Images\center.png" />
+    <Resource Include="Resources\Images\code.png" />
+    <Resource Include="Resources\Images\copy.png" />
+    <Resource Include="Resources\Images\cut.png" />
+    <Resource Include="Resources\Images\del.png" />
+    <Resource Include="Resources\Images\erase.png" />
+    <Resource Include="Resources\Images\error.png" />
+    <Resource Include="Resources\Images\find.png" />
+    <Resource Include="Resources\Images\fontcolor.png" />
+    <Resource Include="Resources\Images\goto.png" />
+    <Resource Include="Resources\Images\help.png" />
+    <Resource Include="Resources\Images\htmlcode.png" />
+    <Resource Include="Resources\Images\hyperlink.png" />
+    <Resource Include="Resources\Images\image.png" />
+    <Resource Include="Resources\Images\indent.png" />
+    <Resource Include="Resources\Images\italic.png" />
+    <Resource Include="Resources\Images\left.png" />
+    <Resource Include="Resources\Images\linecolor.png" />
+    <Resource Include="Resources\Images\listbullets.png" />
+    <Resource Include="Resources\Images\listnumbered.png" />
+    <Resource Include="Resources\Images\new.png" />
+    <Resource Include="Resources\Images\open.png" />
+    <Resource Include="Resources\Images\outdent.png" />
+    <Resource Include="Resources\Images\paste.png" />
+    <Resource Include="Resources\Images\print.png" />
+    <Resource Include="Resources\Images\prop.png" />
+    <Resource Include="Resources\Images\redo.png" />
+    <Resource Include="Resources\Images\refresh.png" />
+    <Resource Include="Resources\Images\replace.png" />
+    <Resource Include="Resources\Images\right.png" />
+    <Resource Include="Resources\Images\save.png" />
+    <Resource Include="Resources\Images\saveas.png" />
+    <Resource Include="Resources\Images\spelling.png" />
+    <Resource Include="Resources\Images\stretch.png" />
+    <Resource Include="Resources\Images\subscript.png" />
+    <Resource Include="Resources\Images\superscript.png" />
+    <Resource Include="Resources\Images\table.png" />
+    <Resource Include="Resources\Images\underline.png" />
+    <Resource Include="Resources\Images\undo.png" />
+    <Resource Include="Resources\Images\window.png" />
+    <Resource Include="Resources\Images\ZoomIn.png" />
+    <Resource Include="Resources\Images\ZoomOut.png" />
+    <EmbeddedResource Include="Resources\UiText.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="smithhtmleditor.config.xml" />
+    <EmbeddedResource Include="smithhtmleditor.stylesheet.css" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
