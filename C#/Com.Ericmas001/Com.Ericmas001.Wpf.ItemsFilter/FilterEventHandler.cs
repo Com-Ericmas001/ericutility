@@ -6,7 +6,7 @@ using System.Text;
 namespace Com.Ericmas001.Wpf.ItemsFilter
 {
     // Summary:
-    //     Represents the method that will handle the BolapanControl.ItemsFilter.FilterPresenter.Filter  event.
+    //     Represents the method that will handle the Com.Ericmas001.Wpf.ItemsFilter.FilterPresenter.Filter  event.
     //
     // Parameters:
     //   sender:

@@ -49,11 +49,11 @@
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
                         <Button x:Name="RefreshButton" Padding="3,2" Margin="5,0,5,0" ToolTip="{x:Static resc:UiText.Button_Refresh}">
-                            <Image Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/refresh.png" Width="16" Height="16" />
+                            <Image Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/refresh.png" Width="16" Height="16" />
                         </Button>
                         <Button x:Name="BrowseButton" Padding="3,2" ToolTip="{x:Static resc:UiText.Button_Browse}">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/browser.png" Width="16" Height="16" />
+                                <Image Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/browser.png" Width="16" Height="16" />
                                 <Label Content="{x:Static resc:UiText.Button_Browse}" Padding="4,0" />
                             </StackPanel>
                         </Button>
@@ -138,14 +138,14 @@
                     <StackPanel x:Name="SliderGroup" Panel.ZIndex="2" Margin="12"
 								HorizontalAlignment="Right" VerticalAlignment="Bottom"
 								Visibility="{Binding Path=Image, Converter={StaticResource VisibilityConverter}}" >
-                        <Button x:Name="ZoomInButton" ToolTip="{x:Static resc:UiText.Button_ZoomIn}" Style="{StaticResource ZoomButton}">                            
-                            <Image Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/ZoomIn.png" Width="16" Height="16" />
+                        <Button x:Name="ZoomInButton" ToolTip="{x:Static resc:UiText.Button_ZoomIn}" Style="{StaticResource ZoomButton}">
+                            <Image Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/ZoomIn.png" Width="16" Height="16" />
                         </Button>
                         <Slider x:Name="ResizeSlider" Orientation="Vertical" HorizontalAlignment="Center"
 								Height="100" Margin="2" Maximum="200" Minimum="0" LargeChange="1" TickFrequency="25"
 								AutoToolTipPlacement="BottomRight" TickPlacement="BottomRight" />
                         <Button x:Name="ZoomOutButton" ToolTip="{x:Static resc:UiText.Button_ZoomOut}" Style="{StaticResource ZoomButton}">
-                            <Image Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/ZoomOut.png" Width="16" Height="16" />
+                            <Image Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/ZoomOut.png" Width="16" Height="16" />
                         </Button>
                     </StackPanel>
                 </Grid>

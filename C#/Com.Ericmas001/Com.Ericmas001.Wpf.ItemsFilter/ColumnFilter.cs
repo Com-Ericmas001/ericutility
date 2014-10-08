@@ -12,7 +12,7 @@ using System.Collections.Generic;
 namespace Com.Ericmas001.Wpf.ItemsFilter
 {
     /// <summary>
-    /// Represent BolapanControls.PropertyFilter.ColumnFilter control, which show filter View for associated Model.
+    /// Represent Com.Ericmas001.Wpfs.PropertyFilter.ColumnFilter control, which show filter View for associated Model.
     /// If defined as part of System.Windows.Controls.Primitives.DataGridColumnHeader template, represent filter View for current column.
     /// </summary>
     [TemplateVisualState(GroupName = "FilterState", Name = "Disable")]
@@ -85,7 +85,7 @@ namespace Com.Ericmas001.Wpf.ItemsFilter
 
         private Popup partFilterView;
         /// <summary>
-        /// Create new instance of BolapanControls.PropertyFilter.ColumnFilter class.
+        /// Create new instance of Com.Ericmas001.Wpfs.PropertyFilter.ColumnFilter class.
         /// </summary>
          public ColumnFilter() {
             //CommandBindings.Add(new CommandBinding(FilterCommand.Show,DoShowFilter,CanShowFilter));
