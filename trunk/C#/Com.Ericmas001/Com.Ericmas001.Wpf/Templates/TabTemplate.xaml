@@ -92,6 +92,6 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Com.Ericmas001.Wpf;component/Styles/ButtonStyles.xaml"/>
-        <ResourceDictionary Source="/Com.Ericmas001.Wpf;component/Resources/ImagesResources.xaml"/>
+        <ResourceDictionary Source="/Com.Ericmas001.Wpf;component/Resources/ImageResources.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -164,7 +164,7 @@
                       CommandTarget="{Binding ElementName=This}">
                 <MenuItem.Icon>
                     <Image Style="{StaticResource ToolBarImage}"
-                           Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/undo.png" />
+                           Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/undo.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="{x:Static resc:UiText.Cmd_Redo}"
@@ -172,7 +172,7 @@
                       CommandTarget="{Binding ElementName=This}">
                 <MenuItem.Icon>
                     <Image Style="{StaticResource ToolBarImage}"
-                           Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/redo.png" />
+                           Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/redo.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <Separator Margin="0,-2" />
@@ -181,7 +181,7 @@
                       CommandTarget="{Binding ElementName=This}">
                 <MenuItem.Icon>
                     <Image Style="{StaticResource ToolBarImage}"
-                           Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/cut.png" />
+                           Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/cut.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="{x:Static resc:UiText.Cmd_Copy}"
@@ -189,7 +189,7 @@
                       CommandTarget="{Binding ElementName=This}">
                 <MenuItem.Icon>
                     <Image Style="{StaticResource ToolBarImage}"
-                           Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/copy.png" />
+                           Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/copy.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="{x:Static resc:UiText.Cmd_Paste}"
@@ -197,7 +197,7 @@
                       CommandTarget="{Binding ElementName=This}">
                 <MenuItem.Icon>
                     <Image Style="{StaticResource ToolBarImage}"
-                           Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/paste.png" />
+                           Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/paste.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="{x:Static resc:UiText.Cmd_Delete}"
@@ -205,7 +205,7 @@
                       CommandTarget="{Binding ElementName=This}">
                 <MenuItem.Icon>
                     <Image Style="{StaticResource ToolBarImage}"
-                           Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/del.png" />
+                           Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/del.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <Separator Margin="0,-2" />
@@ -247,31 +247,31 @@
                                   ToolTip="{x:Static resc:UiText.Button_Bold}"
                                   Command="local:HtmlEditingCommands.Bold">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/bold.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/bold.png" />
                     </ToggleButton>
                     <ToggleButton x:Name="ToggleItalic"
                                   ToolTip="{x:Static resc:UiText.Button_Italic}"
                                   Command="local:HtmlEditingCommands.Italic">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/italic.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/italic.png" />
                     </ToggleButton>
                     <ToggleButton x:Name="ToggleUnderline"
                                   ToolTip="{x:Static resc:UiText.Button_Underline}"
                                   Command="local:HtmlEditingCommands.Underline">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/underline.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/underline.png" />
                     </ToggleButton>
                     <ToggleButton x:Name="ToggleSubscript"
                                   ToolTip="{x:Static resc:UiText.Button_Subscript}"
                                   Command="local:HtmlEditingCommands.Subscript">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/subscript.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/subscript.png" />
                     </ToggleButton>
                     <ToggleButton x:Name="ToggleSuperscript"
                                   ToolTip="{x:Static resc:UiText.Button_Superscript}"
                                   Command="local:HtmlEditingCommands.Superscript">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/superscript.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/superscript.png" />
                     </ToggleButton>
                     <ToggleButton x:Name="ToggleFontColor"
                                   ToolTip="{x:Static resc:UiText.Button_FontColor}">
@@ -282,7 +282,7 @@
                             </ContextMenu>
                         </ToggleButton.ContextMenu>
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/fontcolor.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/fontcolor.png" />
                     </ToggleButton>
                     <ToggleButton x:Name="ToggleLineColor"
                                   ToolTip="{x:Static resc:UiText.Button_LineColor}">
@@ -293,65 +293,65 @@
                             </ContextMenu>
                         </ToggleButton.ContextMenu>
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/linecolor.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/linecolor.png" />
                     </ToggleButton>
                     <Button x:Name="ClearStyleButton"
                             ToolTip="{x:Static resc:UiText.Button_ClearStyle}"
                             Command="local:HtmlEditingCommands.ClearStyle">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/erase.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/erase.png" />
                     </Button>
                     <Separator />
 
                     <Button ToolTip="{x:Static resc:UiText.Button_Indent}"
                             Command="local:HtmlEditingCommands.Indent">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/indent.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/indent.png" />
                     </Button>
                     <Button ToolTip="{x:Static resc:UiText.Button_Outdent}"
                             Command="local:HtmlEditingCommands.Outdent">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/outdent.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/outdent.png" />
                     </Button>
                     <ToggleButton x:Name="ToggleBulletedList"
                                   ToolTip="{x:Static resc:UiText.Button_BulletedList}"
                                   Command="local:HtmlEditingCommands.BubbledList">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/listbullets.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/listbullets.png" />
                     </ToggleButton>
                     <ToggleButton x:Name="ToggleNumberedList"
                                   ToolTip="{x:Static resc:UiText.Button_NumberedList}"
                                   Command="local:HtmlEditingCommands.NumericList">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/listnumbered.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/listnumbered.png" />
                     </ToggleButton>
                     <RadioButton x:Name="ToggleJustifyLeft"
                                  ToolTip="{x:Static resc:UiText.Button_JustifyLeft}"
                                  GroupName="Alignment"
                                  Command="local:HtmlEditingCommands.JustifyLeft">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/left.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/left.png" />
                     </RadioButton>
                     <RadioButton x:Name="ToggleJustifyCenter"
                                  ToolTip="{x:Static resc:UiText.Button_JustifyCenter}"
                                  GroupName="Alignment"
                                  Command="local:HtmlEditingCommands.JustifyCenter">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/center.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/center.png" />
                     </RadioButton>
                     <RadioButton x:Name="ToggleJustifyRight"
                                  ToolTip="{x:Static resc:UiText.Button_JustifyRight}"
                                  GroupName="Alignment"
                                  Command="local:HtmlEditingCommands.JustifyRight">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/right.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/right.png" />
                     </RadioButton>
                     <RadioButton x:Name="ToggleJustifyFull"
                                  ToolTip="{x:Static resc:UiText.Button_JustifyFull}"
                                  GroupName="Alignment"
                                  Command="local:HtmlEditingCommands.JustifyFull">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/stretch.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/stretch.png" />
                     </RadioButton>
                     <Separator />
 
@@ -359,25 +359,25 @@
                             ToolTip="{x:Static resc:UiText.Button_InsertHyperlink}"
                             Command="local:HtmlEditingCommands.InsertHyperlink">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/hyperlink.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/hyperlink.png" />
                     </Button>
                     <Button x:Name="InsertImage"
                             ToolTip="{x:Static resc:UiText.Button_InsertImage}"
                             Command="local:HtmlEditingCommands.InsertImage">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/image.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/image.png" />
                     </Button>
                     <Button x:Name="InsertTable"
                             ToolTip="{x:Static resc:UiText.Button_InsertTable}"
                             Command="local:HtmlEditingCommands.InsertTable">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/table.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/table.png" />
                     </Button>
                     <Separator />
                     <ToggleButton x:Name="ToggleCodeMode"
                                   ToolTip="{x:Static resc:UiText.Button_CodeMode}">
                         <Image Style="{StaticResource ToolBarImage}"
-                               Source="/Smith.WPF.HtmlEditor;Component/Resources/Images/htmlcode.png" />
+                               Source="/Com.Ericmas001.Wpf.HtmlEditor;Component/Resources/Images/htmlcode.png" />
                     </ToggleButton>
                 </ToolBar>
             </ToolBarTray>

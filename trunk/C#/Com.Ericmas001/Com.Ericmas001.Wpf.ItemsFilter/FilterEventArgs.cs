@@ -6,7 +6,7 @@ using System.Text;
 namespace Com.Ericmas001.Wpf.ItemsFilter
 {
     /// <summary>
-    /// Provides information and event data that is associated with the BolapanControl.ItemsFilter.FilterPresenter.Filter event.
+    /// Provides information and event data that is associated with the Com.Ericmas001.Wpf.ItemsFilter.FilterPresenter.Filter event.
     /// </summary>
     public class FilterEventArgs : EventArgs {
         private object item;
