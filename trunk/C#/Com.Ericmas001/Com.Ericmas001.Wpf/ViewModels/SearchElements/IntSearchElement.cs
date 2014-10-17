@@ -5,9 +5,12 @@ using System.Text;
 using System.Globalization;
 using Com.Ericmas001.Wpf.ViewModels.Tabs;
 using Com.Ericmas001.Wpf.Validations;
+using Com.Ericmas001.Wpf.Entities.Attributes;
+using Com.Ericmas001.Wpf.Entities.Enums;
 
 namespace Com.Ericmas001.Wpf.ViewModels.SearchElements
 {
+    [SearchType(SearchTypeEnum.Int)]
     public class IntSearchElement : BaseSearchElement
     {
         private string m_Valeur;
