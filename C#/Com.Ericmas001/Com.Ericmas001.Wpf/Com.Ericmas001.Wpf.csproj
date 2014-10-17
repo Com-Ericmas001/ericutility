@@ -49,6 +49,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\EnumDescriptionConverter.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="BindingProxy.cs" />
     <Compile Include="BgTaskManager.cs" />
