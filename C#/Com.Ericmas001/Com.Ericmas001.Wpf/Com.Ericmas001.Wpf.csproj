@@ -79,6 +79,8 @@
     </Compile>
     <Compile Include="CustomControls\XmlValidator.cs" />
     <Compile Include="DisplayList.cs" />
+    <Compile Include="Entities\Attributes\SearchTypeAttribute.cs" />
+    <Compile Include="Entities\Enums\SearchTypeEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
