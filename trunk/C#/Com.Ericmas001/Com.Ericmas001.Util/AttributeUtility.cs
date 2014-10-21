@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +16,19 @@ namespace Com.Ericmas001.Util
             if (att != null)
                 return valueSelector(att);
             return default(TValue);
+        }
+
+        public static T GetEnumAttribute<T>(object myEnum)
+            where T : Attribute
+        {
+            MemberInfo[] memberInfo = myEnum.GetType().GetMember(myEnum.ToString());
+            if (memberInfo.Any())
+            {
+                object[] attrs = memberInfo[0].GetCustomAttributes(typeof (T), false);
+                if (attrs.Any())
+                    return (T)attrs.First();
+            }
+            return null;
         }
     }
 }
