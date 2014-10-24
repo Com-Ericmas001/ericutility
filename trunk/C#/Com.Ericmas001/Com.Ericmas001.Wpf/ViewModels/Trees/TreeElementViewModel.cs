@@ -53,7 +53,6 @@ namespace Com.Ericmas001.Wpf.ViewModels.Trees
                 if (m_Children == null)
                 {
                     m_Children = new FastObservableCollection<TreeElementViewModel>();
-                    PopulateContextMenu();
                 }
                 return m_Children;
             }
@@ -61,12 +60,23 @@ namespace Com.Ericmas001.Wpf.ViewModels.Trees
         public TreeElementViewModel Parent { get; private set; }
         public abstract string Text { get; }
 
-        public FastObservableCollection<TreeContextMenuItemViewModel> ContextMenuItems { get; private set; } 
+        private FastObservableCollection<TreeContextMenuItemViewModel> m_ContextMenuItems;
+        public FastObservableCollection<TreeContextMenuItemViewModel> ContextMenuItems
+        {
+            get
+            {
+                if (m_ContextMenuItems == null)
+                {
+                    m_ContextMenuItems = new FastObservableCollection<TreeContextMenuItemViewModel>();
+                    PopulateContextMenu();
+                }
+                return m_ContextMenuItems;
+            }
+        }
 
         public TreeElementViewModel(TreeElementViewModel parent)
         {
             Parent = parent;
-            ContextMenuItems = new FastObservableCollection<TreeContextMenuItemViewModel>();
         }
 
         public bool HasOnlyOneLeaf
