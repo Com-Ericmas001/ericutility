@@ -10,6 +10,8 @@ namespace Com.Ericmas001.Util
 {
     public static class EnumFactory<T> where T : struct
     {
+        public static T[] AllValues = Enum.GetValues(typeof(T)).Cast<T>().ToArray();
+       
         private static Dictionary<T, string> m_ToStringDic = null;
         private static Dictionary<string, T> m_ParsingDic = null;
 
@@ -51,14 +53,34 @@ namespace Com.Ericmas001.Util
 
         private static string GetDescription(T enumerationValue)
         {
-            MemberInfo[] memberInfo = typeof(T).GetMember(enumerationValue.ToString());
-            if (memberInfo != null && memberInfo.Length > 0)
+            DescriptionAttribute da = GetAttribute<DescriptionAttribute>(enumerationValue);
+            return da == null ? enumerationValue.ToString() : da.Description;
+        }
+
+        private static Dictionary<T, Dictionary<Type, Attribute>> m_Attributes = new Dictionary<T, Dictionary<Type, Attribute>>();
+
+        public static TAtt GetAttribute<TAtt>(T enumerationValue)
+            where TAtt : Attribute
+        {
+            if (!m_Attributes.ContainsKey(enumerationValue))
+                m_Attributes.Add(enumerationValue, new Dictionary<Type, Attribute>());
+
+            Type attType = typeof(TAtt);
+            if (!m_Attributes[enumerationValue].ContainsKey(attType))
             {
-                object[] attrs = memberInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
-                if (attrs != null && attrs.Length > 0)
-                    return ((DescriptionAttribute)attrs[0]).Description;
+                MemberInfo[] memberInfo = typeof(T).GetMember(enumerationValue.ToString());
+                if (memberInfo.Any())
+                {
+                    object[] attrs = memberInfo[0].GetCustomAttributes(typeof(TAtt), false);
+                    if (attrs.Any())
+                        m_Attributes[enumerationValue].Add(attType, (TAtt)attrs.First());
+                    else
+                        m_Attributes[enumerationValue].Add(attType, null);
+                }
+                else
+                    m_Attributes[enumerationValue].Add(attType, null);
             }
-            return enumerationValue.ToString();
+            return (TAtt)m_Attributes[enumerationValue][attType];
         }
     }
 }
