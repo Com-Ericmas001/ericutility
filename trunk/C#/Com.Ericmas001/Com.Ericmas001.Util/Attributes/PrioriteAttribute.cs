@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Com.Ericmas001.Util.Attributes
 {
-    public class PrioriteAttribute
+    public class PrioriteAttribute : Attribute
     {
         public int Priorite { get; private set; }
 
