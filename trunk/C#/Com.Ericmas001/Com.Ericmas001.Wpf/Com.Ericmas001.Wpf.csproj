@@ -83,6 +83,8 @@
     <Compile Include="Entities\Attributes\SearchTypeAttribute.cs" />
     <Compile Include="Entities\CheckListItem.cs" />
     <Compile Include="Entities\Enums\SearchTypeEnum.cs" />
+    <Compile Include="FormField.cs" />
+    <Compile Include="FormFieldList.cs" />
     <Compile Include="Helpers\TabControlHelper.cs" />
     <Compile Include="Helpers\TreeViewHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
