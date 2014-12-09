@@ -9,6 +9,13 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
         { 
             return null; 
         }
+        protected virtual bool KeepNewTab
+        {
+            get
+            {
+                return false;
+            }
+        }
 
         public ObservableCollection<BaseTabViewModel> Tabs { get; private set; }
         private NewTabViewModel m_NewTab;
@@ -48,7 +55,9 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 
         private void AddNewTab()
         {
-            m_NewTab = CreateNewTab();
+            if(!KeepNewTab)
+                m_NewTab = CreateNewTab();
+
             if (m_NewTab != null)
             {
                 m_NewTab.OnTabCreation += (s, t) => AddTab(t);

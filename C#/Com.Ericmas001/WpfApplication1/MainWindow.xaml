@@ -11,6 +11,6 @@
         <cv:EnumDescriptionConverter x:Key="enumConverter" />
     </Window.Resources>
     <Grid>
-        <Label Content="{Binding TestEnumValue, Converter={StaticResource enumConverter}}"/>
+        <Label Background="LightCoral" Content="{Binding TestEnumValue, Converter={StaticResource enumConverter}}"/>
     </Grid>
 </Window>
