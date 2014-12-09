@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\EnumDescriptionConverter.cs" />
+    <Compile Include="CustomControls\RangeSlider.xaml.cs">
+      <DependentUpon>RangeSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="BindingProxy.cs" />
     <Compile Include="BgTaskManager.cs" />
@@ -86,6 +89,7 @@
     <Compile Include="FormField.cs" />
     <Compile Include="FormFieldList.cs" />
     <Compile Include="Helpers\TabControlHelper.cs" />
+    <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\TreeViewHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -161,6 +165,10 @@
     <Page Include="CustomControls\LoadingPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\RangeSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\ValidationResultControl.xaml">
       <Generator>MSBuild:Compile</Generator>
