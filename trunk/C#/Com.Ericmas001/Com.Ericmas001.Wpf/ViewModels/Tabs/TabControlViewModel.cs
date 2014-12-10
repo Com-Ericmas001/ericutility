@@ -55,12 +55,14 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 
         private void AddNewTab()
         {
-            if(!KeepNewTab)
+            bool mustAdd = (!KeepNewTab || m_NewTab == null);
+            if (mustAdd)
                 m_NewTab = CreateNewTab();
 
             if (m_NewTab != null)
             {
-                m_NewTab.OnTabCreation += (s, t) => AddTab(t);
+                if (mustAdd)
+                    m_NewTab.OnTabCreation += (s, t) => AddTab(t);
                 Tabs.Add(m_NewTab);
             }
         }
