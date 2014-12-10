@@ -40,8 +40,8 @@ namespace Com.Ericmas001.Wpf.Helpers
                 return;
             }
 
-            for (int i = 0; i < treeView.Items.Count; i++)
-                SelectItem(e.NewValue, treeView.ItemContainerGenerator.ContainerFromIndex(i) as TreeViewItem);
+            //for (int i = 0; i < treeView.Items.Count; i++)
+            //    SelectItem(e.NewValue, treeView.ItemContainerGenerator.ContainerFromIndex(i) as TreeViewItem);
 
         }
 
@@ -51,37 +51,37 @@ namespace Com.Ericmas001.Wpf.Helpers
             SetSelectedItem(treeView, e.NewValue);
         }
 
-        private static bool SelectItem(object o, TreeViewItem parentItem)
-        {
-            if (parentItem == null)
-                return false;
+        //private static bool SelectItem(object o, TreeViewItem parentItem)
+        //{
+        //    if (parentItem == null)
+        //        return false;
 
-            bool isExpanded = parentItem.IsExpanded;
-            if (!isExpanded)
-            {
-                parentItem.IsExpanded = true;
-                parentItem.UpdateLayout();
-            }
+        //    bool isExpanded = parentItem.IsExpanded;
+        //    if (!isExpanded)
+        //    {
+        //        parentItem.IsExpanded = true;
+        //        parentItem.UpdateLayout();
+        //    }
 
-            TreeViewItem item = parentItem.ItemContainerGenerator.ContainerFromItem(o) as TreeViewItem;
-            if (item != null)
-            {
-                item.IsSelected = true;
-                return true;
-            }
+        //    TreeViewItem item = parentItem.ItemContainerGenerator.ContainerFromItem(o) as TreeViewItem;
+        //    if (item != null)
+        //    {
+        //        item.IsSelected = true;
+        //        return true;
+        //    }
 
-            bool wasFound = false;
-            for (int i = 0; i < parentItem.Items.Count; i++)
-            {
-                TreeViewItem itm = parentItem.ItemContainerGenerator.ContainerFromIndex(i) as TreeViewItem;
-                var found = SelectItem(o, itm);
-                if (!found)
-                    itm.IsExpanded = false;
-                else
-                    wasFound = true;
-            }
+        //    bool wasFound = false;
+        //    for (int i = 0; i < parentItem.Items.Count; i++)
+        //    {
+        //        TreeViewItem itm = parentItem.ItemContainerGenerator.ContainerFromIndex(i) as TreeViewItem;
+        //        var found = SelectItem(o, itm);
+        //        if (!found)
+        //            itm.IsExpanded = false;
+        //        else
+        //            wasFound = true;
+        //    }
 
-            return wasFound;
-        }
+        //    return wasFound;
+        //}
     }
 } 
