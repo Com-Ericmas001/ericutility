@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Attributes;
+using Com.Ericmas001.Wpf.Entities.Attributes;
+using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.ViewModels;
 
 namespace Com.Ericmas001.Wpf
@@ -48,6 +50,7 @@ namespace Com.Ericmas001.Wpf
         public TEnum Field { get; private set; }
         public string Description { get; private set; }
         public int Priorite { get; private set; }
+        public TextLengthEnum Length { get; private set; }
 
         public TValue Value
         {
@@ -75,6 +78,12 @@ namespace Com.Ericmas001.Wpf
                 Priorite = prioAtt.Priorite;
             else
                 Priorite = 9999;
+
+            TextLengthAttribute lengthAtt = EnumFactory<TEnum>.GetAttribute<TextLengthAttribute>(field);
+            if (lengthAtt != null)
+                Length = lengthAtt.Length;
+            else
+                Length = TextLengthEnum.Normal;
 
 
             DefaultValueAttribute defAtt = EnumFactory<TEnum>.GetAttribute<DefaultValueAttribute>(field);
