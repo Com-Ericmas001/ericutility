@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{63942B84-CB9B-4DDA-9270-EA5FF571EB2E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Com.Ericmas001.AppMonitor.DataTypes</RootNamespace>
+    <AssemblyName>Com.Ericmas001.AppMonitor.DataTypes</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\FilterCommandAttribute.cs" />
+    <Compile Include="Attributes\FilterComparatorAttribute.cs" />
+    <Compile Include="Attributes\FiltersAttribute.cs" />
+    <Compile Include="Attributes\IManyCategoriesAttribute.cs" />
+    <Compile Include="Attributes\ISearchCriteriaAttribute.cs" />
+    <Compile Include="Attributes\TagAttribute.cs" />
+    <Compile Include="Entities\BunchOfDataItems.cs" />
+    <Compile Include="Entities\Filter.cs" />
+    <Compile Include="Entities\IBunchOfDataItems.cs" />
+    <Compile Include="Entities\IDataItem.cs" />
+    <Compile Include="Enums\FilterCommandEnum.cs" />
+    <Compile Include="Enums\FilterComparatorEnum.cs" />
+    <Compile Include="Enums\FilterEnum.cs" />
+    <Compile Include="Helpers\CriteriaHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateSelectors\TreeElementTemplateSelector.cs" />
+    <Compile Include="TreeElements\BaseBranchTreeElement.cs" />
+    <Compile Include="TreeElements\BaseLeafTreeElement.cs" />
+    <Compile Include="TreeElements\BaseTreeElement.cs" />
+    <Compile Include="ViewModels\BaseContentViewModel.cs" />
+    <Compile Include="ViewModels\BaseGroupedContentViewModel.cs" />
+    <Compile Include="ViewModels\BaseSearchResultViewModel.cs" />
+    <Compile Include="ViewModels\ChooseGroupViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Com.Ericmas001.Util\Com.Ericmas001.Util.csproj">
+      <Project>{473a461c-a3ef-49a1-b4ef-0fdbe2304717}</Project>
+      <Name>Com.Ericmas001.Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Ericmas001.Wpf\Com.Ericmas001.Wpf.csproj">
+      <Project>{fd30cd4e-acdb-420c-8c1f-5c4b64dd3210}</Project>
+      <Name>Com.Ericmas001.Wpf</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
