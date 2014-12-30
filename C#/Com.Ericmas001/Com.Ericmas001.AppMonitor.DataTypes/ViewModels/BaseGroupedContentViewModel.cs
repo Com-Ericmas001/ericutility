@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Threading;
 using Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections;
@@ -111,7 +112,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
 
         protected void RefreshInterfaceAfterTreeAsync()
         {
-            AppCurrentDispatcher.Invoke(RefreshInterfaceAfterTree);
+            AppCurrentDispatcher.Invoke(new Action(RefreshInterfaceAfterTree));
         }
 
         protected void HandlingTabCreation(object sender, BaseTabViewModel tab)

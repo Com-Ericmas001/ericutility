@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Com.Ericmas001.AppMonitor.DataTypes</RootNamespace>
     <AssemblyName>Com.Ericmas001.AppMonitor.DataTypes</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,7 +50,9 @@
     <Compile Include="Attributes\FiltersAttribute.cs" />
     <Compile Include="Attributes\IManyCategoriesAttribute.cs" />
     <Compile Include="Attributes\ISearchCriteriaAttribute.cs" />
+    <Compile Include="Attributes\ImageSourceAttribute.cs" />
     <Compile Include="Attributes\TagAttribute.cs" />
+    <Compile Include="Attributes\ButtonColorAttribute.cs" />
     <Compile Include="Entities\BunchOfDataItems.cs" />
     <Compile Include="Entities\Filter.cs" />
     <Compile Include="Entities\IBunchOfDataItems.cs" />
@@ -66,6 +69,7 @@
     <Compile Include="ViewModels\BaseContentViewModel.cs" />
     <Compile Include="ViewModels\BaseGroupedContentViewModel.cs" />
     <Compile Include="ViewModels\BaseSearchResultViewModel.cs" />
+    <Compile Include="ViewModels\NewSearchViewModel.cs" />
     <Compile Include="ViewModels\Sections\CategorySection.cs" />
     <Compile Include="ViewModels\Sections\ChooseGroupViewModel.cs" />
   </ItemGroup>
