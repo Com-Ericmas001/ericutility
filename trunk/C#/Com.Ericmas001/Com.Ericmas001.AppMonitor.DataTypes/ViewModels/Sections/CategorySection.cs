@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Media;
 using Com.Ericmas001.AppMonitor.DataTypes.Attributes;
 using Com.Ericmas001.AppMonitor.DataTypes.Helpers;
@@ -21,6 +22,21 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
         public event EventHandler OnAfterExpanded = delegate { };
 
         private SolidColorBrush m_Background = Brushes.Gray;
+        private Color m_ButtonColor = Colors.DarkSlateGray;
+        public virtual string TabHeader { get { return null; } }
+
+        private string m_IconSmallImageName = String.Empty;
+        private string m_IconBigImageName = String.Empty;
+
+        public virtual ImageSource IconImageSmall
+        {
+            get { return String.IsNullOrEmpty(m_IconSmallImageName) ? null : Application.Current.FindResource(m_IconSmallImageName) as ImageSource; }
+        }
+        public virtual ImageSource IconImageBig
+        {
+            get { return String.IsNullOrEmpty(m_IconBigImageName) ? null : Application.Current.FindResource(m_IconBigImageName) as ImageSource; }
+        }
+
         private bool m_IsExpanded;
         private TCriteria[] m_Criterias;
         private Dictionary<TCriteria, BaseSearchElement> m_CriteriaModels = new Dictionary<TCriteria, BaseSearchElement>();
@@ -29,6 +45,10 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
         public SolidColorBrush Background
         {
             get { return m_Background; }
+        }
+        public Color ButtonBrush
+        {
+            get { return m_ButtonColor; }
         }
 
         public SolidColorBrush HeaderForeground
@@ -83,6 +103,13 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
         {
             Category = cat;
 
+            var imgAtt = EnumFactory<TCategory>.GetAttribute<ImageSourceAttribute>(cat);
+            if (imgAtt != null)
+            {
+                m_IconSmallImageName = imgAtt.ImageNameSmall;
+                m_IconBigImageName = imgAtt.ImageNameBig;
+            }
+
             var brushAtt = EnumFactory<TCategory>.GetAttribute<ColorAttribute>(cat);
             if (brushAtt != null)
             {
@@ -90,11 +117,19 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
                 {
                     var bc = new BrushConverter();
                     m_Background = (SolidColorBrush)bc.ConvertFromString(brushAtt.Color);
+                }
+                catch { }
+            }
 
-                }
-                catch
+            var bbrushAtt = EnumFactory<TCategory>.GetAttribute<ButtonColorAttribute>(cat);
+            if (bbrushAtt != null)
+            {
+                try
                 {
+                    var bc = new BrushConverter();
+                    m_ButtonColor = ((SolidColorBrush)bc.ConvertFromString(bbrushAtt.Color)).Color;
                 }
+                catch { }
             }
 
             var criterias = CriteriaHelper<TCriteria, TCategory>.GetAllSearchCriterias<TSearchAttribute>(cat);

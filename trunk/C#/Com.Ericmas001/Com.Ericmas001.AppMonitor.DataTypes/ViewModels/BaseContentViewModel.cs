@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Com.Ericmas001.Wpf;
@@ -76,7 +77,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
 
         protected void RefreshInterfaceAsync()
         {
-            AppCurrentDispatcher.Invoke(RefreshInterface);
+            AppCurrentDispatcher.Invoke(new Action(RefreshInterface));
         }
     }
 }
