@@ -8,6 +8,7 @@ using Com.Ericmas001.AppMonitor.DataTypes.Entities;
 using Com.Ericmas001.AppMonitor.DataTypes.Enums;
 using Com.Ericmas001.AppMonitor.DataTypes.Helpers;
 using Com.Ericmas001.AppMonitor.DataTypes.TreeElements;
+using Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Wpf.ViewModels.Trees;
 
