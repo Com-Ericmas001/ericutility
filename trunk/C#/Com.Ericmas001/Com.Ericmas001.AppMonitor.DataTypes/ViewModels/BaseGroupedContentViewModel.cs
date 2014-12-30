@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Threading;
+using Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections;
 using Com.Ericmas001.Wpf;
 using Com.Ericmas001.Wpf.ViewModels.Tabs;
 using Com.Ericmas001.Wpf.ViewModels.Trees;

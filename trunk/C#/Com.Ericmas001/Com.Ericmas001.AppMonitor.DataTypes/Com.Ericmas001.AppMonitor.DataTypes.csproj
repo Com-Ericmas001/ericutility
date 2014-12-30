@@ -66,7 +66,8 @@
     <Compile Include="ViewModels\BaseContentViewModel.cs" />
     <Compile Include="ViewModels\BaseGroupedContentViewModel.cs" />
     <Compile Include="ViewModels\BaseSearchResultViewModel.cs" />
-    <Compile Include="ViewModels\ChooseGroupViewModel.cs" />
+    <Compile Include="ViewModels\Sections\CategorySection.cs" />
+    <Compile Include="ViewModels\Sections\ChooseGroupViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Ericmas001.Util\Com.Ericmas001.Util.csproj">
