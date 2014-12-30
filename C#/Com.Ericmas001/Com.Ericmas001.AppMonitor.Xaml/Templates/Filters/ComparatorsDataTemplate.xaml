@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:conv="clr-namespace:Com.Ericmas001.Wpf.Converters;assembly=Com.Ericmas001.Wpf">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../EnumDescTemplate.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <conv:EnumDescriptionConverter x:Key="EnumDescConverter" />
+    
+    <DataTemplate x:Key="OnlyOneComparatorTemplate">
+        <TextBlock HorizontalAlignment="Center" Text="{Binding CurrentComparator, Converter={StaticResource EnumDescConverter}}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="MultipleComparatorsTemplate">
+        <ComboBox ItemsSource="{Binding AvailablesComparators}" ItemTemplate="{StaticResource EnumDescTemplate}" SelectedItem="{Binding CurrentComparator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="ComparatorSelectorTemplate">
+        <ContentControl Content="{Binding}">
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding HasOnlyOneComparator}" Value="True">
+                            <Setter Property="ContentTemplate" Value="{StaticResource OnlyOneComparatorTemplate}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding HasOnlyOneComparator}" Value="False">
+                            <Setter Property="ContentTemplate" Value="{StaticResource MultipleComparatorsTemplate}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+    </DataTemplate>
+
+</ResourceDictionary>
