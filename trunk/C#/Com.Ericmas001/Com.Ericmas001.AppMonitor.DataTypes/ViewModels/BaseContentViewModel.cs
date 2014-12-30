@@ -26,6 +26,15 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             }
         }
 
+        public virtual string BigLoadingMessage
+        {
+            get { return "Loading Data ..."; }
+        }
+        public virtual string SmallLoadingMessage
+        {
+            get { return "Fetching data from Database ..."; }
+        }
+
         public virtual bool CanRefresh
         {
             get { return true; }
