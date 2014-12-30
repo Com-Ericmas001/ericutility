@@ -17,7 +17,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
 
         private DisplayList<string> m_AvailablesGroups = new DisplayList<string>();
         private DisplayList<string> m_ChoosenGroups = new DisplayList<string>();
-        private Dictionary<string, FilterEnum[]> m_FieldsToFiltrer = new Dictionary<string, FilterEnum[]>();
+        private Dictionary<string, FilterEnum[]> m_FieldsToFilter = new Dictionary<string, FilterEnum[]>();
         private readonly ObservableCollection<Filter> m_CurrentFilters = new ObservableCollection<Filter>();
         private string m_CurrentField;
         private Filter[] m_AvailablesFilters;
@@ -29,20 +29,20 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
             get { return m_CurrentFilters; }
         }
 
-        public Dictionary<string, FilterEnum[]> FieldsToFiltrer
+        public Dictionary<string, FilterEnum[]> FieldsToFilter
         {
-            get { return m_FieldsToFiltrer; }
+            get { return m_FieldsToFilter; }
             set
             {
-                m_FieldsToFiltrer = value;
-                RaisePropertyChanged("FieldsToFiltrer");
+                m_FieldsToFilter = value;
+                RaisePropertyChanged("FieldsToFilter");
                 RaisePropertyChanged("AllFields");
             }
         }
 
         public string[] AllFields
         {
-            get { return m_FieldsToFiltrer.Keys.ToArray(); }
+            get { return m_FieldsToFilter.Keys.ToArray(); }
         }
 
         public DisplayList<string> AvailablesGroups
@@ -177,7 +177,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
 
         private Filter[] GenerateAvailableFilters()
         {
-            return string.IsNullOrEmpty(CurrentField) ? new Filter[0] : FieldsToFiltrer[CurrentField].Select(x => GenerateFilter(CurrentField, x)).ToArray();
+            return string.IsNullOrEmpty(CurrentField) ? new Filter[0] : FieldsToFilter[CurrentField].Select(x => GenerateFilter(CurrentField, x)).ToArray();
         }
 
         public Filter GenerateFilter(string field, FilterEnum filterType)

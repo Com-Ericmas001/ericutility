@@ -120,7 +120,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
                 if ((filterAtt != null && !filterAtt.Filters.Contains(FilterEnum.None)))
                     filters.Add(EnumFactory<TCriteria>.ToString(crit), filterAtt.Filters.ToArray());
             }
-            ChooseGroupVm.FieldsToFiltrer = filters;
+            ChooseGroupVm.FieldsToFilter = filters;
         }
 
         private IEnumerable<TDataItem> GetFilteredData()
