@@ -17,6 +17,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Com.Ericmas001.AppMonitor.Xaml;component/Templates/Filters/AddAFilterTemplate.xaml"/>
                 <ResourceDictionary Source="/Com.Ericmas001.AppMonitor.Xaml;component/Templates/Filters/FiltersViewerTemplate.xaml"/>
+                <ResourceDictionary Source="/Com.Ericmas001.AppMonitor.Xaml;component/Resources/ImageResources.xaml"/>
                 <ResourceDictionary Source="/Com.Ericmas001.Wpf;component/Styles/ButtonStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -43,8 +44,8 @@
 
             <!--  Boutons de transfert d'une liste à l'autre -->
             <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
-                <cc:CoolButton Margin="5" Width="19" Height="32" Command="{Binding ChooseCritereCommand}" TextImageOrientation="Horizontal" ButtonImageSize="16" Style="{StaticResource CoolButtonTurquoise}" />
-                <cc:CoolButton Margin="5" Width="19" Height="32" Command="{Binding RemoveCritereCommand}" TextImageOrientation="Horizontal" ButtonImageSize="16" Style="{StaticResource CoolButtonTurquoise}" />
+                <cc:CoolButton Margin="5" Width="19" Height="32" Command="{Binding ChooseCritereCommand}" ButtonImage="{StaticResource ImgRight16}" TextImageOrientation="Horizontal" ButtonImageSize="16" Style="{StaticResource CoolButtonTurquoise}" />
+                <cc:CoolButton Margin="5" Width="19" Height="32" Command="{Binding RemoveCritereCommand}" ButtonImage="{StaticResource ImgLeft16}" TextImageOrientation="Horizontal" ButtonImageSize="16" Style="{StaticResource CoolButtonTurquoise}" />
             </StackPanel>
 
             <!--  Champs à grouper -->
@@ -53,8 +54,8 @@
 
             <!--  Boutons d'ordre de regroupement -->
             <StackPanel Grid.Row="2" Grid.Column="3" VerticalAlignment="Center">
-                <cc:CoolButton Margin="5" Width="19" Height="32" Command="{Binding MoveUpCritereCommand}" TextImageOrientation="Horizontal" ButtonImageSize="16" Style="{StaticResource CoolButtonTurquoise}" />
-                <cc:CoolButton Margin="5" Width="19" Height="32" Command="{Binding MoveDownCritereCommand}" TextImageOrientation="Horizontal" ButtonImageSize="16" Style="{StaticResource CoolButtonTurquoise}" />
+                <cc:CoolButton Margin="5" Width="19" Height="32" Command="{Binding MoveUpCritereCommand}" ButtonImage="{StaticResource ImgUp16}" TextImageOrientation="Horizontal" ButtonImageSize="16" Style="{StaticResource CoolButtonTurquoise}" />
+                <cc:CoolButton Margin="5" Width="19" Height="32" Command="{Binding MoveDownCritereCommand}" ButtonImage="{StaticResource ImgDown16}" TextImageOrientation="Horizontal" ButtonImageSize="16" Style="{StaticResource CoolButtonTurquoise}" />
             </StackPanel>
         </Grid>
         <DockPanel Margin="20,0,0,0">
@@ -63,7 +64,7 @@
                 <ContentPresenter ContentTemplate="{StaticResource FiltersViewerTemplate}" Content="{Binding}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock Margin="5">New Filter:</TextBlock>
-                    <ComboBox Width="200" ItemsSource="{Binding ChampsAFiltrer.Keys}" SelectedItem="{Binding CurrentField, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox Width="200" ItemsSource="{Binding FieldsToFilter.Keys}" SelectedItem="{Binding CurrentField, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </StackPanel>
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">

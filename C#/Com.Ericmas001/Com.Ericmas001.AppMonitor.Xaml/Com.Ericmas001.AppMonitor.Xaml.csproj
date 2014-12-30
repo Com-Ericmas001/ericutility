@@ -76,6 +76,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\ImageResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Templates\EmptyTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,7 +113,32 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\add.png" />
+    <Resource Include="Resources\addNote.png" />
+    <Resource Include="Resources\bad.png" />
+    <Resource Include="Resources\copy.png" />
+    <Resource Include="Resources\delete.png" />
+    <Resource Include="Resources\down.png" />
+    <Resource Include="Resources\edit.png" />
+    <Resource Include="Resources\export.png" />
+    <Resource Include="Resources\good.png" />
+    <Resource Include="Resources\icon.png" />
+    <Resource Include="Resources\left.png" />
+    <Resource Include="Resources\logs.png" />
+    <Resource Include="Resources\logs_big.png" />
+    <Resource Include="Resources\msexcel.png" />
+    <Resource Include="Resources\msword.png" />
+    <Resource Include="Resources\ok.png" />
+    <Resource Include="Resources\refresh.png" />
+    <Resource Include="Resources\right.png" />
+    <Resource Include="Resources\save.png" />
+    <Resource Include="Resources\search.png" />
+    <Resource Include="Resources\settings.png" />
+    <Resource Include="Resources\settings_big.png" />
+    <Resource Include="Resources\undo.png" />
+    <Resource Include="Resources\up.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Ericmas001.AppMonitor.DataTypes\Com.Ericmas001.AppMonitor.DataTypes.csproj">
       <Project>{63942b84-cb9b-4dda-9270-ea5ff571eb2e}</Project>
