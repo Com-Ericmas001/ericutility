@@ -60,6 +60,8 @@
     <Compile Include="Enums\FilterCommandEnum.cs" />
     <Compile Include="Enums\FilterComparatorEnum.cs" />
     <Compile Include="Enums\FilterEnum.cs" />
+    <Compile Include="GlobalElements\BaseGlobalElement.cs" />
+    <Compile Include="GlobalElements\GridOfLeavesGlobalElement.cs" />
     <Compile Include="Helpers\CriteriaHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateSelectors\TreeElementTemplateSelector.cs" />
@@ -74,6 +76,10 @@
     <Compile Include="ViewModels\Sections\ChooseGroupViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Com.Ericmas001.Data\Com.Ericmas001.Data.csproj">
+      <Project>{45455d67-5295-471f-9304-22208a3fd1fa}</Project>
+      <Name>Com.Ericmas001.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Com.Ericmas001.Util\Com.Ericmas001.Util.csproj">
       <Project>{473a461c-a3ef-49a1-b4ef-0fdbe2304717}</Project>
       <Name>Com.Ericmas001.Util</Name>
