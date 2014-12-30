@@ -46,6 +46,15 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
                 }
             }
         }
+
+        public virtual string BigLoadingTreeMessage
+        {
+            get { return "Loading DataTree ..."; }
+        }
+        public virtual string SmallLoadingTreeMessage
+        {
+            get { return "Preparing Result Tree ..."; }
+        }
         public TreeElementViewModel SelectedTreeElement
         {
             get { return m_SelectedTreeElement; }

@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:customControls="clr-namespace:Com.Ericmas001.Wpf.CustomControls;assembly=Com.Ericmas001.Wpf">
+
+    <DataTemplate x:Key="LoadingDataTemplate">
+        <Grid VerticalAlignment="Stretch">
+            <customControls:LoadingPanel x:Name="loadingPanel"
+                            IsLoading="{Binding IsLoading}"
+                            Message="{Binding BigLoadingMessage}"
+                            SubMessage="{Binding SmallLoadingMessage}"/>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="LoadingTreeTemplate">
+        <Grid VerticalAlignment="Stretch">
+            <customControls:LoadingPanel x:Name="loadingPanel"
+                            IsLoading="{Binding IsLoadingTree}"
+                            Message="{Binding BigLoadingTreeMessage}"
+                            SubMessage="{Binding SmallLoadingTreeMessage}"/>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>
