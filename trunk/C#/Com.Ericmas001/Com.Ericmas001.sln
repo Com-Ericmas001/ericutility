@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Wpf.HtmlEdit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication1", "WpfApplication1\WpfApplication1.csproj", "{02D7B40C-9AE8-4982-B13C-1316D82D10FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.AppMonitor.DataTypes", "Com.Ericmas001.AppMonitor.DataTypes\Com.Ericmas001.AppMonitor.DataTypes.csproj", "{63942B84-CB9B-4DDA-9270-EA5FF571EB2E}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -109,6 +111,10 @@ Global
 		{02D7B40C-9AE8-4982-B13C-1316D82D10FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02D7B40C-9AE8-4982-B13C-1316D82D10FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02D7B40C-9AE8-4982-B13C-1316D82D10FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63942B84-CB9B-4DDA-9270-EA5FF571EB2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63942B84-CB9B-4DDA-9270-EA5FF571EB2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63942B84-CB9B-4DDA-9270-EA5FF571EB2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63942B84-CB9B-4DDA-9270-EA5FF571EB2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
