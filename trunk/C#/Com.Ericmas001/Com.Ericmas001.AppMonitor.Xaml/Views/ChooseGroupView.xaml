@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Com.Ericmas001.AppMonitor.Xaml.Views.ChooseGroupView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cc="clr-namespace:Com.Ericmas001.Wpf.CustomControls;assembly=Com.Ericmas001.Wpf"
+             mc:Ignorable="d">
+
+    <!--
+    
+    Panneau de regroupement par critère
+    
+    -->
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Com.Ericmas001.AppMonitor.Xaml;component/Templates/Filters/AddAFilterTemplate.xaml"/>
+                <ResourceDictionary Source="/Com.Ericmas001.AppMonitor.Xaml;component/Templates/Filters/FiltersViewerTemplate.xaml"/>
+                <ResourceDictionary Source="/Com.Ericmas001.Wpf;component/Styles/ButtonStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal">
+        <Grid HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalContentAlignment="Center" FontWeight="Bold">Groupings</Label>
+
+            <!--  Champs Disponible -->
+            <Label Grid.Row="1" Grid.Column="0">Available Fields</Label>
+            <ListBox Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" Margin="5,0,0,0" Validation.ErrorTemplate="{x:Null}" ItemsSource="{Binding AvailablesGroups.Items}" SelectedIndex="{Binding AvailablesGroups.SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding AvailablesGroups.Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ListBox>
+
+            <!--  Boutons de transfert d'une liste à l'autre -->
+            <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
+                <cc:CoolButton Margin="5" Width="19" Height="32" Command="{Binding ChooseCritereCommand}" TextImageOrientation="Horizontal" ButtonImageSize="16" Style="{StaticResource CoolButtonTurquoise}" />
+                <cc:CoolButton Margin="5" Width="19" Height="32" Command="{Binding RemoveCritereCommand}" TextImageOrientation="Horizontal" ButtonImageSize="16" Style="{StaticResource CoolButtonTurquoise}" />
+            </StackPanel>
+
+            <!--  Champs à grouper -->
+            <Label Grid.Row="1" Grid.Column="2">Choosen Fields</Label>
+            <ListBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" Validation.ErrorTemplate="{x:Null}" ItemsSource="{Binding ChoosenGroups.Items}" SelectedIndex="{Binding ChoosenGroups.SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ChoosenGroups.Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ListBox>
+
+            <!--  Boutons d'ordre de regroupement -->
+            <StackPanel Grid.Row="2" Grid.Column="3" VerticalAlignment="Center">
+                <cc:CoolButton Margin="5" Width="19" Height="32" Command="{Binding MoveUpCritereCommand}" TextImageOrientation="Horizontal" ButtonImageSize="16" Style="{StaticResource CoolButtonTurquoise}" />
+                <cc:CoolButton Margin="5" Width="19" Height="32" Command="{Binding MoveDownCritereCommand}" TextImageOrientation="Horizontal" ButtonImageSize="16" Style="{StaticResource CoolButtonTurquoise}" />
+            </StackPanel>
+        </Grid>
+        <DockPanel Margin="20,0,0,0">
+            <StackPanel DockPanel.Dock="Top">
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalContentAlignment="Center" FontWeight="Bold">Filters</Label>
+                <ContentPresenter ContentTemplate="{StaticResource FiltersViewerTemplate}" Content="{Binding}" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Margin="5">New Filter:</TextBlock>
+                    <ComboBox Width="200" ItemsSource="{Binding ChampsAFiltrer.Keys}" SelectedItem="{Binding CurrentField, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+            </StackPanel>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding AvailablesFilters, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource AddAFilterTemplate}"/>
+            </ScrollViewer>
+        </DockPanel>
+    </StackPanel>
+</UserControl>
