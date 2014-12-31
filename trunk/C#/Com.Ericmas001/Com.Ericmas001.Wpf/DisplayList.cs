@@ -8,11 +8,11 @@ namespace Com.Ericmas001.Wpf
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        private ObservableCollection<T> m_Items = new ObservableCollection<T>();
+        private FastObservableCollection<T> m_Items = new FastObservableCollection<T>();
         private int m_SelectedIndex;
         private T m_Selected;
 
-        public ObservableCollection<T> Items
+        public FastObservableCollection<T> Items
         {
             get { return m_Items; }
             set
