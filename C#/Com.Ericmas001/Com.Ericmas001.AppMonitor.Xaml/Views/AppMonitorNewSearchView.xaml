@@ -25,9 +25,9 @@
     <ItemsControl ItemsSource="{Binding Categories}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <Expander Style="{StaticResource CoolExpanderStyleSimple}" Background="{Binding Background}" VerticalAlignment="Top" HorizontalAlignment="Stretch" BorderThickness="0" IsExpanded="{Binding IsExpanded}" Width="400">
+                <Expander Style="{StaticResource CoolExpanderStyleSimple}" Background="{Binding Info.Background}" VerticalAlignment="Top" HorizontalAlignment="Stretch" BorderThickness="0" IsExpanded="{Binding IsExpanded}" Width="400">
                     <Expander.Header>
-                        <TextBlock Text="{Binding Category, Converter={StaticResource EnumDescConverter}}" Foreground="{Binding HeaderForeground}" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Info.Description}" Foreground="{Binding Info.HeaderForeground}" FontWeight="Bold" />
                     </Expander.Header>
 
                     <!-- Panneau de saisie -->
@@ -39,7 +39,7 @@
                         <ContentPresenter Margin="10" Content="{Binding SelectedCriteriaModel}" ContentTemplateSelector="{StaticResource SearchInputContentTemplateSelector}"/>
 
                         <!-- Bouton pour démarrer la recherche -->
-                        <customControls:CoolButton Width="150" Margin="10,10,10,0" Content="Rechercher" Command="{Binding Path=StartNewTabCommand}" ButtonImage="{Binding IconImageBig}"  TextImageOrientation="Vertical" ButtonImageSize="32" FontWeight="Bold" ButtonColor="{Binding ButtonBrush}" />
+                        <customControls:CoolButton Width="150" Margin="10,10,10,0" Content="Rechercher" Command="{Binding Path=StartNewTabCommand}" ButtonImage="{Binding Info.IconImageBig}"  TextImageOrientation="Vertical" ButtonImageSize="32" FontWeight="Bold" ButtonColor="{Binding Info.ButtonBrush}" />
 
                     </StackPanel>
                 </Expander>

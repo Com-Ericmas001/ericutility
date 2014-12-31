@@ -28,41 +28,34 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
 
         public abstract string ObtainValue(string field);
         public abstract string ObtainFilterValue(string field);
-        public Dictionary<string, string> Information
+
+        protected virtual Dictionary<string, string> ObtainAllFields()
         {
-            get
+            var nfo = new Dictionary<string, string>();
+
+            foreach (PropertyInfo field in GetAllPropertys())
             {
-                Dictionary<string, string> nfo = new Dictionary<string, string>();
-
-                string[] mainInfo = ObtenirToutesLesPropsDeBase();
-                foreach (PropertyInfo field in ObtenirToutesLesProps())
+                if (CanDisplayField(field))
                 {
-                    if (PeutAfficher(field))
+                    string fieldValue = string.Empty;
+                    string valOverride = GetFieldDisplayValue(field);
+                    if (valOverride != null)
+                        fieldValue = valOverride;
+                    else
                     {
-                        string valeur = string.Empty;
-                        string valOverride = ObtenirValeur(field);
-                        if (valOverride != null)
-                        {
-                            valeur = valOverride;
-                        }
-                        else
-                        {
-                            object val = field.GetValue(Info, null);
-                            if (val != null)
-                            {
-                                valeur = val.ToString();
-                            }
-                        }
-                        if (!string.IsNullOrEmpty(valeur) || mainInfo.Contains(field.Name))
-                        {
-                            nfo.Add(field.Name, valeur);
-                        }
+                        object val = field.GetValue(Info, null);
+                        if (val != null)
+                            fieldValue = val.ToString();
                     }
-                }
 
-                return nfo;
+                    if (!string.IsNullOrEmpty(fieldValue) || !CanRemoveEmptyField(field))
+                        nfo.Add(field.Name, fieldValue);
+                }
             }
+
+            return nfo;
         }
+
         public string TextDescription
         {
             get
@@ -71,10 +64,8 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
 
                 TextDescriptionBeforeMainInfo(sw);
 
-                foreach (KeyValuePair<string, string> kvp in Information)
-                {
+                foreach (KeyValuePair<string, string> kvp in ObtainAllFields())
                     sw.WriteLine("{0}: {1}", kvp.Key, kvp.Value);
-                }
 
                 TextDescriptionAfterMainInfo(sw);
 
@@ -90,7 +81,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
 
                 HtmlDescriptionBeforeMainInfo(sw);
 
-                foreach (KeyValuePair<string, string> kvp in Information)
+                foreach (KeyValuePair<string, string> kvp in ObtainAllFields())
                 {
                     sw.WriteLine("<b>{0}: </b>{1}", kvp.Key, kvp.Value);
                 }
@@ -102,24 +93,23 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
                 return sw.ToString().Replace("\n", "<br />" + "\n").Replace("  ", "&nbsp;&nbsp;");
             }
         }
-        protected virtual bool PeutAfficher(PropertyInfo field)
+        protected virtual bool CanRemoveEmptyField(PropertyInfo field)
+        {
+            return false;
+        }
+        protected virtual bool CanDisplayField(PropertyInfo field)
         {
             return true;
         }
 
-        protected virtual string ObtenirValeur(PropertyInfo field)
+        protected virtual string GetFieldDisplayValue(PropertyInfo field)
         {
             return null;
         }
 
-        protected virtual PropertyInfo[] ObtenirToutesLesProps()
+        protected virtual PropertyInfo[] GetAllPropertys()
         {
             return typeof(TInfo).GetProperties();
-        }
-
-        protected virtual string[] ObtenirToutesLesPropsDeBase()
-        {
-            return typeof(TInfo).GetProperties().Select(x => x.Name).ToArray();
         }
 
 
