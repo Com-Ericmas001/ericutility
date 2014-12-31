@@ -26,18 +26,28 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Helpers
         public static Dictionary<TCriteria, SearchTypeEnum> GetAllSearchCriterias<TSearchAttribute>(TCategory category)
             where TSearchAttribute : Attribute, ISearchCriteriaAttribute<TCategory>
         {
-            return EnumFactory<TCriteria>.AllValues.Where(x => ContainsAttribute<TSearchAttribute>(category, x)).OrderBy(GetPriorite).ThenBy(EnumFactory<TCriteria>.ToString).ToDictionary(c => c, c => EnumFactory<TCriteria>.GetAttribute<TSearchAttribute>(c).SearchType);
+            return OrderCriterias(EnumFactory<TCriteria>.AllValues.Where(x => ContainsAttribute<TSearchAttribute>(category, x))).ToDictionary(c => c, c => EnumFactory<TCriteria>.GetAttribute<TSearchAttribute>(c).SearchType);
         }
         public static TCriteria[] GetAllGroupingCriterias<TGroupingAttribute>(TCategory category)
             where TGroupingAttribute : Attribute, IManyCategoriesAttribute<TCategory>
         {
-            return EnumFactory<TCriteria>.AllValues.Where(x => ContainsAttribute<TGroupingAttribute>(category, x)).OrderBy(GetPriorite).ThenBy(EnumFactory<TCriteria>.ToString).ToArray();
+            return OrderCriterias(EnumFactory<TCriteria>.AllValues.Where(x => ContainsAttribute<TGroupingAttribute>(category, x))).ToArray();
         }
 
         private static int GetPriorite(TCriteria criteria)
         {
             var prioAtt = EnumFactory<TCriteria>.GetAttribute<PriorityAttribute>(criteria);
             return prioAtt != null ? prioAtt.Priority : 0;
+        }
+
+        public static IEnumerable<TCriteria> OrderCriterias(IEnumerable<TCriteria> criterias)
+        {
+            return criterias.OrderBy(GetPriorite).ThenBy(EnumFactory<TCriteria>.ToString);
+        }
+
+        public static IEnumerable<string> OrderCriteriaStrings(IEnumerable<string> criterias)
+        {
+            return OrderCriterias(criterias.Select(EnumFactory<TCriteria>.Parse)).Select(EnumFactory<TCriteria>.ToString);
         }
 
         private static bool ContainsAttribute<TAttribute>(TCategory category, TCriteria criteria)

@@ -86,7 +86,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             TCriteria[] allAvailables = CriteriaHelper<TCriteria, TCategory>.GetAllGroupingCriterias<TGroupingAttribute>(Category).Where(crit => !crit.Equals(criteria)).ToArray();
             IEnumerable<string> availables = allAvailables.Select(EnumFactory<TCriteria>.ToString);
             IEnumerable<string> alreadyGrouped = new String[0]; //template.Select(crit => EnumFactory<CritereEnum>.ToString(crit));
-            ChooseGroupVm = new ChooseGroupViewModel(m_DataItems, availables, alreadyGrouped);
+            ChooseGroupVm = new ChooseGroupViewModel(m_DataItems, availables,CriteriaHelper<TCriteria, TCategory>.OrderCriteriaStrings, alreadyGrouped);
             ChooseGroupVm.OnGroupsChanged += delegate { RefreshInterface(); };
 
             RefreshDataAndInterface();

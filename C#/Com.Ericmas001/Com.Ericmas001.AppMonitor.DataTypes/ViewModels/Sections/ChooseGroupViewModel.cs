@@ -21,6 +21,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
         private readonly ObservableCollection<Filter> m_CurrentFilters = new ObservableCollection<Filter>();
         private string m_CurrentField;
         private Filter[] m_AvailablesFilters;
+        private Func<IEnumerable<string>, IEnumerable<string>> m_OrderByFunc;
 
         private readonly IBunchOfDataItems m_DataItems;
 
@@ -107,12 +108,13 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
             get { return m_MoveDownCritereCommand ?? (m_MoveDownCritereCommand = new RelayCommand(x => OnCritereMovedDown(), x => CanMoveDownCritere())); }
         }
 
-        public ChooseGroupViewModel(IBunchOfDataItems dataItems, IEnumerable<string> availables, IEnumerable<string> alreadyGrouped = null)
+        public ChooseGroupViewModel(IBunchOfDataItems dataItems, IEnumerable<string> availables, Func<IEnumerable<string>,IEnumerable<string>> orderBy, IEnumerable<string> alreadyGrouped = null)
         {
             m_DataItems = dataItems;
+            m_OrderByFunc = orderBy;
 
-            AvailablesGroups.Items = new ObservableCollection<string>();
-            ChoosenGroups.Items = new ObservableCollection<string>();
+            AvailablesGroups.Items = new FastObservableCollection<string>();
+            ChoosenGroups.Items = new FastObservableCollection<string>();
 
             if (availables != null)
                 availables.ToList().ForEach(x => AvailablesGroups.Items.Add(x));
@@ -151,7 +153,10 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
 
         private void OnCritereRemoved()
         {
-            AvailablesGroups.Items.Add(ChoosenGroups.Selected);
+            var values = AvailablesGroups.Items.ToList();
+            values.Add(ChoosenGroups.Selected);
+            AvailablesGroups.Items.Clear();
+            AvailablesGroups.Items.AddItems(m_OrderByFunc(values).ToList());
             ChoosenGroups.Items.Remove(ChoosenGroups.Selected);
             if (OnGroupsChanged != null)
                 OnGroupsChanged(this, new EventArgs());
