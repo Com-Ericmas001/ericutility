@@ -31,7 +31,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
 
         public NewSearchViewModel()
         {
-            Categories = ExcludeCategories(EnumFactory<TCategory>.AllValues).OrderBy(x => EnumFactory<TCategory>.GetAttribute<PrioriteAttribute>(x).Priorite).ThenBy(x => EnumFactory<TCategory>.ToString(x)).Select(CreateSection).ToArray();
+            Categories = ExcludeCategories(EnumFactory<TCategory>.AllValues).OrderBy(x => EnumFactory<TCategory>.GetAttribute<PriorityAttribute>(x).Priority).ThenBy(x => EnumFactory<TCategory>.ToString(x)).Select(CreateSection).ToArray();
 
             if (Categories.Any())
                 Categories.First().IsExpanded = true;

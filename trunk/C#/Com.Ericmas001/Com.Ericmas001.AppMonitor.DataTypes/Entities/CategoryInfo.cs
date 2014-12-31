@@ -92,9 +92,9 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
 
             m_Description = EnumFactory<TCategory>.ToString(cat);
 
-            var prioAtt = EnumFactory<TCategory>.GetAttribute<PrioriteAttribute>(cat);
+            var prioAtt = EnumFactory<TCategory>.GetAttribute<PriorityAttribute>(cat);
             if (prioAtt != null)
-                m_Priorite = prioAtt.Priorite;
+                m_Priorite = prioAtt.Priority;
         }
 
     }

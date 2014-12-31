@@ -36,8 +36,8 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Helpers
 
         private static int GetPriorite(TCriteria criteria)
         {
-            var prioAtt = EnumFactory<TCriteria>.GetAttribute<PrioriteAttribute>(criteria);
-            return prioAtt != null ? prioAtt.Priorite : 0;
+            var prioAtt = EnumFactory<TCriteria>.GetAttribute<PriorityAttribute>(criteria);
+            return prioAtt != null ? prioAtt.Priority : 0;
         }
 
         private static bool ContainsAttribute<TAttribute>(TCategory category, TCriteria criteria)
