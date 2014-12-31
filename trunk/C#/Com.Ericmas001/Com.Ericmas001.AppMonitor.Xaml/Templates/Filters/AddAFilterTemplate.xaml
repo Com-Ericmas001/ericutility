@@ -30,6 +30,9 @@
                             <DataTrigger Binding="{Binding CurrentSearchType}" Value="Int">
                                 <Setter Property="ContentTemplate" Value="{StaticResource SearchTypeIntTemplate}" />
                             </DataTrigger>
+                            <DataTrigger Binding="{Binding CurrentSearchType}" Value="IntPair">
+                                <Setter Property="ContentTemplate" Value="{StaticResource SearchTypeIntPairTemplate}" />
+                            </DataTrigger>
                             <DataTrigger Binding="{Binding CurrentSearchType}" Value="Date">
                                 <Setter Property="ContentTemplate" Value="{StaticResource SearchTypeDateTemplate}" />
                             </DataTrigger>

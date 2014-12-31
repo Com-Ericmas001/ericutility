@@ -14,6 +14,7 @@ namespace Com.Ericmas001.Wpf.TemplateSelectors
         public DataTemplate TextTemplate { get; set; }
         public DataTemplate DateTemplate { get; set; }
         public DataTemplate ListTemplate { get; set; }
+        public DataTemplate PairTemplate { get; set; }
         public override System.Windows.DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             if (item is TextSearchElement ||
@@ -26,6 +27,9 @@ namespace Com.Ericmas001.Wpf.TemplateSelectors
 
             if (item is ListSearchElement)
                 return ListTemplate;
+
+            if (item is IntPairSearchElement)
+                return PairTemplate;
 
             return null;
         }

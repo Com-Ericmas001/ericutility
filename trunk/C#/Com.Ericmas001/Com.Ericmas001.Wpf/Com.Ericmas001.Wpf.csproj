@@ -123,6 +123,7 @@
     <Compile Include="ViewModels\SearchElements\BaseSearchElement.cs" />
     <Compile Include="ViewModels\SearchElements\DateSearchElement.cs" />
     <Compile Include="ViewModels\SearchElements\GuidSearchElement.cs" />
+    <Compile Include="ViewModels\SearchElements\IntPairSearchElement.cs" />
     <Compile Include="ViewModels\SearchElements\IntSearchElement.cs" />
     <Compile Include="ViewModels\SearchElements\ListSearchElement.cs" />
     <Compile Include="ViewModels\SearchElements\TextSearchElement.cs" />
@@ -217,6 +218,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Templates\SearchInputTemplate\SearchListTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\SearchInputTemplate\SearchPairTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

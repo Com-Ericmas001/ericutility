@@ -6,11 +6,13 @@
         <ResourceDictionary Source="SearchInputTemplate/SearchTextTemplate.xaml"/>
         <ResourceDictionary Source="SearchInputTemplate/SearchDateTemplate.xaml"/>
         <ResourceDictionary Source="SearchInputTemplate/SearchListTemplate.xaml"/>
+        <ResourceDictionary Source="SearchInputTemplate/SearchPairTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <ts:SearchInputTemplateSelector
             TextTemplate="{StaticResource SearchTextTemplate}"
             DateTemplate="{StaticResource SearchDateTemplate}"
             ListTemplate="{StaticResource SearchListTemplate}"
+            PairTemplate="{StaticResource SearchPairTemplate}"
             x:Key="SearchInputContentTemplateSelector" />
 </ResourceDictionary>

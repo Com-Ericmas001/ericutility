@@ -11,6 +11,7 @@ namespace Com.Ericmas001.Wpf.Entities.Enums
         Text,
         UpperText,
         Int,
+        IntPair,
         Date,
         Time,
         Guid,

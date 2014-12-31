@@ -16,21 +16,21 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Enums
         Text,
 
         [FilterCommand(FilterCommandEnum.Must)]
-        [FilterComparator(FilterComparatorEnum.SmallerThan, FilterComparatorEnum.SmallerEqual, FilterComparatorEnum.IntEqual, FilterComparatorEnum.IntNotEqual, FilterComparatorEnum.GreaterEqual, FilterComparatorEnum.GreaterThan)]
+        [FilterComparator(FilterComparatorEnum.SmallerThan, FilterComparatorEnum.SmallerEqual, FilterComparatorEnum.IntEqual, FilterComparatorEnum.IntNotEqual, FilterComparatorEnum.GreaterEqual, FilterComparatorEnum.GreaterThan, FilterComparatorEnum.IntBetween)]
         [SearchType(SearchTypeEnum.Int)]
-        [Description("Filtrer Int")]
+        [Description("Filter Int")]
         Int,
 
         [FilterCommand(FilterCommandEnum.Must)]
         [FilterComparator(FilterComparatorEnum.SmallerThan, FilterComparatorEnum.SmallerEqual, FilterComparatorEnum.IntEqual, FilterComparatorEnum.IntNotEqual, FilterComparatorEnum.GreaterEqual, FilterComparatorEnum.GreaterThan)]
         [SearchType(SearchTypeEnum.Date)]
-        [Description("Filtrer Date")]
+        [Description("Filter Date")]
         Date,
 
         [FilterCommand(FilterCommandEnum.Must)]
         [FilterComparator(FilterComparatorEnum.SmallerThan, FilterComparatorEnum.SmallerEqual, FilterComparatorEnum.IntEqual, FilterComparatorEnum.IntNotEqual, FilterComparatorEnum.GreaterEqual, FilterComparatorEnum.GreaterThan)]
         [SearchType(SearchTypeEnum.Time)]
-        [Description("Filtrer Time")]
+        [Description("Filter Time")]
         Time
 
     }

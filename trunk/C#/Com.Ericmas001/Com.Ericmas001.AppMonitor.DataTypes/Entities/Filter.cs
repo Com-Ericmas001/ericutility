@@ -29,6 +29,8 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
         private FilterComparatorEnum m_CurrentComparator;
         private SearchTypeEnum m_CurrentSearchType;
         private string m_CurrentValueString;
+        private string m_CurrentValueStringPair1;
+        private string m_CurrentValueStringPair2;
         private DateTime m_CurrentValueDate = DateTime.Now;
         private CheckListItem m_CurrentValueList;
 
@@ -51,6 +53,26 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
             {
                 m_CurrentValueString = value;
                 RaisePropertyChanged("CurrentValueString");
+            }
+        }
+
+        public string CurrentValueStringPair1
+        {
+            get { return m_CurrentValueStringPair1; }
+            set
+            {
+                m_CurrentValueStringPair1 = value;
+                RaisePropertyChanged("CurrentValueStringPair1");
+            }
+        }
+
+        public string CurrentValueStringPair2
+        {
+            get { return m_CurrentValueStringPair2; }
+            set
+            {
+                m_CurrentValueStringPair2 = value;
+                RaisePropertyChanged("CurrentValueStringPair2");
             }
         }
 
@@ -232,6 +254,9 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
                 case SearchTypeEnum.Date:
                     values = m_CurrentValueDate.ToString("yyyy-MM-dd");
                     break;
+                case SearchTypeEnum.IntPair:
+                    values = String.Format("{0} and {1}", int.Parse(m_CurrentValueStringPair1), int.Parse(m_CurrentValueStringPair2));
+                    break;
                 default:
                     values = m_CurrentValueString;
                     break;
@@ -267,6 +292,12 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
                     break;
                 case FilterEnum.Int:
                     int myNum = int.Parse(value);
+                    if (m_CurrentComparator == FilterComparatorEnum.IntBetween)
+                    {
+                        int val1 = int.Parse(m_CurrentValueStringPair1);
+                        int val2 = int.Parse(m_CurrentValueStringPair2);
+                        return myNum >= val1 && myNum <= val2;
+                    }
                     int valNum = int.Parse(m_CurrentValueString);
                     switch (m_CurrentComparator)
                     {
