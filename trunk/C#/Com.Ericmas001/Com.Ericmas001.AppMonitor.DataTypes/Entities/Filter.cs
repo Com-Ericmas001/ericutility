@@ -282,40 +282,49 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
                         case FilterComparatorEnum.TextEqual:
                             return m_AvailablesItems.Where(x => x.IsSelected).Select(x => (string) x.Value).ToArray().Contains(value) == (m_CurrentCommand == FilterCommandEnum.Must);
                         case FilterComparatorEnum.Contains:
-                            return value.Contains(m_CurrentValueString);
+                            return value.Contains(m_CurrentValueString) == (m_CurrentCommand == FilterCommandEnum.Must);
                         case FilterComparatorEnum.StartsWith:
-                            return value.StartsWith(m_CurrentValueString);
+                            return value.StartsWith(m_CurrentValueString) == (m_CurrentCommand == FilterCommandEnum.Must);
                         case FilterComparatorEnum.EndsWith:
-                            return value.EndsWith(m_CurrentValueString);
+                            return value.EndsWith(m_CurrentValueString) == (m_CurrentCommand == FilterCommandEnum.Must);
                     }
 
                     break;
                 case FilterEnum.Int:
+                    bool answer = false;
                     int myNum = int.Parse(value);
                     if (m_CurrentComparator == FilterComparatorEnum.IntBetween)
                     {
                         int val1 = int.Parse(m_CurrentValueStringPair1);
                         int val2 = int.Parse(m_CurrentValueStringPair2);
-                        return myNum >= val1 && myNum <= val2;
+                        answer = (myNum >= val1 && myNum <= val2);
                     }
-                    int valNum = int.Parse(m_CurrentValueString);
-                    switch (m_CurrentComparator)
+                    else
                     {
-                        case FilterComparatorEnum.SmallerThan:
-                            return myNum < valNum;
-                        case FilterComparatorEnum.SmallerEqual:
-                            return myNum <= valNum;
-                        case FilterComparatorEnum.IntEqual:
-                            return myNum == valNum;
-                        case FilterComparatorEnum.IntNotEqual:
-                            return myNum != valNum;
-                        case FilterComparatorEnum.GreaterEqual:
-                            return myNum >= valNum;
-                        case FilterComparatorEnum.GreaterThan:
-                            return myNum > valNum;
+                        int valNum = int.Parse(m_CurrentValueString);
+                        switch (m_CurrentComparator)
+                        {
+                            case FilterComparatorEnum.SmallerThan:
+                                answer = myNum < valNum;
+                                break;
+                            case FilterComparatorEnum.SmallerEqual:
+                                answer = myNum <= valNum;
+                                break;
+                            case FilterComparatorEnum.IntEqual:
+                                answer = myNum == valNum;
+                                break;
+                            case FilterComparatorEnum.IntNotEqual:
+                                answer = myNum != valNum;
+                                break;
+                            case FilterComparatorEnum.GreaterEqual:
+                                answer = myNum >= valNum;
+                                break;
+                            case FilterComparatorEnum.GreaterThan:
+                                answer = myNum > valNum;
+                                break;
+                        }
                     }
-
-                    break;
+                    return answer == (m_CurrentCommand == FilterCommandEnum.Must);
                 case FilterEnum.Date:
                 case FilterEnum.Time:
                     string validation = m_FilterType == FilterEnum.Date ? m_CurrentValueDate.ToString("yyyy-MM-dd") : m_CurrentValueString;

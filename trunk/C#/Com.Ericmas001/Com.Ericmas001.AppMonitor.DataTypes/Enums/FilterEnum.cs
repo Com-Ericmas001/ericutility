@@ -15,7 +15,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Enums
         [Description("Filter Text")]
         Text,
 
-        [FilterCommand(FilterCommandEnum.Must)]
+        [FilterCommand(FilterCommandEnum.Must, FilterCommandEnum.MustNot)]
         [FilterComparator(FilterComparatorEnum.SmallerThan, FilterComparatorEnum.SmallerEqual, FilterComparatorEnum.IntEqual, FilterComparatorEnum.IntNotEqual, FilterComparatorEnum.GreaterEqual, FilterComparatorEnum.GreaterThan, FilterComparatorEnum.IntBetween)]
         [SearchType(SearchTypeEnum.Int)]
         [Description("Filter Int")]
