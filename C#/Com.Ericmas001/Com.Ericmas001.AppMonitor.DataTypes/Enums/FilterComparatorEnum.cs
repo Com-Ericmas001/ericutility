@@ -46,7 +46,11 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Enums
         GreaterEqual,
 
         [Description(">")]
-        GreaterThan
+        GreaterThan,
+
+        [SearchType(SearchTypeEnum.IntPair)]
+        [Description("between")]
+        IntBetween
 
     }
 }

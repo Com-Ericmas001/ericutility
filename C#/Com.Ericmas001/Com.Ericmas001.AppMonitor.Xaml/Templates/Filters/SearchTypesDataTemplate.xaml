@@ -9,6 +9,14 @@
         <TextBox Width="100" Text="{Binding CurrentValueString}" />
     </DataTemplate>
 
+    <DataTemplate x:Key="SearchTypeIntPairTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBox Width="75" Text="{Binding CurrentValueStringPair1}" />
+            <TextBox Margin="5,0,0,0" Width="75" Text="{Binding CurrentValueStringPair2}" />
+        </StackPanel>
+        
+    </DataTemplate>
+
     <DataTemplate x:Key="SearchTypeDateTemplate">
         <DatePicker SelectedDate="{Binding CurrentValueDate}"/>
     </DataTemplate>
