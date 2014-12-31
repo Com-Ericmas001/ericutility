@@ -59,7 +59,12 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
 
         public BaseSearchElement SelectedCriteriaModel
         {
-            get { return m_CriteriaModels[m_SelectedCriteria]; }
+            get { return m_SelectedCriteria.Equals(default(TCriteria)) ? null : m_CriteriaModels[m_SelectedCriteria]; }
+        }
+
+        public string SelectedCriteriaValue
+        {
+            get { return SelectedCriteriaModel == null ? null : SelectedCriteriaModel.TextValue; }
         }
 
         public TCriteria[] Criterias
@@ -70,6 +75,18 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
         public CategoryInfo<TCategory> Info
         {
             get { return m_Info; }
+        }
+
+        public enum CriteriaNumberEnum
+        {
+            Zero,
+            One,
+            Plenty
+        }
+
+        public CriteriaNumberEnum NumberOfCriterias
+        {
+            get { return m_Criterias.Length == 0 ? CriteriaNumberEnum.Zero : m_Criterias.Length == 1 ? CriteriaNumberEnum.One : CriteriaNumberEnum.Plenty; }
         }
 
         public CategorySection(TCategory cat)
@@ -113,7 +130,12 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
                         m_CriteriaModels.Add(crit, myTextSearchElement);
                         break;
                 }
-            SelectedCriteria = Criterias.First();
+            SelectedCriteria = NumberOfCriterias == CriteriaNumberEnum.Zero ? default(TCriteria) : ObtainDefaultCriteria();
+        }
+
+        protected virtual TCriteria ObtainDefaultCriteria()
+        {
+            return Criterias.First();
         }
 
         protected abstract IEnumerable<string> ObtainList(TCriteria crit);

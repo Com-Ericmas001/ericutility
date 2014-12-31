@@ -32,12 +32,51 @@
 
                     <!-- Panneau de saisie -->
                     <StackPanel Margin="10">
-                        <!-- Liste des différentes sortes de critères -->
-                        <ComboBox Margin="10" Width="150" ItemsSource="{Binding Criterias}" ItemTemplate="{StaticResource CritereListItem}" SelectedItem="{Binding SelectedCriteria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <ContentControl Content="{Binding}">
+                            <ContentControl.Style>
+                                <Style TargetType="ContentControl">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding NumberOfCriterias}" Value="Zero">
+                                            <Setter Property="ContentTemplate">
+                                                <Setter.Value>
+                                                    <DataTemplate />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding NumberOfCriterias}" Value="One">
+                                            <Setter Property="ContentTemplate">
+                                                <Setter.Value>
+                                                    <DataTemplate>
+                                                        <StackPanel>
+                                                            <!-- Liste des différentes sortes de critères -->
+                                                            <TextBlock Margin="10" FontWeight="Bold" HorizontalAlignment ="Center" Foreground="Black" Text="{Binding SelectedCriteria,Converter={StaticResource EnumDescConverter}}" />
 
-                        <!-- Emplacement de saisie de critere de recherche selon la sorte de critère -->
-                        <ContentPresenter Margin="10" Content="{Binding SelectedCriteriaModel}" ContentTemplateSelector="{StaticResource SearchInputContentTemplateSelector}"/>
+                                                            <!-- Emplacement de saisie de critere de recherche selon la sorte de critère -->
+                                                            <ContentPresenter Margin="10" Content="{Binding SelectedCriteriaModel}" ContentTemplateSelector="{StaticResource SearchInputContentTemplateSelector}"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding NumberOfCriterias}" Value="Plenty">
+                                            <Setter Property="ContentTemplate">
+                                                <Setter.Value>
+                                                    <DataTemplate>
+                                                        <StackPanel>
+                                                            <!-- Liste des différentes sortes de critères -->
+                                                            <ComboBox Margin="10" Width="150" ItemsSource="{Binding Criterias}" ItemTemplate="{StaticResource CritereListItem}" SelectedItem="{Binding SelectedCriteria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
+                                                            <!-- Emplacement de saisie de critere de recherche selon la sorte de critère -->
+                                                            <ContentPresenter Margin="10" Content="{Binding SelectedCriteriaModel}" ContentTemplateSelector="{StaticResource SearchInputContentTemplateSelector}"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ContentControl.Style>
+                        </ContentControl>
                         <!-- Bouton pour démarrer la recherche -->
                         <customControls:CoolButton Width="150" Margin="10,10,10,0" Content="Rechercher" Command="{Binding Path=StartNewTabCommand}" ButtonImage="{Binding Info.IconImageBig}"  TextImageOrientation="Vertical" ButtonImageSize="32" FontWeight="Bold" ButtonColor="{Binding Info.ButtonBrush}" />
 
