@@ -6,11 +6,13 @@ using System.Text;
 using System.Windows.Input;
 using System.Windows;
 using System.Windows.Media;
+using Com.Ericmas001.Wpf.ViewModels.Tabs;
 
 namespace Com.Ericmas001.Wpf.ViewModels.Trees
 {
     public abstract class TreeElementViewModel : BaseViewModel
     {
+        public event NewTabEventHandler OnTabCreation = delegate { };
         private bool m_IsExpanded = false;
 
         public virtual FontWeight FontWeight { get { return FontWeights.Normal; } }
@@ -176,6 +178,11 @@ namespace Com.Ericmas001.Wpf.ViewModels.Trees
             ContextMenuItems.Add(new CollapseMenuItem(this));
             ContextMenuItems.Add(new ExpandAllMenuItem(this));
             ContextMenuItems.Add(new CollapseAllMenuItem(this));
+        }
+
+        protected void CreateTab(BaseTabViewModel tab)
+        {
+            OnTabCreation(this, tab);
         }
     }
 }

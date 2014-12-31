@@ -9,8 +9,6 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
         where TCategory : struct 
         where TCriteria : struct 
     {
-        public event NewTabEventHandler OnTabCreation = delegate { };
-
         private readonly IEnumerable<TCriteria> m_UsedCriterias;
         private TCriteria m_SearchCriteria;
         private TCategory m_Category;
