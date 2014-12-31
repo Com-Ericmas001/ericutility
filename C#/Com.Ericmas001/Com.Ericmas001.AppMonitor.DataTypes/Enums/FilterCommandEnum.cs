@@ -5,10 +5,10 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Enums
     public enum FilterCommandEnum
     {
 
-        [Description("Must")]
+        [Description("Must Be")]
         Must,
 
-        [Description("Must Not")]
+        [Description("Must Not Be")]
         MustNot
 
     }
