@@ -138,7 +138,7 @@ namespace Com.Ericmas001.Wpf.Helpers
             {
                 if (args.OldValue != null && ((bool)args.OldValue))
                 {
-                    throw new NotImplementedException("Cannot change TabControlHelper.IsCached from True to False. Turning tab caching off is not implemented");
+                    //throw new NotImplementedException("Cannot change TabControlHelper.IsCached from True to False. Turning tab caching off is not implemented");
                 }
 
                 return;
