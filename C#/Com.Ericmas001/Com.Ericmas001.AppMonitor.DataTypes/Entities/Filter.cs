@@ -255,7 +255,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
                     values = m_CurrentValueDate.ToString("yyyy-MM-dd");
                     break;
                 case SearchTypeEnum.IntPair:
-                    values = String.Format("{0} and {1}", int.Parse(m_CurrentValueStringPair1), int.Parse(m_CurrentValueStringPair2));
+                    values = String.Format("{0} And {1}", int.Parse(m_CurrentValueStringPair1), int.Parse(m_CurrentValueStringPair2));
                     break;
                 default:
                     values = m_CurrentValueString;

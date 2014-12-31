@@ -10,23 +10,23 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Enums
         [SearchType(SearchTypeEnum.None)]
         None,
 
-        [Description("Be")]
+        [Description("Equal to")]
         [SearchType(SearchTypeEnum.List)]
         Be,
 
         [SearchType(SearchTypeEnum.CheckList)]
-        [Description("Be Equal to")]
+        [Description("Equal to")]
         TextEqual,
 
-        [Description("Starts With")]
+        [Description("Starting With")]
         [SearchType(SearchTypeEnum.Text)]
         StartsWith,
 
-        [Description("Ends With")]
+        [Description("Ending With")]
         [SearchType(SearchTypeEnum.Text)]
         EndsWith,
 
-        [Description("Contain")]
+        [Description("Containing")]
         [SearchType(SearchTypeEnum.Text)]
         Contains,
 
@@ -49,7 +49,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Enums
         GreaterThan,
 
         [SearchType(SearchTypeEnum.IntPair)]
-        [Description("between")]
+        [Description("Between")]
         IntBetween
 
     }
