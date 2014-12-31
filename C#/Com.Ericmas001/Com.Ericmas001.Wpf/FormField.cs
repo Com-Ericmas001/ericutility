@@ -73,9 +73,9 @@ namespace Com.Ericmas001.Wpf
             Field = field;
             Description = EnumFactory<TEnum>.ToString(field);
 
-            PrioriteAttribute prioAtt = EnumFactory<TEnum>.GetAttribute<PrioriteAttribute>(field);
+            PriorityAttribute prioAtt = EnumFactory<TEnum>.GetAttribute<PriorityAttribute>(field);
             if (prioAtt != null)
-                Priorite = prioAtt.Priorite;
+                Priorite = prioAtt.Priority;
             else
                 Priorite = 9999;
 

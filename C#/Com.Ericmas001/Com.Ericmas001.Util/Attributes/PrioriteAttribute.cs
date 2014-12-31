@@ -5,13 +5,13 @@ using System.Text;
 
 namespace Com.Ericmas001.Util.Attributes
 {
-    public class PrioriteAttribute : Attribute
+    public class PriorityAttribute : Attribute
     {
-        public int Priorite { get; private set; }
+        public int Priority { get; private set; }
 
-        public PrioriteAttribute(int priorite)
+        public PriorityAttribute(int priority)
         {
-            Priorite = priorite;
+            Priority = priority;
         }
     }
 }
