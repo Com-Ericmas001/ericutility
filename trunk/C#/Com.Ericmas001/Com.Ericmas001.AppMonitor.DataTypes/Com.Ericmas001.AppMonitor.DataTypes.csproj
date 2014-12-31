@@ -57,6 +57,7 @@
     <Compile Include="DataElements\RawDataElement.cs" />
     <Compile Include="Entities\BaseDataItemWithInfo.cs" />
     <Compile Include="Entities\BunchOfDataItems.cs" />
+    <Compile Include="Entities\CategoryInfo.cs" />
     <Compile Include="Entities\Filter.cs" />
     <Compile Include="Entities\IBunchOfDataItems.cs" />
     <Compile Include="Entities\IDataItem.cs" />

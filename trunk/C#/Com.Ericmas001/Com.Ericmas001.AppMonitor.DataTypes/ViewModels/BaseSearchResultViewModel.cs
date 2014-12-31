@@ -20,11 +20,38 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
         where TDataItem : IDataItem<TCriteria>
         where TGroupingAttribute : Attribute, IManyCategoriesAttribute<TCategory>
     {
+        private CategoryInfo<TCategory> m_CategoryInfo;
 
-        private TCriteria m_SearchCriteria;
+        private readonly TCriteria m_SearchCriteria;
 
-        private string m_Keyword;
+        private readonly string m_Keyword;
 
+        protected abstract TCategory Category { get; }
+        protected BunchOfDataItems<TDataItem> m_DataItems = new BunchOfDataItems<TDataItem>();
+
+        protected override string IconBigImageName
+        {
+            get
+            {
+                InitCatInfo();
+                return m_CategoryInfo.IconImageBigName;
+            }
+        }
+
+        protected override string IconImageName
+        {
+            get
+            {
+                InitCatInfo();
+                return m_CategoryInfo.IconImageSmallName;
+            }
+        }
+
+        private void InitCatInfo()
+        {
+            if (m_CategoryInfo == null)
+                m_CategoryInfo = new CategoryInfo<TCategory>(Category);
+        }
         public override string TabHeader
         {
             get { return string.Format("{0} {1}", CriteriaHelper<TCriteria, TCategory>.GenerateHeaderTag(SearchCriteria), Keyword); }
@@ -34,11 +61,6 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
         {
             get { return true; }
         }
-
-        protected abstract TCategory Category { get; }
-
-
-        protected BunchOfDataItems<TDataItem> m_DataItems = new BunchOfDataItems<TDataItem>();
 
         protected IEnumerable<TDataItem> Data
         {
