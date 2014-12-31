@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Threading;
 using Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections;
 using Com.Ericmas001.Wpf;
@@ -97,9 +98,12 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
         }
         protected virtual void RefreshInterfaceAfterTree()
         {
-            Items.AddItems(CachedTreeElements);
-            if (Items.Count == 1)
-                Items[0].IsExpanded = true;
+            if (CachedTreeElements != null && CachedTreeElements.Any())
+            { 
+                Items.AddItems(CachedTreeElements);
+                if (Items.Count == 1)
+                    Items[0].IsExpanded = true;
+            }
         }
 
         protected override void RefreshInterface()
