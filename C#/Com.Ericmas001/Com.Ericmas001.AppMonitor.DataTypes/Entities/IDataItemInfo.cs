@@ -7,5 +7,6 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
 {
     public interface IDataItemInfo
     {
+        DateTime DateAndTime { get; }
     }
 }

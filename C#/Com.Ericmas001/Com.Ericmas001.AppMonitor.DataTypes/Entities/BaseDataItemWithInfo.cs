@@ -12,6 +12,14 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
     {
         public TInfo Info { get; private set; }
 
+        public DateTime DateAndTimeValue { get { return Info.DateAndTime; } }
+
+        public string Date { get { return Info.DateAndTime.ToString("yyyy-MM-dd"); } }
+        public string DateWithHour { get { return Info.DateAndTime.ToString("yyyy-MM-dd HH"); } }
+        public string Hour { get { return Info.DateAndTime.ToString("HH"); } }
+        public string Time { get { return Info.DateAndTime.ToString("HH:mm:ss.fff"); } }
+        public string DateAndTime { get { return Info.DateAndTime.ToString("yyyy-MM-dd HH:mm:ss.fff"); } }
+
         public BaseDataItemWithInfo(TInfo info)
         {
             Info = info;
