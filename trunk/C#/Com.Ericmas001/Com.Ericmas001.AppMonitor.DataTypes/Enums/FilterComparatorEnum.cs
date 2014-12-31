@@ -33,6 +33,9 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Enums
         [Description("=")]
         IntEqual,
 
+        [Description("≠")]
+        IntNotEqual,
+
         [Description("<")]
         SmallerThan,
 

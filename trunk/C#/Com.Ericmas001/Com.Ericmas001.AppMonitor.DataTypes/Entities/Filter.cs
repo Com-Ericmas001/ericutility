@@ -276,6 +276,8 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
                             return myNum <= valNum;
                         case FilterComparatorEnum.IntEqual:
                             return myNum == valNum;
+                        case FilterComparatorEnum.IntNotEqual:
+                            return myNum != valNum;
                         case FilterComparatorEnum.GreaterEqual:
                             return myNum >= valNum;
                         case FilterComparatorEnum.GreaterThan:
@@ -294,6 +296,8 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
                             return String.Compare(value, validation, StringComparison.Ordinal) <= 0;
                         case FilterComparatorEnum.IntEqual:
                             return value == validation;
+                        case FilterComparatorEnum.IntNotEqual:
+                            return value != validation;
                         case FilterComparatorEnum.GreaterEqual:
                             return String.Compare(value, validation, StringComparison.Ordinal) >= 0;
                         case FilterComparatorEnum.GreaterThan:
