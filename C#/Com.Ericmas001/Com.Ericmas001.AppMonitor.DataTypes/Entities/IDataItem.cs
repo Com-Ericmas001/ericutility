@@ -6,7 +6,11 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
     {
         string ObtainValue(string field);
         string ObtainFilterValue(string field);
+        
+        string TextDescription { get; }
+        string HtmlDescription { get; }
     }
+
     public interface IDataItem<in TCriteria> : IDataItem
         where TCriteria : struct
     {
