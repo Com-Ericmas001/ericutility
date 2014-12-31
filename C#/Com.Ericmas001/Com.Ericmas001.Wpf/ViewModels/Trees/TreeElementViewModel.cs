@@ -180,7 +180,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Trees
             ContextMenuItems.Add(new CollapseAllMenuItem(this));
         }
 
-        protected void CreateTab(BaseTabViewModel tab)
+        public void CreateTab(BaseTabViewModel tab)
         {
             OnTabCreation(this, tab);
         }
