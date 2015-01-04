@@ -6,38 +6,17 @@ using Com.Ericmas001.AppMonitor.DataTypes.Entities;
 using Com.Ericmas001.AppMonitor.DataTypes.Helpers;
 using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.ViewModels.SearchElements;
-using Com.Ericmas001.Wpf.ViewModels.Tabs;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
 {
-    public abstract class CategorySection<TCriteria, TCategory, TSearchAttribute> : NewTabViewModel
+    public abstract class SearchCategorySection<TCriteria, TCategory, TSearchAttribute> : SearchCategorySectionDummy
         where TCriteria : struct
         where TCategory : struct
         where TSearchAttribute : Attribute, ISearchCriteriaAttribute<TCategory>
     {
-        public event EventHandler OnAfterExpanded = delegate { };
-
-        private readonly CategoryInfo<TCategory> m_Info;
-
-        private bool m_IsExpanded;
         private readonly TCriteria[] m_Criterias;
         private readonly Dictionary<TCriteria, BaseSearchElement> m_CriteriaModels = new Dictionary<TCriteria, BaseSearchElement>();
         private TCriteria m_SelectedCriteria;
-
-        public bool IsExpanded
-        {
-            get { return m_IsExpanded; }
-            set
-            {
-                if (m_IsExpanded != value)
-                {
-                    m_IsExpanded = value;
-                    RaisePropertyChanged("IsExpanded");
-                    if (m_IsExpanded)
-                        OnAfterExpanded(this, new EventArgs());
-                }
-            }
-        }
 
         public TCategory Category { get; private set; }
 
@@ -72,11 +51,6 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
             get { return m_Criterias; }
         }
 
-        public CategoryInfo<TCategory> Info
-        {
-            get { return m_Info; }
-        }
-
         public enum CriteriaNumberEnum
         {
             Zero,
@@ -89,10 +63,10 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
             get { return m_Criterias.Length == 0 ? CriteriaNumberEnum.Zero : m_Criterias.Length == 1 ? CriteriaNumberEnum.One : CriteriaNumberEnum.Plenty; }
         }
 
-        public CategorySection(TCategory cat)
+        public SearchCategorySection(TCategory cat)
         {
             Category = cat;
-            m_Info = new CategoryInfo<TCategory>(cat);
+            Info = new CategoryInfo<TCategory>(cat);
 
             var criterias = CriteriaHelper<TCriteria, TCategory>.GetAllSearchCriterias<TSearchAttribute>(cat);
             m_Criterias = criterias.Keys.ToArray();

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Com.Ericmas001.AppMonitor.DataTypes.Attributes;
 using Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Attributes;
@@ -11,10 +8,8 @@ using Com.Ericmas001.Wpf.ViewModels.Tabs;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
 {
-    public abstract class NewSearchViewModel<TCriteria, TCategory, TSearchAttribute> : NewTabViewModel
-        where TCriteria : struct
+    public abstract class NewSearchViewModel<TCategory> : NewTabViewModel
         where TCategory : struct
-        where TSearchAttribute : Attribute, ISearchCriteriaAttribute<TCategory>
     {
 
         public override BaseTabViewModel CreateContentTab()
@@ -22,27 +17,51 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             return null;
         }
 
-        public CategorySection<TCriteria, TCategory, TSearchAttribute>[] Categories { get; private set; }
+        private readonly List<TabSection> m_Sections = new List<TabSection>();
+
+        public TabSection[] Sections
+        {
+            get { return m_Sections.ToArray(); }
+        }
 
         protected virtual IEnumerable<TCategory> ExcludeCategories(IEnumerable<TCategory> categories)
         {
             return categories;
         }
 
+        private void AddAllCategoriesSection()
+        {
+            m_Sections.AddRange(ExcludeCategories(EnumFactory<TCategory>.AllValues).OrderBy(x => EnumFactory<TCategory>.GetAttribute<PriorityAttribute>(x).Priority).ThenBy(EnumFactory<TCategory>.ToString).Select(x => CreateSectionWithHandlers(CreateCategorySection(x))));
+        }
+
+        protected virtual void AddAllSections()
+        {
+            AddAllCategoriesSection();
+        }
+
+        protected void AddSection(TabSection section)
+        {
+            m_Sections.Add(CreateSectionWithHandlers(section));
+        }
+
+        protected virtual TabSection CreateCategorySection(TCategory cat)
+        {
+            throw new NotImplementedException("You must override CreateCategorySection to use it !");
+        }
+
         public NewSearchViewModel()
         {
-            Categories = ExcludeCategories(EnumFactory<TCategory>.AllValues).OrderBy(x => EnumFactory<TCategory>.GetAttribute<PriorityAttribute>(x).Priority).ThenBy(x => EnumFactory<TCategory>.ToString(x)).Select(CreateSection).ToArray();
+            m_Sections = new List<TabSection>();
 
-            if (Categories.Any())
-                Categories.First().IsExpanded = true;
+            AddAllSections();
+
+            if (Sections.Any())
+                Sections.First().IsExpanded = true;
 
         }
 
-        protected abstract CategorySection<TCriteria, TCategory, TSearchAttribute> CreateCategprySection(TCategory cat);
-
-        public CategorySection<TCriteria, TCategory, TSearchAttribute> CreateSection(TCategory cat)
+        private TabSection CreateSectionWithHandlers(TabSection section)
         {
-            var section = CreateCategprySection(cat);
             section.OnAfterExpanded += section_OnAfterExpanded;
             section.OnTabCreation += (sender, tab) => CreateNewTab(tab);
             return section;
@@ -50,7 +69,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
 
         void section_OnAfterExpanded(object sender, EventArgs e)
         {
-            foreach (CategorySection<TCriteria, TCategory, TSearchAttribute> section in Categories)
+            foreach (TabSection section in Sections)
                 if (section != sender)
                     section.IsExpanded = false;
         }
