@@ -13,20 +13,47 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Com.Ericmas001.AppMonitor.Xaml;component/Templates/TabSection/SearchCategorySectionTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
         </ResourceDictionary>
 
     </UserControl.Resources>
-    <ItemsControl ItemsSource="{Binding Sections}">
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <Expander Style="{StaticResource CoolExpanderStyleSimple}" Background="{Binding Info.Background}" VerticalAlignment="Top" HorizontalAlignment="Stretch" BorderThickness="0" IsExpanded="{Binding IsExpanded}" Width="400">
-                    <Expander.Header>
-                        <TextBlock Text="{Binding Info.Description}" Foreground="{Binding Info.HeaderForeground}" FontWeight="Bold" />
-                    </Expander.Header>
+    <DockPanel>
+        <ItemsControl DockPanel.Dock="Top" HorizontalAlignment="Center"  ItemsSource="{Binding HeaderActions}" Margin="10" Visibility="{Binding HasHeaderActions, Converter={StaticResource BoolToVisConverter}}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <customControls:CoolButton Margin="10,0,10,0" ImageMargin="5,5,0,5" TextMargin="5"  Content="{Binding Info.Description}" Command="{Binding Path=ExecuteCommand}" ButtonImage="{Binding Info.IconImageBig}" TextImageOrientation="Horizontal" ButtonImageSize="16" FontWeight="Bold" ButtonColor="{Binding Info.ButtonBrush}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <ItemsControl DockPanel.Dock="Bottom" HorizontalAlignment="Center"  ItemsSource="{Binding FooterActions}" Margin="10" Visibility="{Binding HasFooterActions, Converter={StaticResource BoolToVisConverter}}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <customControls:CoolButton Margin="10,0,10,0" ImageMargin="5,5,0,5" TextMargin="5"  Content="{Binding Info.Description}" Command="{Binding Path=ExecuteCommand}" ButtonImage="{Binding Info.IconImageBig}" TextImageOrientation="Horizontal" ButtonImageSize="16" FontWeight="Bold" ButtonColor="{Binding Info.ButtonBrush}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <ItemsControl ItemsSource="{Binding Sections}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Expander Style="{StaticResource CoolExpanderStyleSimple}" Background="{Binding Info.Background}" VerticalAlignment="Top" HorizontalAlignment="Stretch" BorderThickness="0" IsExpanded="{Binding IsExpanded}" Width="400">
+                        <Expander.Header>
+                            <TextBlock Text="{Binding Info.Description}" Foreground="{Binding Info.HeaderForeground}" FontWeight="Bold" />
+                        </Expander.Header>
 
-                    <ContentPresenter Content="{Binding}" />
-                </Expander>
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
+                        <ContentPresenter Content="{Binding}" />
+                    </Expander>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </DockPanel>
 </UserControl>

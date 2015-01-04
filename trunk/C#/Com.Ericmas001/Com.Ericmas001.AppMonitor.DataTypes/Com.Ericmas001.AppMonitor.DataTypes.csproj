@@ -78,6 +78,7 @@
     <Compile Include="ViewModels\BaseGroupedContentViewModel.cs" />
     <Compile Include="ViewModels\BaseSearchResultViewModel.cs" />
     <Compile Include="ViewModels\NewSearchViewModel.cs" />
+    <Compile Include="ViewModels\Sections\ActionButtonSection.cs" />
     <Compile Include="ViewModels\Sections\SearchCategorySectionDummy.cs" />
     <Compile Include="ViewModels\Sections\TabSection.cs" />
     <Compile Include="ViewModels\Sections\SearchCategorySection.cs" />
