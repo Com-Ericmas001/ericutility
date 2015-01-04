@@ -82,14 +82,18 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             m_SearchCriteria = criteria;
             m_Keyword = keyword;
 
-            //TCriteria[] template = CriteriaHelper<TCriteria, TCategory>.ObtenirGroupingTemplate(Category, criteria);
-            TCriteria[] allAvailables = CriteriaHelper<TCriteria, TCategory>.GetAllGroupingCriterias<TGroupingAttribute>(Category).Where(crit => !crit.Equals(criteria)).ToArray();
-            IEnumerable<string> availables = allAvailables.Select(EnumFactory<TCriteria>.ToString);
-            IEnumerable<string> alreadyGrouped = new String[0]; //template.Select(crit => EnumFactory<CritereEnum>.ToString(crit));
-            ChooseGroupVm = new ChooseGroupViewModel(m_DataItems, availables,CriteriaHelper<TCriteria, TCategory>.OrderCriteriaStrings, alreadyGrouped);
-            ChooseGroupVm.OnGroupsChanged += delegate { RefreshInterface(); };
+            InitGroupingAndFiltering();
 
             RefreshDataAndInterface();
+        }
+
+        protected virtual void InitGroupingAndFiltering()
+        {
+            TCriteria[] allAvailables = CriteriaHelper<TCriteria, TCategory>.GetAllGroupingCriterias<TGroupingAttribute>(Category).Where(crit => !crit.Equals(criteria)).ToArray();
+            IEnumerable<string> availables = allAvailables.Select(EnumFactory<TCriteria>.ToString);
+            IEnumerable<string> alreadyGrouped = new String[0];
+            ChooseGroupVm = new ChooseGroupViewModel(m_DataItems, availables,CriteriaHelper<TCriteria, TCategory>.OrderCriteriaStrings, alreadyGrouped);
+            ChooseGroupVm.OnGroupsChanged += delegate { RefreshInterface(); };
         }
 
         protected abstract BaseLeafTreeElement<TCategory, TCriteria> CreateLeaf(BaseTreeElement<TCategory, TCriteria> parent, TDataItem item, IEnumerable<TCriteria> criteres);
