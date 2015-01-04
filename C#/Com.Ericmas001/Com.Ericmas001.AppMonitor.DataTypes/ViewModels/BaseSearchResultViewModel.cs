@@ -83,17 +83,17 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             m_Keyword = keyword;
 
             InitGroupingAndFiltering();
+            ChooseGroupVm.OnGroupsChanged += delegate { RefreshInterface(); };
 
             RefreshDataAndInterface();
         }
 
         protected virtual void InitGroupingAndFiltering()
         {
-            TCriteria[] allAvailables = CriteriaHelper<TCriteria, TCategory>.GetAllGroupingCriterias<TGroupingAttribute>(Category).Where(crit => !crit.Equals(criteria)).ToArray();
+            TCriteria[] allAvailables = CriteriaHelper<TCriteria, TCategory>.GetAllGroupingCriterias<TGroupingAttribute>(Category).Where(crit => !crit.Equals(SearchCriteria)).ToArray();
             IEnumerable<string> availables = allAvailables.Select(EnumFactory<TCriteria>.ToString);
             IEnumerable<string> alreadyGrouped = new String[0];
             ChooseGroupVm = new ChooseGroupViewModel(m_DataItems, availables,CriteriaHelper<TCriteria, TCategory>.OrderCriteriaStrings, alreadyGrouped);
-            ChooseGroupVm.OnGroupsChanged += delegate { RefreshInterface(); };
         }
 
         protected abstract BaseLeafTreeElement<TCategory, TCriteria> CreateLeaf(BaseTreeElement<TCategory, TCriteria> parent, TDataItem item, IEnumerable<TCriteria> criteres);
