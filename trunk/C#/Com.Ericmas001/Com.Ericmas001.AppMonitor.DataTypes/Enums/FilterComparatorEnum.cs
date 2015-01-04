@@ -15,7 +15,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Enums
         Be,
 
         [SearchType(SearchTypeEnum.CheckList)]
-        [Description("Equal to")]
+        [Description("One of Those:")]
         TextEqual,
 
         [Description("Starting With")]
