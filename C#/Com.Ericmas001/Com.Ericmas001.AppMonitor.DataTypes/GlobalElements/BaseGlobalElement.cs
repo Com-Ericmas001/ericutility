@@ -8,15 +8,13 @@ using Com.Ericmas001.Wpf.ViewModels.Trees;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.GlobalElements
 {
-    public abstract class BaseGlobalElement<TCategory, TCriteria> : BaseViewModel
-        where TCategory : struct
-        where TCriteria : struct
+    public abstract class BaseGlobalElement : BaseViewModel
     {
         public abstract string Header { get; }
 
-        public BaseBranchTreeElement<TCategory, TCriteria> Branch { get; private set; }
+        public BaseBranchTreeElement Branch { get; private set; }
 
-        public BaseGlobalElement(BaseBranchTreeElement<TCategory, TCriteria> branch)
+        public BaseGlobalElement(BaseBranchTreeElement branch)
         {
             Branch = branch;
         }

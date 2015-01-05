@@ -10,12 +10,10 @@ using Com.Ericmas001.Wpf;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.GlobalElements
 {
-    public abstract class GridOfLeavesGlobalElement<TCategory, TCriteria, TDataItem> : BaseGlobalElement<TCategory, TCriteria>
-        where TCategory : struct
-        where TCriteria : struct
-        where TDataItem : IDataItem<TCriteria>
+    public abstract class GridOfLeavesGlobalElement<TDataItem> : BaseGlobalElement
+        where TDataItem : IDataItem
     {
-        public GridOfLeavesGlobalElement(BaseBranchTreeElement<TCategory, TCriteria> branch)
+        public GridOfLeavesGlobalElement(BaseBranchTreeElement branch)
             : base(branch)
         {
         }
@@ -27,11 +25,11 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.GlobalElements
 
         public abstract Dictionary<string, Func<TDataItem, string>> Columns { get; }
 
-        private Dictionary<DataRow, BaseLeafTreeElement<TCategory, TCriteria>> m_RowToFeuille;
+        private Dictionary<DataRow, BaseLeafTreeElement> m_RowToFeuille;
         private DataRowView m_SelectedRow;
 
-        private BaseLeafTreeElement<TCategory, TCriteria> m_SelectedFeuille;
-        public BaseLeafTreeElement<TCategory, TCriteria> SelectedFeuille
+        private BaseLeafTreeElement m_SelectedFeuille;
+        public BaseLeafTreeElement SelectedFeuille
         {
             get { return m_SelectedFeuille; }
             set
@@ -64,8 +62,8 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.GlobalElements
                 List<string> gridColumns = Columns.Keys.ToList();
                 DataTable table = new DataTable();
                 gridColumns.ForEach(c => table.Columns.Add(c));
-                m_RowToFeuille = new Dictionary<DataRow, BaseLeafTreeElement<TCategory, TCriteria>>();
-                foreach (BaseLeafTreeElement<TCategory, TCriteria> feuille in Branch.TreeLeaves)
+                m_RowToFeuille = new Dictionary<DataRow, BaseLeafTreeElement>();
+                foreach (BaseLeafTreeElement feuille in Branch.TreeLeaves)
                 {
                     DataRow row = table.NewRow();
                     foreach (string c in gridColumns)

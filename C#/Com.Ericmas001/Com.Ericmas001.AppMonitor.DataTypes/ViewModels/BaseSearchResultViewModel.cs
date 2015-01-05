@@ -96,10 +96,10 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             ChooseGroupVm = new ChooseGroupViewModel(m_DataItems, availables,CriteriaHelper<TCriteria, TCategory>.OrderCriteriaStrings, alreadyGrouped);
         }
 
-        protected abstract BaseLeafTreeElement<TCategory, TCriteria> CreateLeaf(BaseTreeElement<TCategory, TCriteria> parent, TDataItem item, IEnumerable<TCriteria> criteres);
-        protected abstract BaseBranchTreeElement<TCategory, TCriteria> CreateBranch(BaseTreeElement<TCategory, TCriteria> parent, TCriteria currentCritere, string value, IEnumerable<TCriteria> usedCriteres, TCategory category);
+        protected abstract BaseLeafTreeElement CreateLeaf(TreeElementViewModel parent, TDataItem item, IEnumerable<TCriteria> criteres);
+        protected abstract BaseBranchTreeElement CreateBranch(TreeElementViewModel parent, TCriteria currentCritere, string value, IEnumerable<TCriteria> usedCriteres, TCategory category);
 
-        protected List<TreeElementViewModel> FillTree(BaseTreeElement<TCategory, TCriteria> node, IEnumerable<TDataItem> items, IEnumerable<TCriteria> criterias, IEnumerable<TCriteria> allCriterias)
+        protected List<TreeElementViewModel> FillTree(TreeElementViewModel node, IEnumerable<TDataItem> items, IEnumerable<TCriteria> criterias, IEnumerable<TCriteria> allCriterias)
         {
             var result = new List<TreeElementViewModel>();
             var allCriteriasArray = allCriterias as TCriteria[] ?? allCriterias.ToArray();
@@ -109,7 +109,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             {
                 foreach (TDataItem elem in items.OrderBy(x => x.ObtainDateTime(allCriteriasArray)))
                 {
-                    BaseLeafTreeElement<TCategory, TCriteria> leaf = CreateLeaf(node, elem, allCriteriasArray);
+                    BaseLeafTreeElement leaf = CreateLeaf(node, elem, allCriteriasArray);
                     if (leaf != null)
                     {
                         leaf.OnTabCreation += HandlingTabCreation;
@@ -127,7 +127,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
                 {
                     foreach (IGrouping<String, TDataItem> x in groups.OrderBy(g => CriteriaHelper<TCriteria, TCategory>.ObtainOrdering(usedCriterias, currentCriteria, g)))
                     {
-                        BaseBranchTreeElement<TCategory, TCriteria> nextnode = CreateBranch(node, currentCriteria, x.Key, usedCriterias, Category);
+                        BaseBranchTreeElement nextnode = CreateBranch(node, currentCriteria, x.Key, usedCriterias, Category);
                         nextnode.Children.AddItems(FillTree(nextnode, x, criteriasArray.Skip(1), allCriteriasArray));
                         nextnode.OnTabCreation += HandlingTabCreation;
                         result.Add(nextnode);
