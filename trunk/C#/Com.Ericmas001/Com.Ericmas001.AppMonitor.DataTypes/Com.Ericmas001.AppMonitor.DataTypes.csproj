@@ -71,9 +71,12 @@
     <Compile Include="Helpers\CriteriaHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateSelectors\TreeElementTemplateSelector.cs" />
+    <Compile Include="TreeElements\BaseCategoryBranchTreeElement.cs" />
     <Compile Include="TreeElements\BaseBranchTreeElement.cs" />
+    <Compile Include="TreeElements\BaseCategoryLeafTreeElement.cs" />
     <Compile Include="TreeElements\BaseLeafTreeElement.cs" />
-    <Compile Include="TreeElements\BaseTreeElement.cs" />
+    <Compile Include="TreeElements\IBaseTreeElement.cs" />
+    <Compile Include="TreeElements\IBaseCategoryTreeElement.cs" />
     <Compile Include="ViewModels\BaseContentViewModel.cs" />
     <Compile Include="ViewModels\BaseGroupedContentViewModel.cs" />
     <Compile Include="ViewModels\BaseSearchResultViewModel.cs" />

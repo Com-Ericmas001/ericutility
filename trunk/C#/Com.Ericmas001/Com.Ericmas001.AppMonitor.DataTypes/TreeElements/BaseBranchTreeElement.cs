@@ -10,13 +10,22 @@ using Com.Ericmas001.Wpf.ViewModels.Trees;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
 {
-    public class BaseBranchTreeElement<TCategory, TCriteria> : BaseTreeElement<TCategory, TCriteria>
-        where TCategory : struct
-        where TCriteria : struct
+    public class BaseBranchTreeElement : TreeElementViewModel, IBaseTreeElement
     {
+        private readonly string m_SearchStringCriteria;
+        private readonly IEnumerable<string> m_UsedStringCriterias;
 
-        private ObservableCollection<BaseGlobalElement<TCategory, TCriteria>> m_Tabs;
-        private BaseGlobalElement<TCategory, TCriteria> m_SelectedTab;
+        public string SearchStringCriteria
+        {
+            get { return m_SearchStringCriteria; }
+        }
+
+        public IEnumerable<string> UsedStringCriterias
+        {
+            get { return m_UsedStringCriterias; }
+        }
+        private ObservableCollection<BaseGlobalElement> m_Tabs;
+        private BaseGlobalElement m_SelectedTab;
         public override string Text
         {
             get { return String.Format("{0} ({1})", BranchName, TreeLeaves.Length); }
@@ -27,11 +36,11 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
             get
             {
                 if (TreeLeaves.Any())
-                    return TreeLeaves.First().DataItem.ObtainValue(EnumFactory<TCriteria>.ToString(SearchCriteria));
-                return String.Format("No Result for {0}", EnumFactory<TCriteria>.ToString(SearchCriteria)); 
+                    return TreeLeaves.First().DataItem.ObtainValue(SearchStringCriteria);
+                return String.Format("No Result for {0}", SearchStringCriteria); 
             }
         }
-        public BaseGlobalElement<TCategory, TCriteria> SelectedTab
+        public BaseGlobalElement SelectedTab
         {
             get { return m_SelectedTab; }
             set
@@ -40,13 +49,13 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
                 RaisePropertyChanged("SelectedTab");
             }
         }
-        public ObservableCollection<BaseGlobalElement<TCategory, TCriteria>> Tabs
+        public ObservableCollection<BaseGlobalElement> Tabs
         {
             get
             {
                 if (m_Tabs == null)
                 {
-                    m_Tabs = new ObservableCollection<BaseGlobalElement<TCategory, TCriteria>>();
+                    m_Tabs = new ObservableCollection<BaseGlobalElement>();
                     m_Tabs.CollectionChanged += delegate
                     {
                         if (m_Tabs.Any())
@@ -62,7 +71,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
         {
             get
             {
-                IGrouping<FontStyle, BaseLeafTreeElement<TCategory, TCriteria>>[] differents = TreeLeaves.GroupBy(x => x.FontStyle).ToArray();
+                IGrouping<FontStyle, BaseLeafTreeElement>[] differents = TreeLeaves.GroupBy(x => x.FontStyle).ToArray();
                 if (differents.Count() == 1)
                 {
                     return differents.First().First().FontStyle;
@@ -74,7 +83,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
         {
             get
             {
-                IGrouping<FontStyle, BaseLeafTreeElement<TCategory, TCriteria>>[] differents = TreeLeaves.GroupBy(x => x.FontStyle).ToArray();
+                IGrouping<FontStyle, BaseLeafTreeElement>[] differents = TreeLeaves.GroupBy(x => x.FontStyle).ToArray();
                 if (differents.Count() == 1)
                 {
                     return differents.First().First().FontFamily;
@@ -86,7 +95,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
         {
             get
             {
-                IGrouping<FontStyle, BaseLeafTreeElement<TCategory, TCriteria>>[] differents = TreeLeaves.GroupBy(x => x.FontStyle).ToArray();
+                IGrouping<FontStyle, BaseLeafTreeElement>[] differents = TreeLeaves.GroupBy(x => x.FontStyle).ToArray();
                 if (differents.Count() == 1)
                 {
                     return differents.First().First().FontWeight;
@@ -94,27 +103,29 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
                 return base.FontWeight;
             }
         }
-        protected virtual IEnumerable<BaseGlobalElement<TCategory, TCriteria>> SetTabs()
-{
-	return new BaseGlobalElement<TCategory, TCriteria>[0];
-}
+        protected virtual IEnumerable<BaseGlobalElement> SetTabs()
+        {
+	        return new BaseGlobalElement[0];
+        }
         public bool HasOnlyOneGlobalTab
         {
             get { return Tabs.Count == 1; }
         }
-        public BaseGlobalElement<TCategory, TCriteria> FirstGlobalTab
+        public BaseGlobalElement FirstGlobalTab
         {
             get { return Tabs.FirstOrDefault(); }
         }
 
-        public new BaseLeafTreeElement<TCategory, TCriteria>[] TreeLeaves
+        public new BaseLeafTreeElement[] TreeLeaves
         {
-            get { return base.TreeLeaves.OfType<BaseLeafTreeElement<TCategory, TCriteria>>().ToArray(); }
+            get { return base.TreeLeaves.OfType<BaseLeafTreeElement>().ToArray(); }
         }
 
-        public BaseBranchTreeElement(TreeElementViewModel parent, IEnumerable<TCriteria> usedCriterias, TCriteria searchCriteria, TCategory category)
-            : base(parent, usedCriterias, searchCriteria, category)
+        public BaseBranchTreeElement(TreeElementViewModel parent, IEnumerable<string> usedCriterias, string searchCriteria)
+            : base(parent)
         {
+            m_UsedStringCriterias = usedCriterias;
+            m_SearchStringCriteria = searchCriteria;
         }
     }
 }

@@ -7,10 +7,15 @@ using Com.Ericmas001.Wpf.ViewModels.Trees;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
 {
-    public class BaseLeafTreeElement<TCategory, TCriteria> : BaseTreeElement<TCategory, TCriteria> 
-        where TCategory : struct
-        where TCriteria : struct 
+    public class BaseLeafTreeElement : TreeElementViewModel, IBaseTreeElement
     {
+        private readonly IEnumerable<string> m_UsedStringCriterias;
+
+        public IEnumerable<string> UsedStringCriterias
+        {
+            get { return m_UsedStringCriterias; }
+        }
+
         private ObservableCollection<BaseDataElement> m_Tabs;
         private BaseDataElement m_SelectedTab;
         private readonly IDataItem m_DataItem;
@@ -62,10 +67,11 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
             get { return Tabs.FirstOrDefault(); }
         }
 
-        public BaseLeafTreeElement(TreeElementViewModel parent, IEnumerable<TCriteria> usedCriterias, TCriteria searchCriteria, TCategory category, IDataItem dataItem)
-            : base(parent, usedCriterias, searchCriteria, category)
+        public BaseLeafTreeElement(TreeElementViewModel parent, IEnumerable<string> usedCriterias, IDataItem dataItem)
+            : base(parent)
         {
             m_DataItem = dataItem;
+            m_UsedStringCriterias = usedCriterias;
         }
         protected virtual IEnumerable<BaseDataElement> SetTabs()
         {
