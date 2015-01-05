@@ -79,6 +79,7 @@
     <Compile Include="TreeElements\IBaseCategoryTreeElement.cs" />
     <Compile Include="ViewModels\BaseContentViewModel.cs" />
     <Compile Include="ViewModels\BaseGroupedContentViewModel.cs" />
+    <Compile Include="ViewModels\BaseQueryResultViewModel.cs" />
     <Compile Include="ViewModels\BaseSearchResultViewModel.cs" />
     <Compile Include="ViewModels\NewSearchViewModel.cs" />
     <Compile Include="ViewModels\Sections\ActionButtonSection.cs" />
