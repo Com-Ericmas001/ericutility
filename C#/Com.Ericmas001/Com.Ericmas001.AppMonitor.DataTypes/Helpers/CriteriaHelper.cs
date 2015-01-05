@@ -50,7 +50,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Helpers
             return OrderCriterias(criterias.Select(EnumFactory<TCriteria>.Parse)).Select(EnumFactory<TCriteria>.ToString);
         }
 
-        private static bool ContainsAttribute<TAttribute>(TCategory category, TCriteria criteria)
+        protected static bool ContainsAttribute<TAttribute>(TCategory category, TCriteria criteria)
             where TAttribute : Attribute, IManyCategoriesAttribute<TCategory>
         {
 

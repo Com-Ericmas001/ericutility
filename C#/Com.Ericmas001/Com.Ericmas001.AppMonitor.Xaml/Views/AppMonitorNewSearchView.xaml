@@ -26,7 +26,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <customControls:CoolButton Margin="10,0,10,0" ImageMargin="5,5,0,5" TextMargin="5"  Content="{Binding Info.Description}" Command="{Binding Path=ExecuteCommand}" ButtonImage="{Binding Info.IconImageBig}" TextImageOrientation="Horizontal" ButtonImageSize="16" FontWeight="Bold" ButtonColor="{Binding Info.ButtonBrush}" />
+                    <customControls:CoolButton Margin="10,0,10,0" ImageMargin="5,5,0,5" TextMargin="5"  Content="{Binding Info.Description}" Command="{Binding Path=ExecuteCommand}" ButtonImage="{Binding Info.IconImageSmall}" TextImageOrientation="Horizontal" ButtonImageSize="16" FontWeight="Bold" ButtonColor="{Binding Info.ButtonBrush}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
@@ -38,7 +38,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <customControls:CoolButton Margin="10,0,10,0" ImageMargin="5,5,0,5" TextMargin="5"  Content="{Binding Info.Description}" Command="{Binding Path=ExecuteCommand}" ButtonImage="{Binding Info.IconImageBig}" TextImageOrientation="Horizontal" ButtonImageSize="16" FontWeight="Bold" ButtonColor="{Binding Info.ButtonBrush}" />
+                    <customControls:CoolButton Margin="10,0,10,0" ImageMargin="5,5,0,5" TextMargin="5"  Content="{Binding Info.Description}" Command="{Binding Path=ExecuteCommand}" ButtonImage="{Binding Info.IconImageSmall}" TextImageOrientation="Horizontal" ButtonImageSize="16" FontWeight="Bold" ButtonColor="{Binding Info.ButtonBrush}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
