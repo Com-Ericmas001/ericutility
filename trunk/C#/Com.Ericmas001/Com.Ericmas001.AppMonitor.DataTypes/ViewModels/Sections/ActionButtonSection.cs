@@ -16,7 +16,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
         private RelayCommand m_ExecuteCommand;
         public ICommand ExecuteCommand
         {
-            get { return m_ExecuteCommand ?? (m_ExecuteCommand = new RelayCommand(x => CreateContentTab())); }
+            get { return m_ExecuteCommand ?? (m_ExecuteCommand = new RelayCommand(x => CreateNewTab(CreateContentTab()))); }
         }
     }
 }
