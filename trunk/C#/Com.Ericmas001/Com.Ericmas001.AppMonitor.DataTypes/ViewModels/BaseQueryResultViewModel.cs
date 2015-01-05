@@ -23,7 +23,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
 
         public override string TabHeader
         {
-            get { return string.Format("{0} {1}", Keyword); }
+            get { return string.Format("{0} {1}", Keyword, SearchCriteria); }
         }
 
         public override bool CanCloseTab
@@ -55,7 +55,8 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             InitGroupingAndFiltering();
             ChooseGroupVm.OnGroupsChanged += delegate { RefreshInterface(); };
 
-            RefreshDataAndInterface();
+            if(CanRefresh)
+                RefreshDataAndInterface();
         }
 
         protected virtual void InitGroupingAndFiltering()
