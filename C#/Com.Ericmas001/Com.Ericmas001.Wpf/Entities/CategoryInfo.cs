@@ -1,14 +1,10 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Media;
-using Com.Ericmas001.AppMonitor.DataTypes.Attributes;
+﻿using System.Windows.Media;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities.Attributes;
-using Com.Ericmas001.Wpf.Entities.Attributes;
 using Com.Ericmas001.Wpf.Entities;
-using Com.Ericmas001.Wpf.Helpers;
+using Com.Ericmas001.Wpf.Entities.Attributes;
 
-namespace Com.Ericmas001.AppMonitor.DataTypes
+namespace Com.Ericmas001.Wpf.Entities
 {
     public class CategoryInfo<TCategory> : TabSectionInfo
         where TCategory : struct

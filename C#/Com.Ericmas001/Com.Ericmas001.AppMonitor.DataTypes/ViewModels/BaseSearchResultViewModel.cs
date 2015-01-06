@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Threading;
 using Com.Ericmas001.AppMonitor.DataTypes.Attributes;
 using Com.Ericmas001.AppMonitor.DataTypes.Helpers;
 using Com.Ericmas001.AppMonitor.DataTypes.TreeElements;
-using Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections;
 using Com.Ericmas001.Util;
+using Com.Ericmas001.Wpf.Entities;
 using Com.Ericmas001.Wpf.Entities.Attributes;
 using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.ViewModels.Trees;
