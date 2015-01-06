@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Com.Ericmas001.AppMonitor.Xaml.Views
+namespace Com.Ericmas001.Wpf.Views
 {
     /// <summary>
-    /// Interaction logic for AppMonitorNewSearchView.xaml
+    /// Interaction logic for MultiCategoriesNewTabView.xaml
     /// </summary>
-    public partial class AppMonitorNewSearchView : UserControl
+    public partial class MultiCategoriesNewTabView : UserControl
     {
-        public AppMonitorNewSearchView()
+        public MultiCategoriesNewTabView()
         {
             InitializeComponent();
         }

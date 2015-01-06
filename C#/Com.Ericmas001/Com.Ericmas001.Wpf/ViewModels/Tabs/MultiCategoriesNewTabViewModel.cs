@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections;
+using System.Text;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities.Attributes;
 using Com.Ericmas001.Wpf.ViewModels.Sections;
-using Com.Ericmas001.Wpf.ViewModels.Tabs;
 
-namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
+namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 {
-    public abstract class NewSearchViewModel<TCategory> : NewTabViewModel
+    public abstract class MultiCategoriesNewTabViewModel<TCategory> : NewTabViewModel
         where TCategory : struct
     {
 
@@ -86,7 +85,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             throw new NotImplementedException("You must override CreateCategorySection to use it !");
         }
 
-        public NewSearchViewModel()
+        public MultiCategoriesNewTabViewModel()
         {
             AddAllSections();
             AddAllHeaderActions();

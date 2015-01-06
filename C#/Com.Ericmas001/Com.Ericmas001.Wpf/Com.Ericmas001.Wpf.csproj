@@ -144,6 +144,7 @@
     <Compile Include="ViewModels\Sections\TabSection.cs" />
     <Compile Include="ViewModels\SingleBgTaskViewModel.cs" />
     <Compile Include="ViewModels\Tabs\BaseTabViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\MultiCategoriesNewTabViewModel.cs" />
     <Compile Include="ViewModels\Tabs\NewTabViewModel.cs" />
     <Compile Include="ViewModels\Tabs\TabControlViewModel.cs" />
     <Compile Include="ViewModels\Trees\CollapseAllMenuItem.cs" />
@@ -152,6 +153,9 @@
     <Compile Include="ViewModels\Trees\ExpandMenuItem.cs" />
     <Compile Include="ViewModels\Trees\TreeContextMenuItemViewModel.cs" />
     <Compile Include="ViewModels\Trees\TreeElementViewModel.cs" />
+    <Compile Include="Views\MultiCategoriesNewTabView.xaml.cs">
+      <DependentUpon>MultiCategoriesNewTabView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChooseGroupView.xaml.cs">
       <DependentUpon>ChooseGroupView.xaml</DependentUpon>
     </Compile>
@@ -277,6 +281,10 @@
     <Page Include="Templates\TabTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MultiCategoriesNewTabView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ChooseGroupView.xaml">
       <Generator>MSBuild:Compile</Generator>
