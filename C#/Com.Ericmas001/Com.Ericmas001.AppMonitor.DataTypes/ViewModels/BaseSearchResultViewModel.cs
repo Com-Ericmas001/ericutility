@@ -22,8 +22,6 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
     {
         private CategoryInfo<TCategory> m_CategoryInfo;
 
-        private readonly TCriteria m_SearchCriteria;
-
         protected abstract TCategory Category { get; }
 
         protected override string IconBigImageName
@@ -60,7 +58,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
         }
 
         public BaseSearchResultViewModel(Dispatcher appCurrentDispatcher, TCriteria criteria, string keyword)
-            : base(appCurrentDispatcher, keyword, EnumFactory<TCriteria>.ToString(criteria))
+            : base(appCurrentDispatcher, keyword, EnumFactory<TCriteria>.ToString(criteria), new BunchOfDataItems<TDataItem>())
         {
         }
 

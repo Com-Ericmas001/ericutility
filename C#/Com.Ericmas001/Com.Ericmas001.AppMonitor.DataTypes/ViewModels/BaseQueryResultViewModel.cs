@@ -19,7 +19,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
     {
         private readonly string m_Keyword;
         private readonly string m_SearchCriteria;
-        protected BunchOfDataItems<TDataItem> m_DataItems = new BunchOfDataItems<TDataItem>();
+        private readonly BunchOfDataItems<TDataItem> m_DataItems;
 
         public override string TabHeader
         {
@@ -41,16 +41,22 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             get { return m_Keyword; }
         }
 
+        protected BunchOfDataItems<TDataItem> DataItems
+        {
+            get { return m_DataItems; }
+        }
+
         protected string SearchCriteria
         {
             get { return m_SearchCriteria; }
         }
 
-        public BaseQueryResultViewModel(Dispatcher appCurrentDispatcher, string keyword, string criteria)
+        public BaseQueryResultViewModel(Dispatcher appCurrentDispatcher, string keyword, string criteria, BunchOfDataItems<TDataItem> data)
             : base(appCurrentDispatcher)
         {
             m_Keyword = keyword;
             m_SearchCriteria = criteria;
+            m_DataItems = data;
 
             InitGroupingAndFiltering();
             ChooseGroupVm.OnGroupsChanged += delegate { RefreshInterface(); };
@@ -146,7 +152,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             return result;
         }
 
-        private void GenerateFilters()
+        protected virtual void GenerateFilters()
         {
             var filters = new Dictionary<string, FilterEnum[]>();
             foreach (string crit in GetAllFiltersCriteria())
