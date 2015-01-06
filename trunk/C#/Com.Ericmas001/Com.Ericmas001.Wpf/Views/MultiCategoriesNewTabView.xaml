@@ -1,17 +1,17 @@
-﻿<UserControl x:Class="Com.Ericmas001.AppMonitor.Xaml.Views.AppMonitorNewSearchView"
+﻿<UserControl x:Class="Com.Ericmas001.Wpf.Views.MultiCategoriesNewTabView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:customControls="clr-namespace:Com.Ericmas001.Wpf.CustomControls;assembly=Com.Ericmas001.Wpf"
-             xmlns:converters="clr-namespace:Com.Ericmas001.Wpf.Converters;assembly=Com.Ericmas001.Wpf"
+             xmlns:customControls="clr-namespace:Com.Ericmas001.Wpf.CustomControls"
+             xmlns:converters="clr-namespace:Com.Ericmas001.Wpf.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="474" d:DesignWidth="650">
 
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Com.Ericmas001.AppMonitor.Xaml;component/Templates/TabSection/SearchCategorySectionTemplate.xaml" />
+                <ResourceDictionary Source="/Com.Ericmas001.Wpf;component/Styles/ExpanderStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
         </ResourceDictionary>
