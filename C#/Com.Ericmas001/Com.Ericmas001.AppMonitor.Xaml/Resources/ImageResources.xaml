@@ -7,10 +7,6 @@
     <BitmapImage x:Key="ImgEdit16" UriSource="/Com.Ericmas001.AppMonitor.Xaml;component/Resources/edit.png" />
     <BitmapImage x:Key="ImgCopy16" UriSource="/Com.Ericmas001.AppMonitor.Xaml;component/Resources/copy.png" />
     <BitmapImage x:Key="ImgExport16" UriSource="/Com.Ericmas001.AppMonitor.Xaml;component/Resources/export.png" />
-    <BitmapImage x:Key="ImgUp16" UriSource="/Com.Ericmas001.AppMonitor.Xaml;component/Resources/up.png" />
-    <BitmapImage x:Key="ImgDown16" UriSource="/Com.Ericmas001.AppMonitor.Xaml;component/Resources/down.png" />
-    <BitmapImage x:Key="ImgLeft16" UriSource="/Com.Ericmas001.AppMonitor.Xaml;component/Resources/left.png" />
-    <BitmapImage x:Key="ImgRight16" UriSource="/Com.Ericmas001.AppMonitor.Xaml;component/Resources/right.png" />
     <BitmapImage x:Key="ImgLogs16" UriSource="/Com.Ericmas001.AppMonitor.Xaml;component/Resources/logs.png" />
     <BitmapImage x:Key="ImgLogs32" UriSource="/Com.Ericmas001.AppMonitor.Xaml;component/Resources/logs_big.png" />
     <BitmapImage x:Key="ImgSettings16" UriSource="/Com.Ericmas001.AppMonitor.Xaml;component/Resources/settings.png" />

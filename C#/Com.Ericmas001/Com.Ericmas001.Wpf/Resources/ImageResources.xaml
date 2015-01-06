@@ -7,4 +7,8 @@
     <BitmapImage x:Key="CollapseAll" UriSource="/Com.Ericmas001.Wpf;component/Resources/collapseAll.png" />
     <BitmapImage x:Key="Expand" UriSource="/Com.Ericmas001.Wpf;component/Resources/expand.png" />
     <BitmapImage x:Key="ExpandAll" UriSource="/Com.Ericmas001.Wpf;component/Resources/expandAll.png" />
+    <BitmapImage x:Key="ImgUp16" UriSource="/Com.Ericmas001.Wpf;component/Resources/up.png" />
+    <BitmapImage x:Key="ImgDown16" UriSource="/Com.Ericmas001.Wpf;component/Resources/down.png" />
+    <BitmapImage x:Key="ImgLeft16" UriSource="/Com.Ericmas001.Wpf;component/Resources/left.png" />
+    <BitmapImage x:Key="ImgRight16" UriSource="/Com.Ericmas001.Wpf;component/Resources/right.png" />
 </ResourceDictionary>

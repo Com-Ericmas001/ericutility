@@ -6,7 +6,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Wpf.ViewModels;
-using Com.Ericmas001.Wpf.XAML;
+using Com.Ericmas001.Wpf.Windows;
 
 namespace Com.Ericmas001.Wpf
 {

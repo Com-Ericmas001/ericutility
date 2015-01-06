@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Com.Ericmas001.Wpf.XAML
+namespace Com.Ericmas001.Wpf.Views
 {
     /// <summary>
-    /// Interaction logic for SingleBgTaskWindow.xaml
+    /// Interaction logic for ChooseGroupView.xaml
     /// </summary>
-    public partial class SingleBgTaskWindow : Window
+    public partial class ChooseGroupView : UserControl
     {
-        public SingleBgTaskWindow()
+        public ChooseGroupView()
         {
             InitializeComponent();
         }

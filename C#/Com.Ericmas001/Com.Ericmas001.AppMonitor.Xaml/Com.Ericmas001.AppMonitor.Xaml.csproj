@@ -66,9 +66,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Views\ChooseGroupView.xaml.cs">
-      <DependentUpon>ChooseGroupView.xaml</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -108,39 +105,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Templates\EmptyTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Templates\EnumDescTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Templates\Filters\AddAFilterTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Templates\Filters\CommandsDataTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Templates\Filters\ComparatorsDataTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Templates\Filters\FiltersViewerTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Templates\Filters\SearchTypesDataTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Templates\LoadingTemplates.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ChooseGroupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,25 +116,21 @@
     <Resource Include="Resources\bad.png" />
     <Resource Include="Resources\copy.png" />
     <Resource Include="Resources\delete.png" />
-    <Resource Include="Resources\down.png" />
     <Resource Include="Resources\edit.png" />
     <Resource Include="Resources\export.png" />
     <Resource Include="Resources\good.png" />
     <Resource Include="Resources\icon.png" />
-    <Resource Include="Resources\left.png" />
     <Resource Include="Resources\logs.png" />
     <Resource Include="Resources\logs_big.png" />
     <Resource Include="Resources\msexcel.png" />
     <Resource Include="Resources\msword.png" />
     <Resource Include="Resources\ok.png" />
     <Resource Include="Resources\refresh.png" />
-    <Resource Include="Resources\right.png" />
     <Resource Include="Resources\save.png" />
     <Resource Include="Resources\search.png" />
     <Resource Include="Resources\settings.png" />
     <Resource Include="Resources\settings_big.png" />
     <Resource Include="Resources\undo.png" />
-    <Resource Include="Resources\up.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Ericmas001.AppMonitor.DataTypes\Com.Ericmas001.AppMonitor.DataTypes.csproj">

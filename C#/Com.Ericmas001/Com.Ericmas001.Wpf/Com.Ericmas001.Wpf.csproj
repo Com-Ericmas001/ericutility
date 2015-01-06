@@ -97,6 +97,7 @@
     <Compile Include="Entities\Enums\TextLengthEnum.cs" />
     <Compile Include="Entities\Enums\SearchTypeEnum.cs" />
     <Compile Include="Entities\Filter.cs" />
+    <Compile Include="Entities\TabSectionInfo.cs" />
     <Compile Include="FormField.cs" />
     <Compile Include="FormFieldList.cs" />
     <Compile Include="Helpers\TabControlHelper.cs" />
@@ -138,6 +139,9 @@
     <Compile Include="ViewModels\SearchElements\ListSearchElement.cs" />
     <Compile Include="ViewModels\SearchElements\TextSearchElement.cs" />
     <Compile Include="ViewModels\SearchElements\UpperTextSearchElement.cs" />
+    <Compile Include="ViewModels\Sections\ActionButtonSection.cs" />
+    <Compile Include="ViewModels\Sections\ChooseGroupViewModel.cs" />
+    <Compile Include="ViewModels\Sections\TabSection.cs" />
     <Compile Include="ViewModels\SingleBgTaskViewModel.cs" />
     <Compile Include="ViewModels\Tabs\BaseTabViewModel.cs" />
     <Compile Include="ViewModels\Tabs\NewTabViewModel.cs" />
@@ -148,8 +152,11 @@
     <Compile Include="ViewModels\Trees\ExpandMenuItem.cs" />
     <Compile Include="ViewModels\Trees\TreeContextMenuItemViewModel.cs" />
     <Compile Include="ViewModels\Trees\TreeElementViewModel.cs" />
+    <Compile Include="Views\ChooseGroupView.xaml.cs">
+      <DependentUpon>ChooseGroupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WpfWindowManager.cs" />
-    <Compile Include="XAML\SingleBgTaskWindow.xaml.cs">
+    <Compile Include="Windows\SingleBgTaskWindow.xaml.cs">
       <DependentUpon>SingleBgTaskWindow.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -219,6 +226,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Templates\EmptyTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\EnumDescTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\Filters\AddAFilterTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\Filters\CommandsDataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\Filters\ComparatorsDataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\Filters\FiltersViewerTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\Filters\SearchTypesDataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Templates\SearchInputTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -243,7 +278,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="XAML\SingleBgTaskWindow.xaml">
+    <Page Include="Views\ChooseGroupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\SingleBgTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -269,6 +308,18 @@
     <Resource Include="Resources\openFolder.png" />
     <Resource Include="Resources\secrecy-icon.png" />
     <EmbeddedResource Include="Resources\xml-pretty-print.xsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\down.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

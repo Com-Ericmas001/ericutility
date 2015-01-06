@@ -9,7 +9,7 @@ using Com.Ericmas001.Wpf.Entities;
 using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.ViewModels;
 
-namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
+namespace Com.Ericmas001.Wpf.ViewModels.Sections
 {
     public class ChooseGroupViewModel : BaseViewModel
     {

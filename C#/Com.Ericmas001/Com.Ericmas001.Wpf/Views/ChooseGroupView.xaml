@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="Com.Ericmas001.AppMonitor.Xaml.Views.ChooseGroupView"
+﻿<UserControl x:Class="Com.Ericmas001.Wpf.Views.ChooseGroupView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:cc="clr-namespace:Com.Ericmas001.Wpf.CustomControls;assembly=Com.Ericmas001.Wpf"
+             xmlns:cc="clr-namespace:Com.Ericmas001.Wpf.CustomControls"
              mc:Ignorable="d">
 
     <!--
@@ -15,9 +15,9 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Com.Ericmas001.AppMonitor.Xaml;component/Templates/Filters/AddAFilterTemplate.xaml"/>
-                <ResourceDictionary Source="/Com.Ericmas001.AppMonitor.Xaml;component/Templates/Filters/FiltersViewerTemplate.xaml"/>
-                <ResourceDictionary Source="/Com.Ericmas001.AppMonitor.Xaml;component/Resources/ImageResources.xaml"/>
+                <ResourceDictionary Source="/Com.Ericmas001.Wpf;component/Templates/Filters/AddAFilterTemplate.xaml"/>
+                <ResourceDictionary Source="/Com.Ericmas001.Wpf;component/Templates/Filters/FiltersViewerTemplate.xaml"/>
+                <ResourceDictionary Source="/Com.Ericmas001.Wpf;component/Resources/ImageResources.xaml"/>
                 <ResourceDictionary Source="/Com.Ericmas001.Wpf;component/Styles/ButtonStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
