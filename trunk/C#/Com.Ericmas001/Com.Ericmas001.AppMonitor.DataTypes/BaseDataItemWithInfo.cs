@@ -4,8 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Com.Ericmas001.Util.Entities;
 
-namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
+namespace Com.Ericmas001.AppMonitor.DataTypes
 {
     public abstract class BaseDataItemWithInfo<TInfo> : IDataItem
         where TInfo : IDataItemInfo

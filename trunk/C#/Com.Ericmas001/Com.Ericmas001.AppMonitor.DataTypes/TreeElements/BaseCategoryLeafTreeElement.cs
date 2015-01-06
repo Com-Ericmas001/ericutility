@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Com.Ericmas001.AppMonitor.DataTypes.DataElements;
-using Com.Ericmas001.AppMonitor.DataTypes.Entities;
 using Com.Ericmas001.Util;
+using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Wpf.ViewModels.Trees;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements

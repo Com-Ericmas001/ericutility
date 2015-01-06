@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections;
 using Com.Ericmas001.Util;
-using Com.Ericmas001.Util.Attributes;
+using Com.Ericmas001.Util.Entities.Attributes;
 using Com.Ericmas001.Wpf.ViewModels.Tabs;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels

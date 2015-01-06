@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Com.Ericmas001.AppMonitor.DataTypes.Attributes;
-using Com.Ericmas001.AppMonitor.DataTypes.Entities;
 using Com.Ericmas001.Util;
-using Com.Ericmas001.Util.Attributes;
+using Com.Ericmas001.Util.Entities.Attributes;
+using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Wpf.Entities.Enums;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.Helpers

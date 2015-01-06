@@ -1,16 +1,8 @@
 ﻿using System.Collections.Generic;
+using Com.Ericmas001.Util.Entities;
 
-namespace Com.Ericmas001.AppMonitor.DataTypes.Entities
+namespace Com.Ericmas001.AppMonitor.DataTypes
 {
-    public interface IDataItem
-    {
-        string ObtainValue(string field);
-        string ObtainFilterValue(string field);
-        
-        string TextDescription { get; }
-        string HtmlDescription { get; }
-    }
-
     public interface IDataItem<in TCriteria> : IDataItem
         where TCriteria : struct
     {
