@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using Com.Ericmas001.Util;
-using Com.Ericmas001.Util.Attributes;
+using Com.Ericmas001.Util.Entities.Attributes;
 using Com.Ericmas001.Wpf.Entities.Attributes;
 using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.ViewModels;

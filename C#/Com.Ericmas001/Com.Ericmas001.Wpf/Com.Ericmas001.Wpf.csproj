@@ -49,6 +49,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Attributes\ButtonColorAttribute.cs" />
+    <Compile Include="Entities\Attributes\ImageSourceAttribute.cs" />
     <Compile Include="Converters\EnumDescriptionConverter.cs" />
     <Compile Include="CustomControls\RangeSlider.xaml.cs">
       <DependentUpon>RangeSlider.xaml</DependentUpon>
@@ -83,11 +85,18 @@
     </Compile>
     <Compile Include="CustomControls\XmlValidator.cs" />
     <Compile Include="DisplayList.cs" />
+    <Compile Include="Entities\Attributes\FilterCommandAttribute.cs" />
+    <Compile Include="Entities\Attributes\FilterComparatorAttribute.cs" />
+    <Compile Include="Entities\Attributes\FiltersAttribute.cs" />
     <Compile Include="Entities\Attributes\TextLengthAttribute.cs" />
     <Compile Include="Entities\Attributes\SearchTypeAttribute.cs" />
     <Compile Include="Entities\CheckListItem.cs" />
+    <Compile Include="Entities\Enums\FilterCommandEnum.cs" />
+    <Compile Include="Entities\Enums\FilterComparatorEnum.cs" />
+    <Compile Include="Entities\Enums\FilterEnum.cs" />
     <Compile Include="Entities\Enums\TextLengthEnum.cs" />
     <Compile Include="Entities\Enums\SearchTypeEnum.cs" />
+    <Compile Include="Entities\Filter.cs" />
     <Compile Include="FormField.cs" />
     <Compile Include="FormFieldList.cs" />
     <Compile Include="Helpers\TabControlHelper.cs" />
@@ -110,6 +119,7 @@
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ScrollableTabPanel.cs" />
     <Compile Include="TemplateSelectors\SearchInputTemplateSelector.cs" />
+    <Compile Include="TemplateSelectors\TreeElementTemplateSelector.cs" />
     <Compile Include="Validations\CustomValidationAttribute.cs" />
     <Compile Include="Validations\DigitValidationAttribute.cs" />
     <Compile Include="Validations\LetterOrDigitValidationAttribute.cs" />
