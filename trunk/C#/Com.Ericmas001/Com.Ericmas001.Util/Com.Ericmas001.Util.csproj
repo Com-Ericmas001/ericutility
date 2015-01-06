@@ -41,8 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractLoadingTuple.cs" />
-    <Compile Include="Attributes\ColorAttribute.cs" />
-    <Compile Include="Attributes\PrioriteAttribute.cs" />
     <Compile Include="AttributeUtility.cs" />
     <Compile Include="BitUtility.cs" />
     <Compile Include="BoolFormatter.cs" />
@@ -53,6 +51,11 @@
     <Compile Include="DateTimeWithZone.cs" />
     <Compile Include="DllUtility.cs" />
     <Compile Include="DynamicRow.cs" />
+    <Compile Include="Entities\Attributes\ColorAttribute.cs" />
+    <Compile Include="Entities\Attributes\PrioriteAttribute.cs" />
+    <Compile Include="Entities\Attributes\TagAttribute.cs" />
+    <Compile Include="Entities\IBunchOfDataItems.cs" />
+    <Compile Include="Entities\IDataItem.cs" />
     <Compile Include="EnumFactory.cs" />
     <Compile Include="FlagGroup.cs" />
     <Compile Include="GenericDelegates.cs" />
@@ -76,6 +79,9 @@
     <Compile Include="TaskManager.cs" />
     <Compile Include="TimeSpanFormatter.cs" />
     <Compile Include="WindowsUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\Enums\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
