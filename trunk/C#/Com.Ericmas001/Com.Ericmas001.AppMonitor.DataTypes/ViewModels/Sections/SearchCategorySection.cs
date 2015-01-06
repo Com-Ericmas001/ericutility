@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Com.Ericmas001.AppMonitor.DataTypes.Attributes;
 using Com.Ericmas001.AppMonitor.DataTypes.Helpers;
+using Com.Ericmas001.Wpf.Entities;
 using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.ViewModels.SearchElements;
+using Com.Ericmas001.Wpf.ViewModels.Sections;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
 {
-    public abstract class SearchCategorySection<TCriteria, TCategory, TSearchAttribute> : SearchCategorySectionDummy
+    public abstract class SearchCategorySection<TCriteria, TCategory, TSearchAttribute> : CategorySection<TCategory>
         where TCriteria : struct
         where TCategory : struct
         where TSearchAttribute : Attribute, ISearchCriteriaAttribute<TCategory>
@@ -16,8 +18,6 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
         private readonly TCriteria[] m_Criterias;
         private readonly Dictionary<TCriteria, BaseSearchElement> m_CriteriaModels = new Dictionary<TCriteria, BaseSearchElement>();
         private TCriteria m_SelectedCriteria;
-
-        public TCategory Category { get; private set; }
 
         public Dictionary<TCriteria, BaseSearchElement> CriteriaModels
         {
@@ -62,10 +62,8 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
             get { return m_Criterias.Length == 0 ? CriteriaNumberEnum.Zero : m_Criterias.Length == 1 ? CriteriaNumberEnum.One : CriteriaNumberEnum.Plenty; }
         }
 
-        public SearchCategorySection(TCategory cat)
+        public SearchCategorySection(TCategory cat) : base(cat)
         {
-            Category = cat;
-            Info = new CategoryInfo<TCategory>(cat);
 
             var criterias = CriteriaHelper<TCriteria, TCategory>.GetAllSearchCriterias<TSearchAttribute>(cat);
             m_Criterias = criterias.Keys.ToArray();

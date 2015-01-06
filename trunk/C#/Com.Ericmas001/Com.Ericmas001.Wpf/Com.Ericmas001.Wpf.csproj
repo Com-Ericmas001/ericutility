@@ -140,7 +140,9 @@
     <Compile Include="ViewModels\SearchElements\TextSearchElement.cs" />
     <Compile Include="ViewModels\SearchElements\UpperTextSearchElement.cs" />
     <Compile Include="ViewModels\Sections\ActionButtonSection.cs" />
+    <Compile Include="Entities\CategoryInfo.cs" />
     <Compile Include="ViewModels\Sections\ChooseGroupViewModel.cs" />
+    <Compile Include="ViewModels\Sections\CategorySection.cs" />
     <Compile Include="ViewModels\Sections\TabSection.cs" />
     <Compile Include="ViewModels\SingleBgTaskViewModel.cs" />
     <Compile Include="ViewModels\Tabs\BaseTabViewModel.cs" />
