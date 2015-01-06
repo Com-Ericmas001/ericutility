@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using Com.Ericmas001.AppMonitor.DataTypes.Entities;
-using Com.Ericmas001.AppMonitor.DataTypes.Enums;
+using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Wpf;
+using Com.Ericmas001.Wpf.Entities;
+using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.ViewModels;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Input;
-using Com.Ericmas001.AppMonitor.DataTypes.Entities;
 using Com.Ericmas001.AppMonitor.DataTypes.TreeElements;
 using Com.Ericmas001.Data;
+using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Wpf;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.GlobalElements
