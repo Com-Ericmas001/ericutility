@@ -85,8 +85,15 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
             throw new NotImplementedException("You must override CreateCategorySection to use it !");
         }
 
+        protected virtual void Init()
+        {
+
+        }
+
         public MultiCategoriesNewTabViewModel()
         {
+            Init();
+
             AddAllSections();
             AddAllHeaderActions();
             AddAllFooterActions();
