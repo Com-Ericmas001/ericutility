@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Com.Ericmas001.AppMonitor.DataTypes.Attributes;
-using Com.Ericmas001.AppMonitor.DataTypes.Helpers;
+using Com.Ericmas001.Wpf.Entities;
 using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.ViewModels.SearchElements;
 using Com.Ericmas001.Wpf.ViewModels.Tabs;
 
-namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
+namespace Com.Ericmas001.Wpf.ViewModels.Sections
 {
     public abstract class TabSection : NewTabViewModel
     {
@@ -30,6 +29,6 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
             }
         }
 
-        public TabInfo Info { get; protected set; }
+        public TabSectionInfo Info { get; protected set; }
     }
 }

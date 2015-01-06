@@ -1,4 +1,4 @@
-﻿<Window x:Class="Com.Ericmas001.Wpf.XAML.SingleBgTaskWindow"
+﻿<Window x:Class="Com.Ericmas001.Wpf.Windows.SingleBgTaskWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Com.Ericmas001.Wpf.ViewModels" 

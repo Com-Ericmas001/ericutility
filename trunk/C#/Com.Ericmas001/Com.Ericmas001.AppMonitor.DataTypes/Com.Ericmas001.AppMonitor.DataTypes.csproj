@@ -50,7 +50,6 @@
     <Compile Include="DataElements\RawDataElement.cs" />
     <Compile Include="BaseDataItemWithInfo.cs" />
     <Compile Include="BunchOfDataItems.cs" />
-    <Compile Include="TabInfo.cs" />
     <Compile Include="CategoryInfo.cs" />
     <Compile Include="IDataItem.cs" />
     <Compile Include="IDataItemInfo.cs" />
@@ -69,11 +68,8 @@
     <Compile Include="ViewModels\BaseQueryResultViewModel.cs" />
     <Compile Include="ViewModels\BaseSearchResultViewModel.cs" />
     <Compile Include="ViewModels\NewSearchViewModel.cs" />
-    <Compile Include="ViewModels\Sections\ActionButtonSection.cs" />
     <Compile Include="ViewModels\Sections\SearchCategorySectionDummy.cs" />
-    <Compile Include="ViewModels\Sections\TabSection.cs" />
     <Compile Include="ViewModels\Sections\SearchCategorySection.cs" />
-    <Compile Include="ViewModels\Sections\ChooseGroupViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Ericmas001.Data\Com.Ericmas001.Data.csproj">

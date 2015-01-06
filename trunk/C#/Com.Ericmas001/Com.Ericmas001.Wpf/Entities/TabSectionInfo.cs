@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
-using Com.Ericmas001.AppMonitor.DataTypes.Attributes;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities.Attributes;
 using Com.Ericmas001.Wpf.Helpers;
 
-namespace Com.Ericmas001.AppMonitor.DataTypes
+namespace Com.Ericmas001.Wpf.Entities
 {
-    public class TabInfo
+    public class TabSectionInfo
     {
-        public TabInfo()
+        public TabSectionInfo()
         {
             IconImageSmallName = String.Empty;
             IconImageBigName = String.Empty;

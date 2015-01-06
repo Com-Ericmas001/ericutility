@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:converters="clr-namespace:Com.Ericmas001.Wpf.Converters;assembly=Com.Ericmas001.Wpf">
+                    xmlns:converters="clr-namespace:Com.Ericmas001.Wpf.Converters">
     <converters:EnumDescriptionConverter x:Key="EnumDescConverter" />
     <DataTemplate x:Key="EnumDescTemplate">
         <TextBlock Text="{Binding Converter={StaticResource EnumDescConverter}}" />
