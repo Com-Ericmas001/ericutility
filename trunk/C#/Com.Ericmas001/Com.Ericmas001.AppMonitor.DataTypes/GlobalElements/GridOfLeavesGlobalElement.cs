@@ -23,7 +23,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.GlobalElements
             get { return "Data"; }
         }
 
-        public abstract Dictionary<string, Func<TDataItem, string>> Columns { get; }
+        public abstract Dictionary<string, Func<TDataItem, object>> Columns { get; }
 
         private Dictionary<DataRow, BaseLeafTreeElement> m_RowToFeuille;
         private DataRowView m_SelectedRow;
@@ -61,7 +61,13 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.GlobalElements
             {
                 List<string> gridColumns = Columns.Keys.ToList();
                 DataTable table = new DataTable();
-                gridColumns.ForEach(c => table.Columns.Add(c));
+                if(Branch.TreeLeaves.Any())
+                {
+                    BaseLeafTreeElement feuille = Branch.TreeLeaves.First();
+                    gridColumns.ForEach(c => table.Columns.Add(c, Columns[c].Invoke((TDataItem)feuille.DataItem).GetType()));
+                }
+                else
+                    gridColumns.ForEach(c => table.Columns.Add(c));
                 m_RowToFeuille = new Dictionary<DataRow, BaseLeafTreeElement>();
                 foreach (BaseLeafTreeElement feuille in Branch.TreeLeaves)
                 {
