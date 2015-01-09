@@ -31,6 +31,6 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
 
         public TabSectionInfo Info { get; protected set; }
 
-        public int SectionWidth { get { return 400; } }
+        public virtual int SectionWidth { get { return 400; } }
     }
 }
