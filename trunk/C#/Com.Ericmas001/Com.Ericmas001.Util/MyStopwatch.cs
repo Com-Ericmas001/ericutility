@@ -10,9 +10,6 @@ namespace Com.Ericmas001.Util
     {
         #region Fields
 
-        private readonly Stopwatch m_InternalStopwatch;
-        private readonly string m_Name;
-
         #endregion Fields
 
         #region Constructor
