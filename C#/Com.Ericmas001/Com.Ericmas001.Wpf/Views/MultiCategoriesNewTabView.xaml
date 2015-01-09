@@ -45,7 +45,7 @@
         <ItemsControl ItemsSource="{Binding Sections}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Expander Style="{StaticResource CoolExpanderStyleSimple}" Background="{Binding Info.Background}" VerticalAlignment="Top" HorizontalAlignment="Stretch" BorderThickness="0" IsExpanded="{Binding IsExpanded}" Width="400">
+                    <Expander Style="{StaticResource CoolExpanderStyleSimple}" Background="{Binding Info.Background}" VerticalAlignment="Top" HorizontalAlignment="Stretch" BorderThickness="0" IsExpanded="{Binding IsExpanded}" Width="{Binding SectionWidth}">
                         <Expander.Header>
                             <TextBlock Text="{Binding Info.Description}" Foreground="{Binding Info.HeaderForeground}" FontWeight="Bold" />
                         </Expander.Header>
