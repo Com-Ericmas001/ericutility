@@ -148,6 +148,8 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
         {
             ChoosenGroups.Items.Add(AvailablesGroups.Selected);
             AvailablesGroups.Items.Remove(AvailablesGroups.Selected);
+            ChoosenGroups.Selected = AvailablesGroups.Selected;
+            AvailablesGroups.Selected = null;
             if (OnGroupsChanged != null)
                 OnGroupsChanged(this, new EventArgs());
         }
@@ -159,6 +161,8 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             AvailablesGroups.Items.Clear();
             AvailablesGroups.Items.AddItems(m_OrderByFunc(values).ToList());
             ChoosenGroups.Items.Remove(ChoosenGroups.Selected);
+            AvailablesGroups.Selected = ChoosenGroups.Selected;
+            ChoosenGroups.Selected = null;
             if (OnGroupsChanged != null)
                 OnGroupsChanged(this, new EventArgs());
         }

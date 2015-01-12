@@ -68,7 +68,6 @@
     <Compile Include="IO\PathHelper.cs" />
     <Compile Include="IWorkInBackground.cs" />
     <Compile Include="LogManager.cs" />
-    <Compile Include="MyStopwatch.cs" />
     <Compile Include="NotePadUtility.cs" />
     <Compile Include="Options\FactoryOption.cs" />
     <Compile Include="Options\IOption.cs" />

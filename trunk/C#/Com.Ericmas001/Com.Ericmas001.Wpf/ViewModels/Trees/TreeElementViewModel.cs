@@ -156,6 +156,13 @@ namespace Com.Ericmas001.Wpf.ViewModels.Trees
             Expand();
         }
 
+        public void ExpandWithParents()
+        {
+            Expand();
+            if (Parent != null)
+                Parent.ExpandWithParents();
+        }
+
         public void Collapse()
         {
             IsExpanded = false;
