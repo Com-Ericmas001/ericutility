@@ -249,7 +249,7 @@ namespace Com.Ericmas001.Windows.Forms.CustomTabControl
                     itemHeight = ItemSize.Width;
                 }
 
-                int tabStripHeight = 5 + (itemHeight * RowCount);
+                var tabStripHeight = 5 + (itemHeight * RowCount);
 
                 var rect = new Rectangle(4, tabStripHeight, Width - 8, Height - tabStripHeight - 4);
                 switch (Alignment)

@@ -14,32 +14,32 @@ namespace Com.Ericmas001.Windows.Forms
             numberLabel.Font = new Font(theRichTextBox.Font.FontFamily, theRichTextBox.Font.Size);
         }
 
-        private void updateNumberLabel()
+        private void UpdateNumberLabel()
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                this.Invoke(new EmptyHandler(updateNumberLabel), new object[] { });
+                Invoke(new EmptyHandler(UpdateNumberLabel), new object[] { });
                 return;
             }
-            int firstLine = theRichTextBox.GetLineFromCharIndex(theRichTextBox.GetCharIndexFromPosition(Point.Empty));
-            Point rightBottomCorner = new Point(ClientRectangle.Width, ClientRectangle.Height);
-            int lastLine = theRichTextBox.GetLineFromCharIndex(theRichTextBox.GetCharIndexFromPosition(rightBottomCorner));
+            var firstLine = theRichTextBox.GetLineFromCharIndex(theRichTextBox.GetCharIndexFromPosition(Point.Empty));
+            var rightBottomCorner = new Point(ClientRectangle.Width, ClientRectangle.Height);
+            var lastLine = theRichTextBox.GetLineFromCharIndex(theRichTextBox.GetCharIndexFromPosition(rightBottomCorner));
 
             if (theRichTextBox.Text.EndsWith("\n"))
                 lastLine++;
 
             //finally, renumber label
-            StringWriter sw = new StringWriter();
-            for (int i = firstLine; i <= lastLine; i++)
+            var sw = new StringWriter();
+            for (var i = firstLine; i <= lastLine; i++)
                 sw.WriteLine(i + 1);
             numberLabel.Text = sw.ToString();
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                this.Invoke(new EventHandler(richTextBox1_TextChanged), new object[] { sender, e });
+                Invoke(new EventHandler(richTextBox1_TextChanged), new[] { sender, e });
                 return;
             }
             theRichTextBox.Select(0, 0);
@@ -49,24 +49,24 @@ namespace Com.Ericmas001.Windows.Forms
 
         private void richTextBox1_VScroll(object sender, EventArgs e)
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                this.Invoke(new EventHandler(richTextBox1_VScroll), new object[] { sender, e });
+                Invoke(new EventHandler(richTextBox1_VScroll), new[] { sender, e });
                 return;
             }
 
             //move location of numberLabel for amount of pixels caused by scrollbar
-            int d = theRichTextBox.GetPositionFromCharIndex(0).Y % (theRichTextBox.Font.Height + 1);
+            var d = theRichTextBox.GetPositionFromCharIndex(0).Y % (theRichTextBox.Font.Height + 1);
             numberLabel.Location = new Point(0, d);
 
-            updateNumberLabel();
+            UpdateNumberLabel();
         }
 
         public void SetText(string s)
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                this.Invoke(new StringHandler(SetText), new object[] { s });
+                Invoke(new StringHandler(SetText), new object[] { s });
                 return;
             }
             theRichTextBox.Text = s;
