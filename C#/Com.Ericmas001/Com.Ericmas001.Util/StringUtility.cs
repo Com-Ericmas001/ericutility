@@ -8,20 +8,37 @@ namespace Com.Ericmas001.Util
 {
     public static class StringUtility
     {
-        public static string Extract(this string text, string before, string after)
+        public static string Extract(this string text, string before, string after, int startindex = 0)
         {
-            return Extract(text, before, after, 0);
-        }
-
-        public static string Extract(this string text, string before, string after, int startindex)
-        {
-            var ideb = text.IndexOf(before, startindex) + before.Length;
+            int ideb = text.IndexOf(before, startindex) + before.Length;
             if (ideb < before.Length)
                 return null;
-            var ifin = text.IndexOf(after, ideb);
+            int ifin = text.IndexOf(after, ideb);
             if (ifin < 0)
                 return null;
             return text.Substring(ideb, ifin - ideb);
+        }
+
+        public static string InfoBetween(this string text, string before, string after, int startindex = 0)
+        {
+            return Extract(text, before, after, startindex);
+
+        }
+        public static string InfoBefore(this string text, string keyword, int length, int startindex = 0)
+        {
+            int ifin = text.IndexOf(keyword, startindex);
+            if (ifin < startindex)
+                return null;
+            int ideb = Math.Max(startindex, ifin - length);
+            return text.Substring(ideb, Math.Min(length, ifin - ideb));
+        }
+
+        public static string InfoAfter(this string text, string keyword, int length, int startindex = 0)
+        {
+            int ideb = text.IndexOf(keyword, startindex) + keyword.Length;
+            if (ideb < keyword.Length)
+                return null;
+            return text.Substring(ideb, Math.Min(length,text.Length-ideb));
         }
 
         public static string RemoveHtmlTags(this string s)
