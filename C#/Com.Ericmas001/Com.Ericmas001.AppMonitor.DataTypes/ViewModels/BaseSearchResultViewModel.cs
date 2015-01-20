@@ -110,7 +110,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             var filterAtt = EnumFactory<TCriteria>.GetAttribute<FiltersAttribute>(EnumFactory<TCriteria>.Parse(crit));
             if ((filterAtt != null && !filterAtt.Filters.Contains(FilterEnum.None)))
                 return filterAtt.Filters.ToArray();
-            return null;
+            return new FilterEnum[0];
         }
         public override IEnumerable<string> GroupedCriterias()
         {
