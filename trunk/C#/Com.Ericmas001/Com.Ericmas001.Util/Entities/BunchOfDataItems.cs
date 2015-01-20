@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Com.Ericmas001.Util.Entities;
 
-namespace Com.Ericmas001.AppMonitor.DataTypes
+namespace Com.Ericmas001.Util.Entities
 {
     public class BunchOfDataItems<T> : IBunchOfDataItems
         where T : IDataItem

@@ -6,19 +6,33 @@ using Com.Ericmas001.AppMonitor.DataTypes.Attributes;
 using Com.Ericmas001.AppMonitor.DataTypes.Helpers;
 using Com.Ericmas001.AppMonitor.DataTypes.TreeElements;
 using Com.Ericmas001.Util;
+using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Wpf.Entities;
 using Com.Ericmas001.Wpf.Entities.Attributes;
 using Com.Ericmas001.Wpf.Entities.Enums;
+using Com.Ericmas001.Wpf.ViewModels.Tabs;
 using Com.Ericmas001.Wpf.ViewModels.Trees;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
 {
-    public abstract class BaseSearchResultViewModel<TCategory, TCriteria, TDataItem, TGroupingAttribute> : BaseQueryResultViewModel<TDataItem>
+    public abstract class BaseSearchResultViewModel<TCategory, TCriteria, TDataItem, TGroupingAttribute> : BaseGroupedContentViewModel<TDataItem>
         where TCategory : struct
         where TCriteria : struct
         where TDataItem : IDataItem<TCriteria>
         where TGroupingAttribute : Attribute, IManyCategoriesAttribute<TCategory>
     {
+        private readonly string m_Keyword;
+        private readonly TCriteria m_SearchCriteria;
+
+        protected string Keyword
+        {
+            get { return m_Keyword; }
+        }
+
+        protected TCriteria SearchCriteria
+        {
+            get { return m_SearchCriteria; }
+        }
         private CategoryInfo<TCategory> m_CategoryInfo;
 
         protected abstract TCategory Category { get; }
@@ -51,14 +65,11 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             get { return string.Format("{0} {1}", CriteriaHelper<TCriteria, TCategory>.GenerateHeaderTag(SearchCriteria), Keyword); }
         }
 
-        protected new TCriteria SearchCriteria
-        {
-            get { return EnumFactory<TCriteria>.Parse(base.SearchCriteria); }
-        }
-
         public BaseSearchResultViewModel(Dispatcher appCurrentDispatcher, TCriteria criteria, string keyword)
-            : base(appCurrentDispatcher, keyword, EnumFactory<TCriteria>.ToString(criteria), new BunchOfDataItems<TDataItem>())
+            : base(appCurrentDispatcher, new BunchOfDataItems<TDataItem>())
         {
+            m_Keyword = keyword;
+            m_SearchCriteria = criteria;
         }
 
         public override string[] GetAllGroupingCriterias()
@@ -67,13 +78,13 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
         }
 
         protected abstract BaseLeafTreeElement CreateLeaf(TreeElementViewModel parent, TDataItem item, IEnumerable<TCriteria> criteres);
-        protected override BaseLeafTreeElement CreateLeaf(TreeElementViewModel parent, TDataItem item, IEnumerable<string> criteres)
+        protected override TreeElementViewModel CreateLeaf(TreeElementViewModel parent, TDataItem item, IEnumerable<string> criteres)
         {
             return CreateLeaf(parent, item, criteres.Select(x => EnumFactory<TCriteria>.Parse(x)));
         }
 
         protected abstract BaseBranchTreeElement CreateBranch(TreeElementViewModel parent, TCriteria currentCritere, string value, IEnumerable<TCriteria> usedCriteres, TCategory category);
-        protected override BaseBranchTreeElement CreateBranch(TreeElementViewModel parent, string currentCritere, string value, IEnumerable<string> usedCriteres)
+        protected override TreeElementViewModel CreateBranch(TreeElementViewModel parent, string currentCritere, string value, IEnumerable<string> usedCriteres)
         {
             return CreateBranch(parent, EnumFactory<TCriteria>.Parse(currentCritere), value, usedCriteres.Select(x => EnumFactory<TCriteria>.Parse(x)), Category);
         }

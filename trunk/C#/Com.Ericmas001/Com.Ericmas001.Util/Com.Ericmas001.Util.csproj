@@ -54,6 +54,7 @@
     <Compile Include="Entities\Attributes\ColorAttribute.cs" />
     <Compile Include="Entities\Attributes\PrioriteAttribute.cs" />
     <Compile Include="Entities\Attributes\TagAttribute.cs" />
+    <Compile Include="Entities\BunchOfDataItems.cs" />
     <Compile Include="Entities\IBunchOfDataItems.cs" />
     <Compile Include="Entities\IDataItem.cs" />
     <Compile Include="EnumFactory.cs" />
