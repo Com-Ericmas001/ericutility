@@ -145,6 +145,8 @@
     <Compile Include="ViewModels\Sections\CategorySection.cs" />
     <Compile Include="ViewModels\Sections\TabSection.cs" />
     <Compile Include="ViewModels\SingleBgTaskViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\BaseContentViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\BaseGroupedContentViewModel.cs" />
     <Compile Include="ViewModels\Tabs\BaseTabViewModel.cs" />
     <Compile Include="ViewModels\Tabs\MultiCategoriesNewTabViewModel.cs" />
     <Compile Include="ViewModels\Tabs\NewTabViewModel.cs" />

@@ -3,30 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Threading;
-using Com.Ericmas001.AppMonitor.DataTypes.Attributes;
-using Com.Ericmas001.AppMonitor.DataTypes.Helpers;
-using Com.Ericmas001.AppMonitor.DataTypes.TreeElements;
-using Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections;
-using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Wpf.Entities;
 using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.ViewModels.Sections;
 using Com.Ericmas001.Wpf.ViewModels.Trees;
 
-namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
+namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 {
-    public abstract class BaseQueryResultViewModel<TDataItem> : BaseGroupedContentViewModel
+    public abstract class BaseGroupedContentViewModel<TDataItem> : BaseContentViewModel
         where TDataItem : IDataItem
     {
-        private readonly string m_Keyword;
-        private readonly string m_SearchCriteria;
         private readonly BunchOfDataItems<TDataItem> m_DataItems;
-
-        public override string TabHeader
-        {
-            get { return string.Format("{0} {1}", Keyword, SearchCriteria); }
-        }
 
         public override bool CanCloseTab
         {
@@ -38,32 +26,95 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             get { return m_DataItems.Data; }
         }
 
-        protected string Keyword
-        {
-            get { return m_Keyword; }
-        }
-
         protected BunchOfDataItems<TDataItem> DataItems
         {
             get { return m_DataItems; }
         }
 
-        protected string SearchCriteria
+        private bool m_IsLoadingTree;
+
+        private BackgroundWorker m_BwTree = new BackgroundWorker();
+        private FastObservableCollection<TreeElementViewModel> m_Items = new FastObservableCollection<TreeElementViewModel>();
+        private TreeElementViewModel m_SelectedTreeElement;
+        private TreeElementViewModel m_SelectedGridElement;
+
+
+        protected List<TreeElementViewModel> CachedTreeElements { get; set; }
+
+
+        public virtual bool HasGrouping
         {
-            get { return m_SearchCriteria; }
+            get { return true; }
         }
 
-        public BaseQueryResultViewModel(Dispatcher appCurrentDispatcher, string keyword, string criteria, BunchOfDataItems<TDataItem> data)
+        public bool IsGroupExpanded { get; set; }
+        public ChooseGroupViewModel ChooseGroupVm { get; set; }
+
+        public FastObservableCollection<TreeElementViewModel> Items
+        {
+            get { return m_Items; }
+        }
+        public bool IsLoadingTree
+        {
+            get { return m_IsLoadingTree; }
+            set
+            {
+                if ((m_IsLoadingTree != value))
+                {
+                    m_IsLoadingTree = value;
+                    RaisePropertyChanged("IsLoadingTree");
+                }
+            }
+        }
+
+        public virtual string BigLoadingTreeMessage
+        {
+            get { return "Loading DataTree ..."; }
+        }
+        public virtual string SmallLoadingTreeMessage
+        {
+            get { return "Preparing Result Tree ..."; }
+        }
+        public TreeElementViewModel SelectedTreeElement
+        {
+            get { return m_SelectedTreeElement; }
+            set
+            {
+                m_SelectedTreeElement = value;
+                RaisePropertyChanged("SelectedTreeElement");
+                RaisePropertyChanged("HasSomethingTreeElementSelected");
+            }
+        }
+        public bool HasSomethingTreeElementSelected
+        {
+            get { return m_SelectedTreeElement != null; }
+        }
+
+        public TreeElementViewModel SelectedGridElement
+        {
+            get { return m_SelectedGridElement; }
+            set
+            {
+                m_SelectedGridElement = value;
+                RaisePropertyChanged("SelectedGridElement");
+            }
+        }
+
+        public BaseGroupedContentViewModel(Dispatcher appCurrentDispatcher, BunchOfDataItems<TDataItem> data)
             : base(appCurrentDispatcher)
         {
-            m_Keyword = keyword;
-            m_SearchCriteria = criteria;
             m_DataItems = data;
+            m_BwTree.DoWork += BuildTree;
+            m_BwTree.RunWorkerCompleted += TreeBuilded;
+        }
 
+
+        public override void Init()
+        {
             InitGroupingAndFiltering();
             ChooseGroupVm.OnGroupsChanged += delegate { RefreshInterface(); };
 
-            if(CanRefresh)
+            if (CanRefresh)
                 RefreshDataAndInterface();
         }
 
@@ -94,11 +145,11 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
 
         public virtual IGrouping<string, TDataItem>[] ObtainGrouping(string criteria, IEnumerable<TDataItem> items)
         {
-            return items.GroupBy(x => ObtainGroupingValue(x,criteria)).ToArray();
+            return items.GroupBy(x => ObtainGroupingValue(x, criteria)).ToArray();
         }
 
-        protected abstract BaseLeafTreeElement CreateLeaf(TreeElementViewModel parent, TDataItem item, IEnumerable<string> criteres);
-        protected abstract BaseBranchTreeElement CreateBranch(TreeElementViewModel parent, string currentCritere, string value, IEnumerable<string> usedCriteres);
+        protected abstract TreeElementViewModel CreateLeaf(TreeElementViewModel parent, TDataItem item, IEnumerable<string> criteres);
+        protected abstract TreeElementViewModel CreateBranch(TreeElementViewModel parent, string currentCritere, string value, IEnumerable<string> usedCriteres);
 
 
         protected virtual string[] GetAllFiltersCriteria()
@@ -108,7 +159,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
 
         public virtual IEnumerable<FilterEnum> GenerateFilter(string crit)
         {
-            return new FilterEnum[] { FilterEnum.Text };
+            return new[] { FilterEnum.Text };
         }
 
         public virtual IEnumerable<string> GroupedCriterias()
@@ -126,7 +177,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             {
                 foreach (TDataItem elem in OrderItems(items, allCriteriasArray))
                 {
-                    BaseLeafTreeElement leaf = CreateLeaf(node, elem, allCriteriasArray);
+                    TreeElementViewModel leaf = CreateLeaf(node, elem, allCriteriasArray);
                     if (leaf != null)
                     {
                         leaf.OnTabCreation += HandlingTabCreation;
@@ -137,14 +188,14 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             else
             {
                 string currentCriteria = criteriasArray.First();
-                string[] usedCriterias = allCriteriasArray.Except(criteriasArray).Union(new[] {currentCriteria}).ToArray();
+                string[] usedCriterias = allCriteriasArray.Except(criteriasArray).Union(new[] { currentCriteria }).ToArray();
 
                 IGrouping<string, TDataItem>[] groups = ObtainGrouping(currentCriteria, items);
                 if (groups != null)
                 {
                     foreach (IGrouping<String, TDataItem> x in groups.OrderBy(g => ObtainOrdering(usedCriterias, currentCriteria, g)))
                     {
-                        BaseBranchTreeElement nextnode = CreateBranch(node, currentCriteria, x.Key, usedCriterias);
+                        TreeElementViewModel nextnode = CreateBranch(node, currentCriteria, x.Key, usedCriterias);
                         nextnode.Children.AddItems(FillTree(nextnode, x, criteriasArray.Skip(1), allCriteriasArray));
                         nextnode.OnTabCreation += HandlingTabCreation;
                         result.Add(nextnode);
@@ -159,9 +210,9 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             var filters = new Dictionary<string, FilterEnum[]>();
             foreach (string crit in GetAllFiltersCriteria())
             {
-                IEnumerable<FilterEnum> myfilters = GenerateFilter(crit);
-                if (myfilters != null && myfilters.Any())
-                    filters.Add(crit, myfilters.ToArray());
+                FilterEnum[] myfilters = GenerateFilter(crit).ToArray();
+                if (myfilters.Any())
+                    filters.Add(crit, myfilters);
             }
             ChooseGroupVm.FieldsToFilter = filters;
         }
@@ -178,12 +229,46 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
 
             return filteredData;
         }
-
-        protected override void BuildTree(object sender, DoWorkEventArgs e)
+        protected virtual void BuildTree(object sender, DoWorkEventArgs e)
         {
             string[] criteres = GroupedCriterias().ToArray();
             GenerateFilters();
             CachedTreeElements = FillTree(null, GetFilteredData(), criteres, criteres);
         }
+
+        protected virtual void TreeBuilded(object sender, RunWorkerCompletedEventArgs e)
+        {
+            IsLoadingTree = false;
+            RefreshInterfaceAfterTreeAsync();
+        }
+        protected virtual void RefreshInterfaceAfterTree()
+        {
+            if (CachedTreeElements != null && CachedTreeElements.Any())
+            { 
+                Items.AddItems(CachedTreeElements);
+                if (Items.Count == 1)
+                    Items[0].IsExpanded = true;
+            }
+        }
+
+        protected override void RefreshInterface()
+        {
+            Items.Clear();
+            IsLoadingTree = true;
+            if (!m_BwTree.IsBusy)
+                m_BwTree.RunWorkerAsync();
+        }
+
+        protected void RefreshInterfaceAfterTreeAsync()
+        {
+            AppCurrentDispatcher.Invoke(new Action(RefreshInterfaceAfterTree));
+        }
+
+        protected void HandlingTabCreation(object sender, BaseTabViewModel tab)
+        {
+            CreateNewTab(tab);
+        }
+
     }
+
 }

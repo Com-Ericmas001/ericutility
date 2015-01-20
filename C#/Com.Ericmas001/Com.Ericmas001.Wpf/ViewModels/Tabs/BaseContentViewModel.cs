@@ -2,10 +2,8 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Threading;
-using Com.Ericmas001.Wpf;
-using Com.Ericmas001.Wpf.ViewModels.Tabs;
 
-namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
+namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 {
     public abstract class BaseContentViewModel : BaseTabViewModel
     {
@@ -57,6 +55,11 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
             m_AppCurrentDispatcher = appCurrentDispatcher;
             m_Bw.DoWork += ObtainData;
             m_Bw.RunWorkerCompleted += DataObtained;
+        }
+
+        public virtual void Init()
+        {
+            
         }
 
         protected abstract void RefreshInterface();
