@@ -24,6 +24,13 @@ namespace Com.Ericmas001.Util
             return Extract(text, before, after, startindex);
 
         }
+        public static string AllInfoBefore(this string text, string keyword, int startindex = 0)
+        {
+            int ifin = text.IndexOf(keyword, startindex);
+            if (ifin < startindex)
+                return null;
+            return text.Remove(ifin);
+        }
         public static string InfoBefore(this string text, string keyword, int length, int startindex = 0)
         {
             int ifin = text.IndexOf(keyword, startindex);
@@ -33,12 +40,21 @@ namespace Com.Ericmas001.Util
             return text.Substring(ideb, Math.Min(length, ifin - ideb));
         }
 
+        public static string AllInfoAfter(this string text, string keyword, int startindex = 0)
+        {
+            int ideb = text.IndexOf(keyword, startindex) + keyword.Length;
+            if (ideb < keyword.Length)
+                return null;
+            return text.Substring(ideb);
+        }
+
+
         public static string InfoAfter(this string text, string keyword, int length, int startindex = 0)
         {
             int ideb = text.IndexOf(keyword, startindex) + keyword.Length;
             if (ideb < keyword.Length)
                 return null;
-            return text.Substring(ideb, Math.Min(length,text.Length-ideb));
+            return text.Substring(ideb, Math.Min(length, text.Length - ideb));
         }
 
         public static string RemoveHtmlTags(this string s)
