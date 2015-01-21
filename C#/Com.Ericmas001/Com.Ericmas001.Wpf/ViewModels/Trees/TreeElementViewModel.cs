@@ -191,5 +191,11 @@ namespace Com.Ericmas001.Wpf.ViewModels.Trees
         {
             OnTabCreation(this, tab);
         }
+
+        public virtual void AddChildren(params TreeElementViewModel[] elems)
+        {
+            if (elems.Any())
+                Children.AddItems(elems);
+        }
     }
 }

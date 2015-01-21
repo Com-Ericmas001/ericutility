@@ -196,7 +196,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
                     foreach (IGrouping<String, TDataItem> x in groups.OrderBy(g => ObtainOrdering(usedCriterias, currentCriteria, g)))
                     {
                         TreeElementViewModel nextnode = CreateBranch(node, currentCriteria, x.Key, usedCriterias);
-                        nextnode.Children.AddItems(FillTree(nextnode, x, criteriasArray.Skip(1), allCriteriasArray));
+                        nextnode.AddChildren(FillTree(nextnode, x, criteriasArray.Skip(1), allCriteriasArray).ToArray());
                         nextnode.OnTabCreation += HandlingTabCreation;
                         result.Add(nextnode);
                     }
@@ -229,11 +229,20 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 
             return filteredData;
         }
+        protected virtual TreeElementViewModel Root { get { return null; } }
+
         protected virtual void BuildTree(object sender, DoWorkEventArgs e)
         {
             string[] criteres = GroupedCriterias().ToArray();
             GenerateFilters();
-            CachedTreeElements = FillTree(null, GetFilteredData(), criteres, criteres);
+            TreeElementViewModel root = Root;
+            if(root == null)
+                CachedTreeElements = FillTree(root, GetFilteredData(), criteres, criteres);
+            else
+            {
+                root.AddChildren(FillTree(root, GetFilteredData(), criteres, criteres).ToArray());
+                CachedTreeElements = new List<TreeElementViewModel>() { root };
+            }
         }
 
         protected virtual void TreeBuilded(object sender, RunWorkerCompletedEventArgs e)

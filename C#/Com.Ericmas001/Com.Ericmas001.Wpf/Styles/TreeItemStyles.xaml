@@ -45,15 +45,6 @@
             </Setter.Value>
         </Setter>
         <Setter Property="Header" Value="{Binding}" />
-        <!--<Setter Property="ItemTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsChecked}" Content="{Binding Text}" />
-                    </StackPanel>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>-->
     </Style>
 
 </ResourceDictionary>
