@@ -14,6 +14,12 @@ namespace Com.Ericmas001.Wpf.Entities.Enums
         Text,
 
         [FilterCommand(FilterCommandEnum.Must, FilterCommandEnum.MustNot)]
+        [FilterComparator(FilterComparatorEnum.StartsWith, FilterComparatorEnum.Contains, FilterComparatorEnum.EndsWith)]
+        [SearchType(SearchTypeEnum.Text)]
+        [Description("Filter Data")]
+        Blob,
+
+        [FilterCommand(FilterCommandEnum.Must, FilterCommandEnum.MustNot)]
         [FilterComparator(FilterComparatorEnum.SmallerThan, FilterComparatorEnum.SmallerEqual, FilterComparatorEnum.IntEqual, FilterComparatorEnum.IntNotEqual, FilterComparatorEnum.GreaterEqual, FilterComparatorEnum.GreaterThan, FilterComparatorEnum.IntBetween)]
         [SearchType(SearchTypeEnum.Int)]
         [Description("Filter Int")]
