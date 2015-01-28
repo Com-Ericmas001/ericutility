@@ -276,6 +276,7 @@ namespace Com.Ericmas001.Wpf.Entities
             {
 
                 case FilterEnum.Text:
+                case FilterEnum.Blob:
                     switch (m_CurrentComparator)
                     {
                         case FilterComparatorEnum.TextEqual:
