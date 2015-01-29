@@ -149,6 +149,7 @@
     <Compile Include="ViewCommands\ViewCommandAttribute.cs" />
     <Compile Include="ViewCommands\IViewCommandSource.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\LoadingViewModel.cs" />
     <Compile Include="ViewModels\SearchElements\BaseSearchElement.cs" />
     <Compile Include="ViewModels\SearchElements\DateSearchElement.cs" />
     <Compile Include="ViewModels\SearchElements\GuidSearchElement.cs" />
@@ -277,6 +278,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Templates\Filters\SearchTypesDataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\LoadingDataTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

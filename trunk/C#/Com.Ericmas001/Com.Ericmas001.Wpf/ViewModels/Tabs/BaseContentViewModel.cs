@@ -7,23 +7,12 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 {
     public abstract class BaseContentViewModel : BaseTabViewModel
     {
+        private readonly LoadingViewModel m_LoadingDataVm;
 
-        private bool m_IsLoading;
-        private BackgroundWorker m_Bw = new BackgroundWorker();
-        private readonly Dispatcher m_AppCurrentDispatcher;
-
-        public bool IsLoading
+        public LoadingViewModel LoadingDataVm
         {
-            get { return m_IsLoading; }
-            set
-            {
-                if ((m_IsLoading != value))
-                {
-                    m_IsLoading = value;
-                    RaisePropertyChanged("IsLoading");
-                }
-            }
-        }
+            get { return m_LoadingDataVm; }
+        } 
 
         public virtual string BigLoadingMessage
         {
@@ -45,16 +34,14 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
             get { return m_RefreshCommand ?? (m_RefreshCommand = new RelayCommand(x => RefreshDataAndInterface(), x => CanRefresh)); }
         }
 
-        protected Dispatcher AppCurrentDispatcher
-        {
-            get { return m_AppCurrentDispatcher; }
-        }
-
         public BaseContentViewModel( Dispatcher appCurrentDispatcher )
         {
-            m_AppCurrentDispatcher = appCurrentDispatcher;
-            m_Bw.DoWork += ObtainData;
-            m_Bw.RunWorkerCompleted += DataObtained;
+            m_LoadingDataVm = new LoadingViewModel(appCurrentDispatcher, ObtainData)
+            {
+                BigLoadingMessage = this.BigLoadingMessage,
+                SmallLoadingMessage = this.SmallLoadingMessage
+            };
+            m_LoadingDataVm.OnDataObtained += RefreshInterface;
         }
 
         public virtual void Init()
@@ -66,21 +53,9 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 
         protected abstract void ObtainData(object sender, DoWorkEventArgs e);
 
-        protected virtual void RefreshDataAndInterface()
+        protected void RefreshDataAndInterface()
         {
-            IsLoading = true;
-            m_Bw.RunWorkerAsync();
-        }
-
-        protected virtual void DataObtained(object sender, RunWorkerCompletedEventArgs e)
-        {
-            IsLoading = false;
-            RefreshInterfaceAsync();
-        }
-
-        protected void RefreshInterfaceAsync()
-        {
-            AppCurrentDispatcher.Invoke(new Action(RefreshInterface));
+            LoadingDataVm.Execute();
         }
     }
 }

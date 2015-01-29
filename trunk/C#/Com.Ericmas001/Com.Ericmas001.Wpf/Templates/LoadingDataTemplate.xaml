@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cc="clr-namespace:Com.Ericmas001.Wpf.CustomControls">
+
+    <DataTemplate x:Key="LoadingDataTemplate">
+        <Grid VerticalAlignment="Stretch">
+            <cc:LoadingPanel x:Name="loadingPanel"
+                            IsLoading="{Binding IsLoading}"
+                            Message="{Binding BigLoadingMessage}"
+                            SubMessage="{Binding SmallLoadingMessage}"/>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

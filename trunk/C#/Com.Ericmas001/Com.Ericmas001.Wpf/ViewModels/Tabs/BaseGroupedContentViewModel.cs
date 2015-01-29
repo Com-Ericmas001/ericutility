@@ -16,6 +16,13 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
     public abstract class BaseGroupedContentViewModel<TDataItem> : BaseContentViewModel
         where TDataItem : IDataItem
     {
+        private readonly LoadingViewModel m_LoadingTreeVm;
+
+        public LoadingViewModel LoadingTreeVm
+        {
+            get { return m_LoadingTreeVm; }
+        }
+
         private readonly BunchOfDataItems<TDataItem> m_DataItems;
 
         public override bool CanCloseTab
@@ -32,10 +39,6 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
         {
             get { return m_DataItems; }
         }
-
-        private bool m_IsLoadingTree;
-
-        private BackgroundWorker m_BwTree = new BackgroundWorker();
         private FastObservableCollection<TreeElementViewModel> m_Items = new FastObservableCollection<TreeElementViewModel>();
         private TreeElementViewModel m_SelectedTreeElement;
         private TreeElementViewModel m_SelectedGridElement;
@@ -55,18 +58,6 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
         public FastObservableCollection<TreeElementViewModel> Items
         {
             get { return m_Items; }
-        }
-        public bool IsLoadingTree
-        {
-            get { return m_IsLoadingTree; }
-            set
-            {
-                if ((m_IsLoadingTree != value))
-                {
-                    m_IsLoadingTree = value;
-                    RaisePropertyChanged("IsLoadingTree");
-                }
-            }
         }
 
         public virtual string BigLoadingTreeMessage
@@ -106,8 +97,12 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
             : base(appCurrentDispatcher)
         {
             m_DataItems = data;
-            m_BwTree.DoWork += BuildTree;
-            m_BwTree.RunWorkerCompleted += TreeBuilded;
+            m_LoadingTreeVm = new LoadingViewModel(appCurrentDispatcher, BuildTree)
+            {
+                BigLoadingMessage = BigLoadingTreeMessage,
+                SmallLoadingMessage = SmallLoadingTreeMessage
+            };
+            m_LoadingTreeVm.OnDataObtained += RefreshInterfaceAfterTree;
         }
 
 
@@ -247,11 +242,6 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
             }
         }
 
-        protected virtual void TreeBuilded(object sender, RunWorkerCompletedEventArgs e)
-        {
-            IsLoadingTree = false;
-            RefreshInterfaceAfterTreeAsync();
-        }
         protected virtual void RefreshInterfaceAfterTree()
         {
             if (CachedTreeElements != null && CachedTreeElements.Any())
@@ -265,14 +255,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
         protected override void RefreshInterface()
         {
             Items.Clear();
-            IsLoadingTree = true;
-            if (!m_BwTree.IsBusy)
-                m_BwTree.RunWorkerAsync();
-        }
-
-        protected void RefreshInterfaceAfterTreeAsync()
-        {
-            AppCurrentDispatcher.Invoke(new Action(RefreshInterfaceAfterTree));
+            m_LoadingTreeVm.Execute();
         }
 
         protected void HandlingTabCreation(object sender, BaseTabViewModel tab)
