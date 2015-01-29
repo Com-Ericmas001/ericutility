@@ -7,6 +7,8 @@ using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Wpf;
 using Com.Ericmas001.Wpf.Entities;
 using Com.Ericmas001.Wpf.Entities.Enums;
+using Com.Ericmas001.Wpf.Entities.Filters;
+using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 using Com.Ericmas001.Wpf.ViewModels;
 
 namespace Com.Ericmas001.Wpf.ViewModels.Sections
