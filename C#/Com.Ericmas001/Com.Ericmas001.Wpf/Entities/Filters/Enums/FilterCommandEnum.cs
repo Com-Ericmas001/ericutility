@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Com.Ericmas001.Wpf.Entities.Enums
+namespace Com.Ericmas001.Wpf.Entities.Filters.Enums
 {
     public enum FilterCommandEnum
     {

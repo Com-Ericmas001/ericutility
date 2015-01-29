@@ -2,13 +2,13 @@
 using System.Linq;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities;
-using Com.Ericmas001.Wpf;
-using Com.Ericmas001.Wpf.Entities;
 using Com.Ericmas001.Wpf.Entities.Attributes;
 using Com.Ericmas001.Wpf.Entities.Enums;
+using Com.Ericmas001.Wpf.Entities.Filters.Attributes;
+using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 using Com.Ericmas001.Wpf.ViewModels;
 
-namespace Com.Ericmas001.Wpf.Entities
+namespace Com.Ericmas001.Wpf.Entities.Filters
 {
     public class Filter : BaseViewModel
     {

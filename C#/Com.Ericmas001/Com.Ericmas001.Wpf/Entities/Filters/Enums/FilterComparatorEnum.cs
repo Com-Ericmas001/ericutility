@@ -1,17 +1,14 @@
 ﻿using System.ComponentModel;
 using Com.Ericmas001.Wpf.Entities.Attributes;
+using Com.Ericmas001.Wpf.Entities.Enums;
 
-namespace Com.Ericmas001.Wpf.Entities.Enums
+namespace Com.Ericmas001.Wpf.Entities.Filters.Enums
 {
     public enum FilterComparatorEnum
     {
         [Description("")]
         [SearchType(SearchTypeEnum.None)]
         None,
-
-        [Description("Equal to")]
-        [SearchType(SearchTypeEnum.List)]
-        Be,
 
         [SearchType(SearchTypeEnum.CheckList)]
         [Description("One of Those:")]

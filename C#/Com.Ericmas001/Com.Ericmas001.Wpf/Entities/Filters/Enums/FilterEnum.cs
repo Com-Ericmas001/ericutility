@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
 using Com.Ericmas001.Wpf.Entities.Attributes;
+using Com.Ericmas001.Wpf.Entities.Enums;
+using Com.Ericmas001.Wpf.Entities.Filters.Attributes;
 
-namespace Com.Ericmas001.Wpf.Entities.Enums
+namespace Com.Ericmas001.Wpf.Entities.Filters.Enums
 {
     public enum FilterEnum
     {

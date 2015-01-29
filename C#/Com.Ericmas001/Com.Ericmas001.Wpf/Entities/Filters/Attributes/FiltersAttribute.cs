@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Com.Ericmas001.Wpf.Entities.Enums;
+using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 
-namespace Com.Ericmas001.Wpf.Entities.Attributes
+namespace Com.Ericmas001.Wpf.Entities.Filters.Attributes
 {
     public class FiltersAttribute : Attribute
     {
