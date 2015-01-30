@@ -7,13 +7,16 @@
     </ResourceDictionary.MergedDictionaries>
 
     <conv:EnumDescriptionConverter x:Key="EnumDescConverter" />
-    
+
     <DataTemplate x:Key="OnlyOneComparatorTemplate">
-        <TextBlock HorizontalAlignment="Center" Text="{Binding CurrentComparator, Converter={StaticResource EnumDescConverter}}" />
+        <TextBlock HorizontalAlignment="Center" Text="{Binding CurrentComparator.Description}" />
+    </DataTemplate>
+    <DataTemplate x:Key="ComparatorTemplate">
+        <TextBlock HorizontalAlignment="Center" Text="{Binding Description}" />
     </DataTemplate>
 
     <DataTemplate x:Key="MultipleComparatorsTemplate">
-        <ComboBox ItemsSource="{Binding AvailablesComparators}" ItemTemplate="{StaticResource EnumDescTemplate}" SelectedItem="{Binding CurrentComparator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <ComboBox ItemsSource="{Binding AvailablesComparators}" ItemTemplate="{StaticResource ComparatorTemplate}" SelectedItem="{Binding CurrentComparator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </DataTemplate>
 
     <DataTemplate x:Key="ComparatorSelectorTemplate">
