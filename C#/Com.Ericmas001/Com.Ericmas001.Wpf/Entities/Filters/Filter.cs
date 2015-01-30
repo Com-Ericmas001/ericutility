@@ -5,6 +5,8 @@ using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Wpf.Entities.Attributes;
 using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.Entities.Filters.Attributes;
+using Com.Ericmas001.Wpf.Entities.Filters.Commands;
+using Com.Ericmas001.Wpf.Entities.Filters.Comparators;
 using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 using Com.Ericmas001.Wpf.ViewModels;
 
@@ -19,13 +21,12 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         private readonly string m_Field;
         private readonly FilterEnum m_FilterType;
-        private readonly FilterCommandEnum[] m_AvailablesCommands;
-
-        private readonly FilterComparatorEnum[] m_AvailablesComparators;
+        private readonly IFilterCommand[] m_AvailablesCommands;
+        private readonly IFilterComparator[] m_AvailablesComparators;
         private readonly IBunchOfDataItems m_DataItems;
         private CheckListItem[] m_AvailablesItems;
-        private FilterCommandEnum m_CurrentCommand;
-        private FilterComparatorEnum m_CurrentComparator;
+        private IFilterCommand m_CurrentCommand;
+        private IFilterComparator m_CurrentComparator;
         private SearchTypeEnum m_CurrentSearchType;
         private string m_CurrentValueString;
         private string m_CurrentValueStringPair1;
@@ -85,7 +86,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             }
         }
 
-        public FilterCommandEnum CurrentCommand
+        public IFilterCommand CurrentCommand
         {
             get { return m_CurrentCommand; }
             set
@@ -95,7 +96,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             }
         }
 
-        public FilterComparatorEnum CurrentComparator
+        public IFilterComparator CurrentComparator
         {
             get { return m_CurrentComparator; }
             set
@@ -142,18 +143,17 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             }
         }
 
-        public FilterComparatorEnum[] AvailablesComparators
+        public IFilterComparator[] AvailablesComparators
         {
             get { return m_AvailablesComparators; }
         }
 
         public bool HasOnlyOneComparator
         {
-            //None + the one
-            get { return m_AvailablesComparators.Length == 2; }
+            get { return m_AvailablesComparators.Length == 1; }
         }
 
-        public FilterCommandEnum[] AvailablesCommands
+        public IFilterCommand[] AvailablesCommands
         {
             get { return m_AvailablesCommands; }
         }
@@ -204,25 +204,28 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             m_Field = field;
             m_FilterType = filterType;
             m_DataItems = dataItems;
-            m_AvailablesCommands = EnumFactory<FilterEnum>.GetAttribute<FilterCommandAttribute>(filterType).Commands.ToArray();
+            m_AvailablesCommands = BasicFilterCommand.AllCommands(EnumFactory<FilterEnum>.GetAttribute<FilterCommandAttribute>(filterType).Commands.ToArray()).ToArray();
             m_CurrentCommand = m_AvailablesCommands.First();
-            m_AvailablesComparators = new[] {FilterComparatorEnum.None}.Union(EnumFactory<FilterEnum>.GetAttribute<FilterComparatorAttribute>(filterType).Comparators).ToArray();
-            m_CurrentComparator = HasOnlyOneComparator ? m_AvailablesComparators.Last() : m_AvailablesComparators.First();
+            m_AvailablesComparators = BasicFilterComparator.AllComparators(EnumFactory<FilterEnum>.GetAttribute<FilterComparatorAttribute>(filterType).Comparators.ToArray()).ToArray();
+            m_CurrentComparator = HasOnlyOneComparator ? m_AvailablesComparators.First() : null;
             CurrentSearchType = GenerateSearchType();
         }
 
         private SearchTypeEnum GenerateSearchType()
         {
-            dynamic compAtt = EnumFactory<FilterComparatorEnum>.GetAttribute<SearchTypeAttribute>(CurrentComparator);
-            if ((compAtt != null))
+            //TODO: Unbound from Basic !!!
+            var comp = CurrentComparator as BasicFilterComparator;
+            if (comp != null)
             {
-                return compAtt.SearchType;
+                var compAtt = comp.SearchTypeOverrideAttribute;
+                if (compAtt != null)
+                    return compAtt.SearchType;
             }
-            dynamic filterAtt = EnumFactory<FilterEnum>.GetAttribute<SearchTypeAttribute>(FilterType);
-            if ((filterAtt != null))
-            {
+
+            var filterAtt = EnumFactory<FilterEnum>.GetAttribute<SearchTypeAttribute>(FilterType);
+            if (filterAtt != null)
                 return filterAtt.SearchType;
-            }
+
             return SearchTypeEnum.None;
         }
 
@@ -261,7 +264,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
                     break;
             }
 
-            return string.Format("{0} {1} {2} {3}", m_Field, EnumFactory<FilterCommandEnum>.ToString(m_CurrentCommand), EnumFactory<FilterComparatorEnum>.ToString(m_CurrentComparator), values);
+            return string.Format("{0} {1} {2} {3}", m_Field, m_CurrentCommand.Description,m_CurrentComparator.Description, values);
         }
 
         public bool IsSurvivingTheFilter(string value)
@@ -274,77 +277,19 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
             switch (m_FilterType)
             {
-
+                //TODO: Unbound from Basic !!!
                 case FilterEnum.Text:
                 case FilterEnum.Blob:
-                    switch (m_CurrentComparator)
-                    {
-                        case FilterComparatorEnum.TextEqual:
-                            return m_AvailablesItems.Where(x => x.IsSelected).Select(x => (string) x.Value).ToArray().Contains(value) == (m_CurrentCommand == FilterCommandEnum.Must);
-                        case FilterComparatorEnum.Contains:
-                            return value.Contains(m_CurrentValueString) == (m_CurrentCommand == FilterCommandEnum.Must);
-                        case FilterComparatorEnum.StartsWith:
-                            return value.StartsWith(m_CurrentValueString) == (m_CurrentCommand == FilterCommandEnum.Must);
-                        case FilterComparatorEnum.EndsWith:
-                            return value.EndsWith(m_CurrentValueString) == (m_CurrentCommand == FilterCommandEnum.Must);
-                    }
-
-                    break;
+                    if (m_CurrentComparator is TextEqualBasicFilterComparator)
+                        return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, m_AvailablesItems.Where(x => x.IsSelected).Select(x => (string)x.Value), value);
+                    return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, m_CurrentValueString, value);
                 case FilterEnum.Int:
-                    bool answer = false;
-                    int myNum = int.Parse(value);
-                    if (m_CurrentComparator == FilterComparatorEnum.IntBetween)
-                    {
-                        int val1 = int.Parse(m_CurrentValueStringPair1);
-                        int val2 = int.Parse(m_CurrentValueStringPair2);
-                        answer = (myNum >= val1 && myNum <= val2);
-                    }
-                    else
-                    {
-                        int valNum = int.Parse(m_CurrentValueString);
-                        switch (m_CurrentComparator)
-                        {
-                            case FilterComparatorEnum.SmallerThan:
-                                answer = myNum < valNum;
-                                break;
-                            case FilterComparatorEnum.SmallerEqual:
-                                answer = myNum <= valNum;
-                                break;
-                            case FilterComparatorEnum.IntEqual:
-                                answer = myNum == valNum;
-                                break;
-                            case FilterComparatorEnum.IntNotEqual:
-                                answer = myNum != valNum;
-                                break;
-                            case FilterComparatorEnum.GreaterEqual:
-                                answer = myNum >= valNum;
-                                break;
-                            case FilterComparatorEnum.GreaterThan:
-                                answer = myNum > valNum;
-                                break;
-                        }
-                    }
-                    return answer == (m_CurrentCommand == FilterCommandEnum.Must);
+                    if (m_CurrentComparator is IntBetweenBasicFilterComparator)
+                        return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, new Tuple<int, int>(int.Parse(m_CurrentValueStringPair1), int.Parse(m_CurrentValueStringPair2)), value);
+                    return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, int.Parse(m_CurrentValueString), value);
                 case FilterEnum.Date:
                 case FilterEnum.Time:
-                    string validation = m_FilterType == FilterEnum.Date ? m_CurrentValueDate.ToString("yyyy-MM-dd") : m_CurrentValueString;
-                    switch (m_CurrentComparator)
-                    {
-                        case FilterComparatorEnum.SmallerThan:
-                            return String.Compare(value, validation, StringComparison.Ordinal) < 0;
-                        case FilterComparatorEnum.SmallerEqual:
-                            return String.Compare(value, validation, StringComparison.Ordinal) <= 0;
-                        case FilterComparatorEnum.IntEqual:
-                            return value == validation;
-                        case FilterComparatorEnum.IntNotEqual:
-                            return value != validation;
-                        case FilterComparatorEnum.GreaterEqual:
-                            return String.Compare(value, validation, StringComparison.Ordinal) >= 0;
-                        case FilterComparatorEnum.GreaterThan:
-                            return String.Compare(value, validation, StringComparison.Ordinal) > 0;
-                    }
-
-                    break;
+                    return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, m_FilterType == FilterEnum.Date ? m_CurrentValueDate.ToString("yyyy-MM-dd") : m_CurrentValueString, value);
             }
 
             return true;

@@ -8,11 +8,14 @@
 
     <conv:EnumDescriptionConverter x:Key="EnumDescConverter" />
     <DataTemplate x:Key="OnlyOneCommandTemplate">
-        <TextBlock HorizontalAlignment="Center" Text="{Binding CurrentCommand, Converter={StaticResource EnumDescConverter}}" />
+        <TextBlock HorizontalAlignment="Center" Text="{Binding CurrentCommand.Description}" />
+    </DataTemplate>
+    <DataTemplate x:Key="CommandTemplate">
+        <TextBlock HorizontalAlignment="Center" Text="{Binding Description}" />
     </DataTemplate>
 
     <DataTemplate x:Key="MultipleCommandsTemplate">
-        <ComboBox ItemsSource="{Binding AvailablesCommands}" ItemTemplate="{StaticResource EnumDescTemplate}" SelectedItem="{Binding CurrentCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <ComboBox ItemsSource="{Binding AvailablesCommands}" ItemTemplate="{StaticResource CommandTemplate}" SelectedItem="{Binding CurrentCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </DataTemplate>
 
     <DataTemplate x:Key="CommandSelectorTemplate">
