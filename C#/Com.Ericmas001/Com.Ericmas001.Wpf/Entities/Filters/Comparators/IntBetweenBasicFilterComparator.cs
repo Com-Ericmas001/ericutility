@@ -11,13 +11,13 @@ namespace Com.Ericmas001.Wpf.Entities.Filters.Comparators
     {
         public override bool IsDataFiltered(object comparatorValue, object value)
         {
-            var comparatorValues = comparatorValue as Tuple<IComparable, IComparable>;
+            var comparatorValues = comparatorValue as Tuple<int, int>;
             if (comparatorValues == null)
-                throw new ArgumentException("comparatorValue must be a Tuple<IComparable,IComparable>");
-            var valueC = value as IComparable;
-            if (valueC == null)
-                throw new ArgumentException("value must implement IComparable");
-            return valueC.CompareTo(comparatorValues.Item1) >= 0 && valueC.CompareTo(comparatorValues.Item2) <= 0;
+                throw new ArgumentException("comparatorValue must be a Tuple<int,int>");
+            var valueC = value as int?;
+            if (valueC == null || !valueC.HasValue)
+                throw new ArgumentException("value must be an int");
+            return valueC.Value >= comparatorValues.Item1 && valueC.Value <= comparatorValues.Item2;
         }
     }
 }

@@ -285,8 +285,8 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
                     return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, m_CurrentValueString, value);
                 case FilterEnum.Int:
                     if (m_CurrentComparator is IntBetweenBasicFilterComparator)
-                        return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, new Tuple<int, int>(int.Parse(m_CurrentValueStringPair1), int.Parse(m_CurrentValueStringPair2)), value);
-                    return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, int.Parse(m_CurrentValueString), value);
+                        return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, new Tuple<int, int>(int.Parse(m_CurrentValueStringPair1), int.Parse(m_CurrentValueStringPair2)), int.Parse(value));
+                    return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, int.Parse(m_CurrentValueString), int.Parse(value));
                 case FilterEnum.Date:
                 case FilterEnum.Time:
                     return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, m_FilterType == FilterEnum.Date ? m_CurrentValueDate.ToString("yyyy-MM-dd") : m_CurrentValueString, value);
