@@ -72,10 +72,10 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
             myTextSearchElement.ValueSubmitted += delegate { StartNewTabCommand.Execute(null); };
 
             var myUpperTextSearchElement = new UpperTextSearchElement();
-            myTextSearchElement.ValueSubmitted += delegate { StartNewTabCommand.Execute(null); };
+            myUpperTextSearchElement.ValueSubmitted += delegate { StartNewTabCommand.Execute(null); };
 
             var myIntSearchElement = new IntSearchElement();
-            myTextSearchElement.ValueSubmitted += delegate { StartNewTabCommand.Execute(null); };
+            myIntSearchElement.ValueSubmitted += delegate { StartNewTabCommand.Execute(null); };
 
             foreach (var crit in criterias.Keys)
                 switch (criterias[crit])
