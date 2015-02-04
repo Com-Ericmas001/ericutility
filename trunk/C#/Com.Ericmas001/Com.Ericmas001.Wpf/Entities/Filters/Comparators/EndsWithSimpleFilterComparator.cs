@@ -5,12 +5,12 @@ using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 
 namespace Com.Ericmas001.Wpf.Entities.Filters.Comparators
 {
-    [FilterComparator(FilterComparatorEnum.Contains)]
-    public class ContainsBasicFilterComparator : BasicFilterComparator
+    [FilterComparator(FilterComparatorEnum.EndsWith)]
+    public class EndsWithSimpleFilterComparator : SimpleFilterComparator
     {
         public override bool IsDataFiltered(object comparatorValue, object value)
         {
-            return value.ToString().Contains(comparatorValue.ToString());
+            return value.ToString().EndsWith(comparatorValue.ToString());
         }
     }
 }

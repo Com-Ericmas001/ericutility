@@ -2,7 +2,7 @@
 
 namespace Com.Ericmas001.Wpf.Entities.Filters.Comparators
 {
-    public abstract class BasicComparableFilterComparator : BasicFilterComparator
+    public abstract class ComparableSimpleFilterComparator : SimpleFilterComparator
     {
         public abstract bool IsComparableDataFiltered(IComparable comparatorValue, IComparable value);
 

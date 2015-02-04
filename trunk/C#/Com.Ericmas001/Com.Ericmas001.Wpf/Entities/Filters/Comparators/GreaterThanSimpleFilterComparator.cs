@@ -6,12 +6,12 @@ using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 
 namespace Com.Ericmas001.Wpf.Entities.Filters.Comparators
 {
-    [FilterComparator(FilterComparatorEnum.GreaterEqual)]
-    public class GreaterEqualBasicFilterComparator : BasicComparableFilterComparator
+    [FilterComparator(FilterComparatorEnum.GreaterThan)]
+    public class GreaterThanSimpleFilterComparator : ComparableSimpleFilterComparator
     {
         public override bool IsComparableDataFiltered(IComparable comparatorValue, IComparable value)
         {
-            return value.CompareTo(comparatorValue) >= 0;
+            return value.CompareTo(comparatorValue) > 0;
         }
     }
 }

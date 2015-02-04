@@ -6,7 +6,7 @@ using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 namespace Com.Ericmas001.Wpf.Entities.Filters.Comparators
 {
     [FilterComparator(FilterComparatorEnum.TextEqual)]
-    public class TextEqualBasicFilterComparator : BasicFilterComparator
+    public class TextEqualSimpleFilterComparator : SimpleFilterComparator
     {
         public override bool IsDataFiltered(object comparatorValue, object value)
         {

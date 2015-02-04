@@ -10,7 +10,7 @@ using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 namespace Com.Ericmas001.Wpf.Entities.Filters.Commands
 {
     [FilterCommand(FilterCommandEnum.Must)]
-    public class MustBasicFilterCommand : BasicFilterCommand
+    public class MustSimpleFilterCommand : SimpleFilterCommand
     {
         public override bool IsDataFiltered(IFilterComparator comparator, object comparatorValue, object value)
         {

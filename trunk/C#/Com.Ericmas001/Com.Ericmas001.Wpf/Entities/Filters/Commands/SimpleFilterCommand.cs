@@ -9,30 +9,32 @@ using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 
 namespace Com.Ericmas001.Wpf.Entities.Filters.Commands
 {
-    public abstract class BasicFilterCommand : IFilterCommand
+    public abstract class SimpleFilterCommand : IFilterCommand
     {
-        private static Dictionary<FilterCommandEnum, BasicFilterCommand> m_AllCommands;
+        private static Dictionary<FilterCommandEnum, SimpleFilterCommand> m_AllCommands;
 
-        public static IEnumerable<BasicFilterCommand> AllCommands(params FilterCommandEnum[] commands)
+        public static IEnumerable<SimpleFilterCommand> AllCommands(params FilterCommandEnum[] commands)
         {
             if (m_AllCommands == null)
             {
 
-                m_AllCommands = new Dictionary<FilterCommandEnum, BasicFilterCommand>();
-                foreach (Type type in Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsSubclassOf(typeof (BasicFilterCommand))))
+                m_AllCommands = new Dictionary<FilterCommandEnum, SimpleFilterCommand>();
+                foreach (Type type in Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsSubclassOf(typeof (SimpleFilterCommand))))
                 {
-                    var c = type.GetConstructor(new Type[] {}).Invoke(new object[0]) as BasicFilterCommand;
+                    var c = type.GetConstructor(new Type[] {}).Invoke(new object[0]) as SimpleFilterCommand;
                     foreach (FilterCommandEnum fce in type.GetAttributeValue((FilterCommandAttribute att) => att.Commands))
                     {
                         c.Description = EnumFactory<FilterCommandEnum>.ToString(fce);
+                        c.Command = fce;
                         m_AllCommands.Add(fce, c);
                     }
                 }
             }
-            return m_AllCommands.Where(kvp => commands == null || !commands.Any() || commands.Contains(kvp.Key)).Select(kvp => kvp.Value);
+            return m_AllCommands.Where(kvp => commands == null || !commands.Any() || commands.Contains(kvp.Key)).OrderBy(kvp => kvp.Value.Command).Select(kvp => kvp.Value);
         }
 
         public string Description { get; private set; }
+        public FilterCommandEnum Command { get; private set; }
         public abstract bool IsDataFiltered(IFilterComparator comparator, object comparatorValue, object value);
     }
 }

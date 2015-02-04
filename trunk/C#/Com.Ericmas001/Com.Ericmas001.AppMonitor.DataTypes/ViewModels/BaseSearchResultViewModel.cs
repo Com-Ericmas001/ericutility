@@ -10,6 +10,7 @@ using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Wpf.Entities;
 using Com.Ericmas001.Wpf.Entities.Attributes;
 using Com.Ericmas001.Wpf.Entities.Enums;
+using Com.Ericmas001.Wpf.Entities.Filters;
 using Com.Ericmas001.Wpf.Entities.Filters.Attributes;
 using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 using Com.Ericmas001.Wpf.ViewModels.Tabs;
@@ -107,12 +108,12 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
         {
             return CriteriaHelper<TCriteria, TCategory>.ObtainGrouping(EnumFactory<TCriteria>.Parse(criteria), items);
         }
-        public override IEnumerable<FilterEnum> GenerateFilter(string crit)
+        public override IEnumerable<BaseFilter> GenerateFilter(string crit)
         {
             var filterAtt = EnumFactory<TCriteria>.GetAttribute<FiltersAttribute>(EnumFactory<TCriteria>.Parse(crit));
             if ((filterAtt != null && !filterAtt.Filters.Contains(FilterEnum.None)))
-                return filterAtt.Filters.ToArray();
-            return new FilterEnum[0];
+                return filterAtt.Filters.Select(x => new SimpleFilter(crit,x,DataItems)).ToArray();
+            return new BaseFilter[0];
         }
         public override IEnumerable<string> GroupedCriterias()
         {

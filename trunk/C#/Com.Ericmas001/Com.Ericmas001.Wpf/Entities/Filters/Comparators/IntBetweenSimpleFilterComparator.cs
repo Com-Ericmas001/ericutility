@@ -7,7 +7,7 @@ using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 namespace Com.Ericmas001.Wpf.Entities.Filters.Comparators
 {
     [FilterComparator(FilterComparatorEnum.IntBetween)]
-    public class IntBetweenBasicFilterComparator : BasicFilterComparator
+    public class IntBetweenSimpleFilterComparator : SimpleFilterComparator
     {
         public override bool IsDataFiltered(object comparatorValue, object value)
         {
