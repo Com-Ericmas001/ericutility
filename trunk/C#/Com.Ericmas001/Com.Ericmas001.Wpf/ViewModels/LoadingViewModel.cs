@@ -79,8 +79,11 @@ namespace Com.Ericmas001.Wpf.ViewModels
 
         public void Execute()
         {
-            IsLoading = true;
-            m_Bw.RunWorkerAsync();
+            if (!m_Bw.IsBusy)
+            {
+                IsLoading = true;
+                m_Bw.RunWorkerAsync();
+            }
         }
     }
 }
