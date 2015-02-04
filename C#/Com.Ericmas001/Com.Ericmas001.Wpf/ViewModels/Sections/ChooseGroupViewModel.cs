@@ -183,7 +183,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             return string.IsNullOrEmpty(CurrentField) ? new BaseFilter[0] : FieldsToFilter[CurrentField].Select(x => GenerateFilter(x)).ToArray();
         }
 
-        private BaseFilter GenerateFilter(BaseFilter f)
+        public BaseFilter GenerateFilter(BaseFilter f)
         {
             f.AddMeAsAFilter += OnFilterAdded;
             f.RemoveMeAsAFilter += OnFilterRemoved;
