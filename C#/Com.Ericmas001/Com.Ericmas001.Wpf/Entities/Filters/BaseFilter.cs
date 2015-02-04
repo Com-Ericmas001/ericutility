@@ -141,6 +141,11 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             }
         }
 
+        protected IBunchOfDataItems DataItems
+        {
+            get { return m_DataItems; }
+        } 
+
         public IFilterComparator[] AvailablesComparators
         {
             get { return m_AvailablesComparators; }
@@ -215,13 +220,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         protected abstract SearchTypeEnum GenerateSearchType();
 
-        private CheckListItem[] GenerateAvailablesItems()
-        {
-            if (m_CurrentSearchType != SearchTypeEnum.List && m_CurrentSearchType != SearchTypeEnum.CheckList)
-                return new CheckListItem[0];
-
-            return m_DataItems.ObtainAllValues(m_Field).Select(x => new CheckListItem(x, x)).ToArray();
-        }
+        protected abstract CheckListItem[] GenerateAvailablesItems();
 
         public string Description
         {
@@ -253,7 +252,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             return string.Format("{0} {1} {2} {3}", m_Field, m_CurrentCommand.Description,m_CurrentComparator.Description, values);
         }
 
-        public bool IsSurvivingTheFilter(string value)
+        public bool IsSurvivingTheFilter(string value, IDataItem item)
         {
 
             if (!m_IsActive)
@@ -261,9 +260,9 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
                 return true;
             }
 
-            return CheckIfIsSurvivingTheFilter(value);
+            return CheckIfIsSurvivingTheFilter(value, item);
         }
 
-        protected abstract bool CheckIfIsSurvivingTheFilter(string value);
+        protected abstract bool CheckIfIsSurvivingTheFilter(string value, IDataItem item);
     }
 }
