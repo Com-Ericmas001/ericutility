@@ -3,13 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using Com.Ericmas001.Util.Entities;
-using Com.Ericmas001.Wpf;
-using Com.Ericmas001.Wpf.Entities;
-using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.Entities.Filters;
-using Com.Ericmas001.Wpf.Entities.Filters.Enums;
-using Com.Ericmas001.Wpf.ViewModels;
 
 namespace Com.Ericmas001.Wpf.ViewModels.Sections
 {
@@ -20,20 +14,18 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
 
         private DisplayList<string> m_AvailablesGroups = new DisplayList<string>();
         private DisplayList<string> m_ChoosenGroups = new DisplayList<string>();
-        private Dictionary<string, FilterEnum[]> m_FieldsToFilter = new Dictionary<string, FilterEnum[]>();
-        private readonly ObservableCollection<Filter> m_CurrentFilters = new ObservableCollection<Filter>();
+        private Dictionary<string, BaseFilter[]> m_FieldsToFilter = new Dictionary<string, BaseFilter[]>();
+        private readonly ObservableCollection<BaseFilter> m_CurrentFilters = new ObservableCollection<BaseFilter>();
         private string m_CurrentField;
-        private Filter[] m_AvailablesFilters;
-        private Func<IEnumerable<string>, IEnumerable<string>> m_OrderByFunc;
+        private BaseFilter[] m_AvailablesFilters;
+        private readonly Func<IEnumerable<string>, IEnumerable<string>> m_OrderByFunc;
 
-        private readonly IBunchOfDataItems m_DataItems;
-
-        public ObservableCollection<Filter> CurrentFilters
+        public ObservableCollection<BaseFilter> CurrentFilters
         {
             get { return m_CurrentFilters; }
         }
 
-        public Dictionary<string, FilterEnum[]> FieldsToFilter
+        public Dictionary<string, BaseFilter[]> FieldsToFilter
         {
             get { return m_FieldsToFilter; }
             set
@@ -81,7 +73,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             }
         }
 
-        public Filter[] AvailablesFilters
+        public BaseFilter[] AvailablesFilters
         {
             get { return m_AvailablesFilters; }
         }
@@ -111,9 +103,8 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             get { return m_MoveDownCritereCommand ?? (m_MoveDownCritereCommand = new RelayCommand(x => OnCritereMovedDown(), x => CanMoveDownCritere())); }
         }
 
-        public ChooseGroupViewModel(IBunchOfDataItems dataItems, IEnumerable<string> availables, Func<IEnumerable<string>,IEnumerable<string>> orderBy, IEnumerable<string> alreadyGrouped = null)
+        public ChooseGroupViewModel(IEnumerable<string> availables, Func<IEnumerable<string>,IEnumerable<string>> orderBy, IEnumerable<string> alreadyGrouped = null)
         {
-            m_DataItems = dataItems;
             m_OrderByFunc = orderBy;
 
             AvailablesGroups.Items = new FastObservableCollection<string>();
@@ -187,14 +178,13 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
                 OnGroupsChanged(this, new EventArgs());
         }
 
-        private Filter[] GenerateAvailableFilters()
+        private BaseFilter[] GenerateAvailableFilters()
         {
-            return string.IsNullOrEmpty(CurrentField) ? new Filter[0] : FieldsToFilter[CurrentField].Select(x => GenerateFilter(CurrentField, x)).ToArray();
+            return string.IsNullOrEmpty(CurrentField) ? new BaseFilter[0] : FieldsToFilter[CurrentField].Select(x => GenerateFilter(x)).ToArray();
         }
 
-        public Filter GenerateFilter(string field, FilterEnum filterType)
+        private BaseFilter GenerateFilter(BaseFilter f)
         {
-            Filter f = new Filter(field, filterType, m_DataItems);
             f.AddMeAsAFilter += OnFilterAdded;
             f.RemoveMeAsAFilter += OnFilterRemoved;
             f.UpdateAFilter += OnFilterUpdated;
@@ -203,14 +193,14 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
 
         private void OnFilterAdded(object sender, EventArgs e)
         {
-            m_CurrentFilters.Add((Filter) sender);
+            m_CurrentFilters.Add((BaseFilter) sender);
             CurrentField = null;
             OnFilterUpdated(sender, e);
         }
 
         private void OnFilterRemoved(object sender, EventArgs e)
         {
-            m_CurrentFilters.Remove((Filter) sender);
+            m_CurrentFilters.Remove((BaseFilter) sender);
             OnFilterUpdated(sender, e);
         }
 

@@ -1,10 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities;
-using Com.Ericmas001.Wpf.Entities.Attributes;
 using Com.Ericmas001.Wpf.Entities.Enums;
-using Com.Ericmas001.Wpf.Entities.Filters.Attributes;
 using Com.Ericmas001.Wpf.Entities.Filters.Commands;
 using Com.Ericmas001.Wpf.Entities.Filters.Comparators;
 using Com.Ericmas001.Wpf.Entities.Filters.Enums;
@@ -12,7 +10,7 @@ using Com.Ericmas001.Wpf.ViewModels;
 
 namespace Com.Ericmas001.Wpf.Entities.Filters
 {
-    public class Filter : BaseViewModel
+    public abstract class BaseFilter : BaseViewModel
     {
 
         public event EventHandler AddMeAsAFilter;
@@ -199,35 +197,23 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
                 RemoveMeAsAFilter(this, new EventArgs());
         }
 
-        public Filter(string field, FilterEnum filterType, IBunchOfDataItems dataItems)
+        protected abstract IEnumerable<IFilterCommand> GetAllCommands();
+        protected abstract IEnumerable<IFilterComparator> GetAllComparators(); 
+
+
+        public BaseFilter(string field, FilterEnum filterType, IBunchOfDataItems dataItems)
         {
             m_Field = field;
             m_FilterType = filterType;
             m_DataItems = dataItems;
-            m_AvailablesCommands = BasicFilterCommand.AllCommands(EnumFactory<FilterEnum>.GetAttribute<FilterCommandAttribute>(filterType).Commands.ToArray()).ToArray();
+            m_AvailablesCommands = GetAllCommands().ToArray();
             m_CurrentCommand = m_AvailablesCommands.First();
-            m_AvailablesComparators = BasicFilterComparator.AllComparators(EnumFactory<FilterEnum>.GetAttribute<FilterComparatorAttribute>(filterType).Comparators.ToArray()).ToArray();
+            m_AvailablesComparators = GetAllComparators().ToArray();
             m_CurrentComparator = HasOnlyOneComparator ? m_AvailablesComparators.First() : null;
             CurrentSearchType = GenerateSearchType();
         }
 
-        private SearchTypeEnum GenerateSearchType()
-        {
-            //TODO: Unbound from Basic !!!
-            var comp = CurrentComparator as BasicFilterComparator;
-            if (comp != null)
-            {
-                var compAtt = comp.SearchTypeOverrideAttribute;
-                if (compAtt != null)
-                    return compAtt.SearchType;
-            }
-
-            var filterAtt = EnumFactory<FilterEnum>.GetAttribute<SearchTypeAttribute>(FilterType);
-            if (filterAtt != null)
-                return filterAtt.SearchType;
-
-            return SearchTypeEnum.None;
-        }
+        protected abstract SearchTypeEnum GenerateSearchType();
 
         private CheckListItem[] GenerateAvailablesItems()
         {
@@ -275,24 +261,9 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
                 return true;
             }
 
-            switch (m_FilterType)
-            {
-                //TODO: Unbound from Basic !!!
-                case FilterEnum.Text:
-                case FilterEnum.Blob:
-                    if (m_CurrentComparator is TextEqualBasicFilterComparator)
-                        return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, m_AvailablesItems.Where(x => x.IsSelected).Select(x => (string)x.Value), value);
-                    return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, m_CurrentValueString, value);
-                case FilterEnum.Int:
-                    if (m_CurrentComparator is IntBetweenBasicFilterComparator)
-                        return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, new Tuple<int, int>(int.Parse(m_CurrentValueStringPair1), int.Parse(m_CurrentValueStringPair2)), int.Parse(value));
-                    return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, int.Parse(m_CurrentValueString), int.Parse(value));
-                case FilterEnum.Date:
-                case FilterEnum.Time:
-                    return m_CurrentCommand.IsDataFiltered(m_CurrentComparator, m_FilterType == FilterEnum.Date ? m_CurrentValueDate.ToString("yyyy-MM-dd") : m_CurrentValueString, value);
-            }
-
-            return true;
+            return CheckIfIsSurvivingTheFilter(value);
         }
+
+        protected abstract bool CheckIfIsSurvivingTheFilter(string value);
     }
 }

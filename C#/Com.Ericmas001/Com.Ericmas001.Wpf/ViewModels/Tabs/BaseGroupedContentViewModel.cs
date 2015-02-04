@@ -4,8 +4,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Threading;
 using Com.Ericmas001.Util.Entities;
-using Com.Ericmas001.Wpf.Entities;
-using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.Entities.Filters;
 using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 using Com.Ericmas001.Wpf.ViewModels.Sections;
@@ -117,7 +115,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 
         protected virtual void InitGroupingAndFiltering()
         {
-            ChooseGroupVm = new ChooseGroupViewModel(m_DataItems, GetAllGroupingCriterias(), OrderCriterias, new string[0]);
+            ChooseGroupVm = new ChooseGroupViewModel(GetAllGroupingCriterias(), OrderCriterias, new string[0]);
         }
 
         public abstract string[] GetAllGroupingCriterias();
@@ -154,9 +152,9 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
             return GetAllGroupingCriterias();
         }
 
-        public virtual IEnumerable<FilterEnum> GenerateFilter(string crit)
+        public virtual IEnumerable<BaseFilter> GenerateFilter(string crit)
         {
-            return new[] { FilterEnum.Text };
+            return new[] { new SimpleFilter(crit,FilterEnum.Text,DataItems)  };
         }
 
         public virtual IEnumerable<string> GroupedCriterias()
@@ -204,10 +202,10 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 
         protected virtual void GenerateFilters()
         {
-            var filters = new Dictionary<string, FilterEnum[]>();
+            var filters = new Dictionary<string, BaseFilter[]>();
             foreach (string crit in GetAllFiltersCriteria())
             {
-                FilterEnum[] myfilters = GenerateFilter(crit).ToArray();
+                BaseFilter[] myfilters = GenerateFilter(crit).ToArray();
                 if (myfilters.Any())
                     filters.Add(crit, myfilters);
             }
@@ -218,7 +216,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
         {
 
             TDataItem[] filteredData = Data.ToArray();
-            foreach (Filter f in ChooseGroupVm.CurrentFilters)
+            foreach (BaseFilter f in ChooseGroupVm.CurrentFilters)
             {
                 string crit = f.Field;
                 filteredData = filteredData.Where(d => f.IsSurvivingTheFilter(d.ObtainFilterValue(crit))).ToArray();

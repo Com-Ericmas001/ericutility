@@ -60,10 +60,10 @@
         </Grid>
         <DockPanel Margin="20,0,0,0">
             <StackPanel DockPanel.Dock="Top">
-                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalContentAlignment="Center" FontWeight="Bold">Filters</Label>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalContentAlignment="Center" FontWeight="Bold">BaseFilters</Label>
                 <ContentPresenter ContentTemplate="{StaticResource FiltersViewerTemplate}" Content="{Binding}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock Margin="5">New Filter:</TextBlock>
+                    <TextBlock Margin="5">New BaseFilter:</TextBlock>
                     <ComboBox Width="200" ItemsSource="{Binding FieldsToFilter.Keys}" SelectedItem="{Binding CurrentField, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </StackPanel>
