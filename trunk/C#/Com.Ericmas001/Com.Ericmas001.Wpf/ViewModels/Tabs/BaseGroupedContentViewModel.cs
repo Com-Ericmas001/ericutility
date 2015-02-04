@@ -219,7 +219,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
             foreach (BaseFilter f in ChooseGroupVm.CurrentFilters)
             {
                 string crit = f.Field;
-                filteredData = filteredData.Where(d => f.IsSurvivingTheFilter(d.ObtainFilterValue(crit))).ToArray();
+                filteredData = filteredData.Where(d => f.IsSurvivingTheFilter(d.ObtainFilterValue(crit),d)).ToArray();
             }
 
             return filteredData;

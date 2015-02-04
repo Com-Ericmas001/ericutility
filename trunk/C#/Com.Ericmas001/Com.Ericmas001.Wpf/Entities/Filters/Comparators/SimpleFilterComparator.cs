@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Com.Ericmas001.Util;
+using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Wpf.Entities.Attributes;
 using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.Entities.Filters.Attributes;
@@ -37,6 +38,6 @@ namespace Com.Ericmas001.Wpf.Entities.Filters.Comparators
         public SearchTypeAttribute SearchTypeOverrideAttribute { get; private set; }
         public string Description { get; private set; }
         public FilterComparatorEnum Comparator { get; private set; }
-        public abstract bool IsDataFiltered(object comparatorValue, object value);
+        public abstract bool IsDataFiltered(object comparatorValue, object value, IDataItem item);
     }
 }

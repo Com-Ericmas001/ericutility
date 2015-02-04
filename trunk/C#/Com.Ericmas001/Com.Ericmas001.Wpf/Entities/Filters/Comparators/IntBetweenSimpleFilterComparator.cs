@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Wpf.Entities.Filters.Attributes;
 using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 
@@ -9,7 +10,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters.Comparators
     [FilterComparator(FilterComparatorEnum.IntBetween)]
     public class IntBetweenSimpleFilterComparator : SimpleFilterComparator
     {
-        public override bool IsDataFiltered(object comparatorValue, object value)
+        public override bool IsDataFiltered(object comparatorValue, object value, IDataItem item)
         {
             var comparatorValues = comparatorValue as Tuple<int, int>;
             if (comparatorValues == null)

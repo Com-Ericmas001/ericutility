@@ -48,7 +48,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             return SimpleFilterComparator.AllComparators(EnumFactory<FilterEnum>.GetAttribute<FilterComparatorAttribute>(FilterType).Comparators.ToArray());
         }
 
-        protected override bool CheckIfIsSurvivingTheFilter(string value)
+        protected override bool CheckIfIsSurvivingTheFilter(string value, IDataItem item)
         {
             switch (FilterType)
             {
@@ -56,18 +56,26 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
                 case FilterEnum.Text:
                 case FilterEnum.Blob:
                     if (CurrentComparator is TextEqualSimpleFilterComparator)
-                        return CurrentCommand.IsDataFiltered(CurrentComparator, AvailablesItems.Where(x => x.IsSelected).Select(x => (string)x.Value), value);
-                    return CurrentCommand.IsDataFiltered(CurrentComparator, CurrentValueString, value);
+                        return CurrentCommand.IsDataFiltered(CurrentComparator, AvailablesItems.Where(x => x.IsSelected).Select(x => (string)x.Value), value, item);
+                    return CurrentCommand.IsDataFiltered(CurrentComparator, CurrentValueString, value, item);
                 case FilterEnum.Int:
                     if (CurrentComparator is IntBetweenSimpleFilterComparator)
-                        return CurrentCommand.IsDataFiltered(CurrentComparator, new Tuple<int, int>(int.Parse(CurrentValueStringPair1), int.Parse(CurrentValueStringPair2)), int.Parse(value));
-                    return CurrentCommand.IsDataFiltered(CurrentComparator, int.Parse(CurrentValueString), int.Parse(value));
+                        return CurrentCommand.IsDataFiltered(CurrentComparator, new Tuple<int, int>(int.Parse(CurrentValueStringPair1), int.Parse(CurrentValueStringPair2)), int.Parse(value), item);
+                    return CurrentCommand.IsDataFiltered(CurrentComparator, int.Parse(CurrentValueString), int.Parse(value), item);
                 case FilterEnum.Date:
                 case FilterEnum.Time:
-                    return CurrentCommand.IsDataFiltered(CurrentComparator, FilterType == FilterEnum.Date ? CurrentValueDate.ToString("yyyy-MM-dd") : CurrentValueString, value);
+                    return CurrentCommand.IsDataFiltered(CurrentComparator, FilterType == FilterEnum.Date ? CurrentValueDate.ToString("yyyy-MM-dd") : CurrentValueString, value, item);
             }
 
             return true;
+        }
+
+        protected override CheckListItem[] GenerateAvailablesItems()
+        {
+            if (CurrentSearchType != SearchTypeEnum.List && CurrentSearchType != SearchTypeEnum.CheckList)
+                return new CheckListItem[0];
+
+            return DataItems.ObtainAllValues(Field).Select(x => new CheckListItem(x, x)).ToArray();
         }
     }
 }
