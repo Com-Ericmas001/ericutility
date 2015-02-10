@@ -16,6 +16,8 @@ namespace Com.Ericmas001.Wpf.CustomControls
     /// </summary>
     public partial class CoolHtmlBrowserControl : UserControl
     {
+        public WebBrowser Browser { get { return WebBrowser; } }
+
         public CoolHtmlBrowserControl()
         {
             InitializeComponent(); 
