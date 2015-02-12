@@ -58,7 +58,7 @@ namespace Com.Ericmas001.Data.OpenWord
         }
         public void AddPageBreak()
         {
-            AddRuns(new OpenWordRunNewLine());
+            AddRuns(new OpenWordRunNewPage());
         }
 
     }
