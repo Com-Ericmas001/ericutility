@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using System.Windows.Threading;
+using Com.Ericmas001.Util;
 
 namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 {
@@ -42,6 +44,12 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
                 SmallLoadingMessage = this.SmallLoadingMessage
             };
             m_LoadingDataVm.OnDataObtained += RefreshInterface;
+            m_LoadingDataVm.OnErrorObtained += m_LoadingDataVm_OnErrorObtained;
+        }
+
+        void m_LoadingDataVm_OnErrorObtained(object sender, Util.KeyEventArgs<Exception> e)
+        {
+            Logs.LogError(e.Key.ToString());
         }
 
         public virtual void Init()
