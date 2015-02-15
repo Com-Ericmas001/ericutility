@@ -34,6 +34,11 @@ namespace Com.Ericmas001.Wpf.Entities.Filters.Commands
             return m_AllCommands.Where(kvp => commands == null || !commands.Any() || commands.Contains(kvp.Key)).OrderBy(kvp => kvp.Value.Command).Select(kvp => kvp.Value);
         }
 
+        public static SimpleFilterCommand GetCommand(FilterCommandEnum command)
+        {
+            return AllCommands(command).Single();
+        }
+
         public string Description { get; private set; }
         public FilterCommandEnum Command { get; private set; }
         public abstract bool IsDataFiltered(IFilterComparator comparator, object comparatorValue, object value, IDataItem item);
