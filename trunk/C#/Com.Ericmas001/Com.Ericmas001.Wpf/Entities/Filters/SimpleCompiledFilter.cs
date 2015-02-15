@@ -11,7 +11,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 {
     public class SimpleCompiledFilter : BaseCompiledFilter
     {
-        public FilterEnum FilterType { get; private set; }
+        public FilterEnum FilterType { get; set; }
         public SimpleCompiledFilter(FilterInfo info, FilterEnum filterType)
             :base(info)
         {
