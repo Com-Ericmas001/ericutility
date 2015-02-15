@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Com.Ericmas001.Util;
-using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Util.Entities.Fields;
-using Com.Ericmas001.Wpf.Entities.Attributes;
-using Com.Ericmas001.Wpf.Entities.Enums;
-using Com.Ericmas001.Wpf.Entities.Filters.Attributes;
-using Com.Ericmas001.Wpf.Entities.Filters.Enums;
+using Com.Ericmas001.Util.Entities.Filters.Attributes;
+using Com.Ericmas001.Util.Entities.Filters.Enums;
 
-namespace Com.Ericmas001.Wpf.Entities.Filters.Comparators
+namespace Com.Ericmas001.Util.Entities.Filters.Comparators
 {
     public abstract class SimpleFilterComparator : IFilterComparator
     {

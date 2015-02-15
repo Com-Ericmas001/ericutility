@@ -5,6 +5,7 @@ using Com.Ericmas001.AppMonitor.DataTypes.Attributes;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities.Attributes;
 using Com.Ericmas001.Util.Entities;
+using Com.Ericmas001.Util.Entities.Fields;
 using Com.Ericmas001.Wpf.Entities.Enums;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.Helpers
@@ -23,10 +24,10 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.Helpers
             return group.Key;
         }
 
-        public static Dictionary<TCriteria, SearchTypeEnum> GetAllSearchCriterias<TSearchAttribute>(TCategory category)
+        public static Dictionary<TCriteria, FieldTypeEnum> GetAllSearchCriterias<TSearchAttribute>(TCategory category)
             where TSearchAttribute : Attribute, ISearchCriteriaAttribute<TCategory>
         {
-            return OrderCriterias(EnumFactory<TCriteria>.AllValues.Where(x => ContainsAttribute<TSearchAttribute>(category, x))).ToDictionary(c => c, c => EnumFactory<TCriteria>.GetAttribute<TSearchAttribute>(c).SearchType);
+            return OrderCriterias(EnumFactory<TCriteria>.AllValues.Where(x => ContainsAttribute<TSearchAttribute>(category, x))).ToDictionary(c => c, c => EnumFactory<TCriteria>.GetAttribute<TSearchAttribute>(c).FieldType);
         }
         public static TCriteria[] GetAllGroupingCriterias<TGroupingAttribute>(TCategory category)
             where TGroupingAttribute : Attribute, IManyCategoriesAttribute<TCategory>

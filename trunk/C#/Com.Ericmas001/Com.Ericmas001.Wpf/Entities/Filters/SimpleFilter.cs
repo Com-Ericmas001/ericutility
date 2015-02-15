@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities;
+using Com.Ericmas001.Util.Entities.Fields;
 using Com.Ericmas001.Wpf.Entities.Attributes;
 using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.Entities.Filters.Attributes;
@@ -21,21 +22,21 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             FilterType = filterType;
         }
 
-        protected override SearchTypeEnum GenerateSearchType()
+        protected override FieldTypeEnum GenerateFieldType()
         {
             var comp = CurrentComparator as SimpleFilterComparator;
             if (comp != null)
             {
-                var compAtt = comp.SearchTypeOverrideAttribute;
+                var compAtt = comp.FieldTypeOverrideAttribute;
                 if (compAtt != null)
-                    return compAtt.SearchType;
+                    return compAtt.FieldType;
             }
 
-            var filterAtt = EnumFactory<FilterEnum>.GetAttribute<SearchTypeAttribute>(FilterType);
+            var filterAtt = EnumFactory<FilterEnum>.GetAttribute<FieldTypeAttribute>(FilterType);
             if (filterAtt != null)
-                return filterAtt.SearchType;
+                return filterAtt.FieldType;
 
-            return SearchTypeEnum.None;
+            return FieldTypeEnum.None;
         }
 
         protected override IEnumerable<IFilterCommand> GetAllCommands()
@@ -71,10 +72,17 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         protected override CheckListItem[] GenerateAvailablesItems()
         {
-            if (CurrentSearchType != SearchTypeEnum.List && CurrentSearchType != SearchTypeEnum.CheckList)
+            if (CurrentFieldType != FieldTypeEnum.List && CurrentFieldType != FieldTypeEnum.CheckList)
                 return new CheckListItem[0];
 
-            return DataItems.ObtainAllValues(Field).Select(x => new CheckListItem(x, x)).ToArray();
+            return DataItems.ObtainAllValues(Field).Select(x => new CheckListItem(RenameEmptyItem(x), x)).ToArray();
+        }
+
+        private string RenameEmptyItem(string it)
+        {
+            if (String.IsNullOrEmpty(it))
+                return "{Empty}";
+            return it;
         }
     }
 }
