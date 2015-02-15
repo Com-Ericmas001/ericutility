@@ -3,14 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:cv="clr-namespace:Com.Ericmas001.Wpf.Converters;assembly=Com.Ericmas001.Wpf"
         xmlns:local="clr-namespace:WpfApplication1"
+        xmlns:views="clr-namespace:Com.Ericmas001.Wpf.Views;assembly=Com.Ericmas001.Wpf"
         Title="MainWindow" Height="350" Width="525">
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
     <Window.Resources>
-        <cv:EnumDescriptionConverter x:Key="enumConverter" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Com.Ericmas001.Wpf;component/Styles/ExpanderStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <cv:EnumDescriptionConverter x:Key="enumConverter" />
+        </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <DockPanel>
+
+        <!-- Panneau rétractable de regroupement -->
+        <Expander DockPanel.Dock="Top" HorizontalAlignment="Center" Header="Grouping and Filters" Template="{StaticResource StretchyExpanderTemp}" OverridesDefaultStyle="True" Margin="10">
+            <views:ChooseGroupView DataContext="{Binding ChooseGroupVm}" />
+        </Expander>
         <Label Background="LightCoral" Content="{Binding TestEnumValue, Converter={StaticResource enumConverter}}"/>
-    </Grid>
+    </DockPanel>
 </Window>

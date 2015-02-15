@@ -28,15 +28,17 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             get { return m_CurrentFilters; }
         }
 
-        public Dictionary<string, BaseFilterInCreation[]> FieldsToFilter
+        public IEnumerable<string> FieldsToFilter
         {
-            get { return m_FieldsToFilter; }
-            set
-            {
-                m_FieldsToFilter = value;
-                RaisePropertyChanged("FieldsToFilter");
-                RaisePropertyChanged("AllFields");
-            }
+            get { return m_FieldsToFilter.Keys; }
+        }
+
+        public void AddFieldToFilter(string field, BaseFilterInCreation[] filters)
+        {
+            foreach (BaseFilterInCreation f in filters)
+                RegisterToEvents(f);
+            m_FieldsToFilter.Add(field,filters);
+
         }
 
         public string[] AllFields
@@ -183,13 +185,12 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
 
         private BaseFilterInCreation[] GenerateAvailableFilters()
         {
-            return string.IsNullOrEmpty(CurrentField) ? new BaseFilterInCreation[0] : FieldsToFilter[CurrentField].Select(x => GenerateFilter(x)).ToArray();
+            return string.IsNullOrEmpty(CurrentField) ? new BaseFilterInCreation[0] : m_FieldsToFilter[CurrentField].ToArray();
         }
 
-        private BaseFilterInCreation GenerateFilter(BaseFilterInCreation f)
+        private void RegisterToEvents(BaseFilterInCreation f)
         {
             f.AddMeAsAFilter += OnFilterAdded;
-            return f;
         }
         private void RegisterToEvents(BaseCompiledFilter f)
         {
@@ -215,9 +216,10 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             if (OnGroupsChanged != null)
                 OnGroupsChanged(sender, e);
         }
-        private void AddFilter(BaseFilterInCreation f, IFilterCommand command, IFilterComparator comparator)
+        private void AddFilter(BaseFilterInCreation f)
         {
-            GenerateFilter(f).AddCommand.Execute(null);
+            RegisterToEvents(f);
+            f.AddCommand.Execute(null);
         }
 
         public BaseFilterInCreation AddCheckListFilter(BaseFilterInCreation f, IFilterCommand command, IFilterComparator comparator, Func<CheckListItem, bool> selectionFunc)
@@ -225,7 +227,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             f.CurrentCommand = command;
             f.CurrentComparator = comparator;
             f.AvailablesItems.Where(selectionFunc).ToList().ForEach(x => x.IsSelected = true);
-            AddFilter(f, command, comparator);
+            AddFilter(f);
             return f;
         }
         public BaseFilterInCreation AddSingleListFilter(BaseFilterInCreation f, IFilterCommand command, IFilterComparator comparator, Func<CheckListItem, bool> selectionFunc)
@@ -233,7 +235,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             f.CurrentCommand = command;
             f.CurrentComparator = comparator;
             f.CurrentValueList = f.AvailablesItems.Single(selectionFunc);
-            AddFilter(f, command, comparator);
+            AddFilter(f);
             return f;
         }
         public BaseFilterInCreation AddStringPairFilter(BaseFilterInCreation f, IFilterCommand command, IFilterComparator comparator, string value1, string value2)
@@ -242,7 +244,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             f.CurrentComparator = comparator;
             f.CurrentValueStringPair1 = value1;
             f.CurrentValueStringPair2 = value2;
-            AddFilter(f, command, comparator);
+            AddFilter(f);
             return f;
         }
         public BaseFilterInCreation AddStringFilter(BaseFilterInCreation f, IFilterCommand command, IFilterComparator comparator, string value)
@@ -250,7 +252,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             f.CurrentCommand = command;
             f.CurrentComparator = comparator;
             f.CurrentValueString = value;
-            AddFilter(f, command, comparator);
+            AddFilter(f);
             return f;
         }
         public BaseFilterInCreation AddDateFilter(BaseFilterInCreation f, IFilterCommand command, IFilterComparator comparator, DateTime value)
@@ -258,7 +260,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             f.CurrentCommand = command;
             f.CurrentComparator = comparator;
             f.CurrentValueDate = value;
-            AddFilter(f, command, comparator);
+            AddFilter(f);
             return f;
         }
 

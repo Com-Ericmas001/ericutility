@@ -214,9 +214,8 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
             {
                 BaseFilterInCreation[] myfilters = GenerateFilter(crit).ToArray();
                 if (myfilters.Any())
-                    filters.Add(crit, myfilters);
+                    ChooseGroupVm.AddFieldToFilter(crit, myfilters);
             }
-            ChooseGroupVm.FieldsToFilter = filters;
         }
 
         private IEnumerable<TDataItem> GetFilteredData()
