@@ -72,7 +72,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
                     sf.Value = AvailablesItems.Where(x => x.IsSelected).Select(x => new Tuple<string, object>(x.Name, x.Value));
                     break;
                 case FieldTypeEnum.List:
-                    sf.Value = CurrentValueList;
+                    sf.Value = new Tuple<string,object>(CurrentValueList.Name,CurrentValueList.Value);
                     break;
                 case FieldTypeEnum.Date:
                     sf.Value = CurrentValueDate;
