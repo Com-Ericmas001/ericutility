@@ -23,9 +23,7 @@ namespace Com.Ericmas001.Util.Entities.Filters.Comparators
                     var c = type.GetConstructor(new Type[] { }).Invoke(new object[0]) as SimpleFilterComparator;
                     foreach (FilterComparatorEnum fce in type.GetAttributeValue((FilterComparatorAttribute att) => att.Comparators))
                     {
-                        c.Description = EnumFactory<FilterComparatorEnum>.ToString(fce);
                         c.Comparator = fce;
-                        c.FieldTypeOverrideAttribute = EnumFactory<FilterComparatorEnum>.GetAttribute<FieldTypeAttribute>(fce);
                         m_AllComparators.Add(fce, c);
                     }
                 }
@@ -39,7 +37,19 @@ namespace Com.Ericmas001.Util.Entities.Filters.Comparators
         }
         public FieldTypeAttribute FieldTypeOverrideAttribute { get; private set; }
         public string Description { get; private set; }
-        public FilterComparatorEnum Comparator { get; private set; }
+
+        private FilterComparatorEnum m_Comparator;
+
+        public FilterComparatorEnum Comparator
+        {
+            get { return m_Comparator; }
+            set
+            {
+                m_Comparator = value;
+                Description = EnumFactory<FilterComparatorEnum>.ToString(m_Comparator);
+                FieldTypeOverrideAttribute = EnumFactory<FilterComparatorEnum>.GetAttribute<FieldTypeAttribute>(m_Comparator);
+            }
+        }
         public abstract bool IsDataFiltered(object comparatorValue, object value, IDataItem item);
     }
 }

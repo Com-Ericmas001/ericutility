@@ -69,10 +69,10 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             switch (CurrentFieldType)
             {
                 case FieldTypeEnum.CheckList:
-                    sf.Value = AvailablesItems.Where(x => x.IsSelected).Select(x => new Tuple<string, object>(x.Name, x.Value));
+                    sf.Value = AvailablesItems.Where(x => x.IsSelected).Select(x => new FieldListItem() { Name = x.Name, Value = x.Value }).ToArray();
                     break;
                 case FieldTypeEnum.List:
-                    sf.Value = new Tuple<string,object>(CurrentValueList.Name,CurrentValueList.Value);
+                    sf.Value = new FieldListItem() {Name = CurrentValueList.Name, Value = CurrentValueList.Value};
                     break;
                 case FieldTypeEnum.Date:
                     sf.Value = CurrentValueDate;

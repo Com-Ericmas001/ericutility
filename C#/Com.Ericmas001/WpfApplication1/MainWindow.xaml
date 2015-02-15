@@ -4,7 +4,7 @@
         xmlns:cv="clr-namespace:Com.Ericmas001.Wpf.Converters;assembly=Com.Ericmas001.Wpf"
         xmlns:local="clr-namespace:WpfApplication1"
         xmlns:views="clr-namespace:Com.Ericmas001.Wpf.Views;assembly=Com.Ericmas001.Wpf"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="450" Width="875">
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
@@ -18,10 +18,14 @@
     </Window.Resources>
     <DockPanel>
 
-        <!-- Panneau rétractable de regroupement -->
-        <Expander DockPanel.Dock="Top" HorizontalAlignment="Center" Header="Grouping and Filters" Template="{StaticResource StretchyExpanderTemp}" OverridesDefaultStyle="True" Margin="10">
-            <views:ChooseGroupView DataContext="{Binding ChooseGroupVm}" />
-        </Expander>
+        <StackPanel DockPanel.Dock="Top">
+            <!-- Panneau rétractable de regroupement -->
+            <Expander HorizontalAlignment="Center" Header="Grouping and Filters" Template="{StaticResource StretchyExpanderTemp}" OverridesDefaultStyle="True" Margin="10">
+                <views:ChooseGroupView DataContext="{Binding ChooseGroupVm}" />
+            </Expander>
+            <Button Command="{Binding LoadFromJsonCommand}" Margin="10" HorizontalAlignment="Center">Import</Button>
+            <Button Command="{Binding SaveToJsonCommand}" Margin="10" HorizontalAlignment="Center">Export</Button>
+        </StackPanel>
         <Label Background="LightCoral" Content="{Binding TestEnumValue, Converter={StaticResource enumConverter}}"/>
     </DockPanel>
 </Window>

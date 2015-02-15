@@ -10,7 +10,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
         public event EventHandler RemoveMeAsAFilter;
         public event EventHandler UpdateAFilter;
 
-        private readonly FilterInfo m_Info;
+        private FilterInfo m_Info;
         private bool m_IsActive = true;
 
         public bool IsActive
@@ -53,6 +53,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
         public FilterInfo Info
         {
             get { return m_Info; }
+            set { m_Info = value; }
         }
 
         public override string ToString()
