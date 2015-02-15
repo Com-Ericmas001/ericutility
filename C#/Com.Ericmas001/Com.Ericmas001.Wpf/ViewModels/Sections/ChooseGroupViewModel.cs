@@ -37,7 +37,16 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
         {
             foreach (BaseFilterInCreation f in filters)
                 RegisterToEvents(f);
-            m_FieldsToFilter.Add(field,filters);
+            m_FieldsToFilter.Add(field, filters);
+
+        }
+
+        public void RemoveAllFieldsToFilter()
+        {
+            foreach(string k in FieldsToFilter)
+                foreach (BaseFilterInCreation f in m_FieldsToFilter[k])
+                    UnRegisterToEvents(f);
+            m_FieldsToFilter.Clear();
 
         }
 
@@ -192,10 +201,19 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
         {
             f.AddMeAsAFilter += OnFilterAdded;
         }
+        private void UnRegisterToEvents(BaseFilterInCreation f)
+        {
+            f.AddMeAsAFilter -= OnFilterAdded;
+        }
         private void RegisterToEvents(BaseCompiledFilter f)
         {
             f.RemoveMeAsAFilter += OnFilterRemoved;
             f.UpdateAFilter += OnFilterUpdated;
+        }
+        private void UnRegisterToEvents(BaseCompiledFilter f)
+        {
+            f.RemoveMeAsAFilter -= OnFilterRemoved;
+            f.UpdateAFilter -= OnFilterUpdated;
         }
 
         private void OnFilterAdded(object sender, EventArgs e)
