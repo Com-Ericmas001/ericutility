@@ -151,6 +151,12 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             return ChoosenGroups.SelectedIndex >= 0 && ChoosenGroups.SelectedIndex < (ChoosenGroups.Items.Count - 1);
         }
 
+        public void ChooseGroupingCriteria(string group)
+        {
+            AvailablesGroups.Selected = group;
+            OnCritereChoosen();
+        }
+
         private void OnCritereChoosen()
         {
             ChoosenGroups.Items.Add(AvailablesGroups.Selected);
