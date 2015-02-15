@@ -14,11 +14,11 @@ namespace Com.Ericmas001.Util.Entities.Filters
             FilterValue = filterValue;
         }
 
-        public string FieldToFilter { get; private set; }
-        public IFilterCommand Command { get; private set; }
-        public IFilterComparator Comparator { get; private set; }
+        public string FieldToFilter { get; set; }
+        public IFilterCommand Command { get; set; }
+        public IFilterComparator Comparator { get; set; }
 
-        public IField FilterValue { get; private set; }
+        public IField FilterValue { get; set; }
 
         public override string ToString()
         {

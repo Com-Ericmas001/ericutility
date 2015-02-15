@@ -56,6 +56,7 @@
     <Compile Include="Entities\Attributes\TagAttribute.cs" />
     <Compile Include="Entities\BunchOfDataItems.cs" />
     <Compile Include="Entities\Fields\BaseField.cs" />
+    <Compile Include="Entities\Fields\FieldListItem.cs" />
     <Compile Include="Entities\Fields\FieldTypeAttribute.cs" />
     <Compile Include="Entities\Fields\DateSimpleField.cs" />
     <Compile Include="Entities\Fields\GuidSimpleField.cs" />

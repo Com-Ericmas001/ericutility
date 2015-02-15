@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Com.Ericmas001.Util.Entities;
+using Com.Ericmas001.Util.Entities.Fields;
 using Com.Ericmas001.Util.Entities.Filters;
 using Com.Ericmas001.Util.Entities.Filters.Comparators;
 using Com.Ericmas001.Util.Entities.Filters.Enums;
@@ -24,7 +25,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
                 case FilterEnum.Text:
                 case FilterEnum.Blob:
                     if (Info.Comparator is TextEqualSimpleFilterComparator)
-                        return Info.Command.IsDataFiltered(Info.Comparator, ((IEnumerable<Tuple<string,object>>) Info.FilterValue.Value).Select(x => (string)x.Item2), value, item);
+                        return Info.Command.IsDataFiltered(Info.Comparator, ((IEnumerable<FieldListItem>) Info.FilterValue.Value).Select(x => (string)x.Value), value, item);
                     return Info.Command.IsDataFiltered(Info.Comparator, Info.FilterValue.Value, value, item);
                 case FilterEnum.Int:
                     return Info.Command.IsDataFiltered(Info.Comparator, Info.FilterValue.Value, int.Parse(value), item);

@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Util.Entities.Filters.Enums;
 using Com.Ericmas001.Wpf;
 using Com.Ericmas001.Wpf.Entities.Filters;
 using Com.Ericmas001.Wpf.ViewModels.Sections;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace WpfApplication1
 {
@@ -48,6 +52,37 @@ namespace WpfApplication1
     }
     public class MainViewModel
     {
+        private RelayCommand m_SaveToJsonCommand;
+        private RelayCommand m_LoadFromJsonCommand;
+
+        public ICommand SaveToJsonCommand
+        {
+            get { return m_SaveToJsonCommand ?? (m_SaveToJsonCommand = new RelayCommand(x => SaveToJson())); }
+        }
+        public ICommand LoadFromJsonCommand
+        {
+            get { return m_LoadFromJsonCommand ?? (m_LoadFromJsonCommand = new RelayCommand(x => LoadFromJson())); }
+        }
+
+        private void SaveToJson()
+        {
+            File.WriteAllText("test.txt", JsonConvert.SerializeObject(ChooseGroupVm.CurrentFilters.ToArray(), Formatting.Indented, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All, ContractResolver = new WritablePropertiesOnlyResolver() }));
+        }
+        private void LoadFromJson()
+        {
+            string str = File.ReadAllText("test.txt");
+            BaseCompiledFilter[] filters = JsonConvert.DeserializeObject<BaseCompiledFilter[]>(str, new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All});
+            foreach(BaseCompiledFilter bcf in filters)
+                ChooseGroupVm.AddCompiledFilter(bcf);
+        }
+        class WritablePropertiesOnlyResolver : DefaultContractResolver
+        {
+            protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+            {
+                IList<JsonProperty> props = base.CreateProperties(type, memberSerialization);
+                return props.Where(p => p.Writable).ToList();
+            }
+        }
         public ChooseGroupViewModel ChooseGroupVm { get; private set; }
 
         private TestEnum m_TestEnumValue = TestEnum.Bonjour;

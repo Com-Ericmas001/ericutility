@@ -23,7 +23,6 @@ namespace Com.Ericmas001.Util.Entities.Filters.Commands
                     var c = type.GetConstructor(new Type[] {}).Invoke(new object[0]) as SimpleFilterCommand;
                     foreach (FilterCommandEnum fce in type.GetAttributeValue((FilterCommandAttribute att) => att.Commands))
                     {
-                        c.Description = EnumFactory<FilterCommandEnum>.ToString(fce);
                         c.Command = fce;
                         m_AllCommands.Add(fce, c);
                     }
@@ -38,7 +37,18 @@ namespace Com.Ericmas001.Util.Entities.Filters.Commands
         }
 
         public string Description { get; private set; }
-        public FilterCommandEnum Command { get; private set; }
+        private FilterCommandEnum m_Command;
+
+        public FilterCommandEnum Command
+        {
+            get { return m_Command; }
+            set
+            {
+                m_Command = value;
+                Description = EnumFactory<FilterCommandEnum>.ToString(m_Command);
+            }
+        }
+
         public abstract bool IsDataFiltered(IFilterComparator comparator, object comparatorValue, object value, IDataItem item);
     }
 }
