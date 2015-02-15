@@ -159,9 +159,9 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
             return GetAllGroupingCriterias();
         }
 
-        public virtual IEnumerable<BaseFilter> GenerateFilter(string crit)
+        public virtual IEnumerable<BaseFilterInCreation> GenerateFilter(string crit)
         {
-            return new[] { new SimpleFilter(crit,FilterEnum.Text,DataItems)  };
+            return new[] { new SimpleFilterInCreation(crit,FilterEnum.Text,DataItems)  };
         }
 
         public virtual IEnumerable<string> GroupedCriterias()
@@ -209,10 +209,10 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 
         protected virtual void GenerateFilters()
         {
-            var filters = new Dictionary<string, BaseFilter[]>();
+            var filters = new Dictionary<string, BaseFilterInCreation[]>();
             foreach (string crit in GetAllFiltersCriteria())
             {
-                BaseFilter[] myfilters = GenerateFilter(crit).ToArray();
+                BaseFilterInCreation[] myfilters = GenerateFilter(crit).ToArray();
                 if (myfilters.Any())
                     filters.Add(crit, myfilters);
             }
@@ -223,10 +223,10 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
         {
 
             TDataItem[] filteredData = Data.ToArray();
-            foreach (BaseFilter f in ChooseGroupVm.CurrentFilters)
+            foreach (BaseCompiledFilter cf in ChooseGroupVm.CurrentFilters)
             {
-                string crit = f.Field;
-                filteredData = filteredData.Where(d => f.IsSurvivingTheFilter(d.ObtainFilterValue(crit),d)).ToArray();
+                string crit = cf.Info.FieldToFilter;
+                filteredData = filteredData.Where(d => cf.IsSurvivingTheFilter(d.ObtainFilterValue(crit),d)).ToArray();
             }
 
             return filteredData;

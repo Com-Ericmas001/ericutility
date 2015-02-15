@@ -17,18 +17,18 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
 
         private DisplayList<string> m_AvailablesGroups = new DisplayList<string>();
         private DisplayList<string> m_ChoosenGroups = new DisplayList<string>();
-        private Dictionary<string, BaseFilter[]> m_FieldsToFilter = new Dictionary<string, BaseFilter[]>();
-        private readonly ObservableCollection<BaseFilter> m_CurrentFilters = new ObservableCollection<BaseFilter>();
+        private Dictionary<string, BaseFilterInCreation[]> m_FieldsToFilter = new Dictionary<string, BaseFilterInCreation[]>();
+        private readonly ObservableCollection<BaseCompiledFilter> m_CurrentFilters = new ObservableCollection<BaseCompiledFilter>();
         private string m_CurrentField;
-        private BaseFilter[] m_AvailablesFilters;
+        private BaseFilterInCreation[] m_AvailablesFilters;
         private readonly Func<IEnumerable<string>, IEnumerable<string>> m_OrderByFunc;
 
-        public ObservableCollection<BaseFilter> CurrentFilters
+        public ObservableCollection<BaseCompiledFilter> CurrentFilters
         {
             get { return m_CurrentFilters; }
         }
 
-        public Dictionary<string, BaseFilter[]> FieldsToFilter
+        public Dictionary<string, BaseFilterInCreation[]> FieldsToFilter
         {
             get { return m_FieldsToFilter; }
             set
@@ -76,7 +76,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             }
         }
 
-        public BaseFilter[] AvailablesFilters
+        public BaseFilterInCreation[] AvailablesFilters
         {
             get { return m_AvailablesFilters; }
         }
@@ -181,29 +181,32 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
                 OnGroupsChanged(this, new EventArgs());
         }
 
-        private BaseFilter[] GenerateAvailableFilters()
+        private BaseFilterInCreation[] GenerateAvailableFilters()
         {
-            return string.IsNullOrEmpty(CurrentField) ? new BaseFilter[0] : FieldsToFilter[CurrentField].Select(x => GenerateFilter(x)).ToArray();
+            return string.IsNullOrEmpty(CurrentField) ? new BaseFilterInCreation[0] : FieldsToFilter[CurrentField].Select(x => GenerateFilter(x)).ToArray();
         }
 
-        public BaseFilter GenerateFilter(BaseFilter f)
+        private BaseFilterInCreation GenerateFilter(BaseFilterInCreation f)
         {
             f.AddMeAsAFilter += OnFilterAdded;
+            return f;
+        }
+        private void RegisterToEvents(BaseCompiledFilter f)
+        {
             f.RemoveMeAsAFilter += OnFilterRemoved;
             f.UpdateAFilter += OnFilterUpdated;
-            return f;
         }
 
         private void OnFilterAdded(object sender, EventArgs e)
         {
-            m_CurrentFilters.Add((BaseFilter) sender);
+            AddCompiledFilter((BaseCompiledFilter) sender);
             CurrentField = null;
             OnFilterUpdated(sender, e);
         }
 
         private void OnFilterRemoved(object sender, EventArgs e)
         {
-            m_CurrentFilters.Remove((BaseFilter) sender);
+            m_CurrentFilters.Remove((BaseCompiledFilter)sender);
             OnFilterUpdated(sender, e);
         }
 
@@ -213,54 +216,49 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
                 OnGroupsChanged(sender, e);
         }
 
-        private BaseFilter PrepareFilter(BaseFilter filter, IFilterCommand command, IFilterComparator comparator)
+        private void AddFilter(BaseFilterInCreation f, IFilterCommand command, IFilterComparator comparator)
         {
-            BaseFilter f = GenerateFilter(filter);
             f.CurrentCommand = command;
             f.CurrentComparator = comparator;
-            return f;
+            GenerateFilter(f).AddCommand.Execute(null);
         }
 
-        private void AddFilter(BaseFilter f)
+        public BaseFilterInCreation AddCheckListFilter(BaseFilterInCreation f, IFilterCommand command, IFilterComparator comparator, Func<CheckListItem, bool> selectionFunc)
         {
-            f.AddCommand.Execute(null);
-        }
-
-        public BaseFilter AddCheckListFilter(BaseFilter filter, IFilterCommand command, IFilterComparator comparator, Func<CheckListItem, bool> selectionFunc)
-        {
-            BaseFilter f = PrepareFilter(filter, command, comparator);
             f.AvailablesItems.Where(selectionFunc).ToList().ForEach(x => x.IsSelected = true);
-            AddFilter(f);
+            AddFilter(f, command, comparator);
             return f;
         }
-        public BaseFilter AddSingleListFilter(BaseFilter filter, IFilterCommand command, IFilterComparator comparator, Func<CheckListItem, bool> selectionFunc)
+        public BaseFilterInCreation AddSingleListFilter(BaseFilterInCreation f, IFilterCommand command, IFilterComparator comparator, Func<CheckListItem, bool> selectionFunc)
         {
-            BaseFilter f = PrepareFilter(filter, command, comparator);
             f.CurrentValueList = f.AvailablesItems.Single(selectionFunc);
-            AddFilter(f);
+            AddFilter(f, command, comparator);
             return f;
         }
-        public BaseFilter AddStringPairFilter(BaseFilter filter, IFilterCommand command, IFilterComparator comparator, string value1, string value2)
+        public BaseFilterInCreation AddStringPairFilter(BaseFilterInCreation f, IFilterCommand command, IFilterComparator comparator, string value1, string value2)
         {
-            BaseFilter f = PrepareFilter(filter, command, comparator);
             f.CurrentValueStringPair1 = value1;
             f.CurrentValueStringPair2 = value2;
-            AddFilter(f);
+            AddFilter(f, command, comparator);
             return f;
         }
-        public BaseFilter AddStringFilter(BaseFilter filter, IFilterCommand command, IFilterComparator comparator, string value)
+        public BaseFilterInCreation AddStringFilter(BaseFilterInCreation f, IFilterCommand command, IFilterComparator comparator, string value)
         {
-            BaseFilter f = PrepareFilter(filter, command, comparator);
             f.CurrentValueString = value;
-            AddFilter(f);
+            AddFilter(f, command, comparator);
             return f;
         }
-        public BaseFilter AddDateFilter(BaseFilter filter, IFilterCommand command, IFilterComparator comparator, DateTime value)
+        public BaseFilterInCreation AddDateFilter(BaseFilterInCreation f, IFilterCommand command, IFilterComparator comparator, DateTime value)
         {
-            BaseFilter f = PrepareFilter(filter, command, comparator);
             f.CurrentValueDate = value;
-            AddFilter(f);
+            AddFilter(f, command, comparator);
             return f;
+        }
+
+        public void AddCompiledFilter(BaseCompiledFilter cf)
+        {
+            RegisterToEvents(cf);
+            m_CurrentFilters.Add(cf);
         }
     }
 }

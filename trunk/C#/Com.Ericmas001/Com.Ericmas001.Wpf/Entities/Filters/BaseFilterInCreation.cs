@@ -9,12 +9,9 @@ using Com.Ericmas001.Wpf.ViewModels;
 
 namespace Com.Ericmas001.Wpf.Entities.Filters
 {
-    public abstract class BaseFilter : BaseViewModel
+    public abstract class BaseFilterInCreation : BaseViewModel
     {
-
         public event EventHandler AddMeAsAFilter;
-        public event EventHandler RemoveMeAsAFilter;
-        public event EventHandler UpdateAFilter;
 
         private readonly string m_Field;
         private IFilterCommand[] m_AvailablesCommands;
@@ -29,8 +26,6 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
         private string m_CurrentValueStringPair2;
         private DateTime m_CurrentValueDate = DateTime.Now;
         private CheckListItem m_CurrentValueList;
-
-        private bool m_IsActive = true;
 
         public CheckListItem CurrentValueList
         {
@@ -136,21 +131,6 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             }
         }
 
-        public bool IsActive
-        {
-            get { return m_IsActive; }
-            set
-            {
-                if (value != m_IsActive)
-                {
-                    m_IsActive = value;
-                    if (UpdateAFilter != null)
-                        UpdateAFilter(this, new EventArgs());
-                    RaisePropertyChanged("IsActive");
-                }
-            }
-        }
-
         protected IBunchOfDataItems DataItems
         {
             get { return m_DataItems; }
@@ -196,36 +176,24 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             get { return m_AddCommand ?? (m_AddCommand = new RelayCommand(x => AddFilter())); }
         }
 
-        private RelayCommand m_DeleteCommand;
-
-        public RelayCommand DeleteCommand
-        {
-            get { return m_DeleteCommand ?? (m_DeleteCommand = new RelayCommand(x => RemoveFilter())); }
-        }
-
+        protected abstract BaseCompiledFilter CompileFilter();  
         private void AddFilter()
         {
             if (AddMeAsAFilter != null)
-                AddMeAsAFilter(this, new EventArgs());
-        }
-
-        private void RemoveFilter()
-        {
-            if (RemoveMeAsAFilter != null)
-                RemoveMeAsAFilter(this, new EventArgs());
+                AddMeAsAFilter(CompileFilter(), new EventArgs());
         }
 
         protected abstract IEnumerable<IFilterCommand> GetAllCommands();
         protected abstract IEnumerable<IFilterComparator> GetAllComparators(); 
 
 
-        public BaseFilter(string field, IBunchOfDataItems dataItems)
+        public BaseFilterInCreation(string field, IBunchOfDataItems dataItems)
         {
             m_Field = field;
             m_DataItems = dataItems;
         }
 
-        private bool m_IsInit = false;
+        private bool m_IsInit;
         private void Init()
         {
             if (!m_IsInit)
@@ -242,48 +210,5 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
         protected abstract FieldTypeEnum GenerateFieldType();
 
         protected abstract CheckListItem[] GenerateAvailablesItems();
-
-        public string Description
-        {
-            get { return ToString(); }
-        }
-
-        public override string ToString()
-        {
-            string values;
-            switch (m_CurrentFieldType)
-            {
-                case FieldTypeEnum.CheckList:
-                    values = "{" + string.Join(", ", m_AvailablesItems.Where(x => x.IsSelected).Select(x => x.Name)) + "}";
-                    break;
-                case FieldTypeEnum.List:
-                    values = m_CurrentValueList.Name;
-                    break;
-                case FieldTypeEnum.Date:
-                    values = m_CurrentValueDate.ToString("yyyy-MM-dd");
-                    break;
-                case FieldTypeEnum.IntPair:
-                    values = String.Format("{0} And {1}", int.Parse(m_CurrentValueStringPair1), int.Parse(m_CurrentValueStringPair2));
-                    break;
-                default:
-                    values = m_CurrentValueString;
-                    break;
-            }
-
-            return string.Format("{0} {1} {2} {3}", m_Field, m_CurrentCommand.Description,m_CurrentComparator.Description, values);
-        }
-
-        public bool IsSurvivingTheFilter(string value, IDataItem item)
-        {
-
-            if (!m_IsActive)
-            {
-                return true;
-            }
-
-            return CheckIfIsSurvivingTheFilter(value, item);
-        }
-
-        protected abstract bool CheckIfIsSurvivingTheFilter(string value, IDataItem item);
     }
 }

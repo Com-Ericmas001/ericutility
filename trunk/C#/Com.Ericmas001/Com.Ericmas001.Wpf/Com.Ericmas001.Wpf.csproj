@@ -88,8 +88,10 @@
     <Compile Include="Entities\Attributes\TextLengthAttribute.cs" />
     <Compile Include="Entities\CheckListItem.cs" />
     <Compile Include="Entities\Enums\TextLengthEnum.cs" />
-    <Compile Include="Entities\Filters\SimpleFilter.cs" />
-    <Compile Include="Entities\Filters\BaseFilter.cs" />
+    <Compile Include="Entities\Filters\BaseCompiledFilter.cs" />
+    <Compile Include="Entities\Filters\SimpleCompiledFilter.cs" />
+    <Compile Include="Entities\Filters\SimpleFilterInCreation.cs" />
+    <Compile Include="Entities\Filters\BaseFilterInCreation.cs" />
     <Compile Include="Entities\TabSectionInfo.cs" />
     <Compile Include="FormField.cs" />
     <Compile Include="FormFieldList.cs" />

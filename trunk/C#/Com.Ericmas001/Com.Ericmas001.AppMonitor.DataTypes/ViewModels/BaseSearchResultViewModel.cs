@@ -106,12 +106,12 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels
         {
             return CriteriaHelper<TCriteria, TCategory>.ObtainGrouping(EnumFactory<TCriteria>.Parse(criteria), items);
         }
-        public override IEnumerable<BaseFilter> GenerateFilter(string crit)
+        public override IEnumerable<BaseFilterInCreation> GenerateFilter(string crit)
         {
             var filterAtt = EnumFactory<TCriteria>.GetAttribute<FiltersAttribute>(EnumFactory<TCriteria>.Parse(crit));
             if ((filterAtt != null && !filterAtt.Filters.Contains(FilterEnum.None)))
-                return filterAtt.Filters.Select(x => new SimpleFilter(crit,x,DataItems)).ToArray();
-            return new BaseFilter[0];
+                return filterAtt.Filters.Select(x => new SimpleFilterInCreation(crit,x,DataItems)).ToArray();
+            return new BaseFilterInCreation[0];
         }
         public override IEnumerable<string> GroupedCriterias()
         {
