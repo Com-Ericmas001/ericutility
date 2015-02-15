@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
-using Com.Ericmas001.Util;
-using Com.Ericmas001.Util.Entities.Attributes;
 using Com.Ericmas001.Wpf.Helpers;
 
 namespace Com.Ericmas001.Wpf.Entities

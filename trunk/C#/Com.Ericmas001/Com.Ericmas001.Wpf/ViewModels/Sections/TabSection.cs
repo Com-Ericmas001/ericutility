@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Com.Ericmas001.Wpf.Entities;
-using Com.Ericmas001.Wpf.Entities.Enums;
-using Com.Ericmas001.Wpf.ViewModels.SearchElements;
 using Com.Ericmas001.Wpf.ViewModels.Tabs;
 
 namespace Com.Ericmas001.Wpf.ViewModels.Sections

@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Com.Ericmas001.Util.Entities.Filters.Attributes;
-using Com.Ericmas001.Util.Entities.Filters.Commands;
-using Com.Ericmas001.Util.Entities.Filters.Comparators;
-using Com.Ericmas001.Util.Entities.Filters.Enums;
 
 namespace Com.Ericmas001.Util.Entities.Fields
 {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Com.Ericmas001.Util;

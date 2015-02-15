@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Com.Ericmas001.Util.Entities.Fields
+﻿namespace Com.Ericmas001.Util.Entities.Fields
 {
     public enum FieldTypeEnum
     {

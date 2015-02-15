@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Input;
-using Com.Ericmas001.Wpf;
-using Com.Ericmas001.Wpf.Entities.Enums;
-using Com.Ericmas001.Wpf.ViewModels.SearchElements;
+﻿using System.Windows.Input;
 
 namespace Com.Ericmas001.Wpf.ViewModels.Sections
 {

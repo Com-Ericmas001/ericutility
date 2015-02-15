@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Com.Ericmas001.Util.Entities
+﻿namespace Com.Ericmas001.Util.Entities
 {
     public interface IDataItem
     {

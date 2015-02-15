@@ -8,8 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace Com.Ericmas001.Wpf

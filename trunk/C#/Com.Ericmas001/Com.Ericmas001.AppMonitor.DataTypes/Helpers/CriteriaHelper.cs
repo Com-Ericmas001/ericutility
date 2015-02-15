@@ -6,7 +6,6 @@ using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities.Attributes;
 using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Util.Entities.Fields;
-using Com.Ericmas001.Wpf.Entities.Enums;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.Helpers
 {
