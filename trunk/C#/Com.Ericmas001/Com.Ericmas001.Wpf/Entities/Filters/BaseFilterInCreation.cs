@@ -29,7 +29,11 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         public CheckListItem CurrentValueList
         {
-            get { return m_CurrentValueList; }
+            get
+            {
+                Init();
+                return m_CurrentValueList;
+            }
             set
             {
                 m_CurrentValueList = value;
@@ -39,7 +43,11 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         public string CurrentValueString
         {
-            get { return m_CurrentValueString; }
+            get
+            {
+                Init();
+                return m_CurrentValueString;
+            }
             set
             {
                 m_CurrentValueString = value;
@@ -49,7 +57,11 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         public string CurrentValueStringPair1
         {
-            get { return m_CurrentValueStringPair1; }
+            get
+            {
+                Init(); 
+                return m_CurrentValueStringPair1;
+            }
             set
             {
                 m_CurrentValueStringPair1 = value;
@@ -59,7 +71,11 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         public string CurrentValueStringPair2
         {
-            get { return m_CurrentValueStringPair2; }
+            get
+            {
+                Init(); 
+                return m_CurrentValueStringPair2;
+            }
             set
             {
                 m_CurrentValueStringPair2 = value;
@@ -69,7 +85,11 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         public DateTime CurrentValueDate
         {
-            get { return m_CurrentValueDate; }
+            get
+            {
+                Init(); 
+                return m_CurrentValueDate;
+            }
             set
             {
                 m_CurrentValueDate = value;
@@ -86,6 +106,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             }
             set
             {
+                Init(); 
                 m_CurrentCommand = value;
                 RaisePropertyChanged("CurrentCommand");
             }
@@ -100,6 +121,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             }
             set
             {
+                Init(); 
                 m_CurrentComparator = value;
                 CurrentFieldType = GenerateFieldType();
                 RaisePropertyChanged("CurrentComparator");
@@ -115,6 +137,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             }
             set
             {
+                Init(); 
                 m_CurrentFieldType = value;
                 AvailablesItems = GenerateAvailablesItems();
                 RaisePropertyChanged("CurrentFieldType");
@@ -123,9 +146,14 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         public CheckListItem[] AvailablesItems
         {
-            get { return m_AvailablesItems; }
+            get
+            {
+                Init(); 
+                return m_AvailablesItems;
+            }
             set
             {
+                Init(); 
                 m_AvailablesItems = value;
                 RaisePropertyChanged("AvailablesItems");
             }
@@ -147,7 +175,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         public bool HasOnlyOneComparator
         {
-            get { return m_AvailablesComparators.Length == 1; }
+            get { return AvailablesComparators.Length == 1; }
         }
 
         public IFilterCommand[] AvailablesCommands
@@ -161,7 +189,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         public bool HasOnlyOneCommand
         {
-            get { return m_AvailablesCommands.Length == 1; }
+            get { return AvailablesCommands.Length == 1; }
         }
 
         public string Field
@@ -202,7 +230,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
                 m_AvailablesCommands = GetAllCommands().ToArray();
                 m_CurrentCommand = m_AvailablesCommands.First();
                 m_AvailablesComparators = GetAllComparators().ToArray();
-                m_CurrentComparator = HasOnlyOneComparator ? m_AvailablesComparators.First() : null;
+                m_CurrentComparator = HasOnlyOneComparator ? AvailablesComparators.First() : null;
                 CurrentFieldType = GenerateFieldType();
             }
         }
