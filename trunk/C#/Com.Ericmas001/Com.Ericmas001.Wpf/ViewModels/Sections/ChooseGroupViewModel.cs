@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using Com.Ericmas001.Wpf.Entities;
 using Com.Ericmas001.Wpf.Entities.Filters;
+using Com.Ericmas001.Wpf.Entities.Filters.Commands;
+using Com.Ericmas001.Wpf.Entities.Filters.Comparators;
 
 namespace Com.Ericmas001.Wpf.ViewModels.Sections
 {
@@ -210,5 +213,54 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
                 OnGroupsChanged(sender, e);
         }
 
+        private BaseFilter PrepareFilter(BaseFilter filter, IFilterCommand command, IFilterComparator comparator)
+        {
+            BaseFilter f = GenerateFilter(filter);
+            f.CurrentCommand = command;
+            f.CurrentComparator = comparator;
+            return f;
+        }
+
+        private void AddFilter(BaseFilter f)
+        {
+            f.AddCommand.Execute(null);
+        }
+
+        public BaseFilter AddCheckListFilter(BaseFilter filter, IFilterCommand command, IFilterComparator comparator, Func<CheckListItem, bool> selectionFunc)
+        {
+            BaseFilter f = PrepareFilter(filter, command, comparator);
+            f.AvailablesItems.Where(selectionFunc).ToList().ForEach(x => x.IsSelected = true);
+            AddFilter(f);
+            return f;
+        }
+        public BaseFilter AddSingleListFilter(BaseFilter filter, IFilterCommand command, IFilterComparator comparator, Func<CheckListItem, bool> selectionFunc)
+        {
+            BaseFilter f = PrepareFilter(filter, command, comparator);
+            f.CurrentValueList = f.AvailablesItems.Single(selectionFunc);
+            AddFilter(f);
+            return f;
+        }
+        public BaseFilter AddStringPairFilter(BaseFilter filter, IFilterCommand command, IFilterComparator comparator, string value1, string value2)
+        {
+            BaseFilter f = PrepareFilter(filter, command, comparator);
+            f.CurrentValueStringPair1 = value1;
+            f.CurrentValueStringPair2 = value2;
+            AddFilter(f);
+            return f;
+        }
+        public BaseFilter AddStringFilter(BaseFilter filter, IFilterCommand command, IFilterComparator comparator, string value)
+        {
+            BaseFilter f = PrepareFilter(filter, command, comparator);
+            f.CurrentValueString = value;
+            AddFilter(f);
+            return f;
+        }
+        public BaseFilter AddDateFilter(BaseFilter filter, IFilterCommand command, IFilterComparator comparator, DateTime value)
+        {
+            BaseFilter f = PrepareFilter(filter, command, comparator);
+            f.CurrentValueDate = value;
+            AddFilter(f);
+            return f;
+        }
     }
 }

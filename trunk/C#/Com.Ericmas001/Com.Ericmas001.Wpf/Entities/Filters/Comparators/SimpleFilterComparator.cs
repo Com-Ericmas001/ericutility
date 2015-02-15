@@ -35,6 +35,11 @@ namespace Com.Ericmas001.Wpf.Entities.Filters.Comparators
             }
             return m_AllComparators.Where(kvp => comparators == null || !comparators.Any() || comparators.Contains(kvp.Key)).OrderBy(kvp => kvp.Value.Comparator).Select(kvp => kvp.Value);
         }
+
+        public static SimpleFilterComparator GetComparator(FilterComparatorEnum comparator)
+        {
+            return AllComparators(comparator).Single();
+        }
         public SearchTypeAttribute SearchTypeOverrideAttribute { get; private set; }
         public string Description { get; private set; }
         public FilterComparatorEnum Comparator { get; private set; }
