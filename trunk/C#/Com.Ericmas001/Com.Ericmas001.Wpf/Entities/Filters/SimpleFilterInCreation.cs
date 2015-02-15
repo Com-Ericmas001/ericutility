@@ -63,7 +63,7 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             return it;
         }
 
-        protected override BaseCompiledFilter CompileFilter()
+        protected virtual FilterInfo GenerateFilterInfo()
         {
             SimpleField sf = SimpleField.GenerateField(CurrentFieldType);
             switch (CurrentFieldType)
@@ -91,7 +91,12 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
                     break;
             }
 
-            return new SimpleCompiledFilter(new FilterInfo(Field, CurrentCommand, CurrentComparator, sf), FilterType);
+            return new FilterInfo(Field, CurrentCommand, CurrentComparator, sf);
+        }
+
+        protected override BaseCompiledFilter CompileFilter()
+        {
+            return new SimpleCompiledFilter(GenerateFilterInfo(), FilterType);
         }
     }
 }
