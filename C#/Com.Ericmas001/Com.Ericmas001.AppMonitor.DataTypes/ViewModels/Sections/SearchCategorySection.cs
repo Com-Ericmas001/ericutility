@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Com.Ericmas001.AppMonitor.DataTypes.Attributes;
 using Com.Ericmas001.AppMonitor.DataTypes.Helpers;
+using Com.Ericmas001.Util.Entities.Fields;
 using Com.Ericmas001.Wpf.Entities;
 using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.ViewModels.SearchElements;
@@ -80,21 +81,21 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.ViewModels.Sections
             foreach (var crit in criterias.Keys)
                 switch (criterias[crit])
                 {
-                    case SearchTypeEnum.Date:
+                    case FieldTypeEnum.Date:
                         m_CriteriaModels.Add(crit, new DateSearchElement());
                         break;
-                    case SearchTypeEnum.Guid:
+                    case FieldTypeEnum.Guid:
                         m_CriteriaModels.Add(crit, new GuidSearchElement());
                         break;
-                    case SearchTypeEnum.Int:
+                    case FieldTypeEnum.Int:
                         m_CriteriaModels.Add(crit, myIntSearchElement);
                         break;
-                    case SearchTypeEnum.List:
+                    case FieldTypeEnum.List:
                         var myListSearchElement = new ListSearchElement(ObtainList(crit));
                         myListSearchElement.ValueSubmitted += delegate { StartNewTabCommand.Execute(null); };
                         m_CriteriaModels.Add(crit, myListSearchElement);
                         break;
-                    case SearchTypeEnum.UpperText:
+                    case FieldTypeEnum.UpperText:
                         m_CriteriaModels.Add(crit, myUpperTextSearchElement);
                         break;
                     default:

@@ -89,7 +89,6 @@
     <Compile Include="Entities\Filters\Attributes\FilterComparatorAttribute.cs" />
     <Compile Include="Entities\Filters\Attributes\FiltersAttribute.cs" />
     <Compile Include="Entities\Attributes\TextLengthAttribute.cs" />
-    <Compile Include="Entities\Attributes\SearchTypeAttribute.cs" />
     <Compile Include="Entities\CheckListItem.cs" />
     <Compile Include="Entities\Filters\Commands\MustNotSimpleFilterCommand.cs" />
     <Compile Include="Entities\Filters\Commands\MustSimpleFilterCommand.cs" />
@@ -111,7 +110,6 @@
     <Compile Include="Entities\Filters\Enums\FilterComparatorEnum.cs" />
     <Compile Include="Entities\Filters\Enums\FilterEnum.cs" />
     <Compile Include="Entities\Enums\TextLengthEnum.cs" />
-    <Compile Include="Entities\Enums\SearchTypeEnum.cs" />
     <Compile Include="Entities\Filters\SimpleFilter.cs" />
     <Compile Include="Entities\Filters\BaseFilter.cs" />
     <Compile Include="Entities\Filters\Commands\IFilterCommand.cs" />
@@ -278,7 +276,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Templates\Filters\SearchTypesDataTemplate.xaml">
+    <Page Include="Templates\Filters\FieldTypesDataTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

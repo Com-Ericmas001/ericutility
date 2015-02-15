@@ -5,7 +5,7 @@
         <ResourceDictionary Source="../EmptyTemplate.xaml"/>
         <ResourceDictionary Source="CommandsDataTemplate.xaml"/>
         <ResourceDictionary Source="ComparatorsDataTemplate.xaml"/>
-        <ResourceDictionary Source="SearchTypesDataTemplate.xaml"/>
+        <ResourceDictionary Source="FieldTypesDataTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="AddAFilterTemplate">
@@ -21,29 +21,29 @@
                 <ContentControl.Style>
                     <Style TargetType="{x:Type ContentControl}">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding CurrentSearchType}" Value="None">
+                            <DataTrigger Binding="{Binding CurrentFieldType}" Value="None">
                                 <Setter Property="ContentTemplate" Value="{StaticResource EmptyTemplate}" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding CurrentSearchType}" Value="Text">
-                                <Setter Property="ContentTemplate" Value="{StaticResource SearchTypeTextTemplate}" />
+                            <DataTrigger Binding="{Binding CurrentFieldType}" Value="Text">
+                                <Setter Property="ContentTemplate" Value="{StaticResource FieldTypeTextTemplate}" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding CurrentSearchType}" Value="Int">
-                                <Setter Property="ContentTemplate" Value="{StaticResource SearchTypeIntTemplate}" />
+                            <DataTrigger Binding="{Binding CurrentFieldType}" Value="Int">
+                                <Setter Property="ContentTemplate" Value="{StaticResource FieldTypeIntTemplate}" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding CurrentSearchType}" Value="IntPair">
-                                <Setter Property="ContentTemplate" Value="{StaticResource SearchTypeIntPairTemplate}" />
+                            <DataTrigger Binding="{Binding CurrentFieldType}" Value="IntPair">
+                                <Setter Property="ContentTemplate" Value="{StaticResource FieldTypeIntPairTemplate}" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding CurrentSearchType}" Value="Date">
-                                <Setter Property="ContentTemplate" Value="{StaticResource SearchTypeDateTemplate}" />
+                            <DataTrigger Binding="{Binding CurrentFieldType}" Value="Date">
+                                <Setter Property="ContentTemplate" Value="{StaticResource FieldTypeDateTemplate}" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding CurrentSearchType}" Value="Time">
-                                <Setter Property="ContentTemplate" Value="{StaticResource SearchTypeTimeTemplate}" />
+                            <DataTrigger Binding="{Binding CurrentFieldType}" Value="Time">
+                                <Setter Property="ContentTemplate" Value="{StaticResource FieldTypeTimeTemplate}" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding CurrentSearchType}" Value="List">
-                                <Setter Property="ContentTemplate" Value="{StaticResource SearchTypeListTemplate}" />
+                            <DataTrigger Binding="{Binding CurrentFieldType}" Value="List">
+                                <Setter Property="ContentTemplate" Value="{StaticResource FieldTypeListTemplate}" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding CurrentSearchType}" Value="CheckList">
-                                <Setter Property="ContentTemplate" Value="{StaticResource SearchTypeCheckListTemplate}" />
+                            <DataTrigger Binding="{Binding CurrentFieldType}" Value="CheckList">
+                                <Setter Property="ContentTemplate" Value="{StaticResource FieldTypeCheckListTemplate}" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>

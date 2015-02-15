@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Com.Ericmas001.Util.Entities;
+using Com.Ericmas001.Util.Entities.Fields;
 using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.Entities.Filters.Commands;
 using Com.Ericmas001.Wpf.Entities.Filters.Comparators;
@@ -18,13 +19,13 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
         public event EventHandler UpdateAFilter;
 
         private readonly string m_Field;
-        private readonly IFilterCommand[] m_AvailablesCommands;
-        private readonly IFilterComparator[] m_AvailablesComparators;
+        private IFilterCommand[] m_AvailablesCommands;
+        private IFilterComparator[] m_AvailablesComparators;
         private readonly IBunchOfDataItems m_DataItems;
         private CheckListItem[] m_AvailablesItems;
         private IFilterCommand m_CurrentCommand;
         private IFilterComparator m_CurrentComparator;
-        private SearchTypeEnum m_CurrentSearchType;
+        private FieldTypeEnum m_CurrentFieldType;
         private string m_CurrentValueString;
         private string m_CurrentValueStringPair1;
         private string m_CurrentValueStringPair2;
@@ -85,7 +86,11 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         public IFilterCommand CurrentCommand
         {
-            get { return m_CurrentCommand; }
+            get
+            {
+                Init(); 
+                return m_CurrentCommand;
+            }
             set
             {
                 m_CurrentCommand = value;
@@ -95,23 +100,31 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         public IFilterComparator CurrentComparator
         {
-            get { return m_CurrentComparator; }
+            get
+            {
+                Init(); 
+                return m_CurrentComparator;
+            }
             set
             {
                 m_CurrentComparator = value;
-                CurrentSearchType = GenerateSearchType();
+                CurrentFieldType = GenerateFieldType();
                 RaisePropertyChanged("CurrentComparator");
             }
         }
 
-        public SearchTypeEnum CurrentSearchType
+        public FieldTypeEnum CurrentFieldType
         {
-            get { return m_CurrentSearchType; }
+            get
+            {
+                Init();
+                return m_CurrentFieldType;
+            }
             set
             {
-                m_CurrentSearchType = value;
+                m_CurrentFieldType = value;
                 AvailablesItems = GenerateAvailablesItems();
-                RaisePropertyChanged("CurrentSearchType");
+                RaisePropertyChanged("CurrentFieldType");
             }
         }
 
@@ -147,7 +160,11 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         public IFilterComparator[] AvailablesComparators
         {
-            get { return m_AvailablesComparators; }
+            get
+            {
+                Init();
+                return m_AvailablesComparators;
+            }
         }
 
         public bool HasOnlyOneComparator
@@ -157,7 +174,11 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 
         public IFilterCommand[] AvailablesCommands
         {
-            get { return m_AvailablesCommands; }
+            get
+            {
+                Init();
+                return m_AvailablesCommands;
+            }
         }
 
         public bool HasOnlyOneCommand
@@ -204,14 +225,23 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
         {
             m_Field = field;
             m_DataItems = dataItems;
-            m_AvailablesCommands = GetAllCommands().ToArray();
-            m_CurrentCommand = m_AvailablesCommands.First();
-            m_AvailablesComparators = GetAllComparators().ToArray();
-            m_CurrentComparator = HasOnlyOneComparator ? m_AvailablesComparators.First() : null;
-            CurrentSearchType = GenerateSearchType();
         }
 
-        protected abstract SearchTypeEnum GenerateSearchType();
+        private bool m_IsInit = false;
+        private void Init()
+        {
+            if (!m_IsInit)
+            {
+                m_IsInit = true;
+                m_AvailablesCommands = GetAllCommands().ToArray();
+                m_CurrentCommand = m_AvailablesCommands.First();
+                m_AvailablesComparators = GetAllComparators().ToArray();
+                m_CurrentComparator = HasOnlyOneComparator ? m_AvailablesComparators.First() : null;
+                CurrentFieldType = GenerateFieldType();
+            }
+        }
+
+        protected abstract FieldTypeEnum GenerateFieldType();
 
         protected abstract CheckListItem[] GenerateAvailablesItems();
 
@@ -223,18 +253,18 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
         public override string ToString()
         {
             string values;
-            switch (m_CurrentSearchType)
+            switch (m_CurrentFieldType)
             {
-                case SearchTypeEnum.CheckList:
+                case FieldTypeEnum.CheckList:
                     values = "{" + string.Join(", ", m_AvailablesItems.Where(x => x.IsSelected).Select(x => x.Name)) + "}";
                     break;
-                case SearchTypeEnum.List:
+                case FieldTypeEnum.List:
                     values = m_CurrentValueList.Name;
                     break;
-                case SearchTypeEnum.Date:
+                case FieldTypeEnum.Date:
                     values = m_CurrentValueDate.ToString("yyyy-MM-dd");
                     break;
-                case SearchTypeEnum.IntPair:
+                case FieldTypeEnum.IntPair:
                     values = String.Format("{0} And {1}", int.Parse(m_CurrentValueStringPair1), int.Parse(m_CurrentValueStringPair2));
                     break;
                 default:

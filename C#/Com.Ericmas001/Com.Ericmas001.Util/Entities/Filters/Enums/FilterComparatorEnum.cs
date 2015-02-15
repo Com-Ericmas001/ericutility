@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel;
 using Com.Ericmas001.Util.Entities.Fields;
-using Com.Ericmas001.Wpf.Entities.Attributes;
-using Com.Ericmas001.Wpf.Entities.Enums;
 
-namespace Com.Ericmas001.Wpf.Entities.Filters.Enums
+namespace Com.Ericmas001.Util.Entities.Filters.Enums
 {
     public enum FilterComparatorEnum
     {
