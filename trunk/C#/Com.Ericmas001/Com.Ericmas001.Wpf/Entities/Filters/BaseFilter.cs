@@ -18,7 +18,6 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
         public event EventHandler UpdateAFilter;
 
         private readonly string m_Field;
-        private readonly FilterEnum m_FilterType;
         private readonly IFilterCommand[] m_AvailablesCommands;
         private readonly IFilterComparator[] m_AvailablesComparators;
         private readonly IBunchOfDataItems m_DataItems;
@@ -166,11 +165,6 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             get { return m_AvailablesCommands.Length == 1; }
         }
 
-        public FilterEnum FilterType
-        {
-            get { return m_FilterType; }
-        }
-
         public string Field
         {
             get { return m_Field; }
@@ -206,10 +200,9 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
         protected abstract IEnumerable<IFilterComparator> GetAllComparators(); 
 
 
-        public BaseFilter(string field, FilterEnum filterType, IBunchOfDataItems dataItems)
+        public BaseFilter(string field, IBunchOfDataItems dataItems)
         {
             m_Field = field;
-            m_FilterType = filterType;
             m_DataItems = dataItems;
             m_AvailablesCommands = GetAllCommands().ToArray();
             m_CurrentCommand = m_AvailablesCommands.First();
