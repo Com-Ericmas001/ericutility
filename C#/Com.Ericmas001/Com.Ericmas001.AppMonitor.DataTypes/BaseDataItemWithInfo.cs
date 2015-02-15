@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using Com.Ericmas001.Util.Entities;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes

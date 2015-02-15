@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Com.Ericmas001.Wpf.ViewModels.Tabs;
 using System.Windows.Input;
 
 namespace Com.Ericmas001.Wpf.ViewModels.SearchElements

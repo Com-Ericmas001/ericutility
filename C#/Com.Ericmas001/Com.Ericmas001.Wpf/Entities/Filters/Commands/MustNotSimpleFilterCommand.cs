@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Com.Ericmas001.Util;
-using Com.Ericmas001.Util.Entities;
+﻿using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Wpf.Entities.Filters.Attributes;
 using Com.Ericmas001.Wpf.Entities.Filters.Comparators;
 using Com.Ericmas001.Wpf.Entities.Filters.Enums;

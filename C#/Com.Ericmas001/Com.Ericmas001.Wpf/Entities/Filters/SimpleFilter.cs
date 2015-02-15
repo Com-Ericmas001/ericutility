@@ -4,8 +4,6 @@ using System.Linq;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Util.Entities.Fields;
-using Com.Ericmas001.Wpf.Entities.Attributes;
-using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.Entities.Filters.Attributes;
 using Com.Ericmas001.Wpf.Entities.Filters.Commands;
 using Com.Ericmas001.Wpf.Entities.Filters.Comparators;

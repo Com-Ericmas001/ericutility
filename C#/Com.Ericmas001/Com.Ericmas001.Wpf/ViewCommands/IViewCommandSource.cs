@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Com.Ericmas001.Wpf.ViewCommands
+﻿namespace Com.Ericmas001.Wpf.ViewCommands
 {
     /// <summary>
     /// Defines a property to access the ViewCommandManager instance of an object.

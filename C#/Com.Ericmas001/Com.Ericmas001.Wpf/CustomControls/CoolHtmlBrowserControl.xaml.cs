@@ -1,12 +1,6 @@
 ﻿using System;
-using System.IO;
-using System.Text;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Xsl;
 using System.Diagnostics;
 using mshtml;
 

@@ -1,7 +1,4 @@
 ﻿using System.Windows;
-using Com.Ericmas001.Util;
-using Com.Ericmas001.Wpf.ViewModels;
-using Com.Ericmas001.Wpf.Windows;
 
 namespace Com.Ericmas001.Wpf
 {
