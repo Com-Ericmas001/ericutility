@@ -4,10 +4,10 @@ using System.Linq;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities;
 using Com.Ericmas001.Util.Entities.Fields;
-using Com.Ericmas001.Wpf.Entities.Filters.Attributes;
-using Com.Ericmas001.Wpf.Entities.Filters.Commands;
-using Com.Ericmas001.Wpf.Entities.Filters.Comparators;
-using Com.Ericmas001.Wpf.Entities.Filters.Enums;
+using Com.Ericmas001.Util.Entities.Filters.Attributes;
+using Com.Ericmas001.Util.Entities.Filters.Commands;
+using Com.Ericmas001.Util.Entities.Filters.Comparators;
+using Com.Ericmas001.Util.Entities.Filters.Enums;
 
 namespace Com.Ericmas001.Wpf.Entities.Filters
 {
