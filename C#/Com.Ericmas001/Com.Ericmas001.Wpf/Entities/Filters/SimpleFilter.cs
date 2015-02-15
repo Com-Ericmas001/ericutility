@@ -14,15 +14,15 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
 {
     public class SimpleFilter : BaseFilter
     {
-
+        public FilterEnum FilterType { get; private set; }
         public SimpleFilter(string field, FilterEnum filterType, IBunchOfDataItems dataItems)
-            :base(field,filterType,dataItems)
+            :base(field,dataItems)
         {
+            FilterType = filterType;
         }
 
         protected override SearchTypeEnum GenerateSearchType()
         {
-            //TODO: Unbound from Basic !!!
             var comp = CurrentComparator as SimpleFilterComparator;
             if (comp != null)
             {
@@ -52,7 +52,6 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
         {
             switch (FilterType)
             {
-                //TODO: Unbound from Basic !!!
                 case FilterEnum.Text:
                 case FilterEnum.Blob:
                     if (CurrentComparator is TextEqualSimpleFilterComparator)
