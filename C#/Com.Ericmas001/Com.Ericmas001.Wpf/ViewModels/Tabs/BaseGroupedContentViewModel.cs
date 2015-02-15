@@ -5,8 +5,8 @@ using System.Linq;
 using System.Windows.Threading;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities;
+using Com.Ericmas001.Util.Entities.Filters.Enums;
 using Com.Ericmas001.Wpf.Entities.Filters;
-using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 using Com.Ericmas001.Wpf.ViewModels.Sections;
 using Com.Ericmas001.Wpf.ViewModels.Trees;
 
@@ -105,7 +105,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
             m_LoadingTreeVm.OnErrorObtained += m_LoadingTreeVm_OnErrorObtained;
         }
 
-        void m_LoadingTreeVm_OnErrorObtained(object sender, Util.KeyEventArgs<Exception> e)
+        void m_LoadingTreeVm_OnErrorObtained(object sender, KeyEventArgs<Exception> e)
         {
             Logs.LogError(e.Key.ToString());
         }

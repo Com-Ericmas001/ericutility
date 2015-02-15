@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using Com.Ericmas001.Util.Entities.Filters.Commands;
+using Com.Ericmas001.Util.Entities.Filters.Comparators;
 using Com.Ericmas001.Wpf.Entities;
 using Com.Ericmas001.Wpf.Entities.Filters;
-using Com.Ericmas001.Wpf.Entities.Filters.Commands;
-using Com.Ericmas001.Wpf.Entities.Filters.Comparators;
 
 namespace Com.Ericmas001.Wpf.ViewModels.Sections
 {

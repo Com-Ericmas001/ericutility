@@ -7,12 +7,10 @@ using Com.Ericmas001.AppMonitor.DataTypes.Helpers;
 using Com.Ericmas001.AppMonitor.DataTypes.TreeElements;
 using Com.Ericmas001.Util;
 using Com.Ericmas001.Util.Entities;
+using Com.Ericmas001.Util.Entities.Filters.Attributes;
+using Com.Ericmas001.Util.Entities.Filters.Enums;
 using Com.Ericmas001.Wpf.Entities;
-using Com.Ericmas001.Wpf.Entities.Attributes;
-using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.Entities.Filters;
-using Com.Ericmas001.Wpf.Entities.Filters.Attributes;
-using Com.Ericmas001.Wpf.Entities.Filters.Enums;
 using Com.Ericmas001.Wpf.ViewModels.Tabs;
 using Com.Ericmas001.Wpf.ViewModels.Trees;
 
