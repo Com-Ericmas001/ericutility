@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using Com.Ericmas001.AppMonitor.DataTypes.GlobalElements;
-using Com.Ericmas001.Util;
 using Com.Ericmas001.Wpf.ViewModels.Trees;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
