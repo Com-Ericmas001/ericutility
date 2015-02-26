@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Com.Ericmas001.Wpf
 {
-    public class RelayCommand<T> : ICommand where T : class
+    public class RelayCommand<T> : ICommand
     {
         private readonly Action<T> m_Execute;
         private readonly Predicate<T> m_CanExecute;

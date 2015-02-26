@@ -38,6 +38,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
             foreach (BaseFilterInCreation f in filters)
                 RegisterToEvents(f);
             m_FieldsToFilter.Add(field, filters);
+            RaisePropertyChanged("AllFields");
 
         }
 
@@ -47,12 +48,13 @@ namespace Com.Ericmas001.Wpf.ViewModels.Sections
                 foreach (BaseFilterInCreation f in m_FieldsToFilter[k])
                     UnRegisterToEvents(f);
             m_FieldsToFilter.Clear();
+            RaisePropertyChanged("AllFields");
 
         }
 
         public string[] AllFields
         {
-            get { return m_FieldsToFilter.Keys.ToArray(); }
+            get { return FieldsToFilter.ToArray(); }
         }
 
         public DisplayList<string> AvailablesGroups
