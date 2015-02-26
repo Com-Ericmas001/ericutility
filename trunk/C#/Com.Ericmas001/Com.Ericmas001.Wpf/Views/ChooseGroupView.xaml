@@ -64,7 +64,7 @@
                 <ContentPresenter ContentTemplate="{StaticResource FiltersViewerTemplate}" Content="{Binding}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock Margin="5">New Filter:</TextBlock>
-                    <ComboBox Width="200" ItemsSource="{Binding FieldsToFilter}" SelectedItem="{Binding CurrentField, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox Width="200" ItemsSource="{Binding AllFields, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CurrentField, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </StackPanel>
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">

@@ -15,6 +15,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
     public abstract class BaseGroupedContentViewModel<TDataItem> : BaseContentViewModel
         where TDataItem : IDataItem
     {
+        private bool m_HasAlreadyGeneratedFilters = false;
         private readonly LoadingViewModel m_LoadingTreeVm;
 
         public LoadingViewModel LoadingTreeVm
@@ -235,7 +236,11 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
         protected virtual void BuildTree(object sender, DoWorkEventArgs e)
         {
             string[] criteres = GroupedCriterias().ToArray();
-            GenerateFilters();
+            if(!m_HasAlreadyGeneratedFilters)
+            {
+                m_HasAlreadyGeneratedFilters = true;
+                GenerateFilters();
+            }
             TreeElementViewModel root = Root;
             if(root == null)
                 CachedTreeElements = FillTree(root, GetFilteredData(), criteres, criteres);
