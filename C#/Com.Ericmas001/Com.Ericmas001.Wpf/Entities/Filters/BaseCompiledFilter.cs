@@ -27,11 +27,19 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
                 }
             }
         }
+        public virtual bool IsReadOnly
+        {
+            get { return false; }
+        }
+        public bool IsDeletable
+        {
+            get { return !IsReadOnly; }
+        }
 
         private RelayCommand m_DeleteCommand;
         public RelayCommand DeleteCommand
         {
-            get { return m_DeleteCommand ?? (m_DeleteCommand = new RelayCommand(x => RemoveFilter())); }
+            get { return m_DeleteCommand ?? (m_DeleteCommand = new RelayCommand(x => RemoveFilter(), x => IsDeletable)); }
         }
 
         private void RemoveFilter()
@@ -45,9 +53,13 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
             m_Info = info;
         }
 
+        public BaseCompiledFilter()
+        {
+        }
+
         public string Description
         {
-            get { return m_Info.ToString(); }
+            get { return ToString(); }
         }
 
         public FilterInfo Info

@@ -14,6 +14,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Trees
         public virtual FontWeight FontWeight { get { return FontWeights.Normal; } }
         public virtual FontFamily FontFamily { get { return new FontFamily("Microsoft Sans Serif"); } }
         public virtual FontStyle FontStyle { get { return FontStyles.Normal; } }
+        public virtual TextDecorationCollection FontDecoration { get { return new TextDecorationCollection(); } }
         public virtual Brush FontColor { get { return Brushes.Black; } }
 
         public string Path

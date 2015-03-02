@@ -13,9 +13,14 @@ namespace Com.Ericmas001.Wpf.Entities.Filters
     {
         public FilterEnum FilterType { get; set; }
         public SimpleCompiledFilter(FilterInfo info, FilterEnum filterType)
-            :base(info)
+            : base(info)
         {
             FilterType = filterType;
+        }
+        public SimpleCompiledFilter()
+            : base()
+        {
+            
         }
 
         protected override bool CheckIfIsSurvivingTheFilter(string value, IDataItem item)

@@ -26,12 +26,20 @@
     <Style TargetType="{x:Type TreeViewItem}" x:Key="CoolTreeViewItemStyle">
         <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <Setter Property="ContextMenu" Value="{StaticResource treeCTX}" />
-        <Setter Property="Header" Value="{Binding Text}" />
         <Setter Property="ItemsSource" Value="{Binding Children}" />
         <Setter Property="Foreground" Value="{Binding FontColor}" />
         <Setter Property="FontFamily" Value="{Binding FontFamily}" />
         <Setter Property="FontStyle" Value="{Binding FontStyle}" />
         <Setter Property="FontWeight" Value="{Binding FontWeight}" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" TextDecorations="{Binding FontDecoration}" Foreground="{Binding FontColor}" FontWeight="{Binding FontWeight}" FontStyle="{Binding FontStyle}" FontFamily="{Binding FontFamily}" />
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
     <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource CoolTreeViewItemStyle}"/>
     <Style TargetType="{x:Type TreeViewItem}" x:Key="CoolTreeViewCheckItemStyle" BasedOn="{StaticResource CoolTreeViewItemStyle}">
