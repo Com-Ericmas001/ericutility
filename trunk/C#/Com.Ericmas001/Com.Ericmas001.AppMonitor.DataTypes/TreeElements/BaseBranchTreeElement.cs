@@ -66,6 +66,18 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
                 return m_Tabs;
             }
         }
+        public override TextDecorationCollection FontDecoration
+        {
+            get
+            {
+                IGrouping<TextDecorationCollection, BaseLeafTreeElement>[] differents = TreeLeaves.GroupBy(x => x.FontDecoration).ToArray();
+                if (differents.Count() == 1)
+                {
+                    return differents.First().First().FontDecoration;
+                }
+                return base.FontDecoration;
+            }
+        }
         public override FontStyle FontStyle
         {
             get
@@ -82,7 +94,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
         {
             get
             {
-                IGrouping<FontStyle, BaseLeafTreeElement>[] differents = TreeLeaves.GroupBy(x => x.FontStyle).ToArray();
+                IGrouping<FontFamily, BaseLeafTreeElement>[] differents = TreeLeaves.GroupBy(x => x.FontFamily).ToArray();
                 if (differents.Count() == 1)
                 {
                     return differents.First().First().FontFamily;
@@ -94,7 +106,7 @@ namespace Com.Ericmas001.AppMonitor.DataTypes.TreeElements
         {
             get
             {
-                IGrouping<FontStyle, BaseLeafTreeElement>[] differents = TreeLeaves.GroupBy(x => x.FontStyle).ToArray();
+                IGrouping<FontWeight, BaseLeafTreeElement>[] differents = TreeLeaves.GroupBy(x => x.FontWeight).ToArray();
                 if (differents.Count() == 1)
                 {
                     return differents.First().First().FontWeight;
