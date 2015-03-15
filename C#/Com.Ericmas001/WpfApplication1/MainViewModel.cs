@@ -17,6 +17,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace WpfApplication1
 {
+    //Test Commit :)
     public enum TestEnum
     {
         [Description("Non mais Allo quoi !")]
