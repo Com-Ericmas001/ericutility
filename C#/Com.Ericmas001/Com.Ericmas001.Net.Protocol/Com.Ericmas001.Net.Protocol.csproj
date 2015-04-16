@@ -47,6 +47,7 @@
     <Compile Include="AbstractCommand.cs" />
     <Compile Include="AbstractCommandObserver.cs" />
     <Compile Include="Annotations\Annotations1.cs" />
+    <Compile Include="RemoteTcpEntity.cs" />
     <Compile Include="CommandQueueCommunicator.cs" />
     <Compile Include="CommandTcpCommunicator.cs" />
     <Compile Include="EventArgs.cs" />
@@ -57,6 +58,8 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueueCommunicator.cs" />
+    <Compile Include="SimpleTcpClient.cs" />
+    <Compile Include="SimpleTcpServer.cs" />
     <Compile Include="TcpCommunicator.cs" />
     <Compile Include="Text\AbstractTextCommand.cs" />
     <Compile Include="Text\AbstractTextCommandResponse.cs" />

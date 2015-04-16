@@ -98,6 +98,7 @@
     <Compile Include="Entities\Fields\IField.cs" />
     <Compile Include="Entities\Fields\FieldTypeEnum.cs" />
     <Compile Include="EnumFactory.cs" />
+    <Compile Include="EventArgs.cs" />
     <Compile Include="FlagGroup.cs" />
     <Compile Include="GenericDelegates.cs" />
     <Compile Include="GenericEventArgs.cs" />
