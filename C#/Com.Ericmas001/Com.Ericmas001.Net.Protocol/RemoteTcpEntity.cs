@@ -8,10 +8,14 @@ namespace Com.Ericmas001.Net.Protocol
     public abstract class RemoteTcpEntity
     {
         public TcpClient RemoteEntity { get; private set; }
-
+        public StreamReader m_Input;
+        public StreamWriter m_Output;
         public RemoteTcpEntity(TcpClient remoteEntity)
         {
             RemoteEntity = remoteEntity;
+            m_Input = new StreamReader(remoteEntity.GetStream());
+            m_Output = new StreamWriter(remoteEntity.GetStream());
+            m_Output.AutoFlush = true;
         }
 
         // The core server task
@@ -20,13 +24,7 @@ namespace Com.Ericmas001.Net.Protocol
             return Task.Run(async () =>
             {
                 while (true)
-                {
-                    var buffer = new byte[4096];
-                    var byteCount = await RemoteEntity.GetStream().ReadAsync(buffer, 0, buffer.Length);
-                    if (byteCount == 0)
-                        throw new IOException("Disconnected !!!");
-                    OnDataReceived(Encoding.UTF8.GetString(buffer, 0, byteCount));
-                }
+                    OnDataReceived(await m_Input.ReadLineAsync());
             });
         }
 
@@ -36,9 +34,9 @@ namespace Com.Ericmas001.Net.Protocol
 
         public void Send(string data)
         {
-            var serverResponseBytes = Encoding.UTF8.GetBytes(data);
-            Task.Run(async () => await RemoteEntity.GetStream().WriteAsync(serverResponseBytes, 0, serverResponseBytes.Length)).Wait();
+            Task.Run(async () => await m_Output.WriteLineAsync(data)).Wait();
             OnDataSent(data);
         }
     }
 }
+

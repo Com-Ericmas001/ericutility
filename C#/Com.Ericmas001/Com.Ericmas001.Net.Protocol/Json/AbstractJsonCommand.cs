@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Com.Ericmas001.Net.Protocol.JSON
 {
@@ -6,7 +7,7 @@ namespace Com.Ericmas001.Net.Protocol.JSON
     {
         public override string Encode()
         {
-            return JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this, new StringEnumConverter());
         }
     }
 }
