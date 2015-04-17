@@ -14,6 +14,12 @@ namespace Com.Ericmas001.Net.Protocol
         private readonly object m_LockClients = new Object(); // sync lock 
         private readonly List<RemoteTcpEntity> m_Clients = new List<RemoteTcpEntity>(); // pending connections
 
+        private int m_Port;
+        public SimpleTcpServer(int port)
+        {
+            m_Port = port;
+        }
+
         protected abstract RemoteTcpEntity CreateClient(TcpClient tcpClient);
         protected abstract void OnClientConnected(RemoteTcpEntity client);
         protected abstract void OnClientDisconnected(RemoteTcpEntity client);
@@ -23,7 +29,7 @@ namespace Com.Ericmas001.Net.Protocol
         {
             return Task.Run(async () =>
             {
-                var tcpListener = TcpListener.Create(1234);
+                var tcpListener = TcpListener.Create(m_Port);
                 tcpListener.Start();
                 while (true)
                 {
