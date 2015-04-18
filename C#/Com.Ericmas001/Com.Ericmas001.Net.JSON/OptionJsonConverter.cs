@@ -8,7 +8,7 @@ namespace Com.Ericmas001.Net.JSON
     {
         public override TOption ObtainCustomObject(JObject jObject)
         {
-            return FactoryOption<TOption, TEnum>.GenerateOption(((int)jObject.GetValue("OptionType")));
+            return FactoryOption<TOption, TEnum>.GenerateOption(jObject.Value<string>("OptionType"));
         }
     }
 }

@@ -39,15 +39,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.AppMonitor.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.AppMonitor.Xaml", "Com.Ericmas001.AppMonitor.Xaml\Com.Ericmas001.AppMonitor.Xaml.csproj", "{84B9EA26-8EDE-44D8-A5F9-B898DC86B3DE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{472B0F3F-D460-4FE2-9230-883C04F81E61}"
-	ProjectSection(SolutionItems) = preProject
-		References\Microsoft.WindowsAPICodePack.dll = References\Microsoft.WindowsAPICodePack.dll
-		References\Microsoft.WindowsAPICodePack.Shell.dll = References\Microsoft.WindowsAPICodePack.Shell.dll
-		References\Newtonsoft.Json.dll = References\Newtonsoft.Json.dll
-		References\VIBlend.WinForms.Controls.dll = References\VIBlend.WinForms.Controls.dll
-		References\VIBlend.WinForms.Utilities.dll = References\VIBlend.WinForms.Utilities.dll
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
