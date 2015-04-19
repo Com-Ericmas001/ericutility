@@ -48,7 +48,9 @@
   <ItemGroup>
     <Compile Include="AbstractCommand.cs" />
     <Compile Include="AbstractCommandObserver.cs" />
+    <Compile Include="AbstractCustomJsonConverter.cs" />
     <Compile Include="Annotations\Annotations1.cs" />
+    <Compile Include="OptionJsonConverter.cs" />
     <Compile Include="RemoteTcpEntity.cs" />
     <Compile Include="CommandQueueCommunicator.cs" />
     <Compile Include="CommandTcpCommunicator.cs" />
@@ -72,10 +74,6 @@
     <ProjectReference Include="..\Com.Ericmas001.Collections\Com.Ericmas001.Collections.csproj">
       <Project>{48bed84d-b03c-4708-bf68-21bd4922a51c}</Project>
       <Name>Com.Ericmas001.Collections</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Com.Ericmas001.Net.JSON\Com.Ericmas001.Net.JSON.csproj">
-      <Project>{50fdad8f-01c6-4b41-9547-8e212bbeb9b4}</Project>
-      <Name>Com.Ericmas001.Net.JSON</Name>
     </ProjectReference>
     <ProjectReference Include="..\Com.Ericmas001.Util\Com.Ericmas001.Util.csproj">
       <Project>{473a461c-a3ef-49a1-b4ef-0fdbe2304717}</Project>
