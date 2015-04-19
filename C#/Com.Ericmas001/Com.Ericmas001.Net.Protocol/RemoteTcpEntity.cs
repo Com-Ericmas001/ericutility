@@ -34,8 +34,14 @@ namespace Com.Ericmas001.Net.Protocol
 
         public void Send(string data)
         {
-            Task.Run(async () => await m_Output.WriteLineAsync(data)).Wait();
-            OnDataSent(data);
+            try
+            {
+                Task.Run(async () => await m_Output.WriteLineAsync(data)).Wait();
+                OnDataSent(data);
+            }
+            catch
+            {
+            }
         }
     }
 }
