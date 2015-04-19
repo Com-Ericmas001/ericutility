@@ -1,4 +1,4 @@
-﻿using Com.Ericmas001.Util.Options;
+﻿using Com.Ericmas001.Net.Protocol.Options;
 using Newtonsoft.Json.Linq;
 
 namespace Com.Ericmas001.Net.Protocol

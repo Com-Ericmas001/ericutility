@@ -51,6 +51,8 @@
     <Compile Include="AbstractCustomJsonConverter.cs" />
     <Compile Include="Annotations\Annotations1.cs" />
     <Compile Include="OptionJsonConverter.cs" />
+    <Compile Include="Options\FactoryOption.cs" />
+    <Compile Include="Options\IOption.cs" />
     <Compile Include="RemoteTcpEntity.cs" />
     <Compile Include="CommandQueueCommunicator.cs" />
     <Compile Include="CommandTcpCommunicator.cs" />

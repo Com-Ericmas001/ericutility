@@ -112,8 +112,6 @@
     <Compile Include="LogManager.cs" />
     <Compile Include="Logs.cs" />
     <Compile Include="NotePadUtility.cs" />
-    <Compile Include="Options\FactoryOption.cs" />
-    <Compile Include="Options\IOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regexer.cs" />
     <Compile Include="StringTokenizer.cs" />
