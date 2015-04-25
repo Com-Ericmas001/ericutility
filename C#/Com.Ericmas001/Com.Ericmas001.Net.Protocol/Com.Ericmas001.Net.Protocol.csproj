@@ -50,6 +50,8 @@
     <Compile Include="AbstractCommandObserver.cs" />
     <Compile Include="AbstractCustomJsonConverter.cs" />
     <Compile Include="Annotations\Annotations1.cs" />
+    <Compile Include="ExamplesValuesAttribute.cs" />
+    <Compile Include="ExampleValueAttribute.cs" />
     <Compile Include="OptionJsonConverter.cs" />
     <Compile Include="Options\FactoryOption.cs" />
     <Compile Include="Options\IOption.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Com.Ericmas001.Games
 {
@@ -53,6 +54,8 @@ namespace Com.Ericmas001.Games
                 m_Value = (GameCardValue)(id % 13);
             }
         }
+
+        [JsonIgnore]
         public int Id
         {
             get
