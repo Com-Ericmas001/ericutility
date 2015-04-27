@@ -77,8 +77,8 @@ namespace Com.Ericmas001.Games
         public static GameCardValue FromValueChar(char v)
         {
             var chars = "23456789TJQKA";
-            if (chars.IndexOf(Char.ToLower(v)) >= 0)
-                return (GameCardValue)chars.IndexOf(Char.ToLower(v));
+            if (chars.IndexOf(Char.ToUpper(v)) >= 0)
+                return (GameCardValue)chars.IndexOf(Char.ToUpper(v));
             throw new KeyNotFoundException(v.ToString());
         }
     }
