@@ -1,4 +1,6 @@
-﻿using Com.Ericmas001.Util;
+﻿using System;
+using System.Linq;
+using Com.Ericmas001.Util;
 using System.Collections.Generic;
 
 namespace Com.Ericmas001.Games
@@ -48,6 +50,36 @@ namespace Com.Ericmas001.Games
         {
             string[] strs = { "", "--", "??", "*C", "*D" };
             return strs[(int)s];
+        }
+
+        public static GameCardSpecial FromSpecialStr(string s)
+        {
+            Dictionary<string, GameCardSpecial> dic = new Dictionary<string, GameCardSpecial>()
+            {
+                {"--",GameCardSpecial.Null},
+                {"??",GameCardSpecial.Hidden},
+                {"*C",GameCardSpecial.JokerColor},
+                {"*D",GameCardSpecial.JokerDark},
+            };
+            if (dic.ContainsKey(s.ToUpper()))
+                return dic[s.ToUpper()];
+            return GameCardSpecial.None;
+        }
+
+        public static GameCardKind FromKindChar(char k)
+        {
+            var chars = "cdhs";
+            if (chars.IndexOf(Char.ToLower(k)) >= 0)
+                return (GameCardKind)chars.IndexOf(Char.ToLower(k));
+            throw new KeyNotFoundException(k.ToString());
+        }
+
+        public static GameCardValue FromValueChar(char v)
+        {
+            var chars = "23456789TJQKA";
+            if (chars.IndexOf(Char.ToLower(v)) >= 0)
+                return (GameCardValue)chars.IndexOf(Char.ToLower(v));
+            throw new KeyNotFoundException(v.ToString());
         }
     }
 }

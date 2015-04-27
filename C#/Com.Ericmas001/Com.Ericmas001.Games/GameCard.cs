@@ -54,6 +54,15 @@ namespace Com.Ericmas001.Games
                 m_Value = (GameCardValue)(id % 13);
             }
         }
+        public GameCard(string s)
+        {
+            m_Special = GameCardUtility.FromSpecialStr(s);
+            if (m_Special == GameCardSpecial.None)
+            {
+                m_Kind = GameCardUtility.FromKindChar(s[1]);
+                m_Value = GameCardUtility.FromValueChar(s[0]);
+            }
+        }
 
         [JsonIgnore]
         public int Id
