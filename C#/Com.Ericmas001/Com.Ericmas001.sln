@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Util", "Com.Ericmas001.Util\Com.Ericmas001.Util.csproj", "{473A461C-A3EF-49A1-B4EF-0FDBE2304717}"
 EndProject
@@ -38,6 +38,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.AppMonitor.DataTypes", "Com.Ericmas001.AppMonitor.DataTypes\Com.Ericmas001.AppMonitor.DataTypes.csproj", "{63942B84-CB9B-4DDA-9270-EA5FF571EB2E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.AppMonitor.Xaml", "Com.Ericmas001.AppMonitor.Xaml\Com.Ericmas001.AppMonitor.Xaml.csproj", "{84B9EA26-8EDE-44D8-A5F9-B898DC86B3DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.Portable.Util", "Com.Ericmas001.Portable.Util\Com.Ericmas001.Portable.Util.csproj", "{A9991C7B-7716-4A36-8456-3D320B4AA095}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{84B9EA26-8EDE-44D8-A5F9-B898DC86B3DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84B9EA26-8EDE-44D8-A5F9-B898DC86B3DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84B9EA26-8EDE-44D8-A5F9-B898DC86B3DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9991C7B-7716-4A36-8456-3D320B4AA095}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9991C7B-7716-4A36-8456-3D320B4AA095}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9991C7B-7716-4A36-8456-3D320B4AA095}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9991C7B-7716-4A36-8456-3D320B4AA095}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
