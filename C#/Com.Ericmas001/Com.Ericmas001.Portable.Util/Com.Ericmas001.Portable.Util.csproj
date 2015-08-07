@@ -94,7 +94,11 @@
     <Compile Include="GenericDelegates.cs" />
     <Compile Include="GenericEventArgs.cs" />
     <Compile Include="Hasard.cs" />
+    <Compile Include="LogManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringTokenizer.cs" />
+    <Compile Include="StringUtility.cs" />
+    <Compile Include="TimeSpanFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\Enums\" />

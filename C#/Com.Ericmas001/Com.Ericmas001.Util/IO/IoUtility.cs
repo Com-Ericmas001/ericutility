@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Com.Ericmas001.Portable.Util;
+using System;
 using System.IO;
 
 namespace Com.Ericmas001.Util.IO
@@ -24,7 +25,7 @@ namespace Com.Ericmas001.Util.IO
                 }
                 catch
                 {
-                    LogManager.Log(LogLevel.Error, "IoUtility.CopyFolderAndContent", String.Format("Impossible de copier {0}.", file.Name));
+                    Portable.Util.LogManager.Log(LogLevel.Error, "IoUtility.CopyFolderAndContent", String.Format("Impossible de copier {0}.", file.Name));
                 }
             }
         }

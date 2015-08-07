@@ -40,69 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractLoadingTuple.cs" />
-    <Compile Include="AttributeUtility.cs" />
-    <Compile Include="BitUtility.cs" />
-    <Compile Include="BoolFormatter.cs" />
-    <Compile Include="ByteFormatter.cs" />
-    <Compile Include="Concurrency\ObjectLocker.cs" />
     <Compile Include="Concurrency\ReaderWriterObjectLocker.cs" />
-    <Compile Include="CountryInfo.cs" />
     <Compile Include="DateTimeWithZone.cs" />
     <Compile Include="DllUtility.cs" />
     <Compile Include="DynamicRow.cs" />
-    <Compile Include="Entities\Attributes\ColorAttribute.cs" />
-    <Compile Include="Entities\Attributes\PrioriteAttribute.cs" />
-    <Compile Include="Entities\Attributes\TagAttribute.cs" />
-    <Compile Include="Entities\BunchOfDataItems.cs" />
-    <Compile Include="Entities\Fields\BaseField.cs" />
-    <Compile Include="Entities\Fields\FieldListItem.cs" />
-    <Compile Include="Entities\Fields\FieldTypeAttribute.cs" />
-    <Compile Include="Entities\Fields\DateSimpleField.cs" />
-    <Compile Include="Entities\Fields\GuidSimpleField.cs" />
-    <Compile Include="Entities\Fields\IntSimpleField.cs" />
-    <Compile Include="Entities\Fields\SimpleField.cs" />
-    <Compile Include="Entities\Fields\IntPairSimpleField.cs" />
-    <Compile Include="Entities\Fields\ListSimpleField.cs" />
-    <Compile Include="Entities\Fields\CheckListSimpleField.cs" />
-    <Compile Include="Entities\Fields\TimeSimpleField.cs" />
-    <Compile Include="Entities\Fields\UpperTextSimpleField.cs" />
-    <Compile Include="Entities\Fields\TextSimpleField.cs" />
-    <Compile Include="Entities\Filters\Attributes\FilterCommandAttribute.cs" />
-    <Compile Include="Entities\Filters\Attributes\FilterComparatorAttribute.cs" />
-    <Compile Include="Entities\Filters\Attributes\FiltersAttribute.cs" />
-    <Compile Include="Entities\Filters\Commands\IFilterCommand.cs" />
-    <Compile Include="Entities\Filters\Commands\MustNotSimpleFilterCommand.cs" />
-    <Compile Include="Entities\Filters\Commands\MustSimpleFilterCommand.cs" />
-    <Compile Include="Entities\Filters\Commands\SimpleFilterCommand.cs" />
-    <Compile Include="Entities\Filters\Comparators\ComparableSimpleFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Comparators\ContainsSimpleFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Comparators\EndsWithSimpleFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Comparators\GreaterEqualSimpleFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Comparators\GreaterThanSimpleFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Comparators\IFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Comparators\IntBetweenSimpleFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Comparators\IntEqualSimpleFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Comparators\IntNotEqualSimpleFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Comparators\SimpleFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Comparators\SmallerEqualSimpleFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Comparators\SmallerThanSimpleFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Comparators\StartsWithSimpleFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Comparators\TextEqualSimpleFilterComparator.cs" />
-    <Compile Include="Entities\Filters\Enums\FilterCommandEnum.cs" />
-    <Compile Include="Entities\Filters\Enums\FilterComparatorEnum.cs" />
-    <Compile Include="Entities\Filters\Enums\FilterEnum.cs" />
-    <Compile Include="Entities\Filters\FilterInfo.cs" />
-    <Compile Include="Entities\IBunchOfDataItems.cs" />
-    <Compile Include="Entities\IDataItem.cs" />
-    <Compile Include="Entities\Fields\IField.cs" />
-    <Compile Include="Entities\Fields\FieldTypeEnum.cs" />
-    <Compile Include="EnumFactory.cs" />
-    <Compile Include="EventArgs.cs" />
-    <Compile Include="FlagGroup.cs" />
-    <Compile Include="GenericDelegates.cs" />
-    <Compile Include="GenericEventArgs.cs" />
-    <Compile Include="Hasard.cs" />
     <Compile Include="HistoryFileModel.cs" />
     <Compile Include="HistoryManager.cs" />
     <Compile Include="IHistoryFileList.cs" />
@@ -117,11 +58,13 @@
     <Compile Include="StringTokenizer.cs" />
     <Compile Include="StringUtility.cs" />
     <Compile Include="TaskManager.cs" />
-    <Compile Include="TimeSpanFormatter.cs" />
     <Compile Include="WindowsUtility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\Enums\" />
+    <ProjectReference Include="..\Com.Ericmas001.Portable.Util\Com.Ericmas001.Portable.Util.csproj">
+      <Project>{a9991c7b-7716-4a36-8456-3d320b4aa095}</Project>
+      <Name>Com.Ericmas001.Portable.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
