@@ -99,6 +99,7 @@
     <Compile Include="StringTokenizer.cs" />
     <Compile Include="StringUtility.cs" />
     <Compile Include="TimeSpanFormatter.cs" />
+    <Compile Include="Mvvm\ViewModels\AbstractViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\Enums\" />

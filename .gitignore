@@ -4,3 +4,6 @@
 
 /C#/Com.Ericmas001/*/obj
 /C#/Com.Ericmas001/*/bin
+*.suo
+*.user
+*.~vsdx
