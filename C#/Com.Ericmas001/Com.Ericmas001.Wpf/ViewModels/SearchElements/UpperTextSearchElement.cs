@@ -1,4 +1,4 @@
-﻿using Com.Ericmas001.Util.Entities.Fields;
+﻿using Com.Ericmas001.Portable.Util.Entities.Fields;
 
 namespace Com.Ericmas001.Wpf.ViewModels.SearchElements
 {

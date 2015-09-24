@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
-using Com.Ericmas001.Util;
-using Com.Ericmas001.Util.Entities.Attributes;
+using Com.Ericmas001.Portable.Util;
+using Com.Ericmas001.Portable.Util.Entities.Attributes;
 using Com.Ericmas001.Wpf.Entities.Attributes;
 using Com.Ericmas001.Wpf.Entities.Enums;
 using Com.Ericmas001.Wpf.ViewModels;

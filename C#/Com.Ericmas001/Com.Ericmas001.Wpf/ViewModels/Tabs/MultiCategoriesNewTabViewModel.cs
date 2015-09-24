@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Com.Ericmas001.Util;
-using Com.Ericmas001.Util.Entities.Attributes;
+using Com.Ericmas001.Portable.Util;
+using Com.Ericmas001.Portable.Util.Entities.Attributes;
 using Com.Ericmas001.Wpf.ViewModels.Sections;
 
 namespace Com.Ericmas001.Wpf.ViewModels.Tabs

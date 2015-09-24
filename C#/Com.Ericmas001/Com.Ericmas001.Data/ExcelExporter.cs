@@ -2,7 +2,7 @@
 using System.Data;
 using System.Linq;
 using System.Threading;
-using Com.Ericmas001.Util;
+using Com.Ericmas001.Portable.Util;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Com.Ericmas001.Data

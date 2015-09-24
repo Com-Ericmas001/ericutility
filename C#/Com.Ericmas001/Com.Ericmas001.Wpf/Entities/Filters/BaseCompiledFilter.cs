@@ -1,6 +1,6 @@
 ﻿using System;
-using Com.Ericmas001.Util.Entities;
-using Com.Ericmas001.Util.Entities.Filters;
+using Com.Ericmas001.Portable.Util.Entities;
+using Com.Ericmas001.Portable.Util.Entities.Filters;
 using Com.Ericmas001.Wpf.ViewModels;
 
 namespace Com.Ericmas001.Wpf.Entities.Filters

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Threading;
+using Com.Ericmas001.Portable.Util;
 using Com.Ericmas001.Util;
 
 namespace Com.Ericmas001.Wpf.ViewModels.Tabs
@@ -46,7 +47,7 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
             m_LoadingDataVm.OnErrorObtained += m_LoadingDataVm_OnErrorObtained;
         }
 
-        void m_LoadingDataVm_OnErrorObtained(object sender, Util.KeyEventArgs<Exception> e)
+        void m_LoadingDataVm_OnErrorObtained(object sender, KeyEventArgs<Exception> e)
         {
             Logs.LogError(e.Key.ToString());
         }

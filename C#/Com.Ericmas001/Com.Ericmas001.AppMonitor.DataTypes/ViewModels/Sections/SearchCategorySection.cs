@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Com.Ericmas001.AppMonitor.DataTypes.Attributes;
 using Com.Ericmas001.AppMonitor.DataTypes.Helpers;
-using Com.Ericmas001.Util.Entities.Fields;
+using Com.Ericmas001.Portable.Util.Entities.Fields;
 using Com.Ericmas001.Wpf.ViewModels.SearchElements;
 using Com.Ericmas001.Wpf.ViewModels.Sections;
 

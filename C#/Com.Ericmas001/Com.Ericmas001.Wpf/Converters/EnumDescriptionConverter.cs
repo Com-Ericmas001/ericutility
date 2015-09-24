@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Data;
-using Com.Ericmas001.Util;
+using Com.Ericmas001.Portable.Util;
 
 namespace Com.Ericmas001.Wpf.Converters
 {

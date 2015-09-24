@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Threading;
+using Com.Ericmas001.Portable.Util;
 using Com.Ericmas001.Util;
 
 namespace Com.Ericmas001.Wpf.ViewModels

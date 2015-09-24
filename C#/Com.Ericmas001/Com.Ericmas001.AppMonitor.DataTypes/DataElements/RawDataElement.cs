@@ -1,4 +1,4 @@
-﻿using Com.Ericmas001.Util.Entities;
+﻿using Com.Ericmas001.Portable.Util.Entities;
 
 namespace Com.Ericmas001.AppMonitor.DataTypes.DataElements
 {

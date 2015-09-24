@@ -300,6 +300,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Com.Ericmas001.Portable.Util\Com.Ericmas001.Portable.Util.csproj">
+      <Project>{A9991C7B-7716-4A36-8456-3D320B4AA095}</Project>
+      <Name>Com.Ericmas001.Portable.Util</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Com.Ericmas001.Util\Com.Ericmas001.Util.csproj">
       <Project>{473a461c-a3ef-49a1-b4ef-0fdbe2304717}</Project>
       <Name>Com.Ericmas001.Util</Name>

@@ -82,9 +82,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Com.Ericmas001.Util\Com.Ericmas001.Util.csproj">
-      <Project>{473A461C-A3EF-49A1-B4EF-0FDBE2304717}</Project>
-      <Name>Com.Ericmas001.Util</Name>
+    <ProjectReference Include="..\Com.Ericmas001.Portable.Util\Com.Ericmas001.Portable.Util.csproj">
+      <Project>{a9991c7b-7716-4a36-8456-3d320b4aa095}</Project>
+      <Name>Com.Ericmas001.Portable.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

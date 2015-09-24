@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Com.Ericmas001.Util.Entities;
-using Com.Ericmas001.Util.Entities.Fields;
-using Com.Ericmas001.Util.Entities.Filters.Commands;
-using Com.Ericmas001.Util.Entities.Filters.Comparators;
+using Com.Ericmas001.Portable.Util.Entities;
+using Com.Ericmas001.Portable.Util.Entities.Fields;
+using Com.Ericmas001.Portable.Util.Entities.Filters.Commands;
+using Com.Ericmas001.Portable.Util.Entities.Filters.Comparators;
 using Com.Ericmas001.Wpf.ViewModels;
 
 namespace Com.Ericmas001.Wpf.Entities.Filters
