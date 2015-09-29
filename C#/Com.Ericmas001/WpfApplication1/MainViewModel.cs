@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Com.Ericmas001.Util;
-using Com.Ericmas001.Util.Entities;
-using Com.Ericmas001.Util.Entities.Filters.Enums;
+using Com.Ericmas001.Portable.Util;
+using Com.Ericmas001.Portable.Util.Entities;
+using Com.Ericmas001.Portable.Util.Entities.Attributes;
+using Com.Ericmas001.Portable.Util.Entities.Filters.Enums;
 using Com.Ericmas001.Wpf;
 using Com.Ericmas001.Wpf.Entities.Filters;
 using Com.Ericmas001.Wpf.ViewModels.Sections;
@@ -19,11 +20,11 @@ namespace WpfApplication1
 {
     public enum TestEnum
     {
-        [Description("Non mais Allo quoi !")]
+        [EnumDescription("Non mais Allo quoi !")]
         Allo,
-        [Description("Bien le Bonjour !")]
+        [EnumDescription("Bien le Bonjour !")]
         Bonjour,
-        [Description("Aurevoir !")]
+        [EnumDescription("Aurevoir !")]
         Bye
     }
 
