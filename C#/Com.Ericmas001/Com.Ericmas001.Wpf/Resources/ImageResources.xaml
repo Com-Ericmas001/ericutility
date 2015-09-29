@@ -11,4 +11,5 @@
     <BitmapImage x:Key="ImgDown16" UriSource="/Com.Ericmas001.Wpf;component/Resources/down.png" />
     <BitmapImage x:Key="ImgLeft16" UriSource="/Com.Ericmas001.Wpf;component/Resources/left.png" />
     <BitmapImage x:Key="ImgRight16" UriSource="/Com.Ericmas001.Wpf;component/Resources/right.png" />
+    <BitmapImage x:Key="ImgNewWindow16" UriSource="/Com.Ericmas001.Wpf;component/Resources/window-new-small.png" />
 </ResourceDictionary>
