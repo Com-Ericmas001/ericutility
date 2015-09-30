@@ -14,6 +14,8 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 
         public virtual string TabHeader { get { return null; } }
 
+        public virtual string TabTitle { get { return null; } }
+
         protected virtual string IconImageName { get { return null; } }
 
         public virtual ImageSource TabIcon
@@ -30,8 +32,13 @@ namespace Com.Ericmas001.Wpf.ViewModels.Tabs
 
         public virtual bool CanCloseTab { get { return false; } }
 
-        public bool HasHeaderText { get { return !String.IsNullOrEmpty(TabHeader); } }
+        public string Title { get { return !string.IsNullOrEmpty(TabTitle) ? TabTitle : TabHeader; } }
+
+        public bool HasHeaderText { get { return !string.IsNullOrEmpty(TabHeader); } }
         public bool HasHeaderIcon { get { return TabIcon != null; } }
+
+        public bool HasTitle { get { return !string.IsNullOrEmpty(Title); } }
+        public bool HasTitleImage { get { return !string.IsNullOrEmpty(IconBigImageName); } }
 
         public ICommand CloseTabCommand
         {

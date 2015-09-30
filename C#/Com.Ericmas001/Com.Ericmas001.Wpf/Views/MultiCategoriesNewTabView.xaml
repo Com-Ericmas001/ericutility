@@ -18,18 +18,34 @@
 
     </UserControl.Resources>
     <DockPanel>
-        <ItemsControl DockPanel.Dock="Top" HorizontalAlignment="Center"  ItemsSource="{Binding HeaderActions}" Margin="10" Visibility="{Binding HasHeaderActions, Converter={StaticResource BoolToVisConverter}}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <customControls:CoolButton Margin="10,0,10,0" ImageMargin="5,5,0,5" TextMargin="5"  Content="{Binding Info.Description}" Command="{Binding Path=ExecuteCommand}" ButtonImage="{Binding Info.IconImageSmall}" TextImageOrientation="Horizontal" ButtonImageSize="16" FontWeight="Bold" ButtonColor="{Binding Info.ButtonBrush}" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+
+        <!-- Entete -->
+        <StackPanel DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding HasTitle, Converter={StaticResource BoolToVisConverter}}">
+
+                <!-- Image -->
+                <Image Source="{Binding TabIconBig}" Height="32" Width="32" Stretch="UniformToFill" Margin="0,0,15,0"/>
+
+                <!-- Titre de la recherche -->
+                <TextBlock Text="{Binding Title}" FontSize="18" Margin="10"/>
+
+                <!-- Image -->
+                <Image Source="{Binding TabIconBig}" Height="32" Width="32" Stretch="UniformToFill" Margin="15,0,0,0"/>
+
+            </StackPanel>
+            <ItemsControl HorizontalAlignment="Center"  ItemsSource="{Binding HeaderActions}" Margin="10" Visibility="{Binding HasHeaderActions, Converter={StaticResource BoolToVisConverter}}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <customControls:CoolButton Margin="10,0,10,0" ImageMargin="5,5,0,5" TextMargin="5"  Content="{Binding Info.Description}" Command="{Binding Path=ExecuteCommand}" ButtonImage="{Binding Info.IconImageSmall}" TextImageOrientation="Horizontal" ButtonImageSize="16" FontWeight="Bold" ButtonColor="{Binding Info.ButtonBrush}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
         <ItemsControl DockPanel.Dock="Bottom" HorizontalAlignment="Center"  ItemsSource="{Binding FooterActions}" Margin="10" Visibility="{Binding HasFooterActions, Converter={StaticResource BoolToVisConverter}}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
