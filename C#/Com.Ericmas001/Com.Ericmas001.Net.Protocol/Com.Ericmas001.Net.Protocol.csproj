@@ -79,9 +79,9 @@
       <Project>{48bed84d-b03c-4708-bf68-21bd4922a51c}</Project>
       <Name>Com.Ericmas001.Collections</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Com.Ericmas001.Util\Com.Ericmas001.Util.csproj">
-      <Project>{473a461c-a3ef-49a1-b4ef-0fdbe2304717}</Project>
-      <Name>Com.Ericmas001.Util</Name>
+    <ProjectReference Include="..\Com.Ericmas001.Portable.Util\Com.Ericmas001.Portable.Util.csproj">
+      <Project>{a9991c7b-7716-4a36-8456-3d320b4aa095}</Project>
+      <Name>Com.Ericmas001.Portable.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

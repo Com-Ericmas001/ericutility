@@ -1,4 +1,4 @@
-﻿using Com.Ericmas001.Util;
+﻿using Com.Ericmas001.Portable.Util;
 using System;
 using System.IO;
 using System.Net.Sockets;
@@ -44,20 +44,11 @@ namespace Com.Ericmas001.Net.Protocol
         public virtual bool Connect(string addr, int port)
         {
             m_Socket = new TcpClient();
-            try
-            {
                 m_Socket.Connect(addr, port);
                 m_Output = new StreamWriter(m_Socket.GetStream());
                 m_Output.AutoFlush = true;
                 m_Input = new StreamReader(m_Socket.GetStream());
                 return true;
-            }
-            catch (Exception e)
-            {
-                LogManager.Log(LogLevel.Error, "TcpCommunicator.Connect", "Error on connect: {0}", e.Message);
-                m_Socket = null;
-                return false;
-            }
         }
 
         protected virtual string Receive()
@@ -107,14 +98,12 @@ namespace Com.Ericmas001.Net.Protocol
 
         public virtual void OnReceiveCrashed(Exception e)
         {
-            LogManager.Log(LogLevel.Error, "TcpCommunicator.OnReceiveCrashed", "{0}: {1}", e.GetType(), e.Message);
-            LogManager.Log(LogLevel.ErrorLow, "TcpCommunicator.OnReceiveCrashed", e.StackTrace);
+            throw e;
         }
 
         public virtual void OnSendCrashed(Exception e)
         {
-            LogManager.Log(LogLevel.Error, "TcpCommunicator.OnSendCrashed", "{0}: {1}", e.GetType(), e.Message);
-            LogManager.Log(LogLevel.ErrorLow, "TcpCommunicator.OnSendCrashed", e.StackTrace);
+            throw e;
         }
 
         public void Start()

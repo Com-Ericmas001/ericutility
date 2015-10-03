@@ -61,11 +61,6 @@ namespace Com.Ericmas001.Net.Protocol
             {
                 OnServerDisconnected(m_Server);
             }
-            catch (Exception ex)
-            {
-                // log the error
-                Console.WriteLine(ex.ToString());
-            }
             finally
             {
                 m_Server = null;

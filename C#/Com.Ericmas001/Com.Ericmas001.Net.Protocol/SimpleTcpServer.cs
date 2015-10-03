@@ -70,11 +70,6 @@ namespace Com.Ericmas001.Net.Protocol
             {
                 OnClientDisconnected(client);
             }
-            catch (Exception ex)
-            {
-                // log the error
-                Console.WriteLine(ex.ToString());
-            }
             finally
             {
                 // remove pending task

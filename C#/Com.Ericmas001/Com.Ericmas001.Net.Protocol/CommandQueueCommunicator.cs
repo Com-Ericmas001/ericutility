@@ -1,4 +1,4 @@
-﻿using Com.Ericmas001.Util;
+﻿using Com.Ericmas001.Portable.Util;
 
 namespace Com.Ericmas001.Net.Protocol
 {
