@@ -8,7 +8,7 @@ namespace Com.Ericmas001.Portable.Util.Entities.Filters.Comparators
     {
         public override bool IsDataFiltered(object comparatorValue, object value, IDataItem item)
         {
-            return value.ToString().EndsWith(comparatorValue.ToString());
+            return value.ToString().ToLowerInvariant().EndsWith(comparatorValue.ToString().ToLowerInvariant());
         }
     }
 }

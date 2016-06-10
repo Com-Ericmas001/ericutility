@@ -13,8 +13,13 @@ namespace Com.Ericmas001.Portable.Util.Entities.Filters.Comparators
             var enumerable = comparatorValue as IEnumerable;
             if (enumerable != null)
                 return enumerable.Cast<object>().Contains(value);
+            var comparatorValueStr = comparatorValue?.ToString();
+            var valueStr = value?.ToString();
 
-            return value.Equals(comparatorValue);
+            if (comparatorValueStr == null || valueStr == null)
+                return comparatorValueStr == valueStr;
+
+            return comparatorValueStr.ToLowerInvariant() == valueStr.ToLowerInvariant();
         }
     }
 }

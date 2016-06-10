@@ -24,6 +24,9 @@
     </ContextMenu>
 
     <Style TargetType="{x:Type TreeViewItem}" x:Key="CoolTreeViewItemStyle">
+        <Style.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#FF3399FF"/>
+        </Style.Resources>
         <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <Setter Property="ContextMenu" Value="{StaticResource treeCTX}" />
         <Setter Property="ItemsSource" Value="{Binding Children}" />
