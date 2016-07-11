@@ -16,8 +16,8 @@ namespace Com.Ericmas001.Wpf.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null || parameter == null)
-                return null;
-            return (bool)value ? Enum.Parse(targetType, parameter.ToString()) : null;
+                return Binding.DoNothing;
+            return (bool)value ? Enum.Parse(targetType, parameter.ToString()) : Binding.DoNothing;
         }
     }
 }
